@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ECLOR — Plomberie, Chauffage, Climatisation en Lorraine</title>
+  <meta name="description" content="ECLOR, artisan plombier chauffagiste en Lorraine. Dépannage, installation, entretien. Intervention rapide 7j/7. Devis gratuit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========================================
+       RESET & VARIABLES
+    ======================================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --dark: #0a1628;
+      --dark-alt: #0f2035;
+      --dark-card: #132742;
+      --orange: #f47b20;
+      --orange-light: #ffa94d;
+      --orange-glow: rgba(244, 123, 32, 0.25);
+      --cream: #f5f0eb;
+      --cream-alt: #ebe4db;
+      --white: #ffffff;
+      --white-70: rgba(255,255,255,0.7);
+      --white-50: rgba(255,255,255,0.5);
+      --white-20: rgba(255,255,255,0.2);
+      --white-10: rgba(255,255,255,0.1);
+
+      --r-sm: 8px;
+      --r-md: 14px;
+      --r-lg: 22px;
+      --r-pill: 50px;
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'Source Sans 3', sans-serif;
+
+      --max-w: 1200px;
+      --section-pad: clamp(60px, 10vw, 120px);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Texture de fond — tuyauterie cuivre */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.4;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.15 0 0 0 0.06 0 0.08 0 0 0.03 0 0 0.04 0 0.01 0 0 0 0.8 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      border-radius: var(--r-md);
+      isolation: isolate;
+      position: relative;
+      z-index: 9999;
+    }
+
+    a { color: var(--orange); text-decoration: none; }
+
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 clamp(20px, 4vw, 40px); }
+
+    /* ========================================
+       HEADER
+    ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10000;
+      padding: 16px 0;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+
+    .header.scrolled {
+      background: rgba(10, 22, 40, 0.92);
+      backdrop-filter: blur(16px);
+    }
+
+    .header.menu-open {
+      z-index: 10002;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 44px;
+      height: 44px;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 3px;
+      color: var(--white);
+    }
+
+    .nav-desktop { display: flex; gap: 32px; align-items: center; }
+    .nav-desktop a {
+      color: var(--white-70);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s;
+      position: relative;
+    }
+    .nav-desktop a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--orange);
+      transition: width 0.3s;
+      border-radius: 2px;
+    }
+    .nav-desktop a:hover { color: var(--white); }
+    .nav-desktop a:hover::after { width: 100%; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: var(--orange);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      border-radius: var(--r-pill);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px var(--orange-glow);
+      background: var(--orange-light);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+    }
+    .btn-outline:hover {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      position: relative;
+      z-index: 10002;
+    }
+    .hamburger span {
+      width: 28px;
+      height: 2.5px;
+      background: var(--white);
+      border-radius: 4px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5.5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5.5px); }
+
+    /* Mobile nav */
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 22, 40, 0.97);
+      backdrop-filter: blur(20px);
+      z-index: 10000;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: var(--white);
+      transition: color 0.3s;
+    }
+    .nav-mobile a:hover { color: var(--orange); }
+
+    /* ========================================
+       HERO
+    ======================================== */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--dark);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 70% 30%, rgba(244,123,32,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 20% 80%, rgba(244,123,32,0.06) 0%, transparent 50%),
+        linear-gradient(180deg, var(--dark) 0%, var(--dark-alt) 100%);
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: linear-gradient(to top, var(--dark), transparent);
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding-top: 100px;
+      padding-bottom: 60px;
+    }
+
+    .hero-content { max-width: 560px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: var(--white-10);
+      border: 1px solid var(--white-20);
+      border-radius: var(--r-pill);
+      font-size: 0.85rem;
+      color: var(--orange-light);
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: #34d399;
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(52, 211, 153, 0); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 4.8rem);
+      line-height: 1;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 .accent {
+      color: var(--orange);
+      position: relative;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: var(--white-70);
+      margin-bottom: 36px;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+    }
+
+    .hero-stat {
+      text-align: left;
+      flex: 1;
+    }
+
+    .hero-stat-number {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      color: var(--orange);
+      letter-spacing: 1px;
+    }
+
+    .hero-stat-label {
+      font-size: 0.85rem;
+      color: var(--white-50);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Hero visual — image avec cadre */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 4/5;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+    }
+
+    .hero-image-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--white-20);
+      pointer-events: none;
+    }
+
+    /* Floating card sur hero */
+    .hero-float-card {
+      position: absolute;
+      top: -20px;
+      right: -30px;
+      background: var(--dark-card);
+      border: 1px solid var(--white-10);
+      border-radius: var(--r-md);
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 10000;
+    }
+
+    .hero-float-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--orange);
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+    }
+
+    .hero-float-text {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .hero-float-text span {
+      display: block;
+      color: var(--white-50);
+      font-weight: 400;
+      font-size: 0.8rem;
+    }
+
+    /* ========================================
+       SERVICES PIPELINE (circuit icons)
+    ======================================== */
+    .services-bar {
+      position: relative;
+      background: var(--dark-alt);
+      border-top: 1px solid var(--white-10);
+      border-bottom: 1px solid var(--white-10);
+      padding: 40px 0;
+    }
+
+    .services-pipeline {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+
+    .pipe-service {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+
+    .pipe-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      cursor: default;
+      transition: transform 0.3s;
+    }
+    .pipe-node:hover { transform: translateY(-4px); }
+
+    .pipe-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--dark-card);
+      border: 2px solid var(--white-20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .pipe-node:hover .pipe-icon {
+      border-color: var(--orange);
+      box-shadow: 0 0 20px var(--orange-glow);
+    }
+
+    .pipe-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--white-50);
+      font-weight: 600;
+    }
+
+    .pipe-connector {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--white-20), var(--orange), var(--white-20));
+      border-radius: 2px;
+      margin-bottom: 28px;
+    }
+
+    /* ========================================
+       SECTION TITLES
+    ======================================== */
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: var(--orange);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      letter-spacing: 2px;
+      line-height: 1.1;
+    }
+
+    .section-subtitle {
+      max-width: 560px;
+      margin: 16px auto 0;
+      color: var(--white-70);
+      font-size: 1.05rem;
+    }
+
+    /* ========================================
+       MA DIFFÉRENCE — CADRANS MANOMÈTRE
+    ======================================== */
+    .difference {
+      padding: var(--section-pad) 0;
+      background: var(--dark);
+    }
+
+    .gauges {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+
+    .gauge-card {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--dark-card);
+      border: 1px solid var(--white-10);
+      border-radius: var(--r-lg);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .gauge-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--orange);
+    }
+
+    .gauge-icon {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 24px;
+      background: rgba(244, 123, 32, 0.08);
+      border: 1px solid rgba(244, 123, 32, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .gauge-card:hover .gauge-icon {
+      background: rgba(244, 123, 32, 0.15);
+      border-color: var(--orange);
+    }
+
+    .gauge-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+
+    .gauge-card p {
+      color: var(--white-70);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* ========================================
+       PRESTATIONS
+    ======================================== */
+    .prestations {
+      padding: var(--section-pad) 0;
+      background: var(--cream);
+      color: var(--dark);
+    }
+
+    .prestations .section-tag { color: var(--orange); }
+    .prestations .section-title { color: var(--dark); }
+    .prestations .section-subtitle { color: rgba(10,22,40,0.7); }
+
+    .presta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .presta-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid rgba(10,22,40,0.06);
+    }
+    .presta-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(10,22,40,0.08);
+    }
+
+    .presta-icon {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-light));
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      box-shadow: 0 4px 12px var(--orange-glow);
+    }
+
+    .presta-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      letter-spacing: 1px;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .presta-card p {
+      font-size: 0.9rem;
+      color: rgba(10,22,40,0.6);
+      line-height: 1.5;
+    }
+
+    /* ========================================
+       ABOUT / CITATION
+    ======================================== */
+    .about {
+      padding: var(--section-pad) 0;
+      background: var(--dark-alt);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--white-10);
+      border-radius: var(--r-lg);
+      pointer-events: none;
+    }
+
+    .about-content { max-width: 500px; }
+
+    .about-quote {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.2;
+      letter-spacing: 1px;
+      margin-bottom: 24px;
+      position: relative;
+      padding-left: 24px;
+      border-left: 3px solid var(--orange);
+    }
+
+    .about-text {
+      color: var(--white-70);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .about-signature {
+      font-weight: 600;
+      color: var(--orange);
+      font-size: 1.1rem;
+    }
+
+    /* ========================================
+       GALERIE (réalisations)
+    ======================================== */
+    .gallery {
+      padding: var(--section-pad) 0;
+      background: var(--dark);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
+
+    .gallery-item {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 4/3;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .gallery-item:first-child {
+      grid-row: span 2;
+      aspect-ratio: auto;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s;
+      border-radius: var(--r-lg);
+    }
+
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.8) 0%, transparent 60%);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      opacity: 0;
+      transition: opacity 0.4s;
+      border-radius: var(--r-lg);
+    }
+
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-overlay span {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+    }
+
+    /* ========================================
+       ZONE D'INTERVENTION
+    ======================================== */
+    .zone {
+      padding: var(--section-pad) 0;
+      background: var(--cream);
+      color: var(--dark);
+    }
+
+    .zone .section-tag { color: var(--orange); }
+    .zone .section-title { color: var(--dark); }
+
+    .zone-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .zone-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      letter-spacing: 1px;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .zone-info p {
+      color: rgba(10,22,40,0.7);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .zone-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .zone-list li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: rgba(10,22,40,0.8);
+    }
+
+    .zone-list li::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .zone-map {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      padding: 40px;
+      text-align: center;
+      border: 1px solid rgba(10,22,40,0.08);
+      box-shadow: 0 8px 30px rgba(10,22,40,0.06);
+    }
+
+    .zone-map-visual {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    /* ========================================
+       CTA SECTION
+    ======================================== */
+    .cta {
+      padding: var(--section-pad) 0;
+      background: var(--dark);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta .container { position: relative; z-index: 2; }
+
+    .cta-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .cta-text {
+      color: var(--white-70);
+      font-size: 1.1rem;
+      margin-bottom: 36px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .cta-phone {
+      font-family: var(--font-display);
+      font-size: 2.4rem;
+      letter-spacing: 2px;
+      color: var(--orange);
+    }
+
+    .cta-phone a { color: var(--orange); transition: color 0.3s; }
+    .cta-phone a:hover { color: var(--orange-light); }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    .footer {
+      padding: 40px 0;
+      background: var(--dark-alt);
+      border-top: 1px solid var(--white-10);
+    }
+
+    .footer .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-copy {
+      color: var(--white-50);
+      font-size: 0.85rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: var(--white-50);
+      font-size: 0.85rem;
+      transition: color 0.3s;
+    }
+    .footer-links a:hover { color: var(--orange); }
+
+    /* ========================================
+       ANIMATIONS
+    ======================================== */
+
+    /* Float doux — card hero */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-float-card {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    /* Glow pulse — icônes services */
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 transparent; }
+      50% { box-shadow: 0 0 18px var(--orange-glow); }
+    }
+
+    .pipe-icon {
+      animation: glow-pulse 3s ease-in-out infinite;
+      animation-delay: calc(var(--i, 0) * 0.5s);
+    }
+
+    /* Chaleur qui circule — pipe connectors */
+    @keyframes heat-flow {
+      0% { background-position: -100px 0; }
+      100% { background-position: 100px 0; }
+    }
+
+    .pipe-connector {
+      background: linear-gradient(90deg, var(--white-10) 0%, var(--orange) 50%, var(--white-10) 100%);
+      background-size: 100px 2px;
+      animation: heat-flow 2s linear infinite;
+    }
+
+    /* Stagger reveal — les cards apparaissent une par une */
+    .reveal-stagger {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+    .reveal-stagger.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Gradient shimmer — barre orange du about-quote */
+    @keyframes shimmer {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 0% 200%; }
+    }
+
+    .about-quote {
+      border-left: 3px solid transparent;
+      border-image: linear-gradient(180deg, var(--orange), var(--orange-light), var(--orange)) 1;
+      animation: shimmer 4s linear infinite;
+    }
+
+    /* Hover glow — gauge cards */
+    .gauge-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gauge-card::before {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 100px;
+      background: radial-gradient(ellipse, var(--orange-glow) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+
+    .gauge-card:hover::before {
+      opacity: 1;
+    }
+
+    /* CTA glow pulse */
+    @keyframes cta-glow {
+      0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    .cta::before {
+      animation: cta-glow 5s ease-in-out infinite;
+    }
+
+    /* Image hover zoom — gallery */
+    .gallery-item img {
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Presta icon bounce on hover */
+    .presta-card:hover .presta-icon {
+      animation: icon-bounce 0.5s ease;
+    }
+
+    @keyframes icon-bounce {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.2); }
+      70% { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
+
+    /* Hero image subtle parallax float */
+    .hero-image-wrapper img {
+      animation: parallax-float 8s ease-in-out infinite;
+    }
+
+    @keyframes parallax-float {
+      0%, 100% { transform: scale(1) translateY(0); }
+      50% { transform: scale(1.03) translateY(-8px); }
+    }
+
+    /* Animated section divider — pipe line */
+    .section-pipe {
+      display: block;
+      width: 100%;
+      height: 3px;
+      border: none;
+      background: linear-gradient(90deg, transparent 0%, var(--orange) 20%, var(--orange-light) 50%, var(--orange) 80%, transparent 100%);
+      background-size: 300% 100%;
+      animation: pipe-flow 4s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes pipe-flow {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    /* Gauge icon pulse on appear */
+    .gauge-card.visible .gauge-icon {
+      animation: gauge-appear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes gauge-appear {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* About image reveal slide */
+    .about-image img {
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.04);
+    }
+
+    /* Floating badge subtle scale */
+    .hero-badge {
+      animation: badge-breathe 3s ease-in-out infinite;
+    }
+
+    @keyframes badge-breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    /* ========================================
+       REVEAL BASE
+    ======================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s, transform 0.8s;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal-stagger { opacity: 1; transform: none; transition: none; }
+      .hero-badge .dot { animation: none; }
+      .hero-float-card { animation: none; }
+      .pipe-icon { animation: none; }
+      .pipe-connector { animation: none; }
+      .cta::before { animation: none; }
+      .hero-image-wrapper img { animation: none; }
+      .hero-badge { animation: none; }
+      .section-pipe { animation: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ========================================
+       RESPONSIVE
+    ======================================== */
+    @media (max-width: 1024px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content { max-width: 100%; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; text-align: center; }
+      .hero-visual { display: none; }
+      .gauges { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-content { max-width: 100%; }
+      .zone-content { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; }
+      .gallery-item:first-child { grid-row: span 1; }
+    }
+
+    @media (max-width: 960px) {
+      .nav-desktop { display: none; }
+      .hamburger { display: flex; }
+      .gauges { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; }
+      .presta-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .zone-list { grid-template-columns: 1fr; }
+      .hero-stats { flex-direction: row; flex-wrap: wrap; gap: 20px; justify-content: center; }
+      .hero-stat { flex: 0 0 auto; text-align: center; }
+      .footer .container { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .pipe-connector { width: 24px; }
+      .pipe-node { padding: 8px 14px; }
+    }
+
+    @media (max-width: 480px) {
+      .services-pipeline { flex-wrap: wrap; justify-content: center; gap: 8px; }
+      .pipe-connector { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#" class="logo">
+        <!-- Logo ECLOR — flamme stylisée -->
+        <svg class="logo-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="22" r="20" fill="none" stroke="var(--orange)" stroke-width="2" opacity="0.3"/>
+          <path d="M22 8C22 8 14 18 14 26C14 30.4 17.6 34 22 34C26.4 34 30 30.4 30 26C30 18 22 8 22 8Z" fill="var(--orange)"/>
+          <path d="M22 16C22 16 18 22 18 26C18 28.2 19.8 30 22 30C24.2 30 26 28.2 26 26C26 22 22 16 22 16Z" fill="var(--orange-light)"/>
+        </svg>
+        <span class="logo-text">ECLOR</span>
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="#services">Services</a>
+        <a href="#difference">Notre engagement</a>
+        <a href="#prestations">Prestations</a>
+        <a href="#realisations">Réalisations</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="tel:0782241621" class="btn" style="padding: 10px 22px; font-size: 0.9rem;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        07 82 24 16 21
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Nav mobile -->
+  <nav class="nav-mobile" id="navMobile">
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#difference" onclick="closeMenu()">Notre engagement</a>
+    <a href="#prestations" onclick="closeMenu()">Prestations</a>
+    <a href="#realisations" onclick="closeMenu()">Réalisations</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="tel:0782241621" class="btn" onclick="closeMenu()">07 82 24 16 21</a>
+  </nav>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Disponible 7j/7 — Lorraine
+        </div>
+        <h1>UN TRAVAIL <span class="accent">SOIGNÉ</span>, UN CONFORT <span class="accent">DURABLE</span></h1>
+        <p class="hero-sub">Votre plombier chauffagiste en Lorraine. Installation, dépannage et entretien de vos systèmes de plomberie, chauffage, climatisation et ventilation.</p>
+        <div class="hero-actions">
+          <a href="tel:0782241621" class="btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Appeler maintenant
+          </a>
+          <a href="#prestations" class="btn btn-outline">Nos prestations</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="7">7j/7</div>
+            <div class="hero-stat-label">Disponibilité</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">Devis</div>
+            <div class="hero-stat-label">Gratuit & sans engagement</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">Lorraine</div>
+            <div class="hero-stat-label">Zone d'intervention</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1676210134188-4c05dd172f89?auto=format&fit=crop&w=960&q=80" alt="Technicien travaillant sur un tuyau" loading="eager">
+        </div>
+        <div class="hero-float-card">
+          <div class="hero-float-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="hero-float-text">
+            Urgences 7j/7
+            <span>Intervention rapide en Lorraine</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICES BAR ==================== -->
+  <section class="services-bar" id="services">
+    <div class="container">
+      <div class="services-pipeline">
+        <div class="pipe-service">
+          <div class="pipe-node">
+            <div class="pipe-icon" style="--i:0">🔧</div>
+            <div class="pipe-label">Plomberie</div>
+          </div>
+          <div class="pipe-connector"></div>
+        </div>
+        <div class="pipe-service">
+          <div class="pipe-node">
+            <div class="pipe-icon" style="--i:1">🔥</div>
+            <div class="pipe-label">Chauffage</div>
+          </div>
+          <div class="pipe-connector"></div>
+        </div>
+        <div class="pipe-service">
+          <div class="pipe-node">
+            <div class="pipe-icon" style="--i:2">❄️</div>
+            <div class="pipe-label">Climatisation</div>
+          </div>
+          <div class="pipe-connector"></div>
+        </div>
+        <div class="pipe-service">
+          <div class="pipe-node">
+            <div class="pipe-icon" style="--i:3">♨️</div>
+            <div class="pipe-label">Pompe à chaleur</div>
+          </div>
+          <div class="pipe-connector"></div>
+        </div>
+        <div class="pipe-service">
+          <div class="pipe-node">
+            <div class="pipe-icon" style="--i:4">💨</div>
+            <div class="pipe-label">Ventilation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-pipe">
+
+  <!-- ==================== MA DIFFÉRENCE — CADRANS ==================== -->
+  <section class="difference" id="difference">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Notre engagement</div>
+        <h2 class="section-title">POURQUOI CHOISIR ECLOR</h2>
+        <p class="section-subtitle">Un interlocuteur unique pour tous vos travaux de plomberie et de chauffage en Lorraine.</p>
+      </div>
+
+      <div class="gauges">
+        <!-- Rapidité -->
+        <div class="gauge-card reveal">
+          <div class="gauge-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <h3>RÉACTIVITÉ</h3>
+          <p>Dépannage en urgence 7 jours sur 7. Nous intervenons rapidement sur l'ensemble de la Lorraine pour limiter les dégâts et rétablir votre confort.</p>
+        </div>
+
+        <!-- Franchise -->
+        <div class="gauge-card reveal">
+          <div class="gauge-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          </div>
+          <h3>DEVIS CLAIR</h3>
+          <p>Chaque intervention commence par un diagnostic précis et un devis détaillé. Vous savez exactement ce qui sera fait et à quel prix, avant le début des travaux.</p>
+        </div>
+
+        <!-- Qualité -->
+        <div class="gauge-card reveal">
+          <div class="gauge-icon">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--orange)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <h3>TRAVAIL SOIGNÉ</h3>
+          <p>Des finitions propres, des matériaux de qualité et le respect des normes en vigueur. Chaque chantier est réalisé dans les règles de l'art.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRESTATIONS ==================== -->
+  <section class="prestations" id="prestations">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Nos prestations</div>
+        <h2 class="section-title">NOS DOMAINES D'INTERVENTION</h2>
+        <p class="section-subtitle">Plomberie, chauffage, climatisation et ventilation pour les particuliers et les professionnels.</p>
+      </div>
+
+      <div class="presta-grid">
+        <div class="presta-card reveal-stagger" style="transition-delay: 0s">
+          <div class="presta-icon">🚿</div>
+          <div>
+            <h3>DÉPANNAGE FUITE & ROBINETTERIE</h3>
+            <p>Recherche de fuite, réparation de robinetterie, remplacement de joints et de vannes d'arrêt.</p>
+          </div>
+        </div>
+        <div class="presta-card reveal-stagger" style="transition-delay: 0.08s">
+          <div class="presta-icon">🔥</div>
+          <div>
+            <h3>REMPLACEMENT CHAUFFE-EAU</h3>
+            <p>Dépose et pose de chauffe-eau électrique ou thermodynamique. Raccordement et mise en service inclus.</p>
+          </div>
+        </div>
+        <div class="presta-card reveal-stagger" style="transition-delay: 0.16s">
+          <div class="presta-icon">🛠️</div>
+          <div>
+            <h3>INSTALLATION & REMPLACEMENT CHAUDIÈRE</h3>
+            <p>Chaudière gaz, condensation ou hybride. Dépose de l'ancien équipement, raccordement et mise en service.</p>
+          </div>
+        </div>
+        <div class="presta-card reveal-stagger" style="transition-delay: 0.24s">
+          <div class="presta-icon">❄️</div>
+          <div>
+            <h3>CLIMATISATION & POMPE À CHALEUR</h3>
+            <p>Fourniture et pose de climatisation réversible et de pompe à chaleur air/air ou air/eau.</p>
+          </div>
+        </div>
+        <div class="presta-card reveal-stagger" style="transition-delay: 0.32s">
+          <div class="presta-icon">🔄</div>
+          <div>
+            <h3>ENTRETIEN ANNUEL</h3>
+            <p>Contrat d'entretien chaudière et climatisation. Vérification, nettoyage et attestation de conformité.</p>
+          </div>
+        </div>
+        <div class="presta-card reveal-stagger" style="transition-delay: 0.4s">
+          <div class="presta-icon">💨</div>
+          <div>
+            <h3>VMC & VENTILATION</h3>
+            <p>Installation et entretien de VMC simple flux, double flux et ventilation mécanique pour logements et locaux professionnels.</p>
+          </div>
+        </div>
+        <div class="presta-card reveal-stagger" style="transition-delay: 0.48s">
+          <div class="presta-icon">🛁</div>
+          <div>
+            <h3>RÉNOVATION SALLE DE BAIN</h3>
+            <p>Rénovation partielle ou complète : plomberie, sanitaires, receveur de douche, baignoire et raccordements.</p>
+          </div>
+        </div>
+        <div class="presta-card reveal-stagger" style="transition-delay: 0.56s">
+          <div class="presta-icon">🚨</div>
+          <div>
+            <h3>URGENCES 7J/7</h3>
+            <p>Fuite d'eau, panne de chauffage, ballon d'eau chaude défaillant — intervention rapide tous les jours, week-ends compris.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-pipe">
+
+  <!-- ==================== ABOUT / CITATION ==================== -->
+  <section class="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal">
+          <img src="https://images.unsplash.com/photo-1676210134190-3f2c0d5cf58d?auto=format&fit=crop&w=800&q=80" alt="Technicien réparant un chauffe-eau" loading="lazy">
+        </div>
+        <div class="about-content reveal">
+          <div class="section-tag">À propos</div>
+          <blockquote class="about-quote">Votre plombier chauffagiste de proximité en Lorraine</blockquote>
+          <p class="about-text">ECLOR est une entreprise spécialisée dans la plomberie, le chauffage, la climatisation et la ventilation. Nous accompagnons les particuliers et les professionnels de la région lorraine dans l'installation, l'entretien et le dépannage de leurs équipements.</p>
+          <p class="about-text">Diagnostic sur place, devis détaillé avant travaux, intervention dans les meilleurs délais. Nous travaillons avec des matériaux conformes aux normes en vigueur et assurons un suivi après chaque chantier.</p>
+          <p class="about-signature">— L'équipe ECLOR</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== GALERIE ==================== -->
+  <section class="gallery" id="realisations">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Réalisations</div>
+        <h2 class="section-title">NOS INTERVENTIONS</h2>
+        <p class="section-subtitle">Plomberie, chauffage et rénovation — quelques exemples de nos domaines d'intervention.</p>
+      </div>
+
+      <div class="gallery-grid reveal">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1638799869566-b17fa794c4de?auto=format&fit=crop&w=800&q=80" alt="Salle de bain moderne avec baignoire et douche italienne" loading="lazy">
+          <div class="gallery-overlay"><span>Rénovation salle de bain</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1650551182956-47efa0f90b64?auto=format&fit=crop&w=600&q=80" alt="Tuyauterie et jauges de chauffage" loading="lazy">
+          <div class="gallery-overlay"><span>Installation plomberie</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1676210133055-eab6ef033ce3?auto=format&fit=crop&w=600&q=80" alt="Plombier travaillant sur installation" loading="lazy">
+          <div class="gallery-overlay"><span>Remplacement chaudière</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1599028274511-e02a767949a3?auto=format&fit=crop&w=600&q=80" alt="Radiateur moderne" loading="lazy">
+          <div class="gallery-overlay"><span>Régulation thermique</span></div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1665826254141-bfa10685e002?auto=format&fit=crop&w=600&q=80" alt="Unité de climatisation" loading="lazy">
+          <div class="gallery-overlay"><span>Climatisation réversible</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ZONE D'INTERVENTION ==================== -->
+  <section class="zone" id="zone">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-tag">Zone d'intervention</div>
+        <h2 class="section-title" style="color: var(--dark);">NOUS INTERVENONS EN LORRAINE</h2>
+      </div>
+
+      <div class="zone-content reveal">
+        <div class="zone-info">
+          <h3>UNE COUVERTURE RÉGIONALE</h3>
+          <p>ECLOR intervient sur l'ensemble de la Lorraine pour les particuliers et les professionnels. Que vous soyez en ville ou en zone rurale, nous nous déplaçons jusqu'à chez vous.</p>
+          <ul class="zone-list">
+            <li>Metz et agglomération</li>
+            <li>Nancy et agglomération</li>
+            <li>Thionville</li>
+            <li>Épinal</li>
+            <li>Bar-le-Duc</li>
+            <li>Verdun</li>
+            <li>Sarreguemines</li>
+            <li>Lunéville</li>
+          </ul>
+        </div>
+        <div class="zone-map">
+          <!-- Silhouette simplifiée Lorraine en SVG -->
+          <svg class="zone-map-visual" viewBox="0 0 300 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 20 L160 10 L220 30 L260 60 L280 120 L270 180 L260 220 L250 280 L220 320 L180 350 L140 340 L100 310 L60 260 L40 200 L30 140 L50 80 L80 40 Z" fill="var(--cream-alt)" stroke="var(--orange)" stroke-width="2" stroke-linejoin="round"/>
+            <!-- Points villes -->
+            <circle cx="180" cy="120" r="8" fill="var(--orange)"/>
+            <text x="196" y="125" fill="var(--dark)" font-size="13" font-weight="600">Metz</text>
+            <circle cx="160" cy="200" r="8" fill="var(--orange)"/>
+            <text x="176" y="205" fill="var(--dark)" font-size="13" font-weight="600">Nancy</text>
+            <circle cx="200" cy="60" r="5" fill="var(--orange)" opacity="0.6"/>
+            <text x="212" y="65" fill="var(--dark)" font-size="11">Thionville</text>
+            <circle cx="130" cy="280" r="5" fill="var(--orange)" opacity="0.6"/>
+            <text x="142" y="285" fill="var(--dark)" font-size="11">Épinal</text>
+            <circle cx="80" cy="180" r="5" fill="var(--orange)" opacity="0.6"/>
+            <text x="55" y="170" fill="var(--dark)" font-size="11">Bar-le-Duc</text>
+            <circle cx="110" cy="110" r="5" fill="var(--orange)" opacity="0.6"/>
+            <text x="60" y="105" fill="var(--dark)" font-size="11">Verdun</text>
+            <!-- Cercle de couverture -->
+            <circle cx="170" cy="160" r="120" fill="none" stroke="var(--orange)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-pipe">
+
+  <!-- ==================== CTA ==================== -->
+  <section class="cta" id="contact">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-tag">Contact</div>
+        <h2 class="cta-title">BESOIN D'UN PLOMBIER<br>EN LORRAINE ?</h2>
+        <p class="cta-text">Contactez-nous pour un devis gratuit. Intervention rapide sur toute la Lorraine, 7 jours sur 7.</p>
+        <div class="cta-actions">
+          <a href="tel:0782241621" class="btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Appeler maintenant
+          </a>
+          <a href="mailto:eclor.contact@gmail.com" class="btn btn-outline">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Envoyer un email
+          </a>
+        </div>
+        <div class="cta-phone">
+          <a href="tel:0782241621">07 82 24 16 21</a>
+        </div>
+        <p style="color: var(--white-50); margin-top: 12px; font-size: 0.9rem;">eclor.contact@gmail.com — Devis offert — Lorraine</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-left">
+        <svg width="28" height="28" viewBox="0 0 44 44" fill="none">
+          <path d="M22 8C22 8 14 18 14 26C14 30.4 17.6 34 22 34C26.4 34 30 30.4 30 26C30 18 22 8 22 8Z" fill="var(--orange)"/>
+          <path d="M22 16C22 16 18 22 18 26C18 28.2 19.8 30 22 30C24.2 30 26 28.2 26 26C26 22 22 16 22 16Z" fill="var(--orange-light)"/>
+        </svg>
+        <span class="footer-copy">© 2026 ECLOR — Tous droits réservés</span>
+      </div>
+      <div class="footer-links">
+        <a href="tel:0782241621">07 82 24 16 21</a>
+        <a href="mailto:eclor.contact@gmail.com">eclor.contact@gmail.com</a>
+        <a href="#services">Services</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // === Header scroll ===
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // === Hamburger ===
+    const hamburger = document.getElementById('hamburger');
+    const navMobile = document.getElementById('navMobile');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMobile.classList.toggle('open');
+      header.classList.toggle('menu-open');
+      document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+    });
+
+    function closeMenu() {
+      hamburger.classList.remove('active');
+      navMobile.classList.remove('open');
+      header.classList.remove('menu-open');
+      document.body.style.overflow = '';
+    }
+
+    // === Reveal on scroll ===
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          revealObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    revealEls.forEach(el => revealObs.observe(el));
+
+    // === Stagger reveal ===
+    const staggerEls = document.querySelectorAll('.reveal-stagger');
+    const staggerObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          staggerObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    staggerEls.forEach(el => staggerObs.observe(el));
+
+
+    // === Fallback: reveal remaining after 2.5s (for slow connections / static renderers) ===
+    setTimeout(() => {
+      revealEls.forEach(el => {
+        if (!el.classList.contains('visible')) el.classList.add('visible');
+      });
+      staggerEls.forEach(el => {
+        if (!el.classList.contains('visible')) el.classList.add('visible');
+      });
+    }, 500);
+
+    // === Smooth scroll for anchor links ===
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
