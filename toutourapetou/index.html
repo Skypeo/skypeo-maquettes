@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toutou Rapetou — Salon de toilettage aux Ponts-de-Cé</title>
+  <meta name="description" content="Toutou Rapetou, salon de toilettage pour chiens et chats aux Ponts-de-Cé. Toilettage complet, formules mensuelles, articles pour animaux.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & VARIABLES ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream: #FFF8F0;
+      --cream-dark: #F5EDE3;
+      --blue: #4AACD4;
+      --blue-light: #E8F4F8;
+      --blue-dark: #3A8DB0;
+      --brown: #5C3D2E;
+      --brown-dark: #3D2B1F;
+      --brown-light: #8B6F5E;
+      --white: #FFFFFF;
+      --shadow-blue: rgba(74, 172, 212, 0.15);
+      --shadow-brown: rgba(92, 61, 46, 0.1);
+
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 24px;
+      --r-xl: 32px;
+      --r-pill: 999px;
+
+      --font-heading: 'Fredoka', sans-serif;
+      --font-body: 'Quicksand', sans-serif;
+
+      --max-w: 1200px;
+      --section-py: clamp(4rem, 8vw, 7rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      position: relative;
+      font-family: var(--font-body);
+      font-weight: 500;
+      color: var(--brown-dark);
+      background: var(--cream);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== TEXTURE OVERLAY ========== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.35;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='500'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeColorMatrix type='matrix' values='0.8 0 0 0 0.29 0 0.8 0 0 0.42 0 0 0.8 0 0.58 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='500' height='500' filter='url(%23t)'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ========== ACCESSIBILITY ========== */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); border: 0;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1, h2, h3, h4 { font-family: var(--font-heading); line-height: 1.2; }
+    h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 600; }
+    h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); font-weight: 600; }
+    p { font-size: clamp(1rem, 1.8vw, 1.125rem); }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: 90%;
+      max-width: var(--max-w);
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: var(--font-heading);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 3px;
+      background: var(--blue);
+      border-radius: var(--r-pill);
+    }
+
+    .section-title {
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.875rem 2rem;
+      border: none;
+      border-radius: var(--r-pill);
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--shadow-blue);
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+    }
+
+    .btn-outline:hover {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    /* ========== FLOATING BUBBLES ========== */
+    .bubbles-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -80px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(74, 172, 212, 0.18), rgba(74, 172, 212, 0.04));
+      border: 1px solid rgba(74, 172, 212, 0.1);
+      opacity: 0;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) translateX(0) scale(0.4); opacity: 0; }
+      8% { opacity: 0.7; }
+      85% { opacity: 0.7; }
+      100% { transform: translateY(calc(-100vh - 100px)) translateX(var(--drift)) scale(1); opacity: 0; }
+    }
+
+    /* ========== HEADER / NAV ========== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 0.75rem 0;
+      transition: background 0.4s, box-shadow 0.4s, padding 0.4s;
+    }
+
+    .header.scrolled {
+      background: var(--cream);
+      box-shadow: 0 2px 20px var(--shadow-brown);
+      padding: 0.5rem 0;
+    }
+
+    .header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 101;
+    }
+
+    .logo img {
+      height: 56px;
+      width: auto;
+      isolation: isolate;
+      position: relative;
+      z-index: 9999;
+    }
+
+    .header.scrolled .logo img {
+      height: 44px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--brown-dark);
+      position: relative;
+      padding: 0.25rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--blue);
+      border-radius: var(--r-pill);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-links a.nav-cta {
+      background: var(--blue);
+      color: var(--white) !important;
+      padding: 0.6rem 1.5rem !important;
+      border-radius: var(--r-pill);
+      transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    }
+
+    .nav-links a.nav-cta::after { display: none !important; }
+    .nav-links a.nav-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px var(--shadow-blue);
+      background: var(--blue-dark);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      z-index: 101;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background: var(--brown-dark);
+      border-radius: var(--r-pill);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+    /* Mobile nav */
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        background: var(--cream);
+        flex-direction: column;
+        justify-content: center;
+        gap: 2.5rem;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .nav-links.open { transform: translateX(0); }
+
+      .nav-links a {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--cream);
+      padding-top: 5rem;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content .section-label {
+      margin-bottom: 1rem;
+    }
+
+    .hero-content h1 {
+      color: var(--brown-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-content h1 span {
+      color: var(--blue);
+    }
+
+    .hero-content p {
+      color: var(--brown-light);
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      margin-bottom: 2rem;
+      max-width: 480px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badges {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--brown);
+    }
+
+    .hero-badge svg {
+      width: 20px;
+      height: 20px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      border-radius: var(--r-xl);
+    }
+
+    .hero-image-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      width: 70%;
+      height: 70%;
+      background: var(--blue);
+      border-radius: var(--r-xl);
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    /* ========== PAW TRAIL ========== */
+    .paw-step {
+      position: absolute;
+      pointer-events: none;
+      z-index: 3;
+      opacity: 0;
+      transform: scale(0.5) rotate(var(--paw-rot, 0deg));
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .paw-step.visible {
+      opacity: 0.32;
+      transform: scale(1) rotate(var(--paw-rot, 0deg));
+    }
+
+    .paw-step img {
+      width: 65px;
+      height: 65px;
+      display: block;
+      filter: brightness(0) invert(0.18);
+    }
+
+    @media (max-width: 768px) {
+      .paw-step img { width: 48px; height: 48px; }
+    }
+
+    @media (max-width: 768px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 2rem;
+      }
+
+      .hero-content p { max-width: 100%; }
+      .hero-buttons { justify-content: center; }
+      .hero-badges { justify-content: center; }
+
+      .hero-image-wrapper img { height: 350px; }
+      .hero-paws { display: none; }
+    }
+
+    /* ========== FOAM DIVIDER ========== */
+    .foam-divider {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .foam-divider svg { display: block; width: 100%; height: auto; }
+
+    .foam-divider--cream svg { fill: var(--cream); }
+    .foam-divider--blue svg { fill: var(--blue-light); }
+    .foam-divider--brown svg { fill: var(--brown-dark); }
+
+    /* ========== SECTIONS ========== */
+    .section { padding: var(--section-py) 0; position: relative; z-index: 2; }
+    .section--blue { background: var(--blue-light); }
+    .section--brown { background: var(--brown-dark); color: var(--cream); }
+    .section--cream { background: var(--cream); }
+
+    /* ========== SALON SECTION ========== */
+    .salon-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .salon-image {
+      position: relative;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .salon-image img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-radius: var(--r-xl);
+    }
+
+    .salon-image::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      right: -12px;
+      width: 60%;
+      height: 60%;
+      background: var(--blue);
+      border-radius: var(--r-xl);
+      opacity: 0.15;
+      z-index: -1;
+    }
+
+    .salon-text h2 { margin-bottom: 1.25rem; }
+    .salon-text p { margin-bottom: 1.25rem; color: var(--brown-light); }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      background: var(--white);
+      border-radius: var(--r-md);
+      box-shadow: 0 2px 12px var(--shadow-brown);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .service-item:hover {
+      transform: rotate(-1deg) translateY(-2px);
+      box-shadow: 0 6px 20px var(--shadow-blue);
+    }
+
+    .service-item svg {
+      width: 24px;
+      height: 24px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .service-item span {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .salon-grid {
+        grid-template-columns: 1fr;
+      }
+      .salon-image img { height: 300px; }
+      .services-list { grid-template-columns: 1fr; }
+    }
+
+    /* ========== FEATURES ROW ========== */
+    .features-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: var(--white);
+      border-radius: var(--r-lg);
+      box-shadow: 0 4px 20px var(--shadow-brown);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: rotate(1deg) translateY(-4px);
+      box-shadow: 0 8px 32px var(--shadow-blue);
+    }
+
+    .feature-card:nth-child(2):hover {
+      transform: rotate(-1deg) translateY(-4px);
+    }
+
+    .feature-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 1.25rem;
+      background: var(--blue-light);
+      border-radius: var(--r-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .feature-icon svg {
+      width: 32px;
+      height: 32px;
+      color: var(--blue);
+    }
+
+    .feature-card h3 { margin-bottom: 0.75rem; }
+    .feature-card p { font-size: 0.95rem; color: var(--brown-light); }
+
+    @media (max-width: 768px) {
+      .features-row { grid-template-columns: 1fr; }
+    }
+
+    /* ========== FORMULES SECTION ========== */
+    .formules-intro {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 3rem;
+    }
+
+    .formules-intro p {
+      color: var(--brown-light);
+      margin-top: 1rem;
+    }
+
+    .formules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .formule-card {
+      background: var(--white);
+      border-radius: var(--r-xl);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 4px 24px var(--shadow-brown);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .formule-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--blue);
+      border-radius: var(--r-xl) var(--r-xl) 0 0;
+    }
+
+    .formule-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px var(--shadow-blue);
+    }
+
+    .formule-card.featured {
+      border: 2px solid var(--blue);
+    }
+
+    .formule-card.featured::before {
+      height: 5px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-dark));
+    }
+
+    .formule-badge {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.8rem;
+      padding: 0.35rem 1rem;
+      border-radius: var(--r-pill);
+      margin-bottom: 1rem;
+    }
+
+    .formule-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .formule-card .formule-desc {
+      color: var(--brown-light);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .formule-features {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    .formule-features li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.5rem 0;
+      font-size: 0.95rem;
+      border-bottom: 1px solid rgba(92, 61, 46, 0.08);
+    }
+
+    .formule-features li:last-child { border-bottom: none; }
+
+    .formule-features svg {
+      width: 18px;
+      height: 18px;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+
+    .formule-card .btn { width: 100%; justify-content: center; }
+
+    /* ========== ANIMALS GALLERY ========== */
+    .animals-strip {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 3rem;
+    }
+
+    .animal-bubble {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--white);
+      box-shadow: 0 4px 16px var(--shadow-blue);
+      transition: transform 0.3s;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .animal-bubble:hover { transform: scale(1.1); }
+
+    .animal-bubble img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ========== ARTICLES SECTION ========== */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+
+    .article-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow-brown);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .article-card:hover {
+      transform: rotate(-1deg) translateY(-4px);
+      box-shadow: 0 8px 32px var(--shadow-blue);
+    }
+
+    .article-card:nth-child(even):hover {
+      transform: rotate(1deg) translateY(-4px);
+    }
+
+    .article-card-img {
+      height: 200px;
+      overflow: hidden;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .article-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+
+    .article-card:hover .article-card-img img {
+      transform: scale(1.05);
+    }
+
+    .article-card-body {
+      padding: 1.5rem;
+    }
+
+    .article-card-body h3 { margin-bottom: 0.5rem; }
+    .article-card-body p { font-size: 0.95rem; color: var(--brown-light); }
+
+    /* ========== DOMICILE SECTION ========== */
+    .domicile-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .domicile-text h2 { margin-bottom: 1rem; }
+    .domicile-text p { color: var(--cream-dark); margin-bottom: 1.5rem; opacity: 0.9; }
+
+    .domicile-image {
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .domicile-image img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: var(--r-xl);
+      border: 4px solid rgba(255, 255, 255, 0.15);
+    }
+
+    @media (max-width: 768px) {
+      .domicile-grid { grid-template-columns: 1fr; }
+      .domicile-image img { height: 260px; }
+    }
+
+    /* ========== COUNTERS ========== */
+    .counters {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+      padding: 3rem 0;
+    }
+
+    .counter-item .counter-number {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+    }
+
+    .counter-item .counter-label {
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 1rem;
+      color: var(--brown-light);
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .counters { grid-template-columns: 1fr; gap: 1.5rem; }
+    }
+
+    /* ========== CONTACT SECTION ========== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .contact-form {
+      background: var(--white);
+      padding: 2.5rem 2.5rem 2rem;
+      border-radius: var(--r-xl);
+      box-shadow: 0 4px 24px var(--shadow-brown);
+      align-self: start;
+    }
+
+    .contact-form h3 { margin-bottom: 1.5rem; }
+    .contact-form .form-group:last-of-type { margin-bottom: 0.75rem; }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-bottom: 0.4rem;
+      color: var(--brown);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid rgba(92, 61, 46, 0.12);
+      border-radius: var(--r-md);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--brown-dark);
+      background: var(--cream);
+      transition: border-color 0.3s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: var(--r-lg);
+      box-shadow: 0 2px 12px var(--shadow-brown);
+    }
+
+    .contact-info-card svg {
+      width: 24px;
+      height: 24px;
+      color: var(--blue);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .contact-info-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .contact-info-card p {
+      font-size: 0.9rem;
+      color: var(--brown-light);
+      line-height: 1.6;
+    }
+
+    .contact-map {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      height: 200px;
+      box-shadow: 0 2px 12px var(--shadow-brown);
+    }
+
+    .contact-map iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue-light);
+      border-radius: 50%;
+      color: var(--blue);
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--blue);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .social-link svg { width: 20px; height: 20px; }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: var(--brown-dark);
+      color: var(--cream);
+      padding: 3rem 0 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo img {
+      height: 50px;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+
+    .footer-links a:hover { opacity: 1; }
+
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 248, 240, 0.1);
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    /* ========== SCROLL REVEAL ========== */
+    .js-ready .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .js-ready .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Floating Bubbles -->
+  <div class="bubbles-container" aria-hidden="true" id="bubbles"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container">
+      <a href="#" class="logo">
+        <img src="https://le-de.cdn-website.com/4998cb35c1a04823ada2123aeb98567d/dms3rep/multi/opt/logo-removebg-preview-313w.png" alt="Toutou Rapetou — Salon de toilettage" loading="eager">
+      </a>
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#salon">Le salon</a></li>
+          <li><a href="#formules">Les formules</a></li>
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#contact" class="nav-cta">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Menu de navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="accueil">
+    <div class="container">
+      <div class="hero-content">
+        <p class="section-label">Salon de toilettage aux Ponts-de-Cé</p>
+        <h1>Prenez soin de votre <span>compagnon</span></h1>
+        <p>Offrez à votre animal le meilleur pour son bien-être. Toilettage complet, doux et professionnel pour chiens, chats et lapins.</p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn btn-primary">Prendre rendez-vous</a>
+          <a href="#salon" class="btn btn-outline">Découvrir le salon</a>
+        </div>
+        <div class="hero-badges">
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Toutes races
+          </div>
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            Formules sans engagement
+          </div>
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Toilettage à domicile
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=800&q=80&fit=crop" alt="Chien heureux et bien toiletté" loading="eager">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Foam divider: cream drips into blue -->
+  <div class="foam-divider foam-divider--cream">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <ellipse cx="120" cy="0" rx="120" ry="80"/>
+      <ellipse cx="360" cy="0" rx="120" ry="70"/>
+      <ellipse cx="600" cy="0" rx="130" ry="80"/>
+      <ellipse cx="840" cy="0" rx="110" ry="65"/>
+      <ellipse cx="1060" cy="0" rx="125" ry="75"/>
+      <ellipse cx="1300" cy="0" rx="140" ry="80"/>
+      <rect y="0" width="1440" height="2"/>
+    </svg>
+  </div>
+
+  <!-- ========== SALON SECTION ========== -->
+  <section class="section section--blue" id="salon">
+    <div class="container">
+      <div class="salon-grid">
+        <div class="salon-image reveal">
+          <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?w=700&q=80&fit=crop" alt="Toilettage d'un chien dans notre salon" loading="lazy">
+        </div>
+        <div class="salon-text reveal">
+          <p class="section-label">Le salon</p>
+          <h2 class="section-title">Des prestations de toilettage adaptées à tous les animaux</h2>
+          <p>Le salon propose des services de toilettage adaptés à tous les animaux de compagnie : chiens, chats et même lapins, quelle que soit leur race.</p>
+          <p>Afin de s'adapter aux besoins de chaque animal, le salon propose des prestations à la carte, sans obligation de toilettage complet.</p>
+          <div class="services-list">
+            <div class="service-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 3h18v18H3z"/><path d="M8 12h8"/></svg>
+              <span>Coupe aux ciseaux</span>
+            </div>
+            <div class="service-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4m-7-7H2m20 0h-3M6.34 6.34l2.12 2.12m7.08 7.08l2.12 2.12M6.34 17.66l2.12-2.12m7.08-7.08l2.12-2.12"/></svg>
+              <span>Tonte &amp; épilation</span>
+            </div>
+            <div class="service-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+              <span>Bain &amp; séchage</span>
+            </div>
+            <div class="service-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              <span>Oreilles &amp; ongles</span>
+            </div>
+            <div class="service-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <span>Coussinets</span>
+            </div>
+            <div class="service-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <span>À domicile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Features row -->
+      <div class="features-row">
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Douceur avant tout</h3>
+          <p>Chaque animal est traité avec patience et bienveillance, dans un environnement calme et rassurant.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Hygiène irréprochable</h3>
+          <p>Nettoyage minutieux des coussinets, des oreilles et coupe des ongles pour une hygiène complète.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Sans rendez-vous possible</h3>
+          <p>Passez directement au salon ou appelez-nous pour planifier un créneau qui vous convient.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Foam divider: blue drips into cream -->
+  <div class="foam-divider foam-divider--blue">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <ellipse cx="100" cy="0" rx="130" ry="75"/>
+      <ellipse cx="330" cy="0" rx="115" ry="80"/>
+      <ellipse cx="560" cy="0" rx="125" ry="68"/>
+      <ellipse cx="780" cy="0" rx="135" ry="80"/>
+      <ellipse cx="1010" cy="0" rx="120" ry="72"/>
+      <ellipse cx="1230" cy="0" rx="130" ry="80"/>
+      <ellipse cx="1410" cy="0" rx="80" ry="60"/>
+      <rect y="0" width="1440" height="2"/>
+    </svg>
+  </div>
+
+  <!-- ========== COUNTERS ========== -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="counters">
+        <div class="counter-item reveal">
+          <div class="counter-number" data-target="15">0</div>
+          <div class="counter-label">Années d'expérience</div>
+        </div>
+        <div class="counter-item reveal">
+          <div class="counter-number" data-target="50">0</div>
+          <div class="counter-label">Races toilettées</div>
+        </div>
+        <div class="counter-item reveal">
+          <div class="counter-number" data-target="1200">0</div>
+          <div class="counter-label">Clients satisfaits</div>
+        </div>
+      </div>
+
+      <!-- Animal bubbles gallery -->
+      <div class="animals-strip reveal">
+        <div class="animal-bubble">
+          <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=250&q=80&fit=crop&crop=face" alt="Chien toiletté" loading="lazy">
+        </div>
+        <div class="animal-bubble">
+          <img src="https://images.unsplash.com/photo-1574158622682-e40e69881006?w=250&q=80&fit=crop&crop=face" alt="Chat soigné" loading="lazy">
+        </div>
+        <div class="animal-bubble">
+          <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=250&q=80&fit=crop&crop=face" alt="Samoyède blanc" loading="lazy">
+        </div>
+        <div class="animal-bubble">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=250&q=80&fit=crop&crop=face" alt="Chiens heureux" loading="lazy">
+        </div>
+        <div class="animal-bubble">
+          <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=250&q=80&fit=crop&crop=face" alt="Chien avec jouet" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Foam divider: cream drips into blue -->
+  <div class="foam-divider foam-divider--cream">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <ellipse cx="140" cy="0" rx="140" ry="78"/>
+      <ellipse cx="380" cy="0" rx="115" ry="70"/>
+      <ellipse cx="610" cy="0" rx="130" ry="80"/>
+      <ellipse cx="830" cy="0" rx="120" ry="66"/>
+      <ellipse cx="1050" cy="0" rx="130" ry="78"/>
+      <ellipse cx="1280" cy="0" rx="140" ry="74"/>
+      <rect y="0" width="1440" height="2"/>
+    </svg>
+  </div>
+
+  <!-- ========== FORMULES SECTION ========== -->
+  <section class="section section--blue" id="formules">
+    <div class="container">
+      <div class="formules-intro reveal">
+        <p class="section-label">Nos formules</p>
+        <h2 class="section-title">Des formules mensuelles sans engagement</h2>
+        <p>Découvrez une solution pratique pour chouchouter votre animal régulièrement. Paiement à chaque passage, sans engagement.</p>
+      </div>
+
+      <div class="formules-grid">
+        <div class="formule-card reveal">
+          <h3>Entretien mensuel</h3>
+          <p class="formule-desc">Un nettoyage complet toutes les 4 semaines pour garder votre compagnon propre et en bonne santé.</p>
+          <ul class="formule-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Nettoyage des coussinets
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Nettoyage des oreilles
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Hygiène complète
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Coupe des ongles
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Bain &amp; séchage
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn-outline">Nous contacter</a>
+        </div>
+
+        <div class="formule-card featured reveal">
+          <span class="formule-badge">Populaire</span>
+          <h3>Entretien + Coupe</h3>
+          <p class="formule-desc">Nettoyage complet toutes les 4 semaines et coupe toutes les 8 semaines. La formule complète.</p>
+          <ul class="formule-features">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Tout l'entretien mensuel
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Coupe aux ciseaux / tonte
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Épilation si nécessaire
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Toutes les 8 semaines
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Sans engagement
+            </li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Prendre rendez-vous</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== DOMICILE SECTION ========== -->
+  <section class="section section--brown">
+    <div class="container">
+      <div class="domicile-grid">
+        <div class="domicile-text reveal">
+          <p class="section-label" style="color: rgba(74, 172, 212, 0.8);">Toilettage à domicile</p>
+          <h2>Nous venons chez vous</h2>
+          <p>Nous pouvons venir à votre domicile pour les animaux ayant du mal à se déplacer. Nous nous déplaçons dans un rayon de 10 km autour des Ponts-de-Cé.</p>
+          <p>Carte bancaire et espèces acceptées.</p>
+          <a href="#contact" class="btn btn-primary">Demander un déplacement</a>
+        </div>
+        <div class="domicile-image reveal">
+          <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=700&q=80&fit=crop" alt="Chiens heureux en promenade" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Foam divider: brown drips into cream -->
+  <div class="foam-divider foam-divider--brown">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <ellipse cx="0" cy="0" rx="100" ry="65"/>
+      <ellipse cx="200" cy="0" rx="130" ry="76"/>
+      <ellipse cx="430" cy="0" rx="120" ry="80"/>
+      <ellipse cx="650" cy="0" rx="128" ry="70"/>
+      <ellipse cx="880" cy="0" rx="140" ry="80"/>
+      <ellipse cx="1100" cy="0" rx="118" ry="74"/>
+      <ellipse cx="1300" cy="0" rx="130" ry="80"/>
+      <ellipse cx="1440" cy="0" rx="100" ry="65"/>
+      <rect y="0" width="1440" height="2"/>
+    </svg>
+  </div>
+
+  <!-- ========== ARTICLES SECTION ========== -->
+  <section class="section section--cream" id="articles">
+    <div class="container">
+      <div style="text-align:center; max-width:650px; margin:0 auto 2.5rem;">
+        <p class="section-label reveal">Articles pour animaux</p>
+        <h2 class="section-title reveal">Tout pour choyer votre compagnon</h2>
+        <p class="reveal" style="color:var(--brown-light);">Retrouvez au salon une sélection d'articles de qualité pour le bien-être et le confort de votre animal.</p>
+      </div>
+
+      <div class="articles-grid">
+        <div class="article-card reveal">
+          <div class="article-card-img">
+            <img src="https://images.unsplash.com/photo-1591946614720-90a587da4a36?w=500&q=80&fit=crop" alt="Chien avec jouet" loading="lazy">
+          </div>
+          <div class="article-card-body">
+            <h3>Jouets &amp; divertissement</h3>
+            <p>Des jouets variés pour stimuler et amuser votre compagnon au quotidien.</p>
+          </div>
+        </div>
+        <div class="article-card reveal">
+          <div class="article-card-img">
+            <img src="https://images.unsplash.com/photo-1535930749574-1399327ce78f?w=500&q=80&fit=crop" alt="Chien bien soigné" loading="lazy">
+          </div>
+          <div class="article-card-body">
+            <h3>Croquettes &amp; alimentation</h3>
+            <p>Croquettes adaptées et alimentation de qualité sélectionnées pour votre animal.</p>
+          </div>
+        </div>
+        <div class="article-card reveal">
+          <div class="article-card-img">
+            <img src="https://images.unsplash.com/photo-1596492784531-6e6eb5ea9993?w=500&q=80&fit=crop" alt="Chien heureux" loading="lazy">
+          </div>
+          <div class="article-card-body">
+            <h3>Confort &amp; accessoires</h3>
+            <p>Coussins, couchages, colliers élégants et pratiques, shampoings et brosses.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Foam divider: cream drips into blue -->
+  <div class="foam-divider foam-divider--cream">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <ellipse cx="100" cy="0" rx="120" ry="80"/>
+      <ellipse cx="320" cy="0" rx="130" ry="72"/>
+      <ellipse cx="555" cy="0" rx="118" ry="78"/>
+      <ellipse cx="785" cy="0" rx="135" ry="80"/>
+      <ellipse cx="1010" cy="0" rx="125" ry="70"/>
+      <ellipse cx="1240" cy="0" rx="140" ry="78"/>
+      <ellipse cx="1420" cy="0" rx="70" ry="55"/>
+      <rect y="0" width="1440" height="2"/>
+    </svg>
+  </div>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="section section--blue" id="contact">
+    <div class="container">
+      <div style="text-align:center; max-width:600px; margin:0 auto 3rem;">
+        <p class="section-label reveal">Contact</p>
+        <h2 class="section-title reveal">Prenez rendez-vous</h2>
+        <p class="reveal" style="color:var(--brown-light);">Contactez-nous dès aujourd'hui pour prendre rendez-vous ou poser vos questions.</p>
+      </div>
+
+      <div class="contact-grid">
+        <form class="contact-form reveal" onsubmit="event.preventDefault();">
+          <h3>Nous contacter</h3>
+          <div class="form-group">
+            <label for="name">Nom *</label>
+            <input type="text" id="name" name="name" required placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required placeholder="votre@email.com">
+          </div>
+          <div class="form-group">
+            <label for="phone">Téléphone *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="02 41 44 02 09">
+          </div>
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" required placeholder="Votre message..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Envoyer</button>
+        </form>
+
+        <div class="contact-info reveal">
+          <div class="contact-info-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div>
+              <h4>Téléphone</h4>
+              <p><a href="tel:0241440209">02 41 44 02 09</a></p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <div>
+              <h4>Email</h4>
+              <p><a href="mailto:toutourapetou@gmail.com">toutourapetou@gmail.com</a></p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <h4>Adresse</h4>
+              <p>25 Rue David D'Angers<br>49130 Les Ponts-de-Cé</p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <div>
+              <h4>Horaires</h4>
+              <p>
+                Lundi : 13h00 – 17h00<br>
+                Mar – Ven : 9h00 – 12h30 / 14h00 – 18h00<br>
+                Samedi : 9h00 – 12h00 / 13h00 – 17h00<br>
+                Dimanche : Fermé
+              </p>
+            </div>
+          </div>
+          <div class="contact-info-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+            <div>
+              <h4>Suivez-nous</h4>
+              <div class="socials">
+                <a href="https://facebook.com/profile.php?id=100063747602759" target="_blank" rel="noopener" class="social-link" aria-label="Facebook">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a href="https://instagram.com/toutourapetou/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2709.0!2d-0.5267!3d47.4247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4806446c42e3b7f1%3A0x7e0b50d96e4d7e02!2s25%20Rue%20David%20d'Angers%2C%2049130%20Les%20Ponts-de-C%C3%A9!5e0!3m2!1sfr!2sfr!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localisation Toutou Rapetou"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <a href="#" class="footer-logo">
+          <img src="https://le-de.cdn-website.com/4998cb35c1a04823ada2123aeb98567d/dms3rep/multi/opt/logo-removebg-preview-313w.png" alt="Toutou Rapetou" loading="lazy">
+        </a>
+        <ul class="footer-links">
+          <li><a href="#salon">Le salon</a></li>
+          <li><a href="#formules">Formules</a></li>
+          <li><a href="#articles">Articles</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <p class="footer-copy">&copy; 2026 Toutou Rapetou — Salon de toilettage aux Ponts-de-Cé. Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* ========== HEADER SCROLL ========== */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ========== HAMBURGER ========== */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    /* ========== FLOATING BUBBLES ========== */
+    (function createBubbles() {
+      const container = document.getElementById('bubbles');
+      const count = 10;
+      for (let i = 0; i < count; i++) {
+        const b = document.createElement('div');
+        b.classList.add('bubble');
+        const size = Math.random() * 50 + 15;
+        b.style.width = size + 'px';
+        b.style.height = size + 'px';
+        b.style.left = Math.random() * 100 + '%';
+        b.style.setProperty('--drift', (Math.random() * 80 - 40) + 'px');
+        b.style.animationDuration = (Math.random() * 14 + 10) + 's';
+        b.style.animationDelay = (Math.random() * 12) + 's';
+        container.appendChild(b);
+      }
+    })();
+
+    /* ========== PAW TRAIL ========== */
+    (function pawTrail() {
+      const sections = document.querySelectorAll('.section');
+      const trail = [];
+
+      sections.forEach((sec, si) => {
+        const onLeft = si % 2 === 0;
+        const rect = sec.getBoundingClientRect();
+        const secTop = rect.top + window.scrollY;
+        const secMid = secTop + rect.height * 0.35;
+
+        /* Left paw */
+        const pL = document.createElement('div');
+        pL.classList.add('paw-step');
+        pL.setAttribute('aria-hidden', 'true');
+        pL.style.setProperty('--paw-rot', '-20deg');
+        pL.innerHTML = '<img src="patteGauche.png" alt="">';
+        pL.style.top = secMid + 'px';
+        if (onLeft) { pL.style.left = '2.5%'; } else { pL.style.right = '5.5%'; }
+        document.body.appendChild(pL);
+        trail.push({ el: pL, trigger: secMid - 200 });
+
+        /* Right paw — offset below and slightly to the side */
+        const pR = document.createElement('div');
+        pR.classList.add('paw-step');
+        pR.setAttribute('aria-hidden', 'true');
+        pR.style.setProperty('--paw-rot', '15deg');
+        pR.innerHTML = '<img src="PatteDroite.png" alt="">';
+        pR.style.top = (secMid + 70) + 'px';
+        if (onLeft) { pR.style.left = '5.5%'; } else { pR.style.right = '2.5%'; }
+        document.body.appendChild(pR);
+        trail.push({ el: pR, trigger: secMid - 200 + 70 });
+      });
+
+      /* Sort by trigger position */
+      trail.sort((a, b) => a.trigger - b.trigger);
+
+      let ticking = false;
+      function tick() {
+        const bottom = window.scrollY + window.innerHeight * 0.8;
+        trail.forEach(step => {
+          if (bottom >= step.trigger) {
+            step.el.classList.add('visible');
+          } else {
+            step.el.classList.remove('visible');
+          }
+        });
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(tick); }
+      }, { passive: true });
+    })();
+
+    /* ========== SCROLL REVEAL ========== */
+    document.documentElement.classList.add('js-ready');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ========== COUNTER ANIMATION ========== */
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.target);
+          const duration = 2000;
+          const start = performance.now();
+
+          function update(now) {
+            const elapsed = now - start;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.floor(eased * target) + '+';
+            if (progress < 1) requestAnimationFrame(update);
+          }
+
+          requestAnimationFrame(update);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.counter-number').forEach(el => counterObserver.observe(el));
+
+    /* ========== FORCE REVEALS AFTER LOAD (ensures fullpage screenshots work) ========== */
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+          el.classList.add('visible');
+        });
+      }, 400);
+    });
+  </script>
+</body>
+</html>
