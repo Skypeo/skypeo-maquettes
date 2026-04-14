@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx skills:*)",
+      "Bash(plugin marketplace:*)",
+      "Read(//c/Users/monke/.agents/skills/design-taste-frontend/**)",
+      "Read(//c/Users/monke/.agents/skills/stitch-design-taste/**)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "WebFetch(domain:images.unsplash.com)"
+    ]
+  }
+}
