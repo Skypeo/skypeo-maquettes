@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Touzet — Électricité, Climatisation & Plomberie à Le Pêchereau</title>
+  <meta name="description" content="Touzet SAS, entreprise d'électricité générale, climatisation et plomberie sanitaire à Le Pêchereau depuis 1991.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & VARIABLES ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      /* Couleurs du site original */
+      --blue: #036DB6;
+      --blue-dark: #024a7a;
+      --blue-deeper: #01344f;
+      --blue-light: #3a8fd4;
+      --blue-pale: #e8f2fb;
+      --warm: #c97b3a;
+      --warm-light: #e8a95b;
+
+      /* Neutres du site original */
+      --dark: #343434;
+      --gray-bg: #eee;
+      --gray-100: #f5f5f5;
+      --gray-200: #e0e0e0;
+      --gray-300: #c8c8c8;
+      --gray-500: #888;
+      --gray-600: #666;
+      --white: #fefefe;
+      --black: #1a1a1a;
+
+      /* Typo */
+      --font-heading: 'Oswald', sans-serif;
+      --font-body: 'Work Sans', sans-serif;
+
+      /* Radius */
+      --r-sm: 6px;
+      --r-md: 12px;
+      --r-lg: 20px;
+      --r-pill: 50px;
+
+      /* Shadows */
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+      --shadow-lg: 0 8px 40px rgba(0,0,0,0.14);
+      --shadow-blue: 0 6px 30px rgba(3,109,182,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== TEXTURE FOND — GRAIN ARTISAN CHAUD ========== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.30;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' seed='12' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.30 0 0 0 0 0.27 0 0 0 0 0.22 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23t)'/%3E%3C/svg%3E");
+      mix-blend-mode: multiply;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ========== TYPO ========== */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.15;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); }
+    h3 { font-size: clamp(1.2rem, 2vw, 1.5rem); }
+
+    p {
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      line-height: 1.7;
+    }
+
+    /* ========== NAVIGATION ========== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(3,109,182,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .nav.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      height: 72px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .nav-logo span {
+      color: var(--dark);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--dark);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue);
+      transition: width 0.3s ease;
+      border-radius: var(--r-pill);
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--blue) !important;
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: var(--r-pill);
+      font-weight: 600 !important;
+      transition: background 0.3s ease, transform 0.2s ease !important;
+    }
+
+    .nav-cta::after { display: none !important; }
+    .nav-cta:hover { background: var(--blue-dark) !important; transform: translateY(-1px); }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--dark);
+      border-radius: var(--r-pill);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* ========== HERO ========== */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 72px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(1,52,79,0.88) 0%, rgba(3,109,182,0.65) 50%, rgba(1,52,79,0.75) 100%);
+    }
+
+    /* Circuit SVG overlay */
+    .hero-circuit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.15;
+      z-index: 1;
+    }
+
+    .hero-circuit svg { width: 100%; height: 100%; }
+
+    .circuit-path {
+      fill: none;
+      stroke: rgba(255,255,255,0.6);
+      stroke-width: 1.5;
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      animation: drawCircuit 4s ease forwards;
+    }
+    .circuit-path-2 { animation-delay: 0.8s; }
+    .circuit-path-3 { animation-delay: 1.6s; }
+
+    .circuit-node {
+      fill: rgba(255,255,255,0.6);
+      opacity: 0;
+      animation: fadeNode 0.5s ease forwards;
+    }
+    .circuit-node:nth-child(4) { animation-delay: 1.5s; }
+    .circuit-node:nth-child(5) { animation-delay: 2s; }
+    .circuit-node:nth-child(6) { animation-delay: 2.5s; }
+    .circuit-node:nth-child(7) { animation-delay: 3s; }
+
+    @keyframes drawCircuit { to { stroke-dashoffset: 0; } }
+    @keyframes fadeNode { to { opacity: 0.6; } }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      padding: 60px 0;
+    }
+
+    .hero-text { color: var(--white); }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 18px;
+      border-radius: var(--r-pill);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--white);
+      border-radius: 50%;
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero h1 { color: var(--white); margin-bottom: 20px; }
+    .hero h1 em { font-style: normal; color: var(--blue-pale); }
+
+    .hero-desc {
+      font-size: clamp(1rem, 1.2vw, 1.15rem);
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 36px;
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: var(--r-pill);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.2s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: var(--white);
+      color: var(--blue);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .btn-primary:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.2); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.35);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+    .btn-blue {
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: var(--shadow-blue);
+    }
+    .btn-blue:hover { background: var(--blue-dark); }
+
+    /* Hero right — info card empilée */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--r-lg);
+      padding: 28px;
+      color: var(--white);
+    }
+
+    .hero-card-number {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .hero-card-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0.75;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .hero-card-services {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-service-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .hero-service-item .icon-circle {
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero-service-item svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ========== SECTIONS COMMUNES ========== */
+    .section { padding: 100px 0; position: relative; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 32px;
+      height: 2px;
+      background: var(--blue);
+      border-radius: var(--r-pill);
+    }
+
+    .section-title { margin-bottom: 20px; }
+    .section-desc { max-width: 600px; color: var(--gray-600); margin-bottom: 48px; }
+
+    /* ========== ARTISAN DIVIDER ========== */
+    .wire-divider { position: relative; height: 50px; overflow: hidden; }
+    .wire-divider svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .wire-divider .wire { fill: none; stroke: var(--warm); stroke-width: 1.5; stroke-dasharray: 12 8; opacity: 0.2; }
+    .wire-divider .node { fill: var(--warm); opacity: 0.4; }
+
+    /* ========== SERVICES ========== */
+    .services { background: var(--gray-100); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-card-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .service-card:hover .service-card-img {
+      transform: scale(1.04);
+    }
+
+    .service-card-img-wrap {
+      overflow: hidden;
+      border-radius: var(--r-lg) var(--r-lg) 0 0;
+    }
+
+    .service-card-body {
+      padding: 28px 24px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    .service-card p {
+      color: var(--gray-600);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .service-card .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: gap 0.3s ease;
+    }
+
+    .service-card:hover .service-link { gap: 14px; }
+
+    /* ========== À PROPOS ========== */
+    .about {
+      background: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-heading);
+      font-size: clamp(10rem, 20vw, 22rem);
+      font-weight: 700;
+      color: var(--blue);
+      opacity: 0.03;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-image { position: relative; }
+
+    .about-image-main {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .about-image-main img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+    }
+
+    .about-accent {
+      position: absolute;
+      top: -16px;
+      right: -16px;
+      width: 120px;
+      height: 120px;
+      border: 3px solid var(--warm);
+      border-radius: var(--r-lg);
+      opacity: 0.25;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .stat {
+      background: var(--blue-pale);
+      padding: 22px;
+      border-radius: var(--r-md);
+      text-align: center;
+      border: 1px solid rgba(3,109,182,0.1);
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--gray-600);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .about-text .highlight { color: var(--blue); font-weight: 600; }
+
+    .about-features { display: flex; flex-direction: column; gap: 16px; margin-top: 28px; margin-bottom: 32px; }
+
+    .about-feature { display: flex; align-items: flex-start; gap: 14px; }
+
+    .about-feature .check {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .about-feature .check svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2.5;
+    }
+
+    .about-feature p { font-size: 0.95rem; color: var(--dark); }
+
+    /* ========== ZONE D'INTERVENTION ========== */
+    .zone-banner {
+      background: var(--blue);
+      padding: 40px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zone-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, transparent, transparent 48px, rgba(255,255,255,0.04) 48px, rgba(255,255,255,0.04) 49px);
+      pointer-events: none;
+    }
+
+    .zone-banner p { color: rgba(255,255,255,0.9); font-size: clamp(1rem, 1.5vw, 1.2rem); position: relative; z-index: 1; }
+    .zone-banner strong { color: var(--white); font-weight: 700; }
+
+    /* ========== RÉALISATIONS ========== */
+    .realisations { background: var(--dark); color: var(--white); }
+
+    .realisations .section-label { color: var(--blue-light); }
+    .realisations .section-label::before { background: var(--blue-light); }
+    .realisations .section-title { color: var(--white); }
+    .realisations .section-desc { color: rgba(255,255,255,0.6); }
+
+    .realisations-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .realisation-card {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      aspect-ratio: 1;
+      cursor: pointer;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .realisation-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease, filter 0.4s ease;
+      filter: brightness(1.6) contrast(1.15);
+    }
+
+    .realisation-card:hover img {
+      filter: brightness(1.8) contrast(1.2);
+    }
+
+    .realisation-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(1,52,79,0.85) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .realisation-card:hover img { transform: scale(1.08); }
+    .realisation-card:hover::after { opacity: 1; }
+
+    .realisation-card .caption {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 2;
+      color: var(--white);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .realisation-card:hover .caption { opacity: 1; transform: translateY(0); }
+
+    /* ========== PARTENAIRES ========== */
+    .partners { background: var(--gray-100); padding: 70px 0; }
+    .partners-inner { text-align: center; }
+    .partners .section-label { justify-content: center; }
+
+    .partners-logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .partner-logo {
+      background: var(--white);
+      padding: 20px 32px;
+      border-radius: var(--r-md);
+      border: 1px solid var(--gray-200);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .partner-logo:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-sm);
+      border-color: var(--blue);
+    }
+
+    .partner-name {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gray-300);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.3s ease;
+    }
+
+    .partner-logo:hover .partner-name { color: var(--blue); }
+
+    /* ========== ENGAGEMENTS ========== */
+    .engagements { background: var(--white); }
+    .engagements-header { text-align: center; margin-bottom: 56px; }
+    .engagements-header .section-label { justify-content: center; }
+    .engagements-header .section-desc { margin: 0 auto; }
+
+    .engagements-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .engagement-card {
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--gray-100);
+      border-radius: var(--r-lg);
+      border: 1px solid var(--gray-200);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      isolation: isolate;
+      z-index: 9999;
+    }
+
+    .engagement-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .engagement-icon {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 20px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .engagement-icon::after {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border: 2px dashed var(--warm);
+      border-radius: 50%;
+      opacity: 0.25;
+      animation: rotateRing 20s linear infinite;
+    }
+
+    @keyframes rotateRing { to { transform: rotate(360deg); } }
+
+    .engagement-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--white);
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .engagement-card h3 { font-size: 1rem; margin-bottom: 10px; color: var(--dark); }
+    .engagement-card p { font-size: 0.85rem; color: var(--gray-600); line-height: 1.6; }
+
+    /* ========== CONTACT ========== */
+    .contact {
+      background: var(--blue-deeper);
+      color: var(--white);
+    }
+
+    .contact .section-label { color: var(--blue-light); }
+    .contact .section-label::before { background: var(--blue-light); }
+    .contact .section-title { color: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .contact-info-list { display: flex; flex-direction: column; gap: 28px; margin-top: 8px; }
+
+    .contact-item { display: flex; align-items: flex-start; gap: 16px; }
+
+    .contact-item-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contact-item-icon svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--blue-light);
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .contact-item-text h4 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 4px;
+    }
+
+    .contact-item-text p { color: var(--white); font-size: 1rem; }
+    .contact-item-text a { color: var(--blue-light); transition: color 0.3s ease; }
+    .contact-item-text a:hover { color: var(--white); }
+
+    .contact-form {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--r-lg);
+      padding: 40px;
+    }
+
+    .contact-form h3 { color: var(--white); margin-bottom: 28px; font-size: 1.2rem; }
+
+    .form-group { margin-bottom: 18px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--r-sm);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.3s ease, background 0.3s ease;
+      outline: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue-light);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      margin-top: 8px;
+      background: var(--blue);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: none;
+      border-radius: var(--r-sm);
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-submit:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.5);
+      padding: 40px 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .footer-logo span { color: var(--blue-light); }
+    .footer-copy { font-size: 0.8rem; }
+
+    .footer-links { display: flex; gap: 24px; list-style: none; }
+    .footer-links a { font-size: 0.8rem; color: rgba(255,255,255,0.5); transition: color 0.3s ease; }
+    .footer-links a:hover { color: var(--blue-light); }
+
+    /* ========== SCROLL PROGRESS BAR ========== */
+    .scroll-progress {
+      position: fixed;
+      top: 72px;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-light));
+      z-index: 1001;
+      width: 0%;
+      transition: width 0.05s linear;
+    }
+
+    /* ========== HERO ANIMATIONS ========== */
+    .hero-text .hero-badge {
+      animation: slideInLeft 0.8s ease both;
+    }
+
+    .hero-text h1 {
+      animation: slideInUp 0.8s ease 0.2s both;
+    }
+
+    .hero-desc {
+      animation: slideInUp 0.8s ease 0.4s both;
+    }
+
+    .hero-actions {
+      animation: slideInUp 0.8s ease 0.6s both;
+    }
+
+    .hero-right .hero-card:first-child {
+      animation: slideInRight 0.8s ease 0.4s both;
+    }
+
+    .hero-right .hero-card:last-child {
+      animation: slideInRight 0.8s ease 0.6s both;
+    }
+
+    @keyframes slideInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Hero background slow zoom */
+    .hero-bg img {
+      animation: slowZoom 20s ease alternate infinite;
+    }
+
+    @keyframes slowZoom {
+      from { transform: scale(1); }
+      to { transform: scale(1.08); }
+    }
+
+    /* Floating decorative elements in hero */
+    .hero-float {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .hero-float-circle {
+      width: 300px;
+      height: 300px;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 50%;
+      top: 10%;
+      right: -5%;
+      animation: floatSlow 8s ease-in-out infinite;
+    }
+
+    .hero-float-circle-2 {
+      width: 200px;
+      height: 200px;
+      border: 1px dashed rgba(255,255,255,0.05);
+      border-radius: 50%;
+      bottom: 15%;
+      left: 5%;
+      animation: floatSlow 10s ease-in-out 2s infinite reverse;
+    }
+
+    .hero-float-line {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      top: 30%;
+      left: 10%;
+      animation: floatHoriz 6s ease-in-out infinite;
+    }
+
+    .hero-float-line-2 {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      bottom: 30%;
+      right: 15%;
+      animation: floatHoriz 7s ease-in-out 1s infinite reverse;
+    }
+
+    .hero-float-dot {
+      width: 6px;
+      height: 6px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      animation: floatSlow 5s ease-in-out infinite;
+    }
+
+    .hero-float-dot-1 { top: 20%; right: 20%; animation-delay: 0s; }
+    .hero-float-dot-2 { top: 60%; left: 15%; animation-delay: 1.5s; }
+    .hero-float-dot-3 { bottom: 25%; right: 30%; animation-delay: 3s; }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(3deg); }
+    }
+
+    @keyframes floatHoriz {
+      0%, 100% { transform: translateX(0); opacity: 0.3; }
+      50% { transform: translateX(30px); opacity: 1; }
+    }
+
+    /* ========== SCROLL REVEAL ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ========== WIRE DIVIDER ANIMATION ========== */
+    .wire-divider .wire {
+      stroke-dasharray: 2000;
+      stroke-dashoffset: 2000;
+      transition: stroke-dashoffset 2s ease;
+    }
+
+    .wire-divider.animated .wire {
+      stroke-dashoffset: 0;
+    }
+
+    .wire-divider .node {
+      opacity: 0;
+      transform: scale(0);
+      transition: opacity 0.5s ease 1.5s, transform 0.5s ease 1.5s;
+      transform-origin: center;
+      transform-box: fill-box;
+    }
+
+    .wire-divider.animated .node {
+      opacity: 0.35;
+      transform: scale(1);
+    }
+
+    /* ========== IMAGE TILT ON HOVER ========== */
+    .tilt-hover {
+      transition: transform 0.4s ease;
+    }
+
+    .tilt-hover:hover {
+      transform: perspective(800px) rotateY(-3deg) rotateX(2deg) scale(1.02);
+    }
+
+    /* ========== PARALLAX CLASS ========== */
+    .parallax-img {
+      transition: transform 0.1s linear;
+      will-change: transform;
+    }
+
+    /* ========== SERVICE CARD ENHANCED ========== */
+    .service-card {
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.01);
+    }
+
+    /* ========== ENGAGEMENT CARD HOVER GLOW ========== */
+    .engagement-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--r-lg);
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .engagement-card:hover::before { opacity: 1; }
+    .engagement-card:hover { background: var(--white); border-color: transparent; }
+
+    /* ========== STAT NUMBER GLOW ========== */
+    .stat-number.counted {
+      animation: countGlow 0.6s ease;
+    }
+
+    @keyframes countGlow {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.15); color: var(--blue-light); }
+      100% { transform: scale(1); }
+    }
+
+    /* ========== MOBILE NAV ========== */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(1,52,79,0.98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding: 40px 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .mobile-nav.open { opacity: 1; pointer-events: all; }
+
+    .mobile-nav a {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .mobile-nav a:hover { color: var(--blue-light); transform: translateX(6px); }
+
+    .mobile-nav .btn {
+      padding: 10px 24px;
+      font-size: 0.85rem;
+      margin-top: 12px;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1024px) {
+      .hero-content { grid-template-columns: 1fr; gap: 40px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .realisations-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .engagements-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      .nav-inner { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .mobile-nav { display: flex; }
+      .section { padding: 70px 0; }
+      .hero { min-height: auto; padding-top: 72px; padding-bottom: 40px; }
+      .hero-content { padding: 40px 0; }
+      .hero-float { display: none; }
+      .services-grid { grid-template-columns: 1fr; }
+      .realisations-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .partners-logos { gap: 16px; }
+      .partner-logo { padding: 14px 20px; }
+      .contact-form { padding: 28px 20px; }
+      .form-row { grid-template-columns: 1fr; }
+      .zone-banner { padding: 30px 0; }
+      .wire-divider { height: 30px; }
+    }
+
+    @media (max-width: 480px) {
+      .container { padding: 0 16px; }
+      .nav-inner { padding: 0 16px; }
+      .hero h1 { font-size: 2rem; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; justify-content: center; }
+      .about-stats { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .stat { padding: 16px 12px; }
+      .engagements-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .engagement-card { padding: 24px 14px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .hero-card { padding: 20px; }
+      .hero-card-number { font-size: 2.4rem; }
+      .contact-info-list { gap: 20px; }
+    }
+
+    /* ========== REDUCED MOTION ========== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .circuit-path { stroke-dashoffset: 0; }
+      .circuit-node { opacity: 0.6; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- ==================== NAVIGATION ==================== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Touzet<span> SAS</span></a>
+      <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">L'entreprise</a></li>
+        <li><a href="#realisations">Réalisations</a></li>
+        <li><a href="#partenaires">Partenaires</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#services" onclick="closeMobileNav()">Services</a>
+    <a href="#about" onclick="closeMobileNav()">L'entreprise</a>
+    <a href="#realisations" onclick="closeMobileNav()">Réalisations</a>
+    <a href="#partenaires" onclick="closeMobileNav()">Partenaires</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact</a>
+    <a href="tel:0254244839" class="btn btn-primary" onclick="closeMobileNav()" style="color:var(--blue);">02 54 24 48 39</a>
+  </div>
+
+  <!-- ==================== HERO ==================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="https://le-de.cdn-website.com/md/slip/dms3rep/multi/opt/40195-1920w.jpg" alt="Cuisine moderne rénovée" loading="eager">
+    </div>
+
+    <!-- Floating decorative elements -->
+    <div class="hero-float hero-float-circle"></div>
+    <div class="hero-float hero-float-circle-2"></div>
+    <div class="hero-float hero-float-line"></div>
+    <div class="hero-float hero-float-line-2"></div>
+    <div class="hero-float hero-float-dot hero-float-dot-1"></div>
+    <div class="hero-float hero-float-dot hero-float-dot-2"></div>
+    <div class="hero-float hero-float-dot hero-float-dot-3"></div>
+
+    <div class="hero-circuit" style="opacity:0.06;">
+      <svg viewBox="0 0 1440 900" preserveAspectRatio="none">
+        <!-- Lignes subtiles artisanales, pas des circuits -->
+        <path class="circuit-path" d="M0,250 Q360,200 720,280 T1440,220" style="stroke:rgba(255,255,255,0.5); stroke-width:1;" />
+        <path class="circuit-path circuit-path-2" d="M0,550 Q400,500 800,580 T1440,520" style="stroke:rgba(255,255,255,0.4); stroke-width:1;" />
+        <path class="circuit-path circuit-path-3" d="M0,750 Q500,700 1000,760 T1440,720" style="stroke:rgba(255,255,255,0.3); stroke-width:1;" />
+      </svg>
+    </div>
+
+    <div class="container hero-content">
+      <div class="hero-text">
+        <div class="hero-badge" style="border-color: rgba(201,123,58,0.4); color: var(--warm-light);">
+          <span class="dot" style="background: var(--warm-light);"></span>
+          Artisan depuis 1991
+        </div>
+        <h1>Électricité, <em>Climatisation</em> & Plomberie</h1>
+        <p class="hero-desc">Entreprise spécialisée en électricité générale, plomberie et climatisation. Interventions en rénovation, mise aux normes, installation et dépannage dans l'Indre et la Creuse.</p>
+        <div class="hero-actions">
+          <a href="tel:0254244839" class="btn btn-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            02 54 24 48 39
+          </a>
+          <a href="#contact" class="btn btn-outline">Devis gratuit</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="hero-card-number" id="counter">35</div>
+          <div class="hero-card-label">Années d'expérience</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-services">
+            <div class="hero-service-item">
+              <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+              Électricité générale
+            </div>
+            <div class="hero-service-item">
+              <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="3"/></svg></div>
+              Climatisation & PAC
+            </div>
+            <div class="hero-service-item">
+              <div class="icon-circle"><svg viewBox="0 0 24 24"><path d="M4 14h6v6H4zM14 4h6v6h-6z"/><path d="M7 14V8a3 3 0 013-3h1M17 10v6a3 3 0 01-3 3h-1"/></svg></div>
+              Plomberie sanitaire
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artisan divider -->
+  <div class="wire-divider" style="background: var(--gray-100);">
+    <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+      <path class="wire" d="M0,25 Q240,10 480,25 T960,25 T1440,25" />
+      <circle class="node" cx="480" cy="25" r="4" />
+      <circle class="node" cx="960" cy="25" r="4" />
+    </svg>
+  </div>
+
+  <!-- ==================== SERVICES ==================== -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Nos expertises</span>
+        <h2 class="section-title">Des installations sur-mesure pour répondre à tous vos besoins</h2>
+        <p class="section-desc">Des spécialistes pour la réalisation de tous vos travaux électriques, de plomberie et de climatisation. Nous établissons un diagnostic personnalisé.</p>
+      </div>
+      <div class="services-grid">
+        <!-- Électricité -->
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://le-de.cdn-website.com/md/slip/dms3rep/multi/opt/40882-1920w.jpg" alt="Travaux d'électricité générale" loading="lazy">
+          </div>
+          <div class="service-card-body">
+            <h3>Électricité générale</h3>
+            <p>Installation de tableaux électriques, interphonie, vidéo, motorisation de portails, détection d'incendie. Dépannage, mise aux normes et rénovation.</p>
+            <span class="service-link">En savoir plus <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+        <!-- Climatisation -->
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://le-de.cdn-website.com/md/slip/dms3rep/multi/opt/20323-1920w.jpg" alt="Installation de climatisation" loading="lazy">
+          </div>
+          <div class="service-card-body">
+            <h3>Climatisation & Pompes à chaleur</h3>
+            <p>Une large gamme de climatiseurs et de pompes à chaleur. Installation, entretien et dépannage pour une qualité d'air à la hauteur de vos attentes.</p>
+            <span class="service-link">En savoir plus <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+        <!-- Plomberie -->
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-card-img-wrap">
+            <img class="service-card-img" src="https://le-de.cdn-website.com/md/slip/dms3rep/multi/opt/43407-1920w.jpg" alt="Plomberie sanitaire" loading="lazy">
+          </div>
+          <div class="service-card-body">
+            <h3>Plomberie sanitaire</h3>
+            <p>30 ans d'expérience en plomberie. Installation et rénovation sanitaire, tuyauterie, robinetterie, cuisines et salles de bains sur-mesure.</p>
+            <span class="service-link">En savoir plus <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artisan divider -->
+  <div class="wire-divider" style="background: var(--white);">
+    <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+      <path class="wire" d="M0,30 Q360,10 720,30 T1440,30" />
+      <circle class="node" cx="720" cy="30" r="4" />
+    </svg>
+  </div>
+
+  <!-- ==================== À PROPOS ==================== -->
+  <section class="about section" id="about">
+    <div class="about-watermark">1991</div>
+    <div class="container about-grid">
+      <div class="about-image reveal-left">
+        <div class="about-accent"></div>
+        <div class="about-image-main tilt-hover">
+          <img src="https://le-de.cdn-website.com/md/slip/dms3rep/multi/opt/39530-1920w.jpg" alt="Intérieur rénové par Touzet" loading="lazy">
+        </div>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-number" data-count="35">0</div>
+            <div class="stat-label">Ans d'expérience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="2">0</div>
+            <div class="stat-label">Départements</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="5">0</div>
+            <div class="stat-label">Partenaires</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">&#10003;</div>
+            <div class="stat-label">Devis gratuit</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal-right">
+        <span class="section-label">L'entreprise</span>
+        <h2 class="section-title">Une entreprise depuis 1991</h2>
+        <p>Située à Le Pêchereau, l'entreprise <span class="highlight">Touzet</span> intervient dans les départements de l'Indre et de la Creuse pour vous assurer les différents travaux d'électricité générale et de plomberie sanitaire, ainsi que la pose et l'entretien de climatiseurs et pompes à chaleur.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <p>Optez pour des installations sur-mesure réalisées par des spécialistes</p>
+          </div>
+          <div class="about-feature">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <p>Diagnostic électrique personnalisé pour chaque intervention</p>
+          </div>
+          <div class="about-feature">
+            <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>
+            <p>Création, rénovation et installation de cuisines et salles de bains sur-mesure</p>
+          </div>
+        </div>
+        <a href="#contact" class="btn btn-blue">Demander un devis</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ZONE D'INTERVENTION ==================== -->
+  <div class="zone-banner" style="position:relative; overflow:hidden;">
+    <img src="https://le-de.cdn-website.com/md/slip/dms3rep/multi/opt/42027-1920w.jpg" alt="" loading="lazy" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0.15;">
+    <div class="container" style="position:relative; z-index:1;">
+      <p>Votre <strong>artisan multi-services</strong> dans les départements de <strong>l'Indre</strong> et de la <strong>Creuse</strong> — Électricité, climatisation & plomberie depuis 1991</p>
+    </div>
+  </div>
+
+  <!-- ==================== RÉALISATIONS ==================== -->
+  <section class="realisations section" id="realisations">
+    <div class="container">
+      <div class="reveal">
+        <span class="section-label">Portfolio</span>
+        <h2 class="section-title">Nos réalisations</h2>
+        <p class="section-desc">Découvrez les installations de votre entreprise de climatisation, d'électricité et de plomberie sanitaire.</p>
+      </div>
+      <div class="realisations-grid">
+        <div class="realisation-card reveal reveal-delay-1">
+          <img src="https://le-de.cdn-website.com/98318b1151024d32ac95bb13c5c56eb5/dms3rep/multi/opt/s-d910662f-1920w.png" alt="Mise aux normes d'un tableau électrique" loading="lazy">
+          <span class="caption">Mise aux normes tableau électrique</span>
+        </div>
+        <div class="realisation-card reveal reveal-delay-2">
+          <img src="https://le-de.cdn-website.com/98318b1151024d32ac95bb13c5c56eb5/dms3rep/multi/opt/vhn-1920w.png" alt="Mise aux normes électriques" loading="lazy">
+          <span class="caption">Mise aux normes électriques</span>
+        </div>
+        <div class="realisation-card reveal reveal-delay-3">
+          <img src="https://le-de.cdn-website.com/98318b1151024d32ac95bb13c5c56eb5/dms3rep/multi/opt/Sans+titre-1920w.png" alt="Remise en conformité tableau électrique" loading="lazy">
+          <span class="caption">Remise en conformité</span>
+        </div>
+        <div class="realisation-card reveal reveal-delay-1">
+          <img src="https://le-de.cdn-website.com/98318b1151024d32ac95bb13c5c56eb5/dms3rep/multi/opt/vhn-9a1d5f7f-1920w.png" alt="Installation de climatisation" loading="lazy">
+          <span class="caption">Installation climatisation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PARTENAIRES ==================== -->
+  <section class="partners section" id="partenaires">
+    <div class="container partners-inner">
+      <span class="section-label">Ils nous font confiance</span>
+      <h2 class="section-title" style="text-align:center;">Nos partenaires</h2>
+      <div class="partners-logos">
+        <div class="partner-logo reveal"><span class="partner-name">Legrand</span></div>
+        <div class="partner-logo reveal reveal-delay-1"><span class="partner-name">Grohe</span></div>
+        <div class="partner-logo reveal reveal-delay-2"><span class="partner-name">Thermor</span></div>
+        <div class="partner-logo reveal reveal-delay-3"><span class="partner-name">Atlantic</span></div>
+        <div class="partner-logo reveal reveal-delay-1"><span class="partner-name">Schneider</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ENGAGEMENTS ==================== -->
+  <section class="engagements section" id="engagements">
+    <div class="container">
+      <div class="engagements-header reveal">
+        <span class="section-label">Pourquoi nous choisir</span>
+        <h2 class="section-title">Nos engagements</h2>
+        <p class="section-desc">Un accompagnement professionnel de A à Z, de l'étude de votre projet jusqu'à la réception des travaux.</p>
+      </div>
+      <div class="engagements-grid">
+        <div class="engagement-card reveal">
+          <div class="engagement-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Depuis 1991</h3>
+          <p>Plus de 30 ans d'expérience et de savoir-faire au service de vos projets</p>
+        </div>
+        <div class="engagement-card reveal reveal-delay-1">
+          <div class="engagement-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Professionnalisme</h3>
+          <p>Travaux soignés, respect des normes et délais d'intervention maîtrisés</p>
+        </div>
+        <div class="engagement-card reveal reveal-delay-2">
+          <div class="engagement-icon">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Suivi personnalisé</h3>
+          <p>Un interlocuteur unique et un diagnostic adapté à chaque situation</p>
+        </div>
+        <div class="engagement-card reveal reveal-delay-3">
+          <div class="engagement-icon">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          </div>
+          <h3>Devis gratuit</h3>
+          <p>Estimation détaillée et transparente, sans engagement de votre part</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Artisan divider -->
+  <div class="wire-divider" style="background: var(--blue-deeper);">
+    <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+      <path class="wire" style="stroke: rgba(201,123,58,0.3);" d="M0,25 Q360,12 720,25 T1440,25" />
+      <circle class="node" cx="720" cy="25" r="4" style="fill: rgba(201,123,58,0.4);" />
+    </svg>
+  </div>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="reveal">
+          <span class="section-label">Nous contacter</span>
+          <h2 class="section-title">Contactez Touzet</h2>
+          <p style="color:rgba(255,255,255,0.65); margin-bottom: 36px;">Touzet est à votre service pour répondre à toutes vos demandes. Devis gratuit.</p>
+          <div class="contact-info-list">
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <h4>Téléphone</h4>
+                <p><a href="tel:0254244839">02 54 24 48 39</a></p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <h4>Email</h4>
+                <p><a href="mailto:touzetsas36@outlook.com">touzetsas36@outlook.com</a></p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <h4>Adresse</h4>
+                <p>3 Rue de la Croix de l'Aumay<br>36200 Le Pêchereau</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-item-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div class="contact-item-text">
+                <h4>Horaires</h4>
+                <p>Lun — Sam : 08:00 – 12:00 / 13:30 – 18:00<br>Dimanche : Fermé</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <form class="contact-form" onsubmit="return false;">
+            <h3>Nous contacter</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nom *</label>
+                <input type="text" id="name" name="name" placeholder="Votre nom" required>
+              </div>
+              <div class="form-group">
+                <label for="phone">Téléphone *</label>
+                <input type="tel" id="phone" name="phone" placeholder="06 00 00 00 00" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="votre@email.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" placeholder="Décrivez votre projet..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">Envoyer le message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">Touzet<span> SAS</span></div>
+      <p class="footer-copy">&copy; 2024 Touzet SAS — Tous droits réservés</p>
+      <ul class="footer-links">
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">Vie privée</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // ===== Scroll progress bar =====
+    const scrollProgress = document.getElementById('scrollProgress');
+
+    // ===== Nav scroll =====
+    const nav = document.getElementById('nav');
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 80);
+
+      // Progress bar
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        scrollProgress.style.width = (y / docHeight * 100) + '%';
+      }
+    }, { passive: true });
+
+    // ===== Hamburger =====
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.classList.toggle('active');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    function closeMobileNav() {
+      mobileNav.classList.remove('open');
+      hamburger.classList.remove('active');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    // ===== Scroll Reveal (all types) =====
+    const allReveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+    allReveals.forEach(el => revealObs.observe(el));
+
+    // ===== Wire divider animation on scroll =====
+    const wireDividers = document.querySelectorAll('.wire-divider');
+    const wireObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          wireObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    wireDividers.forEach(el => wireObs.observe(el));
+
+    // ===== Animated counters with glow =====
+    const counters = document.querySelectorAll('.stat-number[data-count]');
+    const counterObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.dataset.count);
+          let current = 0;
+          const inc = Math.max(1, Math.floor(target / 40));
+          const timer = setInterval(() => {
+            current += inc;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+              el.classList.add('counted');
+            }
+            el.textContent = current;
+          }, 40);
+          counterObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(el => counterObs.observe(el));
+
+    // ===== Hero counter =====
+    const heroCounter = document.getElementById('counter');
+    let hc = 0;
+    const ht = setInterval(() => {
+      hc++;
+      if (hc >= 35) { hc = 35; clearInterval(ht); }
+      heroCounter.textContent = hc;
+    }, 50);
+
+    // ===== Parallax on hero background =====
+    const heroBg = document.querySelector('.hero-bg img');
+    const heroSection = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY < window.innerHeight * 1.5) {
+        const offset = window.scrollY * 0.3;
+        heroBg.style.transform = `scale(1.08) translateY(${offset}px)`;
+      }
+    }, { passive: true });
+
+    // ===== Mouse tilt on service cards =====
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `translateY(-8px) perspective(600px) rotateY(${x * 5}deg) rotateX(${-y * 5}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // ===== Mouse tilt on engagement cards =====
+    document.querySelectorAll('.engagement-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `translateY(-4px) perspective(600px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // ===== Smooth scroll =====
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', function(e) {
+        const t = document.querySelector(this.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // ===== Magnetic hover on CTA buttons =====
+    document.querySelectorAll('.btn-primary, .btn-blue, .nav-cta').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) translateY(-2px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+
+    // ===== Fallback reveal =====
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.visible), .reveal-left:not(.visible), .reveal-right:not(.visible)').forEach(el => el.classList.add('visible'));
+      wireDividers.forEach(el => el.classList.add('animated'));
+    }, 2000);
+  </script>
+</body>
+</html>
