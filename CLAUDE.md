@@ -163,6 +163,50 @@ body::before {
 
 ---
 
+## Anti-IA — ce qui trahit un site généré
+
+Si le résultat ressemble à un site pondu par ChatGPT/Lovable/v0, c'est raté. Bannir absolument :
+
+### Couleurs et effets
+- **Gradients violet/indigo/bleu** par défaut (`#6366f1`, `#8b5cf6`, `from-purple-500 to-blue-500`). Si gradient, il doit être justifié par la palette du client.
+- **Glassmorphism gratuit** (`backdrop-filter: blur` partout, cards translucides empilées sans raison). À n'utiliser que si le secteur le justifie (luxe, tech, nuit).
+- **Neon glow / shadows colorées génériques** sur tous les boutons.
+- **Dark mode "tech startup"** par défaut (fond `#0a0a0a` + accent néon) si le client n'est pas dans la tech.
+- **Mesh gradients** flous en background.
+
+### Layouts paresseux
+- **Hero centré générique** : H1 énorme + sous-titre + 2 boutons côte à côte (primary + ghost) au milieu de l'écran. C'est LE marqueur n°1 de site IA.
+- **Bento grid sans raison** : grille de 6 cards de tailles variées juste pour "faire moderne". Le bento doit raconter quelque chose.
+- **Sections "Features" en grille de 3** avec icône + titre + 2 lignes de texte. Mort.
+- **Timeline verticale** "Notre processus" en 4 étapes numérotées.
+- **Stats centrées** "+150 clients / 10 ans / 98% satisfaction" sur fond uni.
+- **Tout centré, tout symétrique.** L'asymétrie est une signature humaine.
+
+### Typo et iconographie
+- **Inter / Geist / DM Sans / Plus Jakarta** comme font par défaut. Choisir une typo qui a du caractère et une histoire (serif, grotesque industrielle, display, mono).
+- **Icônes Lucide / Heroicons / Feather** alignées proprement en grille. Si icônes, préférer SVG custom, pictos métier, ou pas d'icône du tout.
+- **Emojis dans les titres** ou comme "icônes" de section.
+- **Tailles de typo timides** : tout entre 14px et 48px. Oser le 12px et le 180px dans la même page.
+
+### Contenu et copy
+- **Headlines vagues** type "Transformez votre business", "L'avenir de X", "Réinventons ensemble". Le H1 doit dire concrètement ce que le client fait.
+- **CTA génériques** : "Get started", "Learn more", "Discover". Préférer un verbe métier ("Demander un devis charpente", "Prendre rendez-vous").
+- **Témoignages alignés en 3 cards** avec avatar rond + ★★★★★.
+- **"Trusted by"** avec logos en niveaux de gris.
+- **FAQ accordion** générique en bas de page si le client n'en a pas besoin.
+
+### Composants suspects
+- **Badge "✨ New" / "🚀 Beta"** en haut du hero.
+- **Sticky CTA flottant** en bas à droite.
+- **Cookie banner stylé** alors qu'on est sur une maquette.
+- **"Scroll to explore"** avec flèche qui bounce.
+- **Pricing cards** "Starter / Pro / Enterprise" si le client ne vend pas par abonnement.
+
+### Le test
+Avant de livrer, regarder le screenshot et se demander : **"Est-ce que ce site pourrait appartenir à n'importe quel autre business du même secteur ?"** Si oui, il manque l'ADN du client. Ajouter du métier, de la matière, de l'imperfection assumée.
+
+---
+
 ## Après livraison
 
 Mettre à jour :
