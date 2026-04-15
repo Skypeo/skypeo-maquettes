@@ -1,0 +1,2405 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Top Elec Energy — Électricien à Azay-le-Rideau · 24h/24 · 7j/7</title>
+  <meta name="description"
+    content="Top Elec Energy, électricien à Azay-le-Rideau : intervention 24h/24 et 7j/7. Installation, mise aux normes, dépannage, rénovation et domotique." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Fraunces:ital,wght@0,400;0,600;1,400;1,600&family=Inter+Tight:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --nuit: #00294C;
+      --bleu: #1B52AC;
+      --cyan: #68CCD1;
+      --creme: #FFFBEE;
+      --ardoise: #0E1A2B;
+      --gris: #787878;
+      --line: rgba(255, 251, 238, .14);
+      --r-sm: 6px;
+      --r-md: 14px;
+      --r-lg: 24px;
+      --r-pill: 999px;
+      --serif: "Fraunces", Georgia, serif;
+      --display: "Oswald", "Arial Narrow", sans-serif;
+      --body: "Inter Tight", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html,
+    body {
+      overflow-x: hidden
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      font-family: var(--body);
+      background: var(--creme);
+      color: var(--nuit);
+      font-size: 17px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      cursor: pointer
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: .38;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.105    0 0 0 0 0.32    0 0 0 0 0.67    0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+    }
+
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 28px
+    }
+
+    section {
+      position: relative;
+      isolation: isolate;
+      z-index: 1
+    }
+
+    img,
+    .card,
+    .photo,
+    .photos,
+    .hero-visuel,
+    .dom-feat,
+    .service,
+    .engagement,
+    .renov-photos,
+    .renov-point {
+      isolation: isolate
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      position: fixed;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 28px);
+      max-width: 1280px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px 10px 14px;
+      background: rgba(0, 41, 76, .92);
+      color: var(--creme);
+      border: 1px solid rgba(104, 204, 209, .18);
+      border-radius: var(--r-pill);
+      backdrop-filter: blur(10px);
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    header .logo .monogram {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--creme);
+    }
+
+    header .logo .mono-svg {
+      width: 40px;
+      height: 40px;
+      display: block;
+    }
+
+    header .logo .mono-svg .spark {
+      transform-origin: center;
+      animation: flash 3.2s ease-in-out infinite;
+    }
+
+    @keyframes flash {
+
+      0%,
+      88%,
+      100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 6px var(--cyan));
+      }
+
+      90% {
+        opacity: .25;
+        filter: drop-shadow(0 0 0 var(--cyan));
+      }
+
+      92% {
+        opacity: 1;
+        filter: drop-shadow(0 0 12px var(--cyan));
+      }
+
+      94% {
+        opacity: .3;
+      }
+
+      96% {
+        opacity: 1;
+        filter: drop-shadow(0 0 8px var(--cyan));
+      }
+    }
+
+    header .logo .mono-txt {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    header .logo .mono-txt .n1 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: .22em;
+      color: var(--creme);
+    }
+
+    header .logo .mono-txt .n2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: 9.5px;
+      letter-spacing: .4em;
+      color: var(--cyan);
+      margin-top: 3px;
+    }
+
+    header nav {
+      display: flex;
+      gap: 4px
+    }
+
+    header nav a {
+      font-family: var(--display);
+      font-size: 12.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 8px 11px;
+      border-radius: var(--r-pill);
+      transition: background .25s, color .25s;
+    }
+
+    header nav a:hover {
+      background: var(--cyan);
+      color: var(--nuit)
+    }
+
+    header .cta-mini {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--cyan);
+      color: var(--nuit);
+      font-family: var(--display);
+      font-size: 13px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 9px 16px;
+      border-radius: var(--r-pill);
+      font-weight: 600;
+    }
+
+    .hamb {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--r-pill);
+      background: var(--cyan);
+      color: var(--nuit);
+      align-items: center;
+      justify-content: center
+    }
+
+    .hamb svg {
+      width: 20px;
+      height: 20px
+    }
+
+    @media(max-width:960px) {
+
+      header nav,
+      header .cta-mini {
+        display: none
+      }
+
+      .hamb {
+        display: inline-flex
+      }
+    }
+
+    .menu-mobile {
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: var(--nuit);
+      color: var(--creme);
+      display: none;
+      padding: 80px 28px 40px;
+    }
+
+    .menu-mobile.open {
+      display: block
+    }
+
+    .menu-mobile a {
+      display: block;
+      font-family: var(--display);
+      font-size: 30px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--line)
+    }
+
+    .menu-mobile .close {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-pill);
+      background: var(--cyan);
+      color: var(--nuit);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--nuit);
+      color: var(--creme);
+      min-height: 100dvh;
+      padding: 120px 0 90px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 82% 32%, rgba(104, 204, 209, .18), transparent 55%);
+      z-index: 0;
+    }
+
+    .hero .wrap {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 70px;
+      align-items: center;
+      position: relative;
+      z-index: 2
+    }
+
+    .hero .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: var(--r-pill);
+      border: 1px solid rgba(104, 204, 209, .4);
+      font-family: var(--display);
+      font-size: 12px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 28px;
+    }
+
+    .pill .led {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan);
+      animation: blink 1.6s ease-in-out infinite
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .3
+      }
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.1rem, 4.6vw, 3rem);
+      line-height: 1.02;
+      letter-spacing: -.02em;
+      margin-bottom: 26px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--cyan);
+      font-weight: 600
+    }
+
+    .hero .accroche {
+      font-family: var(--serif);
+      font-size: 1.12rem;
+      font-style: italic;
+      color: rgba(255, 251, 238, .78);
+      max-width: 520px;
+      margin-bottom: 32px;
+      line-height: 1.5;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center
+    }
+
+    .btn-tel {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--cyan);
+      color: var(--nuit);
+      padding: 18px 26px;
+      border-radius: var(--r-pill);
+      font-family: var(--display);
+      font-weight: 600;
+      letter-spacing: .04em;
+      font-size: 1.05rem;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn-tel:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 0 var(--bleu)
+    }
+
+    .btn-tel .num {
+      font-size: 1.22rem
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 24px;
+      border-radius: var(--r-pill);
+      border: 1px solid var(--creme);
+      font-family: var(--display);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      font-size: .92rem;
+    }
+
+    .btn-ghost:hover {
+      background: var(--creme);
+      color: var(--nuit)
+    }
+
+    /* Hero visuel : photos asymétriques + badge rond */
+    .hero-visuel {
+      position: relative;
+      min-height: 540px
+    }
+
+    .hero-visuel .principale {
+      width: 82%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(104, 204, 209, .2);
+      box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8);
+      margin-left: auto;
+    }
+
+    .hero-visuel .secondaire {
+      position: absolute;
+      bottom: -30px;
+      left: 0;
+      width: 48%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--r-md);
+      border: 4px solid var(--nuit);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, .6);
+    }
+
+    .hero-visuel .badge-rond {
+      position: absolute;
+      top: 10px;
+      left: -10px;
+      width: 150px;
+      height: 150px;
+      aspect-ratio: 1/1;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      border-radius: 50%;
+      background: var(--cyan);
+      color: var(--nuit);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 6px solid var(--nuit);
+      box-shadow: 0 0 40px rgba(104, 204, 209, .35);
+      z-index: 5;
+    }
+
+    .hero-visuel .badge-rond .orbit {
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      animation: orbit 20s linear infinite;
+    }
+
+    @keyframes orbit {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .hero-visuel .badge-rond .orbit svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero-visuel .badge-rond .orbit text {
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: .24em;
+      fill: var(--nuit);
+    }
+
+    .hero-visuel .badge-rond strong {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      line-height: .9;
+    }
+
+    .hero-visuel .badge-rond span {
+      font-family: var(--display);
+      font-size: 8px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* Sinusoïde */
+    .sinus {
+      display: block;
+      width: 100%;
+      height: 90px;
+      color: var(--cyan)
+    }
+
+    /* ===== SECTIONS ===== */
+    .section-pad {
+      padding: 110px 0
+    }
+
+    .eyebrow {
+      font-family: var(--display);
+      font-size: 12px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--bleu);
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 36px;
+      height: 1px;
+      background: currentColor
+    }
+
+    .h2 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(1.9rem, 4.2vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      max-width: 900px;
+    }
+
+    .h2 em {
+      font-style: italic;
+      color: var(--bleu);
+      font-weight: 600
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(0, 41, 76, .72);
+      max-width: 620px;
+      margin-top: 22px
+    }
+
+    /* ===== À PROPOS ===== */
+    .about {
+      background: var(--creme);
+      position: relative
+    }
+
+    .about .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center
+    }
+
+    .about .photos {
+      position: relative;
+      aspect-ratio: 4/5
+    }
+
+    .about .photos .p1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 78%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+    }
+
+    .about .photos .p2 {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 55%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: var(--r-md);
+      border: 8px solid var(--creme);
+    }
+
+    .about .photos .badge {
+      position: absolute;
+      top: 20px;
+      right: 0;
+      background: var(--nuit);
+      color: var(--cyan);
+      padding: 14px 20px;
+      border-radius: var(--r-pill);
+      font-family: var(--display);
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      z-index: 10;
+    }
+
+    .engagements {
+      margin-top: 36px;
+      display: grid;
+      gap: 14px
+    }
+
+    .engagement {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      padding: 22px 24px;
+      background: #fff;
+      border-radius: var(--r-md);
+      border-left: 3px solid var(--cyan);
+    }
+
+    .engagement .num {
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: var(--bleu);
+      min-width: 42px;
+    }
+
+    .engagement h4 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 6px
+    }
+
+    .engagement p {
+      font-size: .94rem;
+      color: var(--gris);
+      line-height: 1.55
+    }
+
+    /* ===== SERVICES ===== */
+    .services {
+      background: var(--nuit);
+      color: var(--creme);
+      position: relative;
+      overflow: hidden
+    }
+
+    .services::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(104, 204, 209, .08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .services .eyebrow {
+      color: var(--cyan)
+    }
+
+    .services .h2 {
+      color: var(--creme)
+    }
+
+    .services .h2 em {
+      color: var(--cyan)
+    }
+
+    .services .lead {
+      color: rgba(255, 251, 238, .72)
+    }
+
+    .services-grid {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service {
+      background: rgba(255, 251, 238, .03);
+      border: 1px solid rgba(255, 251, 238, .08);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      position: relative;
+      transition: transform .35s, border-color .35s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service:hover {
+      transform: translateY(-6px);
+      border-color: rgba(104, 204, 209, .4)
+    }
+
+    .service .img-wrap {
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 251, 238, .08);
+    }
+
+    .service .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s;
+    }
+
+    .service:hover .img-wrap img {
+      transform: scale(1.06)
+    }
+
+    .service .img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(0, 41, 76, .6));
+      pointer-events: none;
+    }
+
+    .service .voyant {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 3;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 251, 238, .4);
+      transition: background .3s, box-shadow .3s;
+    }
+
+    .service:hover .voyant {
+      background: var(--cyan);
+      box-shadow: 0 0 14px var(--cyan)
+    }
+
+    .service .corps {
+      padding: 28px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column
+    }
+
+    .service .ref {
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(255, 251, 238, .4);
+      margin-bottom: 14px;
+    }
+
+    .service h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.4rem;
+      line-height: 1.12;
+      letter-spacing: -.01em;
+      margin-bottom: 14px;
+    }
+
+    .service h3 em {
+      color: var(--cyan);
+      font-style: italic
+    }
+
+    .service p {
+      font-size: .94rem;
+      color: rgba(255, 251, 238, .72);
+      line-height: 1.55;
+      flex: 1
+    }
+
+    /* ===== DOMOTIQUE ===== */
+    .domotique {
+      background: var(--creme);
+      position: relative;
+      overflow: hidden
+    }
+
+    .domotique .intro {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 80px;
+      align-items: center
+    }
+
+    .domotique .visuel {
+      position: relative
+    }
+
+    .domotique .visuel .g1 {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--r-lg);
+    }
+
+    .domotique .visuel .g2 {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      width: 55%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--r-md);
+      border: 8px solid var(--creme);
+    }
+
+    .domotique .visuel .label-flottant {
+      position: absolute;
+      top: 20px;
+      left: -18px;
+      background: var(--nuit);
+      color: var(--creme);
+      padding: 12px 18px;
+      border-radius: var(--r-md);
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 5;
+    }
+
+    .label-flottant .led-mini {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 10px var(--cyan);
+      animation: blink 1.4s ease-in-out infinite
+    }
+
+    .dom-feats {
+      display: grid;
+      gap: 16px;
+      margin-top: 40px
+    }
+
+    .dom-feat {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      padding: 18px 20px;
+      background: #fff;
+      border-radius: var(--r-md);
+      border: 1px solid rgba(0, 41, 76, .08);
+      transition: border-color .3s;
+    }
+
+    .dom-feat:hover {
+      border-color: var(--cyan)
+    }
+
+    .dom-feat img {
+      width: 82px;
+      height: 82px;
+      object-fit: cover;
+      border-radius: var(--r-sm);
+      flex-shrink: 0;
+    }
+
+    .dom-feat h4 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.08rem;
+      margin-bottom: 4px
+    }
+
+    .dom-feat p {
+      font-size: .9rem;
+      color: var(--gris);
+      line-height: 1.5
+    }
+
+    /* ===== URGENCE ===== */
+    .urgence {
+      position: relative;
+      padding: 110px 0;
+      color: var(--creme);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .urgence .fond {
+      position: absolute;
+      inset: 0;
+      background-image: url("https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_490386143-2880w.jpeg");
+      background-size: cover;
+      background-position: center;
+      z-index: -2;
+    }
+
+    .urgence::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 41, 76, .94), rgba(14, 26, 43, .82));
+      z-index: -1;
+    }
+
+    .urgence::after {
+      content: '24/7';
+      position: absolute;
+      right: -40px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(10rem, 20vw, 22rem);
+      color: rgba(104, 204, 209, .08);
+      letter-spacing: -.04em;
+      line-height: 1;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .urgence .grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      z-index: 2
+    }
+
+    .urgence .h2 {
+      color: var(--creme)
+    }
+
+    .urgence .h2 em {
+      color: var(--cyan)
+    }
+
+    .urgence .lead {
+      color: rgba(255, 251, 238, .82);
+      max-width: none
+    }
+
+    .urgence .lead+.lead {
+      margin-top: 14px
+    }
+
+    .urgence .horloge {
+      background: rgba(0, 0, 0, .7);
+      padding: 32px;
+      border-radius: var(--r-lg);
+      border: 1px solid rgba(104, 204, 209, .25);
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+
+    .urgence .horloge .label {
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 14px
+    }
+
+    .urgence .horloge .heure {
+      font-family: 'Courier New', monospace;
+      font-size: 3.2rem;
+      color: var(--cyan);
+      font-weight: 700;
+      letter-spacing: .04em;
+      line-height: 1
+    }
+
+    .urgence .horloge .statut {
+      margin-top: 16px;
+      font-family: var(--display);
+      font-size: 13px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--creme);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center
+    }
+
+    .urgence .horloge .statut .led-mini {
+      background: #7BD389;
+      box-shadow: 0 0 10px #7BD389
+    }
+
+    .urgence .horloge .tarif {
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px dashed rgba(104, 204, 209, .25);
+      font-size: .88rem;
+      color: rgba(255, 251, 238, .8);
+      line-height: 1.5;
+    }
+
+    .urgence .horloge .tarif strong {
+      color: var(--cyan);
+      font-family: var(--display);
+      font-size: 1.4rem;
+      display: block;
+      margin-bottom: 4px;
+      letter-spacing: .04em
+    }
+
+    .urgence .btn-tel {
+      margin-top: 32px
+    }
+
+    /* ===== RENOVATION ===== */
+    .renov {
+      background: var(--creme);
+      padding: 110px 0
+    }
+
+    .renov .top {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 50px
+    }
+
+    .renov-points {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 18px;
+    }
+
+    .renov-point {
+      background: #fff;
+      padding: 26px 22px;
+      border-radius: var(--r-md);
+      border-top: 3px solid var(--bleu);
+    }
+
+    .renov-point .n {
+      font-family: var(--display);
+      font-size: 12px;
+      letter-spacing: .2em;
+      color: var(--cyan);
+      margin-bottom: 12px;
+      font-weight: 600
+    }
+
+    .renov-point h4 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1.05rem;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      color: var(--nuit)
+    }
+
+    .renov-point p {
+      font-size: .85rem;
+      color: var(--gris);
+      line-height: 1.5
+    }
+
+    .renov-photos {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+      margin-top: 50px
+    }
+
+    .renov-photos img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--r-md);
+    }
+
+    .renov-photos img:first-child {
+      aspect-ratio: 3/2
+    }
+
+    /* ===== ZONE ===== */
+    .zone {
+      background: var(--nuit);
+      padding: 90px 0;
+      color: var(--creme)
+    }
+
+    .zone .eyebrow {
+      color: var(--cyan)
+    }
+
+    .zone .h2 {
+      color: var(--creme)
+    }
+
+    .zone .h2 em {
+      color: var(--cyan)
+    }
+
+    .zone .lead {
+      color: rgba(255, 251, 238, .75);
+      max-width: none
+    }
+
+    .zone .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center
+    }
+
+    .zone-panel {
+      background: linear-gradient(180deg, rgba(14, 26, 43, .9), rgba(0, 20, 40, .95));
+      border: 1px solid rgba(104, 204, 209, .22);
+      border-radius: var(--r-lg);
+      padding: 32px 30px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zone-panel::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      animation: scanline 4s ease-in-out infinite;
+    }
+
+    @keyframes scanline {
+
+      0%,
+      100% {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+
+      50% {
+        transform: translateX(100%);
+        opacity: 1;
+      }
+    }
+
+    .zp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 16px;
+      border-bottom: 1px dashed rgba(104, 204, 209, .22);
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .zp-ref {
+      color: var(--cyan);
+    }
+
+    .zp-lieu {
+      color: rgba(255, 251, 238, .55);
+    }
+
+    .zp-villes {
+      display: grid;
+      gap: 14px;
+    }
+
+    .zp-ville {
+      display: grid;
+      gap: 6px;
+    }
+
+    .zp-l {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--display);
+      font-size: 13px;
+      letter-spacing: .08em;
+    }
+
+    .zp-n {
+      color: var(--creme);
+    }
+
+    .zp-km {
+      color: var(--cyan);
+      font-weight: 600;
+    }
+
+    .zp-bar {
+      height: 4px;
+      background: rgba(255, 251, 238, .06);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .zp-bar i {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--bleu), var(--cyan));
+      border-radius: 2px;
+      transition: width 1.4s cubic-bezier(.2, .8, .2, 1);
+      box-shadow: 0 0 8px rgba(104, 204, 209, .5);
+    }
+
+    .zone-panel.in-view .zp-bar i {
+      width: var(--w);
+    }
+
+    .zp-foot {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px dashed rgba(104, 204, 209, .22);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .zp-foot div {
+      text-align: center;
+    }
+
+    .zp-lab {
+      display: block;
+      font-family: var(--display);
+      font-size: 10.5px;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(255, 251, 238, .4);
+      margin-bottom: 4px;
+    }
+
+    .zp-foot strong {
+      font-family: var(--display);
+      font-size: 1.8rem;
+      color: var(--cyan);
+      letter-spacing: .04em;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s ease, transform .8s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-stagger>* {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .6s ease, transform .6s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .reveal-stagger.in-view>* {
+      opacity: 1;
+      transform: none;
+    }
+
+    .reveal-stagger.in-view>*:nth-child(1) {
+      transition-delay: 0s;
+    }
+
+    .reveal-stagger.in-view>*:nth-child(2) {
+      transition-delay: .08s;
+    }
+
+    .reveal-stagger.in-view>*:nth-child(3) {
+      transition-delay: .16s;
+    }
+
+    .reveal-stagger.in-view>*:nth-child(4) {
+      transition-delay: .24s;
+    }
+
+    .reveal-stagger.in-view>*:nth-child(5) {
+      transition-delay: .32s;
+    }
+
+    .reveal-stagger.in-view>*:nth-child(6) {
+      transition-delay: .4s;
+    }
+
+    /* Sinus wave flowing */
+    .sinus path {
+      stroke-dasharray: 1400;
+      animation: flow 8s linear infinite;
+    }
+
+    @keyframes flow {
+      to {
+        stroke-dashoffset: -2800;
+      }
+    }
+
+    .zone-visu {
+      aspect-ratio: 1/1;
+      background: var(--ardoise);
+      border-radius: var(--r-lg);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(104, 204, 209, .2);
+    }
+
+    .zone-visu svg {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .zone-villes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 30px
+    }
+
+    .zone-villes span {
+      font-family: var(--display);
+      font-size: 13px;
+      letter-spacing: .08em;
+      padding: 8px 16px;
+      border-radius: var(--r-pill);
+      background: rgba(255, 251, 238, .06);
+      border: 1px solid rgba(255, 251, 238, .15);
+      color: var(--creme);
+    }
+
+    .zone-villes span.principal {
+      background: var(--cyan);
+      color: var(--nuit);
+      border-color: var(--cyan)
+    }
+
+    /* ===== CONTACT ===== */
+    .contact {
+      background: var(--creme);
+      padding: 110px 0
+    }
+
+    .contact .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start
+    }
+
+    .contact .infos {
+      display: grid;
+      gap: 16px;
+      margin-top: 40px
+    }
+
+    .contact .info {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding: 20px 22px;
+      background: #fff;
+      border: 1px solid rgba(0, 41, 76, .08);
+      border-radius: var(--r-md);
+      transition: border-color .3s, transform .3s;
+    }
+
+    .contact .info:hover {
+      border-color: var(--cyan);
+      transform: translateX(4px)
+    }
+
+    .contact .info .icone {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--nuit);
+      color: var(--cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact .info .icone svg {
+      width: 22px;
+      height: 22px
+    }
+
+    .contact .info .lab {
+      font-family: var(--display);
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--bleu);
+      margin-bottom: 4px
+    }
+
+    .contact .info .val {
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      color: var(--nuit)
+    }
+
+    .formulaire {
+      background: var(--nuit);
+      color: var(--creme);
+      border-radius: var(--r-lg);
+      padding: 40px;
+    }
+
+    .formulaire h3 {
+      font-family: var(--serif);
+      font-size: 1.7rem;
+      margin-bottom: 8px;
+      font-weight: 400;
+      color: var(--creme)
+    }
+
+    .formulaire h3 em {
+      color: var(--cyan);
+      font-style: italic
+    }
+
+    .formulaire p {
+      font-size: .92rem;
+      color: rgba(255, 251, 238, .65);
+      margin-bottom: 24px
+    }
+
+    .formulaire .row {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 14px
+    }
+
+    .formulaire .row.deux {
+      grid-template-columns: 1fr 1fr
+    }
+
+    .formulaire input,
+    .formulaire textarea,
+    .formulaire select {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(255, 251, 238, .06);
+      border: 1px solid rgba(255, 251, 238, .15);
+      border-radius: var(--r-sm);
+      color: var(--creme);
+      font-family: var(--body);
+      font-size: .95rem;
+    }
+
+    .formulaire input::placeholder,
+    .formulaire textarea::placeholder {
+      color: rgba(255, 251, 238, .4)
+    }
+
+    .formulaire input:focus,
+    .formulaire textarea:focus,
+    .formulaire select:focus {
+      outline: none;
+      border-color: var(--cyan)
+    }
+
+    .formulaire textarea {
+      min-height: 120px;
+      resize: vertical
+    }
+
+    .formulaire button {
+      width: 100%;
+      padding: 18px;
+      background: var(--cyan);
+      color: var(--nuit);
+      border-radius: var(--r-pill);
+      font-family: var(--display);
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: .95rem;
+      margin-top: 8px;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .formulaire button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 0 rgba(255, 251, 238, .15)
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--ardoise);
+      color: var(--creme);
+      padding: 60px 0 30px
+    }
+
+    footer .grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 50px
+    }
+
+    footer .logo-foot {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px
+    }
+
+    footer .logo-foot img {
+      height: 46px;
+      background: var(--creme);
+      padding: 6px 10px;
+      border-radius: var(--r-sm)
+    }
+
+    footer p.mini {
+      font-size: .88rem;
+      color: rgba(255, 251, 238, .6);
+      line-height: 1.6
+    }
+
+    footer h5 {
+      font-family: var(--display);
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 18px
+    }
+
+    footer ul {
+      list-style: none;
+      display: grid;
+      gap: 10px
+    }
+
+    footer ul a {
+      font-size: .92rem;
+      color: rgba(255, 251, 238, .78)
+    }
+
+    footer ul a:hover {
+      color: var(--cyan)
+    }
+
+    footer .bas {
+      margin-top: 50px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: .82rem;
+      color: rgba(255, 251, 238, .4)
+    }
+
+    footer .bas em {
+      font-family: var(--serif);
+      font-style: italic;
+      color: var(--cyan)
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:1040px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .renov-points {
+        grid-template-columns: repeat(3, 1fr)
+      }
+
+      .renov-photos {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(max-width:860px) {
+
+      .hero .wrap,
+      .about .grid,
+      .domotique .intro,
+      .urgence .grid,
+      .zone .grid,
+      .contact .grid,
+      footer .grid,
+      .renov .top {
+        grid-template-columns: 1fr;
+        gap: 50px
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr
+      }
+
+      .renov-points {
+        grid-template-columns: 1fr 1fr
+      }
+
+      footer .grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .hero-visuel {
+        min-height: auto
+      }
+
+      .hero-visuel .principale {
+        width: 100%
+      }
+
+      .hero-visuel .badge-rond {
+        width: 110px;
+        height: 110px;
+        top: -10px;
+        left: auto;
+        right: -10px
+      }
+
+      .hero-visuel .badge-rond strong {
+        font-size: 2.2rem
+      }
+
+      .hero-visuel .secondaire {
+        left: 0;
+        bottom: -30px;
+        width: 44%
+      }
+    }
+
+    @media(max-width:560px) {
+      .wrap {
+        padding: 0 18px
+      }
+
+      .section-pad {
+        padding: 80px 0
+      }
+
+      .hero {
+        padding: 110px 0 80px
+      }
+
+      .formulaire {
+        padding: 26px
+      }
+
+      .formulaire .row.deux {
+        grid-template-columns: 1fr
+      }
+
+      footer .grid {
+        grid-template-columns: 1fr
+      }
+
+      .renov-points,
+      .renov-photos {
+        grid-template-columns: 1fr
+      }
+
+      .urgence::after {
+        display: none
+      }
+
+      header .logo span {
+        display: none
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo">
+      <span class="monogram">
+        <svg class="mono-svg" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#68CCD1" stroke-opacity=".4" stroke-width="1" />
+          <circle cx="20" cy="20" r="18" fill="none" stroke="#68CCD1" stroke-width="1.5" stroke-dasharray="2 4" />
+          <path class="spark" d="M22 9 L13 22 L19 22 L17 31 L27 17 L21 17 Z" fill="#68CCD1" />
+        </svg>
+        <span class="mono-txt">
+          <span class="n1">TOP ELEC</span>
+          <span class="n2">ENERGY · 37</span>
+        </span>
+      </span>
+    </a>
+    <nav>
+      <a href="#about">À propos</a>
+      <a href="#services">Électricité générale</a>
+      <a href="#domotique">Domotique</a>
+      <a href="#urgence">Dépannage</a>
+      <a href="#renov">Rénovation</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:0651746252" class="cta-mini">06 51 74 62 52</a>
+    <button class="hamb" id="hamb" aria-label="Ouvrir le menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+        <path d="M3 6h18M3 12h18M3 18h18" />
+      </svg>
+    </button>
+  </header>
+
+  <div class="menu-mobile" id="menu">
+    <button class="close" id="close" aria-label="Fermer">×</button>
+    <a href="#about">À propos</a>
+    <a href="#services">Électricité générale</a>
+    <a href="#domotique">Domotique</a>
+    <a href="#urgence">Dépannage</a>
+    <a href="#renov">Rénovation</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:0651746252" style="color:var(--cyan);margin-top:24px">06 51 74 62 52</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-text">
+        <span class="pill"><span class="led"></span> Azay-le-Rideau · 37190</span>
+        <h1>Top Elec Energy, <em>électricien</em> à Azay-le-Rideau : intervention <em>24h/24</em> et 7j/7.</h1>
+        <p class="accroche">« Accédez à des services électriques de qualité, à des prix compétitifs. »</p>
+        <div class="hero-ctas">
+          <a href="tel:0651746252" class="btn-tel">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span class="num">06 51 74 62 52</span>
+          </a>
+          <a href="#contact" class="btn-ghost">Nous contacter</a>
+        </div>
+      </div>
+
+      <div class="hero-visuel">
+        <img class="principale"
+          src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_57098299-1920w.jpeg"
+          alt="Électricien Top Elec Energy en intervention" />
+        <img class="secondaire"
+          src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/IMG_20231031_121924-1920w.jpg"
+          alt="Tableau électrique réalisé par Top Elec Energy" loading="lazy" />
+        <div class="badge-rond">
+          <div class="orbit" aria-hidden="true">
+            <svg viewBox="0 0 150 150">
+              <defs>
+                <path id="orbitPath" d="M 75,75 m -60,0 a 60,60 0 1,1 120,0 a 60,60 0 1,1 -120,0" />
+              </defs>
+              <text>
+                <textPath href="#orbitPath" startOffset="0">· DEPUIS 2009 · AZAY-LE-RIDEAU · 37190 · DEPUIS 2009 ·
+                  AZAY-LE-RIDEAU · 37190 </textPath>
+              </text>
+            </svg>
+          </div>
+          <strong>17</strong>
+          <span>ans d'expérience</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="sinus" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 45 Q 90 0 180 45 T 360 45 T 540 45 T 720 45 T 900 45 T 1080 45 T 1260 45 T 1440 45" fill="none"
+      stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 6" opacity=".7" />
+    <path d="M0 45 Q 90 0 180 45 T 360 45 T 540 45 T 720 45 T 900 45 T 1080 45 T 1260 45 T 1440 45" fill="none"
+      stroke="currentColor" stroke-width="2.5" />
+  </svg>
+
+  <!-- À PROPOS -->
+  <section class="about section-pad" id="about">
+    <div class="wrap">
+      <div class="grid">
+        <div class="photos">
+          <img class="p1"
+            src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_225354243-2880w.jpeg"
+            alt="Électricien Top Elec Energy" loading="lazy" />
+          <img class="p2"
+            src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_467655216-2880w.jpeg"
+            alt="Installation électrique" loading="lazy" />
+          <span class="badge">17 ans · Azay-le-Rideau</span>
+        </div>
+        <div>
+          <span class="eyebrow">À propos · Top Elec Energy</span>
+          <h2 class="h2 reveal">Top Elec Energy, notre entreprise d'électricité à <em>Azay-le-Rideau</em>.</h2>
+          <p class="lead">Des services d'électricité de qualité à des prix abordables. Nos électriciens s'appuient sur
+            17 ans d'expérience pour vous proposer des solutions électriques efficaces et abordables.</p>
+          <p class="lead">Nous mettons notre savoir-faire à votre service pour tous vos travaux d'installation
+            électrique, de dépannage et de mise en conformité de vos installations.</p>
+
+          <div class="engagements reveal-stagger">
+            <div class="engagement">
+              <div class="num">01</div>
+              <div>
+                <h4>Satisfaction client</h4>
+                <p>Notre engagement : satisfaction client, réactivité et dépannage électrique 24h/24 et 7j/7.</p>
+              </div>
+            </div>
+            <div class="engagement">
+              <div class="num">02</div>
+              <div>
+                <h4>Estimation rapide</h4>
+                <p>Estimation rapide et sans engagement du coût de vos travaux d'électricité générale.</p>
+              </div>
+            </div>
+            <div class="engagement">
+              <div class="num">03</div>
+              <div>
+                <h4>Gestion du compteur</h4>
+                <p>Vous avez besoin d'aide avec votre compteur électrique ? Pour plus de sérénité, confiez-nous la
+                  gestion de votre compteur électrique.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section-pad" id="services">
+    <div class="wrap">
+      <span class="eyebrow">Services · Électricité générale</span>
+      <h2 class="h2 reveal">Travaux d'électricité générale : de l'<em>installation</em> à la <em>rénovation</em>.</h2>
+      <p class="lead">Notre entreprise Top Elec Energy est une entreprise reconnue pour son expertise dans les travaux
+        d'électricité générale. Nous proposons une gamme complète de services électriques : installation, rénovation ou
+        maintenance électrique.</p>
+
+      <div class="services-grid reveal-stagger">
+        <article class="service">
+          <div class="img-wrap">
+            <div class="voyant"></div>
+            <img
+              src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_327681318-2880w.jpeg"
+              alt="Installation électrique" loading="lazy" />
+          </div>
+          <div class="corps">
+            <div class="ref">N° 01 · Installation</div>
+            <h3>Installations électriques <em>professionnelles</em> et sécurisées</h3>
+            <p>Top Elec Energy met tout son savoir-faire à votre service pour vous garantir une distribution sécurisée
+              et efficace de l'électricité dans vos bâtiments résidentiels et commerciaux.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="img-wrap">
+            <div class="voyant"></div>
+            <img
+              src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_185052170-2880w.jpeg"
+              alt="Compteur électrique" loading="lazy" />
+          </div>
+          <div class="corps">
+            <div class="ref">N° 02 · Compteur</div>
+            <h3>Maîtrisez votre <em>consommation</em> grâce à l'installation d'un compteur</h3>
+            <p>Installez un compteur électrique moderne pour suivre votre consommation d'énergie en temps réel,
+              comprendre quels appareils consomment le plus et ajuster votre utilisation en conséquence.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="img-wrap">
+            <div class="voyant"></div>
+            <img
+              src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_433869107-2880w.jpeg"
+              alt="Interrupteurs et prises" loading="lazy" />
+          </div>
+          <div class="corps">
+            <div class="ref">N° 03 · Interphones · Prises</div>
+            <h3>Interphones, interrupteurs et <em>prises</em> pour un confort optimal</h3>
+            <p>Nos interventions visent à garantir la sécurité et la fonctionnalité optimales de chaque pièce de votre
+              habitat ou commerce. Contrôle rigoureux des accès, ambiance agréable, alimentation continue et sûre.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="img-wrap">
+            <div class="voyant"></div>
+            <img
+              src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_355821225-1920w.jpeg"
+              alt="Mise aux normes électriques" loading="lazy" />
+          </div>
+          <div class="corps">
+            <div class="ref">N° 04 · Mise aux normes</div>
+            <h3>Respect de la norme <em>NF C 15-100</em></h3>
+            <p>Cette démarche rigoureuse assure la sécurité des installations électriques et protège les occupants des
+              risques d'incendie et d'électrocution. Nos électriciens qualifiés sont formés à la réglementation en
+              vigueur en France.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="img-wrap">
+            <div class="voyant"></div>
+            <img
+              src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_464916429-1920w.jpeg"
+              alt="Tableau électrique" loading="lazy" />
+          </div>
+          <div class="corps">
+            <div class="ref">N° 05 · Tableaux</div>
+            <h3>Mise en conformité des <em>tableaux électriques</em></h3>
+            <p>Nos équipes d'électriciens qualifiés effectuent des inspections détaillées pour identifier tout problème
+              et s'assurer que les installations sont conformes aux normes les plus strictes. On prévient surcharges,
+              courts-circuits et risques d'incendie.</p>
+          </div>
+        </article>
+
+        <article class="service">
+          <div class="img-wrap">
+            <div class="voyant"></div>
+            <img
+              src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_483714864-1920w.jpeg"
+              alt="Rénovation électrique" loading="lazy" />
+          </div>
+          <div class="corps">
+            <div class="ref">N° 06 · Rénovation</div>
+            <h3>Rénovation du <em>tableau électrique</em></h3>
+            <p>Les professionnels de Top Elec Energy modernisent et sécurisent vos installations électriques à
+              Azay-le-Rideau. Diagnostic précis, mise aux normes, optimisation de la distribution, économies d'énergie.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOMOTIQUE -->
+  <section class="domotique section-pad" id="domotique">
+    <div class="wrap">
+      <div class="intro">
+        <div class="visuel">
+          <img class="g1"
+            src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_269868899-2880w.jpeg"
+            alt="Maison connectée" loading="lazy" />
+          <img class="g2"
+            src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_334386967-2880w.jpeg"
+            alt="Éclairage intelligent" loading="lazy" />
+          <div class="label-flottant"><span class="led-mini"></span> Smart home · Azay</div>
+        </div>
+        <div>
+          <span class="eyebrow">Domotique · Maison intelligente</span>
+          <h2 class="h2 reveal">Transformez votre domicile en un <em>espace intelligent</em> avec nos installations
+            domotiques.
+          </h2>
+          <p class="lead">Nos experts en électricité vous accompagnent dans la réalisation de vos projets. Optimisez
+            votre consommation d'énergie avec nos solutions de domotique : volets, éclairages et prises connectées.</p>
+
+          <div class="dom-feats reveal-stagger">
+            <div class="dom-feat">
+              <img
+                src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_372303243-2880w.jpeg"
+                alt="Volets automatisés" loading="lazy" />
+              <div>
+                <h4>Automatisation de volets existants</h4>
+                <p>Modernisation des volets roulants existants avec systèmes électriques pilotables à distance.</p>
+              </div>
+            </div>
+            <div class="dom-feat">
+              <img
+                src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_334386967-2880w.jpeg"
+                alt="Éclairage connecté" loading="lazy" />
+              <div>
+                <h4>Contrôlez votre éclairage à distance</h4>
+                <p>Contrôle par smartphone, ajustement de l'intensité et programmation horaire pour des économies
+                  d'énergie.</p>
+              </div>
+            </div>
+            <div class="dom-feat">
+              <img
+                src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_462955173-2880w.jpeg"
+                alt="Prises connectées" loading="lazy" />
+              <div>
+                <h4>Maîtrisez votre consommation</h4>
+                <p>Prises connectées pour surveiller et contrôler l'énergie appareil par appareil. Rapports de
+                  consommation détaillés.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- URGENCE -->
+  <section class="urgence" id="urgence">
+    <div class="fond"></div>
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <span class="eyebrow" style="color:var(--cyan)">Dépannage · Azay-le-Rideau</span>
+          <h2 class="h2 reveal">Réactivité et expertise pour un <em>dépannage électrique</em> rapide et sûr.</h2>
+          <p class="lead">Électriciens professionnels, nous comprenons que les urgences électriques ne respectent pas
+            les heures de bureau. C'est pourquoi nous sommes disponibles 24h/24 et 7j/7 pour des dépannages électriques.
+          </p>
+          <p class="lead">Nos électriciens qualifiés recherchent la panne en vérifiant tous les éléments électriques :
+            le compteur, le câblage, l'installation électrique globale… Rien n'échappe à leur vigilance !</p>
+          <a href="tel:0651746252" class="btn-tel">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
+            </svg>
+            <span class="num">06 51 74 62 52</span>
+          </a>
+        </div>
+        <div class="horloge">
+          <div class="label">Astreinte Top Elec</div>
+          <div class="heure" id="heure">--:--</div>
+          <div class="statut"><span class="led-mini"></span> Ligne ouverte</div>
+          <div class="tarif">
+            <strong>60 € HT</strong>
+            Tarif intervention sur 30 km autour d'Azay-le-Rideau, quelque soit l'heure et le jour de la semaine.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RÉNOVATION -->
+  <section class="renov" id="renov">
+    <div class="wrap">
+      <div class="top">
+        <div>
+          <span class="eyebrow">Rénovation · Azay-le-Rideau</span>
+          <h2 class="h2 reveal">Rénovation électrique par nos <em>professionnels</em> à Azay-le-Rideau.</h2>
+        </div>
+        <p class="lead" style="margin:0">Les professionnels de Top Elec Energy modernisent et sécurisent vos
+          installations électriques. Si vous possédez une maison, un bureau ou un bâtiment commercial, nous mettons en
+          œuvre des solutions sur mesure pour garantir la fiabilité, la sécurité et l'efficacité de votre système
+          électrique.</p>
+      </div>
+
+      <div class="renov-points reveal-stagger">
+        <div class="renov-point">
+          <div class="n">01</div>
+          <h4>Diagnostic précis</h4>
+          <p>Nous évaluons l'état actuel du tableau électrique, identifions les problèmes potentiels et proposons des
+            solutions adaptées.</p>
+        </div>
+        <div class="renov-point">
+          <div class="n">02</div>
+          <h4>Mise aux normes</h4>
+          <p>Nous remplaçons les composants obsolètes, les fusibles défectueux et les câbles endommagés.</p>
+        </div>
+        <div class="renov-point">
+          <div class="n">03</div>
+          <h4>Distribution optimisée</h4>
+          <p>Nous concevons des schémas de câblage efficaces pour répartir la charge électrique de manière équilibrée.
+          </p>
+        </div>
+        <div class="renov-point">
+          <div class="n">04</div>
+          <h4>Dispositifs de protection</h4>
+          <p>Disjoncteurs différentiels, parafoudres et dispositifs de coupure d'urgence pour renforcer la sécurité.</p>
+        </div>
+        <div class="renov-point">
+          <div class="n">05</div>
+          <h4>Économies d'énergie</h4>
+          <p>Conseils sur les meilleures pratiques pour réduire votre consommation tout en maintenant un confort
+            optimal.</p>
+        </div>
+      </div>
+
+      <div class="renov-photos reveal-stagger">
+        <img
+          src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_187924476-2880w.jpeg"
+          alt="Rénovation électrique" loading="lazy" />
+        <img
+          src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_27938917-2880w.jpeg"
+          alt="Remplacement installation" loading="lazy" />
+        <img
+          src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/AdobeStock_378969966-2880w.jpeg"
+          alt="Modernisation électrique" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONE -->
+  <section class="zone">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <span class="eyebrow">Zone d'intervention</span>
+          <h2 class="h2 reveal">Assurez la sécurité de votre maison avec nos <em>services d'électricité</em>.</h2>
+          <p class="lead">Nous répondons à tous vos besoins en électricité — particuliers, professionnels et
+            collectivités. Mise en service complète de votre installation après chaque réparation.</p>
+          <div class="zone-villes">
+            <span class="principal">Azay-le-Rideau</span>
+            <span>Ballan-Miré</span>
+            <span>Monts</span>
+            <span>Tours</span>
+            <span>Joué-lès-Tours</span>
+            <span>Chinon</span>
+            <span>Langeais</span>
+            <span>Cheillé</span>
+            <span>Saché</span>
+            <span>Villaines-les-Rochers</span>
+            <span>Vallères</span>
+            <span>Rivarennes</span>
+          </div>
+        </div>
+        <div class="zone-panel reveal">
+          <div class="zp-head">
+            <span class="zp-ref">● DÉPART</span>
+            <span class="zp-lieu">Atelier · 28 Rue de Nisa</span>
+          </div>
+          <div class="zp-villes">
+            <div class="zp-ville" data-bar="5">
+              <div class="zp-l"><span class="zp-n">Azay-le-Rideau</span><span class="zp-km">0 km</span></div>
+              <div class="zp-bar"><i style="--w:3%"></i></div>
+            </div>
+            <div class="zp-ville" data-bar="12">
+              <div class="zp-l"><span class="zp-n">Cheillé</span><span class="zp-km">3 km</span></div>
+              <div class="zp-bar"><i style="--w:6%"></i></div>
+            </div>
+            <div class="zp-ville" data-bar="18">
+              <div class="zp-l"><span class="zp-n">Villaines-les-Rochers</span><span class="zp-km">7 km</span></div>
+              <div class="zp-bar"><i style="--w:14%"></i></div>
+            </div>
+            <div class="zp-ville" data-bar="30">
+              <div class="zp-l"><span class="zp-n">Ballan-Miré</span><span class="zp-km">15 km</span></div>
+              <div class="zp-bar"><i style="--w:30%"></i></div>
+            </div>
+            <div class="zp-ville" data-bar="45">
+              <div class="zp-l"><span class="zp-n">Tours</span><span class="zp-km">28 km</span></div>
+              <div class="zp-bar"><i style="--w:45%"></i></div>
+            </div>
+            <div class="zp-ville" data-bar="55">
+              <div class="zp-l"><span class="zp-n">Chinon</span><span class="zp-km">36 km</span></div>
+              <div class="zp-bar"><i style="--w:55%"></i></div>
+            </div>
+            <div class="zp-ville" data-bar="75">
+              <div class="zp-l"><span class="zp-n">Langeais</span><span class="zp-km">22 km</span></div>
+              <div class="zp-bar"><i style="--w:42%"></i></div>
+            </div>
+          </div>
+          <div class="zp-foot">
+            <div><span class="zp-lab">Rayon max</span><strong>100 KM</strong></div>
+            <div><span class="zp-lab">Intervention</span><strong>24 / 7</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <span class="eyebrow">Contact · Nous contacter</span>
+          <h2 class="h2 reveal">Contactez-nous dès aujourd'hui pour des <em>travaux électriques</em>.</h2>
+          <p class="lead">Optez pour une installation électrique sécurisée avec notre service de mise aux normes. Trois
+            manières simples de nous joindre.</p>
+
+          <div class="infos reveal-stagger">
+            <a href="tel:0651746252" class="info">
+              <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
+                </svg></div>
+              <div>
+                <div class="lab">Appelez-nous</div>
+                <div class="val">06 51 74 62 52</div>
+              </div>
+            </a>
+            <a href="mailto:topelecenergy@gmail.com" class="info">
+              <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="m3 7 9 6 9-6" />
+                </svg></div>
+              <div>
+                <div class="lab">Envoyez-nous un e-mail</div>
+                <div class="val">topelecenergy@gmail.com</div>
+              </div>
+            </a>
+            <div class="info">
+              <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg></div>
+              <div>
+                <div class="lab">Adresse</div>
+                <div class="val">28 Rue de Nisa · 37190 Azay-le-Rideau</div>
+              </div>
+            </div>
+            <div class="info">
+              <div class="icone"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 7v5l3 2" />
+                </svg></div>
+              <div>
+                <div class="lab">Horaires</div>
+                <div class="val">Lun – Ven · 08:00 – 19:00 · Sam-Dim fermé</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="formulaire"
+          onsubmit="event.preventDefault(); this.querySelector('button').textContent='Message envoyé ✓'">
+          <h3>Écrivez-<em>nous</em></h3>
+          <p>Estimation rapide et sans engagement du coût de vos travaux d'électricité générale.</p>
+          <div class="row deux">
+            <input type="text" placeholder="Nom" required />
+            <input type="text" placeholder="Prénom" required />
+          </div>
+          <div class="row deux">
+            <input type="tel" placeholder="Téléphone" required />
+            <input type="email" placeholder="E-mail" required />
+          </div>
+          <div class="row">
+            <select required>
+              <option value="">Type d'intervention</option>
+              <option>Installation électrique</option>
+              <option>Mise aux normes</option>
+              <option>Dépannage</option>
+              <option>Rénovation</option>
+              <option>Domotique</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="row">
+            <textarea placeholder="Décrivez votre projet…"></textarea>
+          </div>
+          <button type="submit">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="grid">
+        <div>
+          <div class="logo-foot">
+            <img
+              src="https://le-de.cdn-website.com/4db5853b02cc4bc9bd073743642ae62a/dms3rep/multi/opt/logo-41eb4cad-415w.png"
+              alt="Top Elec Energy" />
+          </div>
+          <p class="mini">Top Elec Energy, électricien à Azay-le-Rideau (37190). Installation, mise aux normes,
+            dépannage, rénovation et domotique. <em
+              style="font-family:var(--serif);font-style:italic;color:var(--cyan)">L'énergie est notre avenir,
+              économisons-la !</em></p>
+        </div>
+        <div>
+          <h5>Services</h5>
+          <ul>
+            <li><a href="#services">Installation</a></li>
+            <li><a href="#services">Mise aux normes</a></li>
+            <li><a href="#urgence">Dépannage</a></li>
+            <li><a href="#renov">Rénovation</a></li>
+            <li><a href="#domotique">Domotique</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Horaires</h5>
+          <ul>
+            <li>Lun – Ven</li>
+            <li>08:00 – 19:00</li>
+            <li>Sam – Dim · Fermé</li>
+            <li style="color:var(--cyan)">Astreinte 24/7</li>
+          </ul>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="tel:0651746252">06 51 74 62 52</a></li>
+            <li><a href="mailto:topelecenergy@gmail.com">topelecenergy@gmail.com</a></li>
+            <li>28 Rue de Nisa</li>
+            <li>37190 Azay-le-Rideau</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bas">
+        <div>© <span id="annee"></span> Top Elec Energy · Mentions légales · Vie privée · Info cookies</div>
+        <div><em>L'énergie est notre avenir, économisons-la !</em></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamb = document.getElementById('hamb');
+    const menu = document.getElementById('menu');
+    const close = document.getElementById('close');
+    hamb.addEventListener('click', () => menu.classList.add('open'));
+    close.addEventListener('click', () => menu.classList.remove('open'));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+
+    document.getElementById('annee').textContent = new Date().getFullYear();
+
+    function tick() {
+      const d = new Date();
+      const h = String(d.getHours()).padStart(2, '0');
+      const m = String(d.getMinutes()).padStart(2, '0');
+      const s = String(d.getSeconds()).padStart(2, '0');
+      const el = document.getElementById('heure');
+      if (el) el.textContent = `${h}:${m}:${s}`;
+    }
+    tick(); setInterval(tick, 1000);
+
+    // Scroll reveal
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => io.observe(el));
+    // Immediate fallback for above-the-fold + very slow-scroll UX + fullpage screenshots
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight * 0.9) el.classList.add('in-view');
+      });
+    });
+    // Safety: force reveal everything still hidden after 400ms (screenshots, no-JS scroll)
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.in-view), .reveal-stagger:not(.in-view)').forEach(el => el.classList.add('in-view'));
+    }, 400);
+
+    // Parallax léger hero visuel
+    const hv = document.querySelector('.hero-visuel');
+    if (hv && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.addEventListener('scroll', () => {
+        const y = Math.min(window.scrollY, 600);
+        hv.style.transform = `translateY(${y * 0.08}px)`;
+      }, { passive: true });
+    }
+  </script>
+
+</body>
+
+</html>

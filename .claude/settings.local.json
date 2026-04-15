@@ -16,7 +16,17 @@
       "Bash(npm install:*)",
       "WebSearch",
       "WebFetch(domain:unsplash.com)",
-      "WebFetch(domain:images.unsplash.com)"
+      "WebFetch(domain:images.unsplash.com)",
+      "WebFetch(domain:www.plomberie-nonnon.fr)",
+      "WebFetch(domain:www.top-elec-energy.com)",
+      "Bash(mkdir -p \"C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/nonnon\")",
+      "Bash(mkdir -p \"C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/nonnon/.claude\")",
+      "Bash(mkdir -p \"C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/nonnon/.vscode\")",
+      "Bash(curl -s \"https://www.top-elec-energy.com/\" -o /tmp/topelec.html)",
+      "Read(//tmp/**)",
+      "mcp__puppeteer__puppeteer_navigate",
+      "mcp__puppeteer__puppeteer_evaluate",
+      "Bash(node -e ' *)"
     ]
   }
 }

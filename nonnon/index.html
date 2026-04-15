@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nonnon Plomberie — Plombier à Saint-François, Guadeloupe</title>
+  <meta name="description"
+    content="Tony Nonnon, plombier à Saint-François (Guadeloupe). Rénovation, dépannage, citernes ACS, assainissement. Devis gratuit.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --deep: #042B4D;
+      --water: #63B4D1;
+      --white: #FFFFFF;
+      --soft: #F2F7FB;
+      --soft-2: #E6EEF4;
+      --line: rgba(4, 43, 77, 0.1);
+      --text: #0A1A2E;
+      --muted: rgba(4, 43, 77, 0.64);
+
+      --r-sm: 8px;
+      --r-md: 16px;
+      --r-lg: 28px;
+      --r-xl: 40px;
+      --r-pill: 999px;
+
+      --ff-display: "Fraunces", Georgia, serif;
+      --ff-body: "Inter", -apple-system, system-ui, sans-serif;
+
+      --max: 1280px;
+      --pad: clamp(20px, 4vw, 56px);
+
+      --shadow-sm: 0 4px 12px -4px rgba(4, 43, 77, 0.1);
+      --shadow-md: 0 20px 40px -20px rgba(4, 43, 77, 0.25);
+      --shadow-lg: 0 40px 80px -30px rgba(4, 43, 77, 0.4);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+      font-weight: 400;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img,
+    svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    img {
+      object-fit: cover;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding-inline: var(--pad);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--water);
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--water);
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--ff-display);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--deep);
+    }
+
+    h1 em,
+    h2 em,
+    h3 em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--water);
+    }
+
+    /* ============ HEADER ============ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(4, 43, 77, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--white);
+      font-family: var(--ff-display);
+      font-size: 1.4rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+
+    .logo em {
+      font-style: italic;
+      font-weight: 300;
+      color: var(--water);
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--r-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      font-size: 0.92rem;
+      font-weight: 400;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.82);
+      padding: 4px 0;
+      position: relative;
+      transition: color 0.2s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1px;
+      background: var(--water);
+      transition: width 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 20px;
+      background: var(--water);
+      color: var(--deep);
+      border-radius: var(--r-pill);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .nav-cta:hover {
+      background: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+      width: 40px;
+      height: 40px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--white);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--deep);
+      padding: 90px var(--pad) 40px;
+      z-index: 200;
+      flex-direction: column;
+      gap: 4px;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu a {
+      font-family: var(--ff-display);
+      font-size: 1.75rem;
+      font-weight: 300;
+      color: var(--white);
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu a:last-child {
+      color: var(--water);
+      border-bottom: none;
+      margin-top: 10px;
+      font-size: 1.3rem;
+    }
+
+    .mobile-close {
+      position: fixed;
+      top: 18px;
+      right: var(--pad);
+      width: 46px;
+      height: 46px;
+      border-radius: var(--r-pill);
+      background: var(--water);
+      color: var(--deep);
+      align-items: center;
+      justify-content: center;
+      z-index: 300;
+      box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.3);
+      display: none;
+    }
+
+    .mobile-close.show {
+      display: flex;
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      background: var(--deep);
+      color: var(--white);
+      overflow: hidden;
+      padding: clamp(60px, 8vw, 100px) 0 clamp(80px, 10vw, 140px);
+    }
+
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 55%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, var(--deep) 0%, rgba(4, 43, 77, 0.4) 40%, transparent 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+
+    .hero-eyebrow {
+      color: var(--water);
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      color: var(--white);
+      font-size: clamp(2.4rem, 2.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      max-width: 18ch;
+      margin-bottom: 32px;
+    }
+
+    .hero h1 em {
+      color: var(--water);
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 48ch;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-sub strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 28px;
+      border-radius: var(--r-pill);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: background 0.2s, color 0.2s, transform 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--water);
+      color: var(--deep);
+    }
+
+    .btn-primary:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: var(--white);
+    }
+
+    .btn-ghost:hover {
+      background: var(--white);
+      color: var(--deep);
+      border-color: var(--white);
+    }
+
+    .btn-dark {
+      background: var(--deep);
+      color: var(--white);
+    }
+
+    .btn-dark:hover {
+      background: var(--water);
+      color: var(--deep);
+      transform: translateY(-2px);
+    }
+
+    .btn-water {
+      background: var(--water);
+      color: var(--deep);
+    }
+
+    .btn-water:hover {
+      background: var(--deep);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      margin-top: 60px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 720px;
+    }
+
+    .hero-meta .m-label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--water);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .hero-meta .m-val {
+      font-family: var(--ff-display);
+      font-size: 1.05rem;
+      color: var(--white);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    /* ============ SECTION GÉNÉRIQUE ============ */
+    section.block {
+      padding: clamp(80px, 10vw, 140px) 0;
+    }
+
+    section.block.soft {
+      background: var(--soft);
+    }
+
+    section.block.dark {
+      background: var(--deep);
+      color: var(--white);
+    }
+
+    section.block.dark h2,
+    section.block.dark h3 {
+      color: var(--white);
+    }
+
+    .section-lead {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(40px, 6vw, 90px);
+      align-items: center;
+    }
+
+    .section-lead.reverse>div:first-child {
+      order: 2;
+    }
+
+    .section-media {
+      position: relative;
+      aspect-ratio: 4/5;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .section-media img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .section-media:hover img {
+      transform: scale(1.03);
+    }
+
+    .section-body h2 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      margin: 20px 0 28px;
+      max-width: 18ch;
+    }
+
+    .section-body p {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 58ch;
+    }
+
+    .section-body p strong {
+      color: var(--deep);
+      font-weight: 500;
+    }
+
+    section.block.dark .section-body p {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    section.block.dark .section-body p strong {
+      color: var(--white);
+    }
+
+    .section-body .btn {
+      margin-top: 18px;
+    }
+
+    /* ============ DEVIS QUESTIONS (dark) ============ */
+    .devis {
+      background: var(--deep);
+      color: var(--white);
+      padding: clamp(80px, 10vw, 140px) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .devis::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 20%, rgba(99, 180, 209, 0.18), transparent 50%),
+        radial-gradient(ellipse at 90% 80%, rgba(99, 180, 209, 0.08), transparent 60%);
+      pointer-events: none;
+    }
+
+    .devis-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 90px);
+      align-items: start;
+    }
+
+    .devis h2 {
+      color: var(--white);
+      font-size: clamp(2rem, 4.2vw, 3.8rem);
+      margin: 20px 0 32px;
+    }
+
+    .devis h2 em {
+      color: var(--water);
+    }
+
+    .devis-text p {
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.7;
+      margin-bottom: 18px;
+      max-width: 52ch;
+    }
+
+    .devis-text p strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .devis-text .btn {
+      margin-top: 18px;
+    }
+
+    .questions {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .questions li {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      font-family: var(--ff-display);
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-weight: 300;
+      color: var(--white);
+      line-height: 1.4;
+      transition: padding-left 0.3s, color 0.2s;
+      cursor: default;
+    }
+
+    .questions li:hover {
+      padding-left: 10px;
+      color: var(--water);
+    }
+
+    .questions li::before {
+      content: '→';
+      color: var(--water);
+      flex-shrink: 0;
+      font-family: var(--ff-body);
+      font-size: 1.1em;
+      line-height: 1.3;
+      transition: transform 0.3s;
+    }
+
+    .questions li:hover::before {
+      transform: translateX(4px);
+    }
+
+    /* ============ FEATURES ============ */
+    .features-head {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto clamp(50px, 6vw, 80px);
+    }
+
+    .features-head .eyebrow {
+      justify-content: center;
+    }
+
+    .features-head h2 {
+      font-size: clamp(2rem, 4.2vw, 3.8rem);
+      margin: 20px auto 20px;
+      max-width: 22ch;
+    }
+
+    .features-head p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 54ch;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: clamp(50px, 6vw, 80px);
+    }
+
+    .feature-card {
+      padding: 36px 28px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 240px;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--water);
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-card .f-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--r-pill);
+      background: var(--soft);
+      color: var(--deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .feature-card:hover .f-icon {
+      background: var(--water);
+      color: var(--deep);
+    }
+
+    .feature-card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+      color: var(--deep);
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .features-foot {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .features-foot .foot-kicker {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--water);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .features-foot .foot-line {
+      font-family: var(--ff-display);
+      font-size: clamp(1.2rem, 2vw, 1.7rem);
+      font-weight: 300;
+      color: var(--deep);
+      line-height: 1.45;
+      margin-bottom: 32px;
+      letter-spacing: -0.015em;
+    }
+
+    .features-foot .foot-line em {
+      color: var(--water);
+      font-style: italic;
+    }
+
+    /* ============ CONTACT ============ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 90px);
+      align-items: start;
+    }
+
+    .contact-left h2 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      margin: 20px 0 24px;
+      max-width: 16ch;
+    }
+
+    .contact-left>p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      max-width: 48ch;
+    }
+
+    .contact-list {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 24px;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      transition: transform 0.3s, border-color 0.3s, background 0.3s;
+    }
+
+    .contact-card:hover {
+      transform: translateX(6px);
+      border-color: var(--water);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .contact-card .icon {
+      width: 46px;
+      height: 46px;
+      background: var(--deep);
+      color: var(--white);
+      border-radius: var(--r-pill);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .contact-card .label {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+      font-weight: 500;
+    }
+
+    .contact-card .val {
+      font-family: var(--ff-display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--deep);
+      letter-spacing: -0.005em;
+    }
+
+    .contact-card .val-small {
+      font-size: 0.95rem;
+      color: var(--deep);
+      line-height: 1.45;
+      font-weight: 400;
+    }
+
+    .contact-form {
+      padding: clamp(32px, 5vw, 48px);
+      background: var(--deep);
+      color: var(--white);
+      border-radius: var(--r-lg);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .contact-form h3 {
+      color: var(--white);
+      font-size: 1.75rem;
+      font-weight: 400;
+      margin-bottom: 10px;
+    }
+
+    .contact-form h3 em {
+      color: var(--water);
+    }
+
+    .contact-form>p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.92rem;
+      margin-bottom: 28px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--water);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .field input,
+    .field textarea,
+    .field select {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--r-md);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: 0.98rem;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--water);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--water);
+      color: var(--deep);
+      border-radius: var(--r-pill);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.2s;
+      margin-top: 10px;
+    }
+
+    .form-submit:hover {
+      background: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ============ GALERIE ============ */
+    .gallery-head {
+      max-width: 720px;
+      margin-bottom: clamp(50px, 6vw, 80px);
+    }
+
+    .gallery-head h2 {
+      font-size: clamp(2rem, 4.2vw, 3.8rem);
+      margin: 20px 0 20px;
+      max-width: 20ch;
+    }
+
+    .gallery-head p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 54ch;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: 150px;
+      gap: 16px;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.06);
+    }
+
+    .gallery-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(4, 43, 77, 0.68));
+    }
+
+    .gallery-item .meta {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 22px;
+      z-index: 2;
+      color: var(--white);
+    }
+
+    .gallery-item .meta .tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--water);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+
+    .gallery-item .meta .title {
+      font-family: var(--ff-display);
+      font-size: 1.15rem;
+      font-weight: 400;
+      line-height: 1.25;
+      font-style: italic;
+    }
+
+    .g1 {
+      grid-column: span 7;
+      grid-row: span 3;
+    }
+
+    .g2 {
+      grid-column: span 5;
+      grid-row: span 2;
+    }
+
+    .g3 {
+      grid-column: span 5;
+      grid-row: span 2;
+    }
+
+    .g4 {
+      grid-column: span 4;
+      grid-row: span 2;
+    }
+
+    .g5 {
+      grid-column: span 8;
+      grid-row: span 2;
+    }
+
+    /* ============ INFOS PRATIQUES (band) ============ */
+    .infos {
+      padding: clamp(60px, 8vw, 100px) 0;
+      background: var(--water);
+      color: var(--deep);
+    }
+
+    .infos-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      flex-wrap: wrap;
+    }
+
+    .infos h2 {
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      font-weight: 400;
+      color: var(--deep);
+      max-width: 20ch;
+      line-height: 1.15;
+    }
+
+    .infos h2 em {
+      font-style: italic;
+      color: var(--deep);
+      opacity: 0.7;
+    }
+
+    .infos p {
+      color: rgba(4, 43, 77, 0.82);
+      max-width: 52ch;
+      line-height: 1.6;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    /* ============ FOOTER ============ */
+    footer {
+      background: var(--deep);
+      color: var(--white);
+      padding: 70px 0 28px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .footer-brand .logo-big {
+      font-family: var(--ff-display);
+      font-size: clamp(2.4rem, 4vw, 3.4rem);
+      line-height: 1;
+      font-weight: 300;
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-brand .logo-big em {
+      color: var(--water);
+      font-style: italic;
+    }
+
+    .footer-brand .brand-desc {
+      color: rgba(255, 255, 255, 0.72);
+      max-width: 32ch;
+      line-height: 1.55;
+      font-size: 0.95rem;
+    }
+
+    .footer-col h5 {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--water);
+      margin-bottom: 18px;
+      font-weight: 500;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col a {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--white);
+    }
+
+    .footer-bottom {
+      padding-top: 26px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.48);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .nav-cta .phone-txt {
+        display: none;
+      }
+
+      .hero {
+        padding: 60px 0 80px;
+      }
+
+      .hero-bg {
+        width: 100%;
+        opacity: 0.25;
+      }
+
+      .hero-bg::after {
+        background: linear-gradient(180deg, rgba(4, 43, 77, 0.55), rgba(4, 43, 77, 0.95));
+      }
+
+      .hero-meta {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .section-lead {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .section-lead.reverse>div:first-child {
+        order: 0;
+      }
+
+      .section-media {
+        aspect-ratio: 4/3;
+      }
+
+      .devis-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .infos-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 180px;
+      }
+
+      .g1,
+      .g2,
+      .g3,
+      .g4,
+      .g5 {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+
+      .g1 {
+        grid-column: span 2;
+        grid-row: span 2;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .mobile-menu a {
+        font-size: 1.5rem;
+        padding: 14px 0;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: 220px;
+      }
+
+      .g1,
+      .g2,
+      .g3,
+      .g4,
+      .g5 {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-mark">
+          <svg width="18" height="22" viewBox="0 0 20 24" fill="none">
+            <path
+              d="M10 2 C 10 2, 3 11, 3 16 C 3 19.866 6.134 23 10 23 C 13.866 23 17 19.866 17 16 C 17 11, 10 2, 10 2 Z"
+              stroke="#FFFFFF" stroke-width="1.3" fill="none" />
+            <path d="M13 15 C 13 17, 11 18, 10.5 20" stroke="#63B4D1" stroke-width="1" fill="none"
+              stroke-linecap="round" />
+          </svg>
+        </span>
+        <span>Nonnon <em>Plomberie</em></span>
+      </a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#assainissement">Assainissement</a></li>
+          <li><a href="#citerne">Citerne ACS</a></li>
+          <li><a href="#plomberie">Plomberie sanitaire</a></li>
+          <li><a href="#entreprise">L'entreprise</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="tel:+590690395566" class="nav-cta">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 00-1.02.24l-2.2 2.2a15.07 15.07 0 01-6.59-6.59l2.2-2.2a1 1 0 00.25-1.02A11.72 11.72 0 018.5 4a1 1 0 00-1-1H4a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.5a1 1 0 00-1-1z" />
+        </svg>
+        <span class="phone-txt">06 90 39 55 66</span>
+      </a>
+      <button class="hamburger" aria-label="Menu" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#assainissement">Assainissement</a>
+    <a href="#citerne">Citerne ACS</a>
+    <a href="#plomberie">Plomberie sanitaire</a>
+    <a href="#entreprise">L'entreprise</a>
+    <a href="#realisations">Réalisations</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:+590690395566">06 90 39 55 66</a>
+  </div>
+  <button class="mobile-close" id="mobile-close" aria-label="Fermer le menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" width="18"
+      height="18">
+      <path d="M6 6 L18 18 M6 18 L18 6" />
+    </svg>
+  </button>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img
+        src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0002-1920w.jpg"
+        alt="Chantier plomberie Saint-François">
+    </div>
+    <div class="hero-content">
+      <span class="eyebrow hero-eyebrow">Nonnon Plomberie · Saint-François</span>
+      <h1>Nonnon Plomberie, la <em>garantie</em> d'un plombier qui effectue tous vos travaux en rénovation et
+        dépannage de plomberie <em>rapidement</em>.</h1>
+      <p class="hero-sub">
+        Vous pouvez compter sur <strong>Nonnon Plomberie</strong>, un plombier situé à Saint-François en Guadeloupe.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">
+          Me contacter
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+        <a href="tel:+590690395566" class="btn btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 00-1.02.24l-2.2 2.2a15.07 15.07 0 01-6.59-6.59l2.2-2.2a1 1 0 00.25-1.02A11.72 11.72 0 018.5 4a1 1 0 00-1-1H4a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.5a1 1 0 00-1-1z" />
+          </svg>
+          06 90 39 55 66
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <div>
+          <span class="m-label">Adresse</span>
+          <span class="m-val">Route de Dubedou<br>97118 Saint-François</span>
+        </div>
+        <div>
+          <span class="m-label">Téléphone</span>
+          <span class="m-val">06 90 39 55 66</span>
+        </div>
+        <div>
+          <span class="m-label">Email</span>
+          <span class="m-val">tony.nonnon@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ASSAINISSEMENT ============ -->
+  <section class="block" id="assainissement">
+    <div class="wrap">
+      <div class="section-lead">
+        <div class="section-media">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/Image-1+%281%29-856h.jpg"
+            alt="Travaux d'assainissement à Saint-François">
+        </div>
+        <div class="section-body">
+          <span class="eyebrow">01 · Assainissement</span>
+          <h2>Faites appel à un artisan plombier pour vos travaux d'<em>assainissement</em>.</h2>
+          <p>Vous envisagez la construction d'une maison ? Les normes d'assainissement imposent de respecter certaines
+            règles. <strong>En tant que plombier qualifié, j'assure la mise aux normes de votre installation de
+              canalisations</strong> qui parcourent la maison.</p>
+          <p>Le travail de plombier lors des travaux d'assainissement est assez complexe pour favoriser votre confort,
+            votre sécurité, mais aussi la préservation de l'environnement. Je travaille avec rigueur, professionnalisme
+            et souvent en partenariat avec des architectes, vous pouvez me confier l'installation de votre plomberie.
+          </p>
+          <a href="#contact" class="btn btn-dark">
+            Me contacter
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CITERNE ACS ============ -->
+  <section class="block soft" id="citerne">
+    <div class="wrap">
+      <div class="section-lead reverse">
+        <div class="section-media">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0009-675h.jpg"
+            alt="Installation de citerne ACS">
+        </div>
+        <div class="section-body">
+          <span class="eyebrow">02 · Citerne ACS</span>
+          <h2>Pour votre installation de citerne ACS, <em>« eau de ville »</em> ou citerne tampon.</h2>
+          <p>Vous l'avez constaté, <strong>nous subissons la sécheresse et les coupures d'eau à répétition.</strong>
+            Selon votre type de logement ou local et grâce à mon expertise de plombier, je peux vous proposer et
+            installer plusieurs types de citernes adaptées idéalement à vos besoins en consommation d'eau.</p>
+          <p>En installant une citerne ACS, votre plombier de Nonnon Plomberie assurera les besoins en eau dans toute la
+            maison qui en est équipée.</p>
+          <a href="#contact" class="btn btn-dark">
+            Joignez-moi
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PLOMBERIE SANITAIRE ============ -->
+  <section class="block" id="plomberie">
+    <div class="wrap">
+      <div class="section-lead">
+        <div class="section-media">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210715-WA0006-1152w.jpg"
+            alt="Plomberie sanitaire">
+        </div>
+        <div class="section-body">
+          <span class="eyebrow">03 · Plomberie sanitaire</span>
+          <h2>Votre expert en installation de plomberie <em>sanitaire</em>.</h2>
+          <p>En tant que <strong>plombier expérimenté</strong>, j'interviens pour tous vos travaux de plomberie
+            sanitaire, dans les règles de l'art et en conformité avec les normes en vigueur.</p>
+          <p>De nombreux clients, particuliers et collectivités, me font confiance tout au long de l'année en me
+            demandant d'intervenir pour leurs travaux de plomberie ou pour l'installation de matériels sanitaires.</p>
+          <p>Je vous propose donc mes services de plombier pour l'installation, l'entretien, la rénovation, la
+            réparation et aussi le dépannage de toutes vos installations de plomberie sanitaire. Je peux également me
+            charger de la réfection, de la création et de l'installation de salles de bains.</p>
+          <a href="#contact" class="btn btn-dark">
+            Me contacter
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEVIS QUESTIONS ============ -->
+  <section class="devis" id="devis">
+    <div class="wrap">
+      <div class="devis-inner">
+        <div class="devis-text">
+          <span class="eyebrow" style="color:var(--water);">04 · Demandez un devis</span>
+          <h2>Pour tous vos travaux de plomberie, <em>demandez un devis plomberie</em>.</h2>
+          <p>Plombier spécialiste en travaux d'assainissement et en installation de citernes ACS, <strong>je suis votre
+              artisan qui installe et dépanne toute installation de plomberie et de sanitaire.</strong> Je propose
+            également mes services de plombier pour vos chauffe-eau électriques.</p>
+          <p>Pour toutes vos installations et tous vos dépannages, faites appel à mon entreprise.</p>
+          <a href="#contact" class="btn btn-water">
+            Prenez rendez-vous
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+        <ul class="questions">
+          <li>Vous allez faire bâtir une maison ?</li>
+          <li>Vous désirez avoir de l'eau au robinet toute l'année ?</li>
+          <li>Vous avez détecté une fuite d'eau ?</li>
+          <li>Vous souhaitez installer un nouveau robinet thermostatique pour votre douche ?</li>
+          <li>Remplacer vos anciens WC ?</li>
+          <li>Vous désirez rénover complètement votre vieille salle de bains ?</li>
+          <li>Vous souhaitez installer ou changer de chauffe-eau électrique ?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENTREPRISE / FEATURES ============ -->
+  <section class="block soft" id="entreprise">
+    <div class="wrap">
+      <div class="features-head">
+        <span class="eyebrow">05 · L'entreprise</span>
+        <h2>Une entreprise <em>sérieuse</em> pour tous vos travaux de plomberie.</h2>
+        <p>Votre plombier vous assure des prestations de qualité pour votre projet personnalisé.</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <path d="M14 2v6h6" />
+              <path d="M9 13h6M9 17h6" />
+            </svg>
+          </div>
+          <h3>Devis gratuit</h3>
+          <p>Votre devis personnalisé relatif à l'une de mes offres de services en plomberie.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3 2" />
+            </svg>
+          </div>
+          <h3>Intervention rapide</h3>
+          <p>À votre disposition pour vous aider à faire face à toutes sortes de problèmes.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round">
+              <path
+                d="M12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2Z" />
+            </svg>
+          </div>
+          <h3>Expérimenté</h3>
+          <p>Un suivi de chantier de qualité, un accompagnement personnalisé et des conseils d'expert.</p>
+        </div>
+        <div class="feature-card">
+          <div class="f-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+              stroke-linecap="round">
+              <path d="M12 22s8-4 8-12V5l-8-3-8 3v5c0 8 8 12 8 12Z" />
+              <path d="M9 12l2 2 4-4" />
+            </svg>
+          </div>
+          <h3>Engagement</h3>
+          <p>Techniques et résultats garantis pour éviter les grosses dépenses.</p>
+        </div>
+      </div>
+
+      <div class="features-foot">
+        <div class="foot-kicker">Références des partenaires agréés</div>
+        <p class="foot-line">Que ce soit pour la pose d'une installation neuve ou une réparation en urgence, <em>votre
+            plombier est à votre écoute pour tous vos besoins de plomberie.</em></p>
+        <a href="#contact" class="btn btn-dark">
+          Sollicitez-moi
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALERIE / RÉALISATIONS ============ -->
+  <section class="block" id="realisations">
+    <div class="wrap">
+      <div class="gallery-head">
+        <span class="eyebrow">Réalisations</span>
+        <h2>Quelques <em>chantiers</em> menés à Saint-François.</h2>
+        <p>Installations sanitaires, poses de citernes, réseaux d'eau chaude et froide : chaque chantier est mené dans
+          les règles de l'art, en Guadeloupe.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item g1">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0002-1920w.jpg"
+            alt="Chantier plomberie Saint-François">
+          <div class="meta">
+            <div class="tag">Saint-François · 2021</div>
+            <div class="title">Travaux d'assainissement sur construction</div>
+          </div>
+        </div>
+        <div class="gallery-item g2">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210715-WA0006-1152w.jpg"
+            alt="Plombier au travail">
+          <div class="meta">
+            <div class="tag">Juillet 2021</div>
+            <div class="title">Intervention plomberie sanitaire</div>
+          </div>
+        </div>
+        <div class="gallery-item g3">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0009-675h.jpg"
+            alt="Installation de citerne">
+          <div class="meta">
+            <div class="tag">Juin 2021</div>
+            <div class="title">Pose d'une citerne tampon ACS</div>
+          </div>
+        </div>
+        <div class="gallery-item g4">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/Image-1+%281%29-856h.jpg"
+            alt="Réalisation Nonnon Plomberie">
+          <div class="meta">
+            <div class="tag">Guadeloupe</div>
+            <div class="title">Réseau d'eau chaude et froide</div>
+          </div>
+        </div>
+        <div class="gallery-item g5">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0002-1920w.jpg"
+            alt="Chantier Nonnon Plomberie">
+          <div class="meta">
+            <div class="tag">Route de Dubedou</div>
+            <div class="title">Installation sanitaire complète en partenariat architecte</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ INFOS PRATIQUES (band water) ============ -->
+  <section class="infos">
+    <div class="wrap">
+      <div class="infos-inner">
+        <div>
+          <h2>Les infos pratiques de l'entreprise <em>Nonnon Plomberie</em>.</h2>
+          <p>Pour la pose et la réparation de vos tuyauteries et sanitaires, faites appel à votre plombier afin
+            d'obtenir un résultat de qualité.</p>
+        </div>
+        <a href="#contact" class="btn btn-dark">
+          Prendre contact
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <span class="eyebrow">06 · Contact</span>
+          <h2>À votre <em>service</em> à Saint-François.</h2>
+          <p>Pour la pose et la réparation de vos tuyauteries et sanitaires, faites appel à votre plombier afin
+            d'obtenir un résultat de qualité.</p>
+
+          <div class="contact-list">
+            <a href="tel:+590690395566" class="contact-card">
+              <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                  <path
+                    d="M20 15.5c-1.25 0-2.45-.2-3.57-.57a1 1 0 00-1.02.24l-2.2 2.2a15.07 15.07 0 01-6.59-6.59l2.2-2.2a1 1 0 00.25-1.02A11.72 11.72 0 018.5 4a1 1 0 00-1-1H4a1 1 0 00-1 1c0 9.39 7.61 17 17 17a1 1 0 001-1v-3.5a1 1 0 00-1-1z" />
+                </svg></div>
+              <div>
+                <div class="label">Téléphone</div>
+                <div class="val">06 90 39 55 66</div>
+              </div>
+            </a>
+            <a href="mailto:tony.nonnon@gmail.com" class="contact-card">
+              <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <rect x="3" y="5" width="18" height="14" rx="2" />
+                  <path d="M3 7l9 6 9-6" />
+                </svg></div>
+              <div>
+                <div class="label">Email</div>
+                <div class="val">tony.nonnon@gmail.com</div>
+              </div>
+            </a>
+            <div class="contact-card">
+              <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M12 22s-8-8-8-13a8 8 0 1116 0c0 5-8 13-8 13z" />
+                  <circle cx="12" cy="9" r="3" />
+                </svg></div>
+              <div>
+                <div class="label">Adresse</div>
+                <div class="val-small">Route de Dubedou, Dubédou<br>97118 Saint-François · Guadeloupe</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form"
+          onsubmit="event.preventDefault(); alert('Merci — votre message est prêt à être envoyé.');">
+          <h3>Demander un <em>devis</em></h3>
+          <p>Gratuit et sans engagement. Je vous recontacte rapidement.</p>
+          <div class="field">
+            <label for="name">Nom complet</label>
+            <input type="text" id="name" placeholder="Votre nom" required>
+          </div>
+          <div class="field">
+            <label for="phone">Téléphone</label>
+            <input type="tel" id="phone" placeholder="06 XX XX XX XX" required>
+          </div>
+          <div class="field">
+            <label for="service">Nature des travaux</label>
+            <select id="service">
+              <option>Travaux d'assainissement</option>
+              <option>Installation de citerne ACS</option>
+              <option>Plomberie sanitaire</option>
+              <option>Chauffe-eau électrique</option>
+              <option>Dépannage / recherche de fuite</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msg">Votre message</label>
+            <textarea id="msg" placeholder="Décrivez-moi brièvement vos travaux..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Envoyer la demande →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo-big">Nonnon <em>Plomberie</em></div>
+          <p class="brand-desc">Plombier artisan à Saint-François en Guadeloupe. Rénovation, dépannage, citernes ACS,
+            assainissement et chauffe-eau.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Prestations</h5>
+          <ul>
+            <li><a href="#assainissement">Assainissement</a></li>
+            <li><a href="#citerne">Citerne ACS</a></li>
+            <li><a href="#plomberie">Plomberie sanitaire</a></li>
+            <li><a href="#entreprise">L'entreprise</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <ul>
+            <li><a href="tel:+590690395566">06 90 39 55 66</a></li>
+            <li><a href="mailto:tony.nonnon@gmail.com">tony.nonnon@gmail.com</a></li>
+            <li>Route de Dubedou</li>
+            <li>97118 Saint-François</li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Suivre</h5>
+          <ul>
+            <li><a href="https://www.facebook.com/people/Nonnon-Plomberie/100071039497963" target="_blank"
+                rel="noopener">Facebook</a></li>
+            <li><a href="#">Avis Google</a></li>
+            <li><a href="#">Mentions légales</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2021 Nonnon Plomberie · Guadeloupe</span>
+        <span>Vie privée · Cookies</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobile-menu');
+    const closeBtn = document.getElementById('mobile-close');
+    const open = () => {
+      menu.classList.add('open');
+      closeBtn.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    };
+    const close = () => {
+      menu.classList.remove('open');
+      closeBtn.classList.remove('show');
+      document.body.style.overflow = '';
+    };
+    burger?.addEventListener('click', open);
+    closeBtn?.addEventListener('click', close);
+    menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  </script>
+
+</body>
+
+</html>
