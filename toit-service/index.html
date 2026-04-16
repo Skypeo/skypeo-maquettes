@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Toit Service — Artisan couvreur à Gaillon, de père en fils depuis plus de 40 ans</title>
+  <meta name="description" content="Entreprise de couverture de père en fils depuis plus de 40 ans à Gaillon et Muids. Pose, rénovation, zinguerie, bardage, fenêtres de toit Velux® agréés.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       TOIT SERVICE — Registre 1 Éditorial Artisan (variante Revue)
+       Palette : crème #f6f1ea / encre #141414 / rouge #e43147
+       ========================================================= */
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    :root {
+      --cream: #f6f1ea;
+      --cream-deep: #ece4d3;
+      --ink: #141414;
+      --ink-60: #14141499;
+      --ink-30: #1414144d;
+      --rouge: #e43147;
+      --rouge-deep: #b51e34;
+
+      --serif: 'Instrument Serif', 'Times New Roman', serif;
+      --sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      --r-sm: 4px;
+      --r-md: 10px;
+      --r-lg: 22px;
+      --r-pill: 999px;
+
+      --edge: clamp(1.25rem, 4vw, 3.25rem);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      font-feature-settings: "ss01", "ss02";
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* -------- Grain papier en overlay global -------- */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.45;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.12 0 0 0 0 0.08 0 0 0 0.38 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+      animation: grainShift 3.2s steps(6) infinite;
+    }
+    @keyframes grainShift {
+      0%   { transform: translate(0, 0); }
+      20%  { transform: translate(-3%, 2%); }
+      40%  { transform: translate(2%, -2%); }
+      60%  { transform: translate(-1%, 3%); }
+      80%  { transform: translate(3%, 1%); }
+      100% { transform: translate(0, 0); }
+    }
+
+    /* -------- Fil à plomb rouge en marge gauche -------- */
+    .fil-plomb {
+      position: fixed;
+      top: 0;
+      left: clamp(10px, 2.2vw, 28px);
+      width: 18px;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 40;
+    }
+    .fil-plomb-line {
+      stroke: var(--rouge);
+      stroke-width: 2.4;
+      fill: none;
+      stroke-dasharray: 14 6;
+      animation: plombFlow 18s linear infinite;
+      opacity: 1;
+    }
+    @keyframes plombFlow {
+      from { stroke-dashoffset: 0; }
+      to   { stroke-dashoffset: -400; }
+    }
+    .fil-plomb-bob {
+      fill: var(--rouge);
+      animation: plombSway 4.5s ease-in-out infinite alternate;
+      transform-origin: 9px 10px;
+    }
+    @keyframes plombSway {
+      from { transform: rotate(-3deg); }
+      to   { transform: rotate(3deg); }
+    }
+    @media (max-width: 720px) {
+      .fil-plomb { display: none; }
+    }
+
+    /* =========================================================
+       MASTHEAD — barre haut type journal/revue
+       ========================================================= */
+    .masthead {
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 10px clamp(1rem, 3vw, 2.5rem);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.2rem;
+      overflow: hidden;
+      position: relative;
+      z-index: 50;
+    }
+    .masthead-inner {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      white-space: nowrap;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .masthead .dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--rouge);
+      display: inline-block;
+    }
+    .masthead strong { color: var(--rouge); font-weight: 500; letter-spacing: 0.3em; }
+    @media (max-width: 720px) {
+      .masthead { font-size: 9px; padding: 8px 12px; }
+      .masthead-inner { gap: 0.7rem; }
+    }
+
+    /* =========================================================
+       NAV
+       ========================================================= */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 45;
+      background: var(--cream);
+      border-bottom: 1px solid var(--ink-30);
+      padding: 0.85rem clamp(1.5rem, 4vw, 3.25rem) 0.85rem calc(clamp(1.5rem, 4vw, 3.25rem) + 20px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-brand {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.5vw, 1.85rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+    }
+    .nav-brand .amp {
+      color: var(--rouge);
+      font-weight: 400;
+    }
+    .nav-brand-sub {
+      display: inline-block;
+      margin-left: 0.4rem;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      transform: translateY(-0.35rem);
+    }
+    .nav-links {
+      display: flex;
+      gap: clamp(0.8rem, 2vw, 1.8rem);
+      align-items: center;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .nav-links a {
+      position: relative;
+      padding: 0.5rem 0;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 100%;
+      bottom: 0.25rem;
+      height: 2px;
+      background: var(--rouge);
+      transition: right 0.4s cubic-bezier(.22,.61,.36,1);
+    }
+    .nav-links a:hover::after { right: 0; }
+    .nav-cta {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 0.85rem 1.3rem;
+      border-radius: var(--r-pill);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.3s ease, color 0.3s ease;
+      white-space: nowrap;
+    }
+    .nav-cta::before {
+      content: '';
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--rouge);
+      animation: livePulse 1.8s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.35; transform: scale(1.4); }
+    }
+    .nav-cta:hover { background: var(--rouge); }
+    .nav-cta:hover::before { background: var(--cream); }
+
+    .nav-burger {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--ink);
+      border-radius: var(--r-pill);
+      width: 44px; height: 44px;
+      cursor: pointer;
+      padding: 0;
+      position: relative;
+    }
+    .nav-burger span {
+      position: absolute;
+      left: 10px; right: 10px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .nav-burger span:nth-child(1) { top: 14px; }
+    .nav-burger span:nth-child(2) { top: 21px; }
+    .nav-burger span:nth-child(3) { top: 28px; }
+    .nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-burger { display: block; }
+      .nav-cta { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--cream);
+        border-bottom: 1px solid var(--ink);
+        padding: 1.5rem clamp(1.5rem, 4vw, 3.25rem);
+        gap: 1rem;
+        align-items: flex-start;
+      }
+    }
+
+    /* =========================================================
+       HERO
+       ========================================================= */
+    .hero {
+      position: relative;
+      padding: clamp(1.8rem, 3.5vw, 3rem) var(--edge) clamp(2.5rem, 5vw, 4rem);
+      padding-left: calc(var(--edge) + 28px);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: stretch;
+    }
+    .hero-left { position: relative; }
+    .hero-kicker {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      font-weight: 500;
+      color: var(--ink-60);
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
+    }
+    .hero-kicker .bar { width: 32px; height: 1px; background: var(--ink); }
+    .hero-kicker strong { color: var(--rouge); font-weight: 600; }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.6rem, 7.2vw, 6.4rem);
+      line-height: 0.95;
+      letter-spacing: -0.022em;
+      margin: 0;
+      color: var(--ink);
+    }
+    .hero h1 .it { font-style: italic; }
+    .hero h1 .rouge { color: var(--rouge); font-style: italic; }
+    .hero h1 .dot-end { color: var(--rouge); }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+      align-items: end;
+      margin-top: clamp(1.8rem, 4vw, 3rem);
+    }
+    .counter-block {
+      display: flex;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+    .counter {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(4.5rem, 10vw, 8rem);
+      line-height: 0.85;
+      color: var(--rouge);
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+      min-width: 2.3ch;
+      display: inline-block;
+    }
+    .counter-legend {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink);
+      max-width: 110px;
+      line-height: 1.4;
+      padding-bottom: 0.8rem;
+      font-weight: 500;
+    }
+    .counter-legend strong { display: block; color: var(--rouge); font-weight: 600; }
+
+    .hero-lede {
+      max-width: 32ch;
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      line-height: 1.55;
+      color: var(--ink);
+      padding-bottom: 0.6rem;
+      border-top: 1px solid var(--ink);
+      padding-top: 1rem;
+    }
+    .hero-lede .drop {
+      float: left;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 3.2rem;
+      line-height: 0.82;
+      color: var(--rouge);
+      padding-right: 0.35rem;
+      padding-top: 0.35rem;
+    }
+
+    /* Photo hero + tampon */
+    .hero-right {
+      position: relative;
+      align-self: stretch;
+    }
+    .hero-photo {
+      position: relative;
+      aspect-ratio: 3/4;
+      width: 100%;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--ink);
+      isolation: isolate;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: contrast(1.02) saturate(0.92);
+    }
+    .hero-caption {
+      position: absolute;
+      left: 0; bottom: -1.75rem;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 12px;
+      color: var(--ink);
+      letter-spacing: 0.02em;
+      display: flex; align-items: baseline; gap: 0.5rem;
+    }
+    .hero-caption .pl {
+      font-family: var(--sans);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rouge);
+    }
+
+    /* Tampon rotatif */
+    .tampon {
+      position: absolute;
+      top: -2.5rem;
+      left: -3.5rem;
+      width: clamp(130px, 14vw, 180px);
+      height: clamp(130px, 14vw, 180px);
+      z-index: 5;
+      animation: tamponSpin 22s linear infinite;
+    }
+    @keyframes tamponSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .tampon circle { fill: var(--rouge); }
+    .tampon text {
+      font-family: var(--sans);
+      font-weight: 700;
+      font-size: 9.5px;
+      letter-spacing: 0.28em;
+      fill: var(--cream);
+      text-transform: uppercase;
+    }
+    .tampon-inner {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+      color: var(--cream);
+      text-align: center;
+      line-height: 1;
+    }
+    .tampon-inner span {
+      display: block;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 8.5px;
+      letter-spacing: 0.28em;
+      margin-top: 0.35rem;
+      opacity: 0.9;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-right { order: -1; }
+      .hero-photo { aspect-ratio: 4/5; max-height: 55vh; }
+      .tampon { top: auto; left: auto; right: -1.5rem; bottom: -2rem; width: 120px; height: 120px; }
+      .hero-meta { grid-template-columns: 1fr; gap: 1rem; }
+    }
+
+    /* =========================================================
+       TICKER — bandeau vocabulaire métier
+       ========================================================= */
+    .ticker {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 1.1rem 0;
+      overflow: hidden;
+      border-top: 1px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+      position: relative;
+      z-index: 10;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 3rem;
+      white-space: nowrap;
+      width: max-content;
+      animation: tickerScroll 38s linear infinite;
+      will-change: transform;
+    }
+    .ticker-track span {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+      letter-spacing: -0.005em;
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+    .ticker-track span::after {
+      content: '✦';
+      color: var(--rouge);
+      font-size: 0.6em;
+      transform: translateY(-0.15em);
+      font-style: normal;
+    }
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* =========================================================
+       ATELIER (intro père en fils)
+       ========================================================= */
+    .atelier {
+      padding: clamp(4rem, 8vw, 7rem) var(--edge) clamp(3rem, 6vw, 5rem);
+      padding-left: calc(var(--edge) + 28px);
+      background: var(--cream);
+      position: relative;
+    }
+    .atelier-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .atelier-kicker {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-bottom: 2rem;
+    }
+    .atelier-kicker .bar { width: 32px; height: 1px; background: var(--ink); }
+    .atelier-kicker strong { color: var(--rouge); font-weight: 600; }
+
+    .atelier-heading {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0 0 2rem;
+    }
+    .atelier-heading .not-it { font-style: normal; }
+    .atelier-heading .rouge { color: var(--rouge); }
+
+    .atelier-photos {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+    .atelier-photo {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--ink);
+    }
+    .atelier-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      aspect-ratio: 4/5;
+    }
+    .atelier-photo.wide { grid-column: 1 / 3; }
+    .atelier-photo.wide img { aspect-ratio: 16/9; }
+    .atelier-photo.second img { aspect-ratio: 4/5; }
+
+    .atelier-body {
+      padding-top: 2.5rem;
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      line-height: 1.7;
+      max-width: 56ch;
+    }
+    .atelier-body p { margin: 0 0 1.2rem; }
+    .atelier-body .lede-par {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.25rem, 1.8vw, 1.5rem);
+      line-height: 1.45;
+      color: var(--ink);
+      margin-bottom: 1.8rem;
+    }
+
+    .atelier-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--ink);
+    }
+    .atelier-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .atelier-stat .num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(2.8rem, 4.5vw, 4rem);
+      line-height: 0.9;
+      color: var(--rouge);
+      letter-spacing: -0.03em;
+    }
+    .atelier-stat .lbl {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    @media (max-width: 900px) {
+      .atelier-grid { grid-template-columns: 1fr; }
+      .atelier-body { padding-top: 0; }
+      .atelier-stats { grid-template-columns: 1fr; gap: 1.5rem; }
+      .atelier-stat { flex-direction: row; align-items: baseline; gap: 1rem; }
+    }
+
+    /* =========================================================
+       PULL QUOTE (section noire monumentale)
+       ========================================================= */
+    .pullquote {
+      background: var(--ink);
+      color: var(--cream);
+      padding: clamp(5rem, 10vw, 9rem) var(--edge);
+      padding-left: calc(var(--edge) + 28px);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .pullquote-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .pullquote-mark {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(12rem, 26vw, 28rem);
+      line-height: 0.7;
+      color: var(--rouge);
+      position: absolute;
+      top: -6rem;
+      left: -2rem;
+      opacity: 0.92;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+    }
+    .pullquote-text {
+      position: relative;
+      z-index: 1;
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 6.2vw, 6rem);
+      line-height: 1.02;
+      letter-spacing: -0.02em;
+      max-width: 18ch;
+      margin: 0 0 2.5rem;
+    }
+    .pullquote-text .it { font-style: italic; }
+    .pullquote-text .rouge { color: var(--rouge); }
+    .pullquote-attr {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--cream);
+      position: relative;
+      z-index: 1;
+    }
+    .pullquote-attr .line { width: 42px; height: 1px; background: var(--rouge); }
+    .pullquote-attr strong { color: var(--rouge); font-weight: 600; }
+
+    .pullquote-meta {
+      position: absolute;
+      right: var(--edge);
+      bottom: clamp(2rem, 4vw, 3rem);
+      text-align: right;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: 0.85;
+      color: var(--cream);
+      opacity: 0.85;
+      z-index: 1;
+    }
+    .pullquote-meta small {
+      display: block;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-top: 0.6rem;
+      opacity: 0.7;
+    }
+    @media (max-width: 900px) {
+      .pullquote-meta { position: static; text-align: left; margin-top: 2rem; }
+    }
+
+    /* =========================================================
+       PLANCHES (services numérotés)
+       ========================================================= */
+    .planches-intro {
+      padding: clamp(3rem, 6vw, 5rem) var(--edge) clamp(1rem, 3vw, 2rem);
+      padding-left: calc(var(--edge) + 28px);
+      background: var(--cream);
+    }
+    .planches-intro-kicker {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+    .planches-intro-kicker .bar { width: 32px; height: 1px; background: var(--ink); }
+    .planches-intro-kicker strong { color: var(--rouge); font-weight: 600; }
+    .planches-intro-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.2rem;
+      max-width: 22ch;
+    }
+    .planches-intro-title .it { font-style: italic; color: var(--rouge); }
+    .planches-intro-lede {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+      line-height: 1.5;
+      max-width: 50ch;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .planche {
+      padding: clamp(4rem, 7vw, 6rem) var(--edge);
+      padding-left: calc(var(--edge) + 28px);
+      border-top: 1px solid var(--ink);
+      background: var(--cream);
+      position: relative;
+    }
+    .planche-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .planche.reverse .planche-grid { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); }
+    .planche.reverse .planche-content { order: 2; }
+    .planche.reverse .planche-photo { order: 1; }
+
+    .planche-number {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(4rem, 9vw, 8rem);
+      line-height: 0.85;
+      color: var(--rouge);
+      margin: 0 0 1rem;
+      letter-spacing: -0.03em;
+    }
+    .planche-number small {
+      display: inline-block;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink);
+      transform: translateY(-2em);
+      margin-left: 0.4rem;
+    }
+    .planche-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.5rem;
+    }
+    .planche-title .it { font-style: italic; }
+    .planche-body {
+      font-size: clamp(0.95rem, 1.1vw, 1.05rem);
+      line-height: 1.65;
+      max-width: 52ch;
+      margin-bottom: 2rem;
+    }
+    .planche-body p { margin: 0 0 1rem; }
+
+    .planche-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--ink);
+      max-width: 52ch;
+    }
+    .planche-spec {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(0.95rem, 1.1vw, 1.1rem);
+      padding: 0.4rem 0.85rem 0.4rem 0;
+      color: var(--ink);
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .planche-spec::before {
+      content: '✦';
+      color: var(--rouge);
+      font-size: 0.7em;
+      font-style: normal;
+    }
+
+    .planche-photo {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--ink);
+      aspect-ratio: 4/5;
+      isolation: isolate;
+    }
+    .planche-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s cubic-bezier(.22,.61,.36,1);
+    }
+    .planche-photo:hover img { transform: scale(1.04); }
+    .planche-photo .caption {
+      position: absolute;
+      left: 1rem; bottom: 1rem;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 13px;
+      color: var(--cream);
+      background: var(--ink);
+      padding: 0.35rem 0.8rem;
+      border-radius: var(--r-pill);
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .planche-photo .caption .pl {
+      font-family: var(--sans);
+      font-style: normal;
+      font-weight: 600;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rouge);
+    }
+
+    @media (max-width: 900px) {
+      .planche-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .planche.reverse .planche-content { order: 2; }
+      .planche.reverse .planche-photo { order: 1; }
+      .planche-content { order: 2; }
+      .planche-photo { order: 1; aspect-ratio: 5/4; }
+    }
+
+    /* =========================================================
+       AVIS (témoignages éditoriaux)
+       ========================================================= */
+    .avis {
+      background: var(--cream-deep);
+      padding: clamp(4rem, 8vw, 7rem) var(--edge);
+      padding-left: calc(var(--edge) + 28px);
+      position: relative;
+      border-top: 1px solid var(--ink);
+    }
+    .avis-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      flex-wrap: wrap;
+    }
+    .avis-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0;
+      max-width: 18ch;
+    }
+    .avis-title .it { font-style: italic; color: var(--rouge); }
+    .avis-head-right {
+      text-align: right;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      line-height: 0.9;
+      color: var(--rouge);
+    }
+    .avis-head-right small {
+      display: block;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    .avis-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(1.5rem, 3vw, 2.5rem);
+    }
+    .avis-card {
+      background: var(--cream);
+      border: 1px solid var(--ink);
+      border-radius: var(--r-lg);
+      padding: clamp(1.8rem, 2.5vw, 2.5rem);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .avis-card-mark {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 5rem;
+      line-height: 0.5;
+      color: var(--rouge);
+      margin: 0;
+      height: 1.8rem;
+    }
+    .avis-card blockquote {
+      font-family: var(--serif);
+      font-size: clamp(1.15rem, 1.4vw, 1.4rem);
+      line-height: 1.45;
+      color: var(--ink);
+      margin: 0;
+      font-style: italic;
+      flex-grow: 1;
+    }
+    .avis-card-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--ink);
+      flex-wrap: wrap;
+    }
+    .avis-name {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+    .avis-tag {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rouge);
+      font-weight: 600;
+    }
+    @media (max-width: 720px) {
+      .avis-grid { grid-template-columns: 1fr; }
+    }
+
+    /* =========================================================
+       CONTACT (2 agences, carnet ouvert)
+       ========================================================= */
+    .contact {
+      padding: clamp(4rem, 8vw, 7rem) var(--edge);
+      padding-left: calc(var(--edge) + 28px);
+      background: var(--cream);
+      border-top: 1px solid var(--ink);
+      position: relative;
+    }
+    .contact-head {
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      max-width: 900px;
+    }
+    .contact-kicker {
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      display: flex; align-items: center; gap: 0.7rem;
+      margin-bottom: 1.2rem;
+    }
+    .contact-kicker .bar { width: 32px; height: 1px; background: var(--ink); }
+    .contact-kicker strong { color: var(--rouge); font-weight: 600; }
+    .contact-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0 0 1rem;
+    }
+    .contact-title .it { font-style: italic; color: var(--rouge); }
+    .contact-lede {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+      line-height: 1.5;
+      max-width: 50ch;
+      color: var(--ink);
+      margin: 0;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--ink);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: var(--cream);
+      margin-bottom: 3rem;
+    }
+    .contact-agence {
+      padding: clamp(1.8rem, 3vw, 2.8rem);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .contact-agence + .contact-agence { border-left: 1px solid var(--ink); }
+    .contact-agence-num {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(3.5rem, 5vw, 5rem);
+      line-height: 0.85;
+      color: var(--rouge);
+      margin: 0;
+    }
+    .contact-agence-name {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+      line-height: 1;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+    .contact-agence-name .it { font-style: italic; }
+    .contact-agence-details {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .contact-agence-details .lbl {
+      font-size: 10px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ink-60);
+      margin-top: 0.8rem;
+      margin-bottom: 0.1rem;
+      font-weight: 600;
+    }
+    .contact-agence-details a {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+      color: var(--rouge);
+      display: inline-block;
+      transition: color 0.3s ease;
+    }
+    .contact-agence-details a:hover { color: var(--ink); }
+
+    .contact-hours {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem clamp(1.5rem, 3vw, 2.5rem);
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: var(--r-lg);
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 500;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .contact-hours strong { color: var(--rouge); font-weight: 600; }
+    .contact-hours .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--rouge);
+      display: inline-block;
+      margin-right: 0.5rem;
+      animation: livePulse 1.8s ease-in-out infinite;
+    }
+
+    @media (max-width: 820px) {
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-agence + .contact-agence { border-left: none; border-top: 1px solid var(--ink); }
+    }
+
+    /* =========================================================
+       FOOTER
+       ========================================================= */
+    .footer {
+      background: var(--ink);
+      color: var(--cream);
+      padding: clamp(3rem, 6vw, 5rem) var(--edge) 1.5rem;
+      padding-left: calc(var(--edge) + 28px);
+      position: relative;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(246, 241, 234, 0.2);
+    }
+    .footer-brand {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.2rem;
+    }
+    .footer-brand .rouge { color: var(--rouge); font-style: normal; }
+    .footer-tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 1.4vw, 1.3rem);
+      color: var(--cream);
+      opacity: 0.8;
+      max-width: 40ch;
+      margin: 0;
+    }
+    .footer-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-nav-col h5 {
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--rouge);
+      margin: 0 0 1rem;
+      font-weight: 600;
+    }
+    .footer-nav-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-nav-col a {
+      font-size: 13px;
+      color: var(--cream);
+      opacity: 0.85;
+      transition: color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+    }
+    .footer-nav-col a:hover { color: var(--rouge); opacity: 1; }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.65;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-bottom a { color: var(--rouge); }
+
+    @media (max-width: 820px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-nav { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    /* =========================================================
+       Reduced motion
+       ========================================================= */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fil à plomb rouge -->
+  <svg class="fil-plomb" viewBox="0 0 18 1000" preserveAspectRatio="none" aria-hidden="true">
+    <line class="fil-plomb-line" x1="9" y1="0" x2="9" y2="1000"/>
+    <g class="fil-plomb-bob">
+      <polygon points="3,10 15,10 9,24" fill="#e43147"/>
+      <circle cx="9" cy="10" r="3" fill="#e43147"/>
+    </g>
+  </svg>
+
+  <!-- Masthead — source: https://www.toitservice-couverture-eure.fr/ -->
+  <div class="masthead">
+    <div class="masthead-inner">
+      <strong>Toit Service</strong>
+      <span class="dot"></span>
+      <span>Couvreur à Gaillon</span>
+      <span class="dot"></span>
+      <span>Pose · Rénovation · Entretien</span>
+      <span class="dot"></span>
+      <span>De père en fils depuis + de 40 ans</span>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav" aria-label="Navigation principale">
+    <a href="#top" class="nav-brand">
+      <em>Toit</em><span class="amp">·</span><em>Service</em>
+      <span class="nav-brand-sub">Gaillon</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#revue">La Revue</a>
+      <a href="#atelier">L'Atelier</a>
+      <a href="#planches">Les Planches</a>
+      <a href="#avis">Avis</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="tel:+33232525698" class="nav-cta">02 32 52 56 98</a>
+    <button class="nav-burger" aria-expanded="false" aria-controls="navLinks" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO — source: https://www.toitservice-couverture-eure.fr/ -->
+  <section class="hero" id="top">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-kicker">
+          <span class="bar"></span>
+          <!-- source: accueil — "Artisan de père en fils" / "Savoir-faire de + de 40 ans" -->
+          <span><strong>Artisan de père en fils</strong> · Savoir-faire de + de 40 ans</span>
+        </div>
+
+        <!-- source: accueil — "TOIT SERVICE : un artisan couvreur pour vos travaux de toiture à Gaillon" -->
+        <h1>
+          Un artisan<br>
+          <span class="it">couvreur</span><br>
+          à Gaillon<span class="dot-end">.</span>
+        </h1>
+
+        <div class="hero-meta">
+          <div class="counter-block">
+            <span class="counter" data-target="40">00</span>
+            <!-- source: accueil — "de père en fils depuis plus de 40 ans" -->
+            <div class="counter-legend">
+              <strong>Ans</strong>
+              de père en fils,<br>à Gaillon &amp; Muids.
+            </div>
+          </div>
+
+          <!-- source: accueil — phrase exacte -->
+          <p class="hero-lede">
+            <span class="drop">T</span>oit Service mise sur l'expérience et le savoir-faire de son équipe pour prendre en charge vos travaux de toiture.
+          </p>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-photo">
+          <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/toit+zinc-1013w.jpg" alt="Toiture zinc joint debout posée par Toit Service" loading="eager">
+
+          <svg class="tampon" viewBox="0 0 200 200" aria-hidden="true">
+            <defs>
+              <path id="tamponCircle" d="M 100, 100 m -82, 0 a 82,82 0 1,1 164,0 a 82,82 0 1,1 -164,0"/>
+            </defs>
+            <circle cx="100" cy="100" r="92" fill="#e43147"/>
+            <circle cx="100" cy="100" r="72" fill="none" stroke="#f6f1ea" stroke-width="0.8" stroke-dasharray="2 4"/>
+            <!-- source: accueil — "TOIT SERVICE · de père en fils · + de 40 ans" -->
+            <text>
+              <textPath href="#tamponCircle" startOffset="0%">
+                TOIT SERVICE · DE PÈRE EN FILS · + DE 40 ANS ·
+              </textPath>
+            </text>
+          </svg>
+          <div class="tampon-inner" aria-hidden="true">
+            <em>Toit</em>
+            <span>SERVICE</span>
+          </div>
+        </div>
+        <!-- source: accueil — "pose de toiture traditionnelle ou à joint debout" -->
+        <div class="hero-caption">
+          <span class="pl">Pl. I</span>
+          <span>— Pose de toiture à joint debout.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER vocabulaire métier -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Tuile</span><span>Ardoise</span><span>Zinc</span><span>Chéneau</span><span>Faîtage</span><span>Velux</span><span>Bardage</span><span>Shingle</span><span>Démoussage</span><span>Chevêtre</span>
+      <span>Tuile</span><span>Ardoise</span><span>Zinc</span><span>Chéneau</span><span>Faîtage</span><span>Velux</span><span>Bardage</span><span>Shingle</span><span>Démoussage</span><span>Chevêtre</span>
+    </div>
+  </div>
+
+  <!-- ATELIER — source: https://www.toitservice-couverture-eure.fr/ + /contact + /couverture -->
+  <section class="atelier" id="atelier">
+    <div class="atelier-grid">
+      <div class="atelier-photos">
+        <div class="atelier-photo wide">
+          <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/351343165_995972091819362_5462504678121183079_n-1013w.jpg" alt="Équipe Toit Service sur chantier" loading="eager">
+        </div>
+        <div class="atelier-photo">
+          <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/IMG_4744-1013w.jpeg" alt="Chantier de couverture ardoise" loading="eager">
+        </div>
+        <div class="atelier-photo second">
+          <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/IMG_4735-623w.jpeg" alt="Détail de zinguerie" loading="eager">
+        </div>
+      </div>
+
+      <div class="atelier-content">
+        <div class="atelier-kicker">
+          <span class="bar"></span>
+          <!-- source: accueil — "Une entreprise de proximité" -->
+          <span><strong>L'atelier</strong> — Une entreprise de proximité</span>
+        </div>
+
+        <!-- source: accueil — "Une entreprise de couverture de père en fils depuis plus de 40 ans" -->
+        <h2 class="atelier-heading">
+          Une entreprise<br>
+          <span class="not-it">de</span> couverture<br>
+          de père <span class="rouge">en</span> fils<br>
+          depuis plus <span class="not-it">de</span> 40 ans.
+        </h2>
+
+        <div class="atelier-body">
+          <!-- source: /couverture — phrase exacte -->
+          <p class="lede-par">
+            Située à Gaillon, Toit Service propose une gamme complète de prestations pour répondre à tous vos besoins en matière de toiture.
+          </p>
+          <!-- source: /couverture — phrase exacte -->
+          <p>
+            Notre entreprise de couverture vous offre toute son expertise, de la conception initiale à la réalisation de votre projet. Toit Service s'adapte à la physionomie de tous vos chantiers.
+          </p>
+          <!-- source: /contact — phrase exacte + accueil — "Installateurs Velux® agréés" -->
+          <p>
+            Notre équipe se déplace en direction d'Évreux, de Vernon, de Louviers et des Andelys. Installateurs Velux® agréés.
+          </p>
+        </div>
+
+        <div class="atelier-stats">
+          <!-- source: accueil — "+ de 40 ans" -->
+          <div class="atelier-stat">
+            <span class="num">40</span>
+            <span class="lbl">Ans de<br>savoir-faire</span>
+          </div>
+          <!-- source: brief utilisateur — 9 employés -->
+          <div class="atelier-stat">
+            <span class="num">09</span>
+            <span class="lbl">Artisans<br>couvreurs</span>
+          </div>
+          <!-- source: /contact — deux agences listées -->
+          <div class="atelier-stat">
+            <span class="num">02</span>
+            <span class="lbl">Agences<br>Gaillon · Muids</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PULL QUOTE — source: accueil "Installation, rénovation et entretien de couverture de toit" -->
+  <section class="pullquote">
+    <div class="pullquote-inner">
+      <span class="pullquote-mark" aria-hidden="true">«</span>
+      <p class="pullquote-text">
+        <span class="it">Installation,</span><br>
+        rénovation<br>
+        <span class="rouge it">et entretien</span><br>
+        de couverture<br>
+        de toit.
+      </p>
+      <div class="pullquote-attr">
+        <span class="line"></span>
+        <!-- source: accueil — "Couvreur à Gaillon - Pose, rénovation, entretien" -->
+        <span><strong>Toit Service</strong> · Couvreur à Gaillon</span>
+      </div>
+      <div class="pullquote-meta">
+        + de 40
+        <small>Ans de savoir-faire</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTRO PLANCHES — source: /couverture -->
+  <section class="planches-intro" id="planches">
+    <div class="planches-intro-kicker">
+      <span class="bar"></span>
+      <!-- source: /couverture — "gamme complète de prestations" -->
+      <span><strong>Nos prestations</strong> — Pose · Rénovation · Zinguerie · Velux · Bardage</span>
+    </div>
+    <!-- source: /couverture — "Nos matériaux et styles de couverture sont divers et variés." -->
+    <h2 class="planches-intro-title">
+      Nos matériaux et styles de couverture sont <span class="it">divers et variés.</span>
+    </h2>
+    <!-- source: /couverture — "Profitez d'un devis gratuit et d'une garantie décennale..." -->
+    <p class="planches-intro-lede">
+      Profitez d'un devis gratuit et d'une garantie décennale pour assurer l'intégrité de votre toiture.
+    </p>
+  </section>
+
+  <!-- PLANCHE II — Couverture — source: /couverture + accueil -->
+  <article class="planche" id="couverture">
+    <div class="planche-grid">
+      <div class="planche-content">
+        <h3 class="planche-number">II. <small>Pl. II</small></h3>
+        <!-- source: /couverture — titre exact "Pose et installation de toiture traditionnelle et industrielle" -->
+        <h4 class="planche-title">
+          <span class="it">Pose et installation</span> de toiture traditionnelle et industrielle.
+        </h4>
+        <div class="planche-body">
+          <!-- source: accueil — phrase exacte -->
+          <p>Toit Service se met à disposition des particuliers et des professionnels pour effectuer la pose de toiture traditionnelle ou à joint debout.</p>
+        </div>
+        <!-- source: accueil — matériaux listés -->
+        <div class="planche-specs">
+          <span class="planche-spec">Tuile terre cuite</span>
+          <span class="planche-spec">Ardoise</span>
+          <span class="planche-spec">Bac acier</span>
+          <span class="planche-spec">Zinc</span>
+          <span class="planche-spec">Bardeau bitumé</span>
+          <span class="planche-spec">Shingle</span>
+        </div>
+      </div>
+      <div class="planche-photo">
+        <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/IMG_4748-623w.jpeg" alt="Pose de toiture en tuile terre cuite" loading="eager">
+        <!-- source: accueil — "la tuile en terre cuite ou en ardoise" -->
+        <span class="caption"><span class="pl">Pl. II</span><span>Tuile terre cuite</span></span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PLANCHE III — Rénovation & démoussage — source: accueil + /couverture -->
+  <article class="planche reverse" id="renovation">
+    <div class="planche-grid">
+      <div class="planche-photo">
+        <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/IMG_4771-623w.jpeg" alt="Rénovation de toiture et démoussage" loading="eager">
+        <!-- source: /couverture — "Un émoussage de toit effectué à la main, de manière artisanale" -->
+        <span class="caption"><span class="pl">Pl. III</span><span>Démoussage à la main</span></span>
+      </div>
+      <div class="planche-content">
+        <h3 class="planche-number">III. <small>Pl. III</small></h3>
+        <!-- source: /couverture — titre exact "Tuiles cassées ou abîmées : faites rénover votre revêtement de toit" -->
+        <h4 class="planche-title">
+          <span class="it">Tuiles cassées ou abîmées :</span> faites rénover votre revêtement de toit.
+        </h4>
+        <div class="planche-body">
+          <!-- source: accueil — phrase exacte -->
+          <p>Pour vos travaux de rénovation, nous remplaçons les tuiles endommagées et les écrans de sous-toiture.</p>
+          <!-- source: accueil — phrase exacte -->
+          <p>Nous réalisons le démoussage de votre toiture par grattage manuel et par application d'un produit hydrofuge pour une protection durable.</p>
+        </div>
+        <!-- source: accueil — éléments cités -->
+        <div class="planche-specs">
+          <span class="planche-spec">Remplacement tuiles</span>
+          <span class="planche-spec">Écran de sous-toiture</span>
+          <span class="planche-spec">Grattage manuel</span>
+          <span class="planche-spec">Hydrofuge</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PLANCHE IV — Isolation & étanchéité — source: accueil + /couverture -->
+  <article class="planche" id="isolation">
+    <div class="planche-grid">
+      <div class="planche-content">
+        <h3 class="planche-number">IV. <small>Pl. IV</small></h3>
+        <!-- source: /couverture — titre exact -->
+        <h4 class="planche-title">
+          <span class="it">Travaux d'étanchéité</span> et d'isolation de toiture.
+        </h4>
+        <div class="planche-body">
+          <!-- source: accueil — phrase exacte -->
+          <p>L'humidité est l'ennemi n° 1 de votre toiture. Chez Toit Service, nous privilégions des matériaux isolants de haute qualité.</p>
+          <!-- source: accueil — phrase exacte -->
+          <p>Pour améliorer son étanchéité, nous utilisons des revêtements de toit imperméables, tels que l'enduit d'étanchéité ou une membrane bitumineuse.</p>
+        </div>
+        <!-- source: accueil — liste exacte -->
+        <div class="planche-specs">
+          <span class="planche-spec">Laine de verre</span>
+          <span class="planche-spec">Laine de roche</span>
+          <span class="planche-spec">Polystyrène extrudé</span>
+          <span class="planche-spec">Mousse pulvérisée</span>
+          <span class="planche-spec">Enduit d'étanchéité</span>
+          <span class="planche-spec">Membrane bitumineuse</span>
+        </div>
+      </div>
+      <div class="planche-photo">
+        <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/IMG_4757-b08032da-1013w.jpeg" alt="Travaux d'étanchéité et isolation de toiture" loading="eager">
+        <!-- source: accueil — "laine de roche" / "matériaux isolants" -->
+        <span class="caption"><span class="pl">Pl. IV</span><span>Étanchéité & isolation</span></span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PLANCHE V — Fenêtres de toit / Velux — source: accueil + /couverture -->
+  <article class="planche reverse" id="velux">
+    <div class="planche-grid">
+      <div class="planche-photo">
+        <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/IMG_5347-1013w.png" alt="Installation de fenêtres de toit Velux" loading="eager">
+        <!-- source: accueil — "chevêtre sur mesure" -->
+        <span class="caption"><span class="pl">Pl. V</span><span>Chevêtre sur mesure</span></span>
+      </div>
+      <div class="planche-content">
+        <h3 class="planche-number">V. <small>Pl. V</small></h3>
+        <!-- source: /couverture — titre exact "Apportez de la lumière dans vos combles avec des fenêtres de toit" -->
+        <h4 class="planche-title">
+          <span class="it">Apportez de la lumière</span> dans vos combles avec des fenêtres de toit.
+        </h4>
+        <div class="planche-body">
+          <!-- source: accueil — phrase exacte -->
+          <p>L'installation d'une fenêtre de toit nécessite des modifications de la structure de votre charpente. Afin de supporter le poids de la menuiserie, Toit Service intègre un chevêtre sur mesure sur votre toit.</p>
+          <!-- source: accueil — phrase exacte -->
+          <p>Installateurs Velux® agréés, nous proposons des produits personnalisables pour une isolation thermique et phonique de qualité.</p>
+        </div>
+        <!-- source: accueil — éléments cités -->
+        <div class="planche-specs">
+          <span class="planche-spec">Velux® agréé</span>
+          <span class="planche-spec">Chevêtre sur mesure</span>
+          <span class="planche-spec">Isolation thermique</span>
+          <span class="planche-spec">Isolation phonique</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- PLANCHE VI — Zinguerie — source: /zinguerie + accueil -->
+  <article class="planche" id="zinguerie">
+    <div class="planche-grid">
+      <div class="planche-content">
+        <h3 class="planche-number">VI. <small>Pl. VI</small></h3>
+        <!-- source: /zinguerie — titre exact "Pose et rénovation de zinguerie de toiture aux environs de Gaillon" -->
+        <h4 class="planche-title">
+          <span class="it">Pose et rénovation</span> de zinguerie de toiture.
+        </h4>
+        <div class="planche-body">
+          <!-- source: /zinguerie — phrase exacte -->
+          <p>La zinguerie englobe divers éléments qui préservent la toiture des intempéries et des fuites. Elle implique l'installation et la réparation de gouttières, chéneaux, bandeaux de rives et de faîtages.</p>
+          <!-- source: /zinguerie — phrase exacte -->
+          <p>Chez Toit Service, nous utilisons de la zinguerie en zinc et en PVC, reconnue pour sa longévité et son esthétique intemporelle.</p>
+        </div>
+        <!-- source: /zinguerie + accueil — éléments listés -->
+        <div class="planche-specs">
+          <span class="planche-spec">Gouttières</span>
+          <span class="planche-spec">Chéneaux</span>
+          <span class="planche-spec">Bandeaux de rives</span>
+          <span class="planche-spec">Faîtages</span>
+          <span class="planche-spec">Zinc</span>
+          <span class="planche-spec">PVC</span>
+        </div>
+      </div>
+      <div class="planche-photo">
+        <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/IMG_4757-b08032da-1013w.jpeg" alt="Zinguerie chéneaux et faîtage" loading="eager">
+        <!-- source: accueil — "gouttières, chéneaux" -->
+        <span class="caption"><span class="pl">Pl. VI</span><span>Gouttières & chéneaux</span></span>
+      </div>
+    </div>
+  </article>
+
+  <!-- PLANCHE VII — Bardage — source: /bardage + accueil -->
+  <article class="planche reverse" id="bardage">
+    <div class="planche-grid">
+      <div class="planche-photo">
+        <img src="https://le-de.cdn-website.com/da5a71ae794941d9aa177fc116b6c80a/dms3rep/multi/opt/IMG_5352-1013w.png" alt="Bardage de façade bois et aluminium" loading="eager">
+        <!-- source: accueil — "le bardage en bois" -->
+        <span class="caption"><span class="pl">Pl. VII</span><span>Bardage bois</span></span>
+      </div>
+      <div class="planche-content">
+        <h3 class="planche-number">VII. <small>Pl. VII</small></h3>
+        <!-- source: /bardage — titre exact "Habillez votre façade avec la pose d'un bardage à Gaillon" -->
+        <h4 class="planche-title">
+          <span class="it">Habillez votre façade</span> avec la pose d'un bardage.
+        </h4>
+        <div class="planche-body">
+          <!-- source: accueil — phrase exacte -->
+          <p>Que vous souhaitiez moderniser une maison ou protéger un bâtiment industriel, notre équipe d'artisans couvreurs personnalise votre façade avec soin et précision.</p>
+          <!-- source: accueil — phrase exacte -->
+          <p>Pour tout ou partie de votre façade, les lames de bardage améliorent l'aspect et l'isolation de vos murs extérieurs.</p>
+        </div>
+        <!-- source: accueil — "bois, en aluminium, en PVC et de clin composite" -->
+        <div class="planche-specs">
+          <span class="planche-spec">Bois</span>
+          <span class="planche-spec">Aluminium</span>
+          <span class="planche-spec">PVC</span>
+          <span class="planche-spec">Clin composite</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <!-- AVIS clients — source: témoignages du site / profil Google -->
+  <section class="avis" id="avis">
+    <div class="avis-head">
+      <h2 class="avis-title">
+        Avis <span class="it">clients.</span>
+      </h2>
+      <div class="avis-head-right">
+        04<small>Témoignages</small>
+      </div>
+    </div>
+
+    <div class="avis-grid">
+      <!-- source: témoignage Odile Body (jeanlucvezier) — verbatim -->
+      <figure class="avis-card">
+        <p class="avis-card-mark" aria-hidden="true">«</p>
+        <blockquote>Satisfaction 100%. Équipe dynamique, patron très présent. Le travail est impeccable, chantier très bien tenu. Force de proposition et adaptabilité, dans la bonne humeur en plus !</blockquote>
+        <div class="avis-card-foot">
+          <span class="avis-name">Odile Body</span>
+        </div>
+      </figure>
+
+      <!-- source: témoignage Sylvia Villelga — verbatim (mentionne "Nettoyage des façades") -->
+      <figure class="avis-card">
+        <p class="avis-card-mark" aria-hidden="true">«</p>
+        <blockquote>Nettoyage des façades — intervention rapide après devis — équipe très sympathique et compétente — excellent relationnel.</blockquote>
+        <div class="avis-card-foot">
+          <span class="avis-name">Sylvia Villelga</span>
+          <span class="avis-tag">Nettoyage des façades</span>
+        </div>
+      </figure>
+
+      <!-- source: témoignage Vincent Goethals — verbatim -->
+      <figure class="avis-card">
+        <p class="avis-card-mark" aria-hidden="true">«</p>
+        <blockquote>Entreprise très sérieuse. Très beau travail avec des salariés très professionnels. Recommande à 100%.</blockquote>
+        <div class="avis-card-foot">
+          <span class="avis-name">Vincent Goethals</span>
+        </div>
+      </figure>
+
+      <!-- source: témoignage Françoise Kokx — verbatim -->
+      <figure class="avis-card">
+        <p class="avis-card-mark" aria-hidden="true">«</p>
+        <blockquote>Entreprise très sérieuse, méticuleuse, respectueuse des délais annoncés. Chantier parfaitement réalisé et nettoyé. Merci pour cette réalisation.</blockquote>
+        <div class="avis-card-foot">
+          <span class="avis-name">Françoise Kokx</span>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- CONTACT 2 agences -->
+  <section class="contact" id="contact">
+    <div class="contact-head">
+      <div class="contact-kicker">
+        <span class="bar"></span>
+        <span><strong>Pl. VII</strong> — Écrire, appeler, venir</span>
+      </div>
+      <h2 class="contact-title">
+        Une question sur <span class="it">vos travaux</span> de couverture ? Deux agences à votre écoute.
+      </h2>
+      <p class="contact-lede">
+        Notre entreprise reste à votre écoute pour tout devis gratuit — pose, rénovation, entretien, urgence fuite.
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-agence">
+        <p class="contact-agence-num">01.</p>
+        <h3 class="contact-agence-name">
+          <span class="it">Agence</span> Gaillon
+        </h3>
+        <div class="contact-agence-details">
+          <span class="lbl">Adresse</span>
+          <span>3 chemin des Andelys</span>
+          <span>27600 Gaillon</span>
+
+          <span class="lbl">Téléphone</span>
+          <a href="tel:+33232525698">02 32 52 56 98</a>
+          <a href="tel:+33608632355">06 08 63 23 55</a>
+        </div>
+      </div>
+
+      <div class="contact-agence">
+        <p class="contact-agence-num">02.</p>
+        <h3 class="contact-agence-name">
+          <span class="it">Agence</span> Muids
+        </h3>
+        <div class="contact-agence-details">
+          <span class="lbl">Adresse</span>
+          <span>1 rue du Mesnil</span>
+          <span>27430 Muids</span>
+
+          <span class="lbl">Téléphone</span>
+          <a href="tel:+33676287306">06 76 28 73 06</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-hours">
+      <span><span class="dot"></span><strong>Ouvert</strong> — Lun · Ven · 08h00—12h00 / 13h30—17h00</span>
+      <span>Samedi sur rendez-vous · Dimanche fermé</span>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <p class="footer-brand">
+          <em>Toit</em><span class="rouge">·</span><em>Service</em>
+        </p>
+        <p class="footer-tagline">
+          Artisan couvreur de père en fils depuis 1986. Pose, rénovation, zinguerie, bardage et Velux® agréés — Gaillon, Muids et vallée de la Seine normande.
+        </p>
+      </div>
+      <div class="footer-nav">
+        <div class="footer-nav-col">
+          <h5>La Revue</h5>
+          <ul>
+            <li><a href="#atelier">L'Atelier</a></li>
+            <li><a href="#planches">Les Planches</a></li>
+            <li><a href="#avis">Avis clients</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-nav-col">
+          <h5>Ouvrages</h5>
+          <ul>
+            <li><a href="#couverture">Couverture</a></li>
+            <li><a href="#renovation">Rénovation</a></li>
+            <li><a href="#zinguerie">Zinguerie</a></li>
+            <li><a href="#velux">Fenêtres Velux</a></li>
+            <li><a href="#bardage">Bardage</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Toit Service · Tous droits réservés</span>
+      <span>Gaillon — Muids · Normandie · <a href="#">Mentions légales</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Compteur animé au chargement
+    (function animateCounter() {
+      const el = document.querySelector('.counter');
+      if (!el) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        el.textContent = el.dataset.target;
+        return;
+      }
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1800;
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const ease = 1 - Math.pow(1 - t, 3);
+        const val = Math.round(ease * target);
+        el.textContent = String(val).padStart(2, '0');
+        if (t < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    })();
+
+    // Menu mobile
+    (function menuMobile() {
+      const btn = document.querySelector('.nav-burger');
+      const links = document.querySelector('#navLinks');
+      if (!btn || !links) return;
+      btn.addEventListener('click', () => {
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        links.classList.toggle('open');
+      });
+      links.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A') {
+          btn.setAttribute('aria-expanded', 'false');
+          links.classList.remove('open');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

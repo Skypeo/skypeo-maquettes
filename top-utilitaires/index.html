@@ -1,0 +1,2215 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TOP Utilitaires — Vente &amp; location d'utilitaires en Bourgogne depuis 1991</title>
+<meta name="description" content="Fourgons, bétaillères, dépanneuses, bennes et frigorifiques. 3 agences — Chalon-sur-Saône, Dijon, Bourg-en-Bresse. Plus de 500 remorques en stock.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Oswald:wght@400;500;600;700&family=Public+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ RESET ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+img, svg { display: block; max-width: 100%; height: auto; }
+button { background: none; border: 0; font: inherit; cursor: pointer; color: inherit; }
+a { color: inherit; text-decoration: none; }
+
+/* ============ TOKENS ============ */
+:root {
+  --cream: #f4eed8;
+  --cream-2: #ebe4c7;
+  --forest: #004900;
+  --forest-deep: #00330a;
+  --mustard: #c3ac2b;
+  --mustard-bright: #dcc13c;
+  --ink: #141411;
+  --ink-soft: #33332a;
+  --line: #141411;
+
+  --r-sm: 4px;
+  --r-md: 10px;
+  --r-lg: 18px;
+  --r-pill: 999px;
+
+  --serif: "Fraunces", "Times New Roman", serif;
+  --cond: "Oswald", "Arial Narrow", sans-serif;
+  --sans: "Public Sans", system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(.2, .7, 0, 1);
+
+  --px: clamp(1.1rem, 3.4vw, 2.4rem);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+
+/* ============ PAPIER KRAFT OVERLAY ============ */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: .45;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='k'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .52  0 0 0 0 .44  0 0 0 0 .18  0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23k)'/></svg>");
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9997;
+  pointer-events: none;
+  opacity: .18;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 3px, rgba(20,20,17,.025) 3px 4px);
+}
+
+/* ============ HELPERS ============ */
+.container { max-width: 1400px; margin-inline: auto; padding-inline: var(--px); }
+.lede { font-family: var(--cond); letter-spacing: .18em; text-transform: uppercase; font-size: .72rem; color: var(--ink-soft); }
+.fl-italic { font-style: italic; font-variation-settings: "SOFT" 100; }
+
+/* ============ MASTHEAD ============ */
+.mast {
+  background: var(--forest);
+  color: var(--cream);
+  border-bottom: 2px double var(--mustard);
+}
+.mast-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .55rem var(--px);
+  font-family: var(--cond);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: .68rem;
+}
+.mast-inner strong { letter-spacing: .28em; color: var(--mustard); font-weight: 700; }
+.mast-inner span { opacity: .8; }
+.mast-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--mustard); margin: 0 .45rem; vertical-align: middle; }
+
+/* ============ NAV ============ */
+.nav {
+  background: var(--cream);
+  border-bottom: 1px solid rgba(20,20,17,.2);
+  position: sticky; top: 0;
+  z-index: 50;
+}
+.nav-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem var(--px);
+}
+.brand {
+  display: flex; align-items: baseline; gap: .55rem;
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 700;
+  font-size: 1.35rem;
+  letter-spacing: -.01em;
+}
+.brand em {
+  font-family: var(--cond);
+  font-weight: 600;
+  font-size: .62rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--forest);
+  font-style: normal;
+  border-left: 1px solid rgba(20,20,17,.3);
+  padding-left: .55rem;
+}
+.nav-menu {
+  display: flex; justify-content: center; gap: 2.4rem;
+  font-family: var(--cond);
+  font-weight: 500;
+  font-size: .78rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.nav-menu a {
+  position: relative;
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .3rem 0;
+  transition: color .3s var(--ease-out);
+}
+.nav-menu a::before {
+  content: attr(data-n);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: .75rem;
+  color: var(--forest);
+  letter-spacing: 0;
+  font-variation-settings: "opsz" 9;
+}
+.nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: var(--forest);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform .4s var(--ease-out);
+}
+.nav-menu a:hover { color: var(--forest); }
+.nav-menu a:hover::after { transform: scaleX(1); transform-origin: left center; }
+.nav-cta {
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--cond);
+  font-size: .78rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: .85rem 1.3rem;
+  border-radius: var(--r-pill);
+  transition: transform .3s var(--ease-out), background .3s var(--ease-out);
+}
+.nav-cta:hover { background: var(--forest); transform: translateY(-2px); }
+.nav-cta b { color: var(--mustard); font-weight: 700; letter-spacing: .05em; }
+.nav-burger { display: none; width: 44px; height: 44px; border-radius: var(--r-sm); border: 1px solid var(--ink); }
+.nav-burger span { display: block; width: 20px; height: 2px; background: var(--ink); margin: 4px auto; transition: transform .3s, opacity .3s; }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  padding-block: clamp(2rem, 6vh, 4.5rem) clamp(2rem, 5vh, 4rem);
+  min-height: 90dvh;
+  display: flex; flex-direction: column;
+  justify-content: flex-start;
+}
+.hero-top {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(1.5rem, 4vw, 4rem);
+  align-items: flex-end;
+  position: relative;
+}
+.hero-eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(20,20,17,.2);
+  margin-bottom: 2.5rem;
+  font-family: var(--cond);
+  font-size: .72rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.hero-eyebrow b { color: var(--forest); font-weight: 600; letter-spacing: .26em; }
+.hero-eyebrow .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--mustard); display: inline-block; }
+
+.hero-title {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 20;
+  font-size: clamp(2.9rem, 9.2vw, 9.4rem);
+  line-height: .9;
+  letter-spacing: -.025em;
+  color: var(--ink);
+  margin-bottom: clamp(1rem, 2vh, 1.8rem);
+}
+.hero-title em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 500, "SOFT" 100;
+  color: var(--forest);
+}
+.hero-title .amp {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 100;
+  color: var(--mustard);
+  font-size: .9em;
+}
+.hero-title .dot-green {
+  color: var(--mustard);
+  font-style: normal;
+}
+
+.hero-lead {
+  max-width: 40ch;
+  font-size: clamp(.95rem, 1.15vw, 1.08rem);
+  color: var(--ink-soft);
+  line-height: 1.55;
+  padding-right: 1rem;
+}
+.hero-actions {
+  margin-top: 2rem;
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  align-items: center;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: .8rem;
+  background: var(--forest);
+  color: var(--cream);
+  font-family: var(--cond);
+  font-size: .82rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding: 1.1rem 1.75rem;
+  border-radius: var(--r-pill);
+  transition: transform .3s var(--ease-out), background .3s;
+}
+.btn-primary:hover { background: var(--ink); transform: translateY(-2px); }
+.btn-primary svg { width: 14px; transition: transform .3s var(--ease-out); }
+.btn-primary:hover svg { transform: translateX(4px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--cond);
+  font-size: .82rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  padding: 1rem 0;
+  position: relative;
+}
+.btn-ghost::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: .4rem;
+  height: 1px; background: var(--ink);
+  transform: scaleX(1); transform-origin: left;
+  transition: transform .35s var(--ease-out);
+}
+.btn-ghost:hover::after { transform: scaleX(.3); transform-origin: right; }
+
+/* ============ HERO PLAQUE ============ */
+.plate-hero {
+  position: relative;
+  align-self: flex-end;
+  display: flex; flex-direction: column;
+  gap: 1rem;
+}
+.plate {
+  background: var(--mustard);
+  color: var(--ink);
+  border: 3px solid var(--ink);
+  border-radius: var(--r-md);
+  padding: .9rem 1.6rem .7rem;
+  font-family: var(--cond);
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  position: relative;
+  box-shadow:
+    inset 0 0 0 2px var(--mustard),
+    inset 0 0 0 4px var(--ink),
+    4px 4px 0 var(--forest-deep);
+}
+.plate-hero .plate {
+  padding: 2rem 2.4rem 1.6rem;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.5rem;
+}
+.plate-side {
+  background: #002066;
+  color: var(--mustard);
+  font-family: var(--cond);
+  font-size: .6rem;
+  letter-spacing: .15em;
+  padding: .5rem .4rem;
+  border-radius: 3px;
+  line-height: 1;
+  text-align: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-weight: 700;
+  min-height: 100%;
+}
+.plate-hero .plate-side { min-height: 3.4rem; }
+.plate-hero .plate-num {
+  font-family: var(--cond);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: .9;
+  flex: 1;
+  text-align: center;
+}
+.plate-hero .plate-dept {
+  font-family: var(--cond);
+  font-size: .8rem;
+  letter-spacing: .12em;
+  line-height: 1;
+  text-align: center;
+  opacity: .85;
+  font-weight: 500;
+}
+.plate-hero .plate-caption {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 1rem;
+  padding: 0 .4rem;
+  font-family: var(--cond);
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-top: 1px dashed rgba(20,20,17,.35);
+  padding-top: .9rem;
+}
+.plate-hero .plate-caption b { color: var(--forest); font-weight: 600; }
+
+/* ============ STICKER ROTATIF ============ */
+.sticker {
+  position: absolute;
+  top: -3.4rem; right: -1.5rem;
+  width: 140px; height: 140px;
+  z-index: 3;
+  animation: spin 18s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) { .sticker { animation: none; } }
+.sticker circle { fill: var(--forest); }
+.sticker text {
+  font-family: var(--cond);
+  font-size: 10px;
+  letter-spacing: .14em;
+  fill: var(--mustard);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.sticker .dot-in { fill: var(--mustard); }
+.sticker-core {
+  position: absolute;
+  inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--mustard);
+  font-size: 1.1rem;
+  font-variation-settings: "opsz" 9, "wght" 500, "SOFT" 100;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ============ HERO PLANCHE TECHNIQUE ============ */
+.hero-plate-technical {
+  grid-column: 1 / -1;
+  margin-top: clamp(2.5rem, 5vh, 4rem);
+  position: relative;
+}
+.hero-illus {
+  width: 100%;
+  height: auto;
+  background: var(--cream-2);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  box-shadow: 6px 6px 0 rgba(0, 73, 0, .22);
+}
+.photo-caption {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(20,20,17,.25);
+  font-family: var(--cond);
+  font-size: .75rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.photo-caption b { color: var(--forest); font-weight: 600; }
+.photo-caption span.num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 9, "wght" 500, "SOFT" 100;
+  color: var(--mustard);
+  font-size: 1.25rem;
+  letter-spacing: 0;
+}
+
+/* ============ TICKER ============ */
+.ticker {
+  background: var(--forest);
+  color: var(--mustard);
+  padding: 1rem 0;
+  overflow: hidden;
+  border-top: 2px double var(--mustard);
+  border-bottom: 2px double var(--mustard);
+  position: relative;
+}
+.ticker-track {
+  display: flex;
+  gap: 3.4rem;
+  white-space: nowrap;
+  font-family: var(--cond);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  width: max-content;
+  animation: tick 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+.ticker-track span {
+  display: inline-flex; align-items: center; gap: 3.4rem;
+}
+.ticker-track i {
+  display: inline-block;
+  width: 10px; height: 10px;
+  background: var(--mustard);
+  border-radius: 50%;
+  flex-shrink: 0;
+  font-style: normal;
+}
+.ticker-track em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 100;
+  color: var(--cream);
+  letter-spacing: 0;
+  font-weight: 400;
+  text-transform: none;
+}
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ============ TRAIT ROUTIER (side) ============ */
+.road {
+  position: fixed;
+  left: 1.2rem;
+  top: 0; bottom: 0;
+  width: 4px;
+  z-index: 5;
+  pointer-events: none;
+  display: none;
+}
+.road::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--mustard) 0 14px,
+    transparent 14px 28px
+  );
+  animation: road-slide 6s linear infinite;
+  opacity: .9;
+}
+@media (prefers-reduced-motion: reduce) { .road::before { animation: none; } }
+@keyframes road-slide { to { transform: translateY(28px); } }
+
+/* ============ CHAPTER HEADER (commun) ============ */
+.chapter {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  padding: clamp(4rem, 10vh, 7rem) 0 clamp(2.5rem, 5vh, 4rem);
+  align-items: end;
+  position: relative;
+}
+.chapter::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0;
+  top: 0;
+  height: 1px;
+  background: var(--ink);
+}
+.chapter-mark {
+  display: flex; align-items: center; gap: .8rem;
+  font-family: var(--cond);
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  color: var(--ink-soft);
+}
+.chap-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 9, "wght" 500, "SOFT" 100;
+  font-size: 1.5rem;
+  letter-spacing: 0;
+  color: var(--forest);
+  text-transform: none;
+}
+.chap-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--mustard); }
+.chap-lede { color: var(--ink); font-weight: 600; letter-spacing: .26em; }
+
+.chapter-title {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 20;
+  font-size: clamp(2.2rem, 6vw, 5.2rem);
+  line-height: .95;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.chapter-title em { font-style: italic; font-variation-settings: "opsz" 144, "wght" 500, "SOFT" 100; color: var(--forest); }
+.chapter-title .amp {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 100;
+  color: var(--mustard);
+}
+.chapter-title .dot-green { color: var(--mustard); }
+.chapter-lead {
+  max-width: 46ch;
+  font-size: clamp(.95rem, 1.1vw, 1.05rem);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  align-self: end;
+}
+.chapter-lead b { color: var(--forest); font-weight: 600; }
+
+/* ============ GAMME ============ */
+.gamme { padding-bottom: clamp(3rem, 6vh, 5rem); }
+.gamme-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(2rem, 4vh, 3rem);
+}
+.veh {
+  display: flex; flex-direction: column;
+  background: var(--cream-2);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: transform .4s var(--ease-out), box-shadow .4s var(--ease-out);
+  position: relative;
+}
+.veh:hover {
+  transform: translateY(-6px);
+  box-shadow: 6px 6px 0 var(--forest);
+}
+.veh-plate {
+  display: flex; align-items: stretch;
+  gap: .35rem;
+  background: var(--mustard);
+  padding: .45rem .5rem;
+  border-bottom: 2.5px solid var(--ink);
+  position: relative;
+}
+.veh-plate::before, .veh-plate::after {
+  content: "";
+  position: absolute;
+  top: 4px; bottom: 4px;
+  width: 1px;
+  background: var(--ink);
+  opacity: .4;
+}
+.veh-plate::before { left: 4px; }
+.veh-plate::after { right: 4px; }
+.veh-plate .s {
+  background: #002066;
+  color: var(--mustard);
+  font-family: var(--cond);
+  font-size: .55rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  padding: .4rem .25rem;
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  min-width: 22px;
+  text-align: center;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.veh-plate > div {
+  flex: 1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: .25rem .4rem;
+}
+.veh-plate em {
+  font-family: var(--cond);
+  font-style: normal;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  letter-spacing: .08em;
+  color: var(--ink);
+  line-height: 1;
+}
+.veh-plate small {
+  font-family: var(--cond);
+  font-size: .58rem;
+  letter-spacing: .2em;
+  color: var(--ink);
+  opacity: .7;
+  margin-top: .3rem;
+}
+.veh-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; flex: 1; }
+.veh-head { display: flex; align-items: baseline; justify-content: space-between; gap: .8rem; border-bottom: 1px dashed rgba(20,20,17,.3); padding-bottom: .6rem; }
+.veh-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 9, "wght" 500, "SOFT" 100;
+  font-size: 1rem;
+  color: var(--mustard);
+  letter-spacing: 0;
+}
+.veh h3 {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 30;
+  font-size: clamp(1.3rem, 1.6vw, 1.6rem);
+  line-height: 1;
+  letter-spacing: -.01em;
+}
+.veh p {
+  font-size: .88rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.veh p b { color: var(--forest); font-weight: 600; }
+.veh-tags {
+  list-style: none;
+  display: flex; flex-wrap: wrap;
+  gap: .4rem;
+  margin-top: auto;
+  padding-top: .9rem;
+  border-top: 1px solid rgba(20,20,17,.15);
+}
+.veh-tags li {
+  font-family: var(--cond);
+  font-size: .64rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: .35rem .7rem;
+  background: var(--forest);
+  color: var(--mustard);
+  border-radius: var(--r-pill);
+  font-weight: 500;
+}
+.veh p em { font-style: italic; color: var(--forest); }
+
+.gamme-foot {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem;
+  margin-top: clamp(2rem, 4vh, 3rem);
+  padding-top: clamp(1.5rem, 3vh, 2.5rem);
+  border-top: 1px solid rgba(20,20,17,.2);
+}
+.gamme-foot p {
+  font-family: var(--serif);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  color: var(--ink);
+  max-width: 50ch;
+}
+.gamme-foot em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 100;
+  color: var(--forest);
+}
+
+@media (max-width: 1100px) {
+  .gamme-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .gamme-grid { grid-template-columns: 1fr; }
+  .chapter { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+/* ============ HISTOIRE — CHIFFRES MONUMENTAUX ============ */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1.5px solid var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+  margin-top: clamp(2rem, 4vh, 3rem);
+}
+.stat {
+  padding: clamp(1.5rem, 3vh, 2.5rem) clamp(1rem, 2.5vw, 2rem);
+  display: flex; flex-direction: column; gap: .8rem;
+  border-right: 1px dashed rgba(20,20,17,.35);
+  position: relative;
+}
+.stat:last-child { border-right: 0; }
+.stat-lede {
+  font-family: var(--cond);
+  font-size: .7rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.stat-num {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 20;
+  font-size: clamp(3.5rem, 10vw, 9rem);
+  line-height: .85;
+  letter-spacing: -.03em;
+  color: var(--ink);
+}
+.stat-mid .stat-num { color: var(--forest); }
+.stat:first-child .stat-num { color: var(--ink); }
+.stat:last-child .stat-num { color: var(--mustard); }
+.stat-foot {
+  font-family: var(--cond);
+  font-size: .78rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: auto;
+}
+.stat-foot b { color: var(--forest); font-weight: 600; letter-spacing: .18em; }
+
+/* ============ PULL QUOTE ============ */
+.pullquote {
+  background: var(--forest);
+  color: var(--cream);
+  margin: clamp(4rem, 8vh, 6rem) 0 clamp(3rem, 6vh, 5rem);
+  padding: clamp(4rem, 10vh, 8rem) 0;
+  position: relative;
+  isolation: isolate;
+}
+.pullquote::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent 0 80px, rgba(244,238,216,.04) 80px 81px),
+    repeating-linear-gradient(90deg, transparent 0 80px, rgba(244,238,216,.04) 80px 81px);
+  pointer-events: none;
+}
+.pullquote-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: clamp(1rem, 3vw, 3rem);
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+.pq-mark {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 500, "SOFT" 100;
+  font-size: clamp(6rem, 16vw, 16rem);
+  line-height: .7;
+  color: var(--mustard);
+  align-self: flex-start;
+}
+.pq-mark-r { align-self: flex-end; }
+.pullquote blockquote p {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 30;
+  font-size: clamp(1.6rem, 4.2vw, 3.6rem);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  color: var(--cream);
+}
+.pullquote blockquote em {
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "wght" 400, "SOFT" 100;
+  color: var(--mustard);
+}
+.pullquote blockquote footer {
+  margin-top: 2rem;
+  font-family: var(--cond);
+  font-size: .78rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--mustard);
+  display: flex; align-items: center; gap: 1rem;
+}
+.pq-line {
+  width: 50px; height: 1px; background: var(--mustard);
+  display: inline-block;
+}
+
+/* ============ BORNES KILOMÉTRIQUES (MILESTONES) ============ */
+.milestones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(2rem, 4vh, 3rem) 0 clamp(4rem, 8vh, 6rem);
+}
+.ms {
+  display: flex; flex-direction: column;
+  gap: 1.2rem;
+  position: relative;
+}
+.ms:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  top: 40px;
+  right: -1.5rem;
+  font-family: var(--serif);
+  font-size: 2rem;
+  color: var(--mustard);
+  opacity: .6;
+}
+.ms-borne {
+  width: 72px;
+  height: 90px;
+  border: 2.5px solid var(--ink);
+  border-radius: 36px 36px 6px 6px;
+  background: var(--cream-2);
+  padding: .35rem;
+  display: flex; flex-direction: column;
+  text-align: center;
+  position: relative;
+  box-shadow: 3px 3px 0 rgba(0, 73, 0, .25);
+}
+.ms-borne::before {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: -2.5px; right: -2.5px;
+  height: 2.5px;
+  background: var(--ink);
+}
+.ms-top {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  color: var(--ink);
+  background: var(--mustard);
+  border-radius: 30px 30px 0 0;
+  padding: .28rem 0;
+  margin: -.35rem -.35rem 0;
+}
+.ms-mid {
+  font-family: var(--cond);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--ink);
+  padding-top: .35rem;
+  line-height: 1;
+}
+.ms-bot {
+  font-family: var(--cond);
+  font-size: .55rem;
+  letter-spacing: .14em;
+  color: var(--ink);
+  margin-top: auto;
+  padding-bottom: .2rem;
+}
+.ms-body { padding-left: .25rem; }
+.ms-year {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 20;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  line-height: 1;
+  color: var(--forest);
+  display: block;
+  margin-bottom: .6rem;
+}
+.ms-body h4 {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 30;
+  font-size: clamp(1.1rem, 1.4vw, 1.25rem);
+  line-height: 1.15;
+  margin-bottom: .6rem;
+  letter-spacing: -.005em;
+}
+.ms-body p {
+  font-size: .88rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.ms-body p b { color: var(--forest); font-weight: 600; }
+
+@media (max-width: 880px) {
+  .stats { grid-template-columns: 1fr; }
+  .stat { border-right: 0; border-bottom: 1px dashed rgba(20,20,17,.35); }
+  .stat:last-child { border-bottom: 0; }
+  .milestones { grid-template-columns: 1fr; }
+  .ms:not(:last-child)::after { display: none; }
+  .pullquote-inner { grid-template-columns: 1fr; gap: 1rem; }
+  .pq-mark { font-size: 6rem; }
+  .pq-mark-r { display: none; }
+}
+
+/* ============ AGENCES ============ */
+.agences { padding-bottom: clamp(3rem, 6vh, 5rem); }
+.map-wrap {
+  margin-top: clamp(2rem, 4vh, 3rem);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  background: var(--cream-2);
+  padding: clamp(1rem, 2vw, 1.5rem);
+  box-shadow: 6px 6px 0 rgba(0, 73, 0, .22);
+  overflow: hidden;
+}
+.map { width: 100%; height: auto; display: block; }
+.map .route { stroke-dashoffset: 120; animation: route-draw 3.5s var(--ease-out) forwards; }
+@keyframes route-draw { to { stroke-dashoffset: 0; } }
+.map .pin circle:first-child {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pin-pulse 2.4s var(--ease-out) infinite;
+}
+@media (prefers-reduced-motion: reduce) { .map .pin circle:first-child { animation: none; } }
+@keyframes pin-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+.agences-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  margin-top: clamp(2rem, 4vh, 3rem);
+}
+.agence {
+  padding: 1.6rem 1.5rem 1.8rem;
+  background: var(--cream-2);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  display: flex; flex-direction: column; gap: 1.2rem;
+  transition: transform .4s var(--ease-out), box-shadow .4s;
+}
+.agence:hover { transform: translateY(-4px); box-shadow: 4px 4px 0 var(--mustard); }
+.agence-mid { background: var(--forest); color: var(--cream); }
+.agence-mid .ag-num { color: var(--mustard); }
+.agence-mid h3 { color: var(--cream); }
+.agence-mid .ag-year { color: var(--mustard); }
+.agence-mid dt { color: rgba(244,238,216,.6); }
+.agence-mid dd { color: var(--cream); }
+.agence-mid a { color: var(--mustard); text-decoration: underline; text-underline-offset: 3px; }
+
+.agence header {
+  display: flex; flex-direction: column; gap: .3rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px dashed rgba(20,20,17,.3);
+}
+.agence-mid header { border-bottom-color: rgba(244,238,216,.25); }
+.ag-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-variation-settings: "opsz" 9, "wght" 500, "SOFT" 100;
+  font-size: 1rem;
+  color: var(--mustard);
+}
+.agence h3 {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 20;
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  line-height: 1;
+  letter-spacing: -.015em;
+  color: var(--ink);
+}
+.ag-year {
+  font-family: var(--cond);
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: .35rem;
+}
+.agence dl { display: grid; gap: .9rem; }
+.agence dl div { display: flex; flex-direction: column; gap: .25rem; }
+.agence dt {
+  font-family: var(--cond);
+  font-size: .64rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.agence dd {
+  font-family: var(--sans);
+  font-size: .92rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+}
+.agence dd a { color: var(--forest); font-weight: 600; }
+
+/* ============ SERVICES ============ */
+.services {
+  background: var(--forest);
+  color: var(--cream);
+  padding: 0 0 clamp(4rem, 8vh, 6rem);
+  margin-top: clamp(2rem, 4vh, 3rem);
+  position: relative;
+  isolation: isolate;
+}
+.services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(90deg, transparent 0 160px, rgba(195,172,43,.05) 160px 161px);
+  pointer-events: none;
+}
+.services .chapter::before { background: var(--mustard); opacity: .4; }
+.services .chap-num { color: var(--mustard); }
+.services .chap-lede { color: var(--cream); }
+.services .chapter-mark { color: rgba(244,238,216,.6); }
+.services .chapter-title { color: var(--cream); }
+.services .chapter-title em { color: var(--mustard); }
+.services .chapter-title .dot-green { color: var(--mustard); }
+.services .chapter-lead { color: rgba(244,238,216,.85); }
+.services .chapter-lead b { color: var(--mustard); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin-top: clamp(2rem, 4vh, 3rem);
+  border-top: 1px solid rgba(244,238,216,.25);
+  border-left: 1px solid rgba(244,238,216,.25);
+}
+.serv {
+  padding: clamp(1.6rem, 3vh, 2.3rem);
+  border-right: 1px solid rgba(244,238,216,.25);
+  border-bottom: 1px solid rgba(244,238,216,.25);
+  display: flex; flex-direction: column; gap: 1rem;
+  transition: background .3s var(--ease-out);
+  position: relative;
+}
+.serv:hover { background: rgba(244,238,216,.04); }
+.serv-mark {
+  color: var(--mustard);
+  margin-bottom: .5rem;
+}
+.serv h4 {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 30;
+  font-size: clamp(1.2rem, 1.5vw, 1.4rem);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  color: var(--cream);
+}
+.serv p {
+  font-size: .92rem;
+  line-height: 1.55;
+  color: rgba(244,238,216,.85);
+}
+.serv p em { font-style: italic; color: var(--mustard); }
+.serv-tag {
+  align-self: flex-start;
+  margin-top: auto;
+  font-family: var(--cond);
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: .45rem .85rem;
+  background: var(--mustard);
+  color: var(--ink);
+  border-radius: var(--r-pill);
+  font-weight: 600;
+}
+
+@media (max-width: 980px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .agences-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .services-grid { grid-template-columns: 1fr; }
+}
+
+/* ============ CONTACT ============ */
+.contact {
+  padding: clamp(4rem, 8vh, 6rem) 0;
+  background: var(--cream);
+}
+.contact-inner {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.contact-title {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 20;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: .95;
+  letter-spacing: -.02em;
+  margin: 1.5rem 0 2.5rem;
+}
+.contact-title em { font-style: italic; font-variation-settings: "opsz" 144, "wght" 500, "SOFT" 100; color: var(--forest); }
+.contact-title .dot-green { color: var(--mustard); }
+
+.contact-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(20,20,17,.2);
+}
+.contact-meta > div { display: flex; flex-direction: column; gap: .4rem; }
+.cm-lede {
+  font-family: var(--cond);
+  font-size: .68rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.cm-big {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 600, "SOFT" 20;
+  font-size: clamp(1.5rem, 2.3vw, 2rem);
+  line-height: 1;
+  color: var(--forest);
+  letter-spacing: -.01em;
+}
+.cm-med {
+  font-family: var(--sans);
+  font-size: .98rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink);
+}
+.cm-med a { color: var(--forest); text-decoration: underline; text-underline-offset: 3px; }
+
+.contact-plate {
+  display: flex; flex-direction: column; gap: 1.2rem;
+  padding: 2rem 1.8rem;
+  background: var(--cream-2);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  box-shadow: 6px 6px 0 var(--forest);
+  position: sticky;
+  top: 6rem;
+}
+.plate-xl {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 1.1rem !important;
+}
+.plate-xl .plate-num {
+  font-family: var(--cond);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  letter-spacing: .06em;
+  line-height: .9;
+  flex: 1;
+  text-align: center;
+  color: var(--ink);
+}
+.plate-xl .plate-dept {
+  font-family: var(--cond);
+  font-size: .72rem;
+  letter-spacing: .18em;
+  color: var(--ink);
+  opacity: .75;
+  text-align: center;
+  margin-top: .35rem;
+}
+.btn-primary-lg { justify-content: center; padding: 1.3rem 1.75rem; font-size: .9rem; }
+.contact-note {
+  font-size: .85rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(20,20,17,.3);
+}
+.contact-note b { color: var(--forest); font-weight: 600; }
+
+@media (max-width: 880px) {
+  .contact-inner { grid-template-columns: 1fr; }
+  .contact-meta { grid-template-columns: 1fr; }
+  .contact-plate { position: static; }
+}
+
+/* ============ FOOTER ============ */
+.foot {
+  background: var(--forest);
+  color: var(--cream);
+  padding: clamp(3rem, 6vh, 5rem) 0 clamp(1.5rem, 3vh, 2.5rem);
+}
+.foot-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+}
+.foot-brand {
+  font-family: var(--serif);
+  font-variation-settings: "opsz" 144, "wght" 700, "SOFT" 0;
+  font-size: clamp(2rem, 3.2vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: -.015em;
+  color: var(--cream);
+  display: inline-flex; align-items: baseline; gap: .5rem;
+}
+.foot-brand em {
+  font-family: var(--cond);
+  font-weight: 600;
+  font-size: .52rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--mustard);
+  font-style: normal;
+  border-left: 1px solid rgba(244,238,216,.3);
+  padding-left: .6rem;
+  align-self: center;
+}
+.foot-lede {
+  margin-top: 1rem;
+  max-width: 40ch;
+  color: rgba(244,238,216,.8);
+  font-size: .95rem;
+  line-height: 1.5;
+}
+.foot-nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .75rem 1.5rem;
+  font-family: var(--cond);
+  font-size: .78rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.foot-nav a {
+  padding: .3rem 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color .3s, color .3s;
+  color: var(--cream);
+}
+.foot-nav a:hover { border-bottom-color: var(--mustard); color: var(--mustard); }
+.foot-rule {
+  height: 1px;
+  background: rgba(244,238,216,.2);
+  margin: clamp(2rem, 4vh, 3rem) 0 1.2rem;
+}
+.foot-bot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+  font-family: var(--cond);
+  font-size: .7rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(244,238,216,.6);
+}
+.foot-bot a { text-decoration: underline; text-underline-offset: 3px; }
+.foot-bot a:hover { color: var(--mustard); }
+
+@media (max-width: 680px) {
+  .foot-top { grid-template-columns: 1fr; }
+  .foot-nav { grid-template-columns: 1fr 1fr; }
+}
+
+/* Menu mobile ouvert */
+.nav-menu.is-open {
+  display: flex;
+  position: absolute;
+  top: 100%; left: 0; right: 0;
+  background: var(--cream);
+  flex-direction: column;
+  padding: 1.5rem var(--px);
+  border-bottom: 1px solid rgba(20,20,17,.2);
+  gap: 1.2rem;
+  z-index: 60;
+  box-shadow: 0 12px 30px -15px rgba(0,0,0,.2);
+}
+
+/* ============ RESPONSIVE HERO ============ */
+@media (min-width: 980px) {
+  .road { display: block; }
+}
+@media (max-width: 980px) {
+  .hero-top { grid-template-columns: 1fr; gap: 2rem; }
+  .plate-hero { margin-top: 1.5rem; }
+  .sticker { top: -2rem; right: -1rem; width: 110px; height: 110px; }
+  .nav-menu { display: none; }
+  .nav-burger { display: flex; flex-direction: column; justify-content: center; align-items: center; }
+  .nav-inner { grid-template-columns: auto 1fr auto; }
+  .nav-cta { padding: .7rem 1rem; font-size: .7rem; }
+  .mast-inner { font-size: .58rem; letter-spacing: .16em; }
+  .mast-inner .hide-sm { display: none; }
+}
+@media (max-width: 560px) {
+  .sticker { display: none; }
+  .hero-eyebrow { gap: .6rem; font-size: .62rem; }
+  .hero-eyebrow .hide-sm { display: none; }
+  .nav-cta span.hide-sm { display: none; }
+  .plate-hero .plate { padding: 1.6rem 1.3rem 1.1rem; gap: .9rem; }
+  .plate-hero .plate-num { font-size: 2.2rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="road" aria-hidden="true"></div>
+
+<!-- ============ MASTHEAD ============ -->
+<header class="mast" aria-label="Bandeau édition">
+  <div class="mast-inner">
+    <div><strong>TOP&nbsp;UTILITAIRES</strong><span class="mast-dot"></span><span>Vente &amp; location</span><span class="mast-dot hide-sm"></span><span class="hide-sm">Varennes-le-Grand · 71</span></div>
+    <div><span class="hide-sm">Depuis 1991</span><span class="mast-dot hide-sm"></span><span>06&nbsp;23&nbsp;19&nbsp;44&nbsp;08</span></div>
+  </div>
+</header>
+
+<!-- ============ NAV ============ -->
+<nav class="nav" aria-label="Navigation principale">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      TOP<em>Utilitaires</em>
+    </a>
+    <div class="nav-menu">
+      <a href="#gamme" data-n="I">Gamme</a>
+      <a href="#histoire" data-n="II">Histoire</a>
+      <a href="#agences" data-n="III">Agences</a>
+      <a href="#services" data-n="IV">Services</a>
+      <a href="#contact" data-n="V">Contact</a>
+    </div>
+    <a href="tel:0623194408" class="nav-cta">
+      <span class="hide-sm">Appeler</span><b>06&nbsp;23&nbsp;19&nbsp;44&nbsp;08</b>
+    </a>
+    <button class="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero container">
+
+  <div class="hero-top">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <b>N°&nbsp;I · Le parc</b>
+        <span class="dot"></span>
+        <span>Varennes-le-Grand · 71</span>
+        <span class="dot hide-sm"></span>
+        <span class="hide-sm">3 agences — Chalon · Dijon · Bourg-en-Bresse</span>
+      </div>
+
+      <!-- source: top-utilitaires.fr — gamme + date fondation 1991 -->
+      <h1 class="hero-title">
+        Fourgons,<br>
+        <em>frigorifiques</em> <span class="amp">&amp;</span><br>
+        dépanneuses,<br>
+        depuis 1991<span class="dot-green">.</span>
+      </h1>
+
+      <p class="hero-lead">
+        Entreprise de vente et de location de véhicules utilitaires à votre service à Chalon-sur-Saône. Trois agences en Bourgogne et Bresse cumulent près de <b>500 remorques</b> en stock disponible de suite, <b>neuves ou d'occasion</b>.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#gamme" class="btn-primary">
+          Voir la gamme
+          <svg viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 5h19M14 1l5 4-5 4"/></svg>
+        </a>
+        <a href="tel:0623194408" class="btn-ghost">Nous joindre</a>
+      </div>
+    </div>
+
+    <aside class="plate-hero" aria-label="Plaque d'immatriculation signature">
+      <!-- Sticker rotatif -->
+      <div class="sticker" aria-hidden="true">
+        <svg viewBox="0 0 140 140" width="140" height="140">
+          <defs>
+            <path id="circle-path" d="M 70, 70 m -54, 0 a 54,54 0 1,1 108,0 a 54,54 0 1,1 -108,0" />
+          </defs>
+          <circle cx="70" cy="70" r="66" fill="none" stroke="var(--mustard)" stroke-width="1"/>
+          <circle cx="70" cy="70" r="58" fill="var(--forest)"/>
+          <text>
+            <textPath href="#circle-path" startOffset="0">DEPUIS 1991 · BOURGOGNE · 500 REMORQUES · 3 AGENCES · </textPath>
+          </text>
+          <circle cx="70" cy="70" r="5" class="dot-in"/>
+        </svg>
+        <div class="sticker-core" style="animation: spin 18s linear infinite reverse;">★</div>
+      </div>
+
+      <div class="plate">
+        <div class="plate-side">F</div>
+        <div style="flex:1;">
+          <div class="plate-num">TOP-UTI</div>
+          <div class="plate-dept" style="margin-top:.4rem;">71 · BOURGOGNE</div>
+        </div>
+        <div class="plate-side">71</div>
+      </div>
+
+      <div class="plate-caption">
+        <span>Pl. I — Parc de Varennes-le-Grand</span>
+        <span><b>500+</b> remorques</span>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Planche illustrée : fourgon vu de profil, style catalogue 1960 -->
+  <div class="hero-plate-technical">
+    <svg class="hero-illus" viewBox="0 0 1600 620" xmlns="http://www.w3.org/2000/svg" aria-label="Planche technique d'un fourgon utilitaire L2H2, échelle 1/20">
+      <defs>
+        <pattern id="hatch-hill" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" stroke="#004900" stroke-width="1" opacity=".35"/>
+        </pattern>
+        <pattern id="dot-sky" patternUnits="userSpaceOnUse" width="10" height="10">
+          <circle cx="1" cy="1" r=".8" fill="#004900" opacity=".18"/>
+        </pattern>
+        <pattern id="road-stripes" patternUnits="userSpaceOnUse" width="60" height="4">
+          <rect width="36" height="4" fill="#c3ac2b"/>
+        </pattern>
+      </defs>
+
+      <!-- Fond ciel avec points -->
+      <rect x="0" y="0" width="1600" height="430" fill="url(#dot-sky)"/>
+
+      <!-- Collines bourguignonnes -->
+      <path d="M 0 370 Q 180 310 380 345 T 760 335 Q 920 300 1080 345 T 1440 340 L 1600 350 L 1600 430 L 0 430 Z" fill="url(#hatch-hill)"/>
+      <path d="M 0 370 Q 180 310 380 345 T 760 335 Q 920 300 1080 345 T 1440 340 L 1600 350" fill="none" stroke="#004900" stroke-width="1.6"/>
+
+      <!-- Vigne (rangées) -->
+      <g stroke="#004900" stroke-width="1" opacity=".4">
+        <line x1="30" y1="415" x2="80" y2="378"/>
+        <line x1="90" y1="415" x2="140" y2="378"/>
+        <line x1="150" y1="415" x2="200" y2="378"/>
+        <line x1="210" y1="415" x2="260" y2="378"/>
+        <line x1="1340" y1="415" x2="1390" y2="378"/>
+        <line x1="1400" y1="415" x2="1450" y2="378"/>
+        <line x1="1460" y1="415" x2="1510" y2="378"/>
+      </g>
+
+      <!-- Route (bande) -->
+      <rect x="0" y="430" width="1600" height="110" fill="#141411"/>
+      <rect x="0" y="481" width="1600" height="4" fill="url(#road-stripes)"/>
+      <line x1="0" y1="430" x2="1600" y2="430" stroke="#c3ac2b" stroke-width="2"/>
+
+      <!-- Herbe / accotement -->
+      <rect x="0" y="540" width="1600" height="80" fill="#ebe4c7"/>
+      <g stroke="#004900" stroke-width=".8" opacity=".5">
+        <line x1="50" y1="560" x2="50" y2="553"/><line x1="70" y1="562" x2="70" y2="555"/><line x1="90" y1="558" x2="90" y2="551"/>
+        <line x1="150" y1="562" x2="150" y2="554"/><line x1="180" y1="560" x2="180" y2="552"/><line x1="210" y1="563" x2="210" y2="555"/>
+        <line x1="1380" y1="562" x2="1380" y2="553"/><line x1="1410" y1="560" x2="1410" y2="552"/><line x1="1440" y1="563" x2="1440" y2="555"/>
+        <line x1="1480" y1="559" x2="1480" y2="551"/><line x1="1510" y1="562" x2="1510" y2="553"/><line x1="1550" y1="560" x2="1550" y2="552"/>
+      </g>
+
+      <!-- Borne kilométrique à gauche -->
+      <g transform="translate(130, 360)">
+        <rect x="0" y="0" width="30" height="70" rx="14" fill="#f4eed8" stroke="#141411" stroke-width="2"/>
+        <rect x="0" y="0" width="30" height="22" rx="14" fill="#c3ac2b" stroke="#141411" stroke-width="2"/>
+        <text x="15" y="14" text-anchor="middle" font-family="Oswald, sans-serif" font-size="10" font-weight="700" fill="#141411">N6</text>
+        <text x="15" y="40" text-anchor="middle" font-family="Oswald, sans-serif" font-size="10" font-weight="700" fill="#141411">71</text>
+        <text x="15" y="56" text-anchor="middle" font-family="Oswald, sans-serif" font-size="7" fill="#141411">CHALON</text>
+      </g>
+
+      <!-- Borne à droite -->
+      <g transform="translate(1430, 365)">
+        <rect x="0" y="0" width="28" height="65" rx="13" fill="#f4eed8" stroke="#141411" stroke-width="2"/>
+        <rect x="0" y="0" width="28" height="20" rx="13" fill="#c3ac2b" stroke="#141411" stroke-width="2"/>
+        <text x="14" y="13" text-anchor="middle" font-family="Oswald, sans-serif" font-size="9" font-weight="700" fill="#141411">D978</text>
+        <text x="14" y="38" text-anchor="middle" font-family="Oswald, sans-serif" font-size="9" font-weight="700" fill="#141411">21</text>
+        <text x="14" y="54" text-anchor="middle" font-family="Oswald, sans-serif" font-size="6" fill="#141411">DIJON</text>
+      </g>
+
+      <!-- FOURGON -->
+      <g id="fourgon" transform="translate(400, 170)">
+        <!-- ombre -->
+        <ellipse cx="440" cy="305" rx="430" ry="10" fill="#141411" opacity=".25"/>
+
+        <!-- corps fourgon -->
+        <path d="M 10 260 L 10 100 Q 10 70 40 70 L 220 70 Q 240 70 250 55 L 310 20 Q 320 10 340 10 L 790 10 Q 820 10 830 35 L 840 80 L 870 80 Q 880 80 880 100 L 880 260 Z"
+              fill="#004900" stroke="#141411" stroke-width="3"/>
+
+        <!-- cabine vitrage pare-brise -->
+        <path d="M 260 55 L 315 25 Q 325 18 340 18 L 440 18 L 440 80 L 255 80 Z"
+              fill="#ebe4c7" stroke="#141411" stroke-width="2.5" opacity=".9"/>
+        <!-- vitre latérale cabine -->
+        <rect x="450" y="25" width="95" height="55" rx="2" fill="#ebe4c7" stroke="#141411" stroke-width="2.5" opacity=".9"/>
+
+        <!-- portière cabine séparation -->
+        <line x1="440" y1="18" x2="440" y2="200" stroke="#141411" stroke-width="2"/>
+        <line x1="545" y1="20" x2="545" y2="200" stroke="#141411" stroke-width="2"/>
+
+        <!-- poignée portière cabine -->
+        <rect x="500" y="115" width="22" height="6" rx="2" fill="#c3ac2b" stroke="#141411" stroke-width="1.5"/>
+
+        <!-- portière cargo (séparation + nervures) -->
+        <line x1="640" y1="90" x2="640" y2="260" stroke="#141411" stroke-width="2"/>
+        <line x1="750" y1="90" x2="750" y2="260" stroke="#141411" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+        <!-- Rainures latérales du fourgon -->
+        <line x1="560" y1="135" x2="870" y2="135" stroke="#141411" stroke-width="1" opacity=".4"/>
+        <line x1="560" y1="165" x2="870" y2="165" stroke="#141411" stroke-width="1" opacity=".4"/>
+        <line x1="560" y1="195" x2="870" y2="195" stroke="#141411" stroke-width="1" opacity=".4"/>
+
+        <!-- Logo TOP UTILITAIRES sur le flanc -->
+        <g transform="translate(570, 100)">
+          <rect x="0" y="0" width="60" height="22" fill="#c3ac2b" stroke="#141411" stroke-width="1.5"/>
+          <text x="30" y="16" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="12" fill="#141411" letter-spacing="1">TOP</text>
+        </g>
+
+        <!-- Plaque AV -->
+        <rect x="30" y="220" width="55" height="22" rx="2" fill="#c3ac2b" stroke="#141411" stroke-width="2"/>
+        <text x="57.5" y="237" text-anchor="middle" font-family="Oswald, sans-serif" font-weight="700" font-size="11" fill="#141411">TOP · 71</text>
+
+        <!-- Phare AV -->
+        <circle cx="20" cy="180" r="12" fill="#c3ac2b" stroke="#141411" stroke-width="2"/>
+        <circle cx="20" cy="180" r="5" fill="#141411"/>
+
+        <!-- Pare-chocs AV -->
+        <rect x="0" y="245" width="110" height="12" fill="#141411"/>
+
+        <!-- Poignées arrière -->
+        <rect x="700" y="160" width="28" height="6" rx="2" fill="#c3ac2b" stroke="#141411" stroke-width="1.5"/>
+        <rect x="760" y="160" width="28" height="6" rx="2" fill="#c3ac2b" stroke="#141411" stroke-width="1.5"/>
+
+        <!-- Roues -->
+        <g>
+          <circle cx="155" cy="260" r="48" fill="#141411"/>
+          <circle cx="155" cy="260" r="38" fill="none" stroke="#c3ac2b" stroke-width="3"/>
+          <circle cx="155" cy="260" r="22" fill="#f4eed8" stroke="#141411" stroke-width="2"/>
+          <circle cx="155" cy="260" r="6" fill="#141411"/>
+          <g stroke="#141411" stroke-width="2">
+            <line x1="155" y1="242" x2="155" y2="278"/>
+            <line x1="137" y1="260" x2="173" y2="260"/>
+            <line x1="142" y1="247" x2="168" y2="273"/>
+            <line x1="142" y1="273" x2="168" y2="247"/>
+          </g>
+        </g>
+        <g>
+          <circle cx="730" cy="260" r="48" fill="#141411"/>
+          <circle cx="730" cy="260" r="38" fill="none" stroke="#c3ac2b" stroke-width="3"/>
+          <circle cx="730" cy="260" r="22" fill="#f4eed8" stroke="#141411" stroke-width="2"/>
+          <circle cx="730" cy="260" r="6" fill="#141411"/>
+          <g stroke="#141411" stroke-width="2">
+            <line x1="730" y1="242" x2="730" y2="278"/>
+            <line x1="712" y1="260" x2="748" y2="260"/>
+            <line x1="717" y1="247" x2="743" y2="273"/>
+            <line x1="717" y1="273" x2="743" y2="247"/>
+          </g>
+        </g>
+      </g>
+
+      <!-- Cotations techniques (sortent du fourgon) -->
+      <g font-family="Oswald, sans-serif" font-weight="500" font-size="13" fill="#141411">
+        <!-- Cotation longueur (en bas du fourgon) -->
+        <line x1="410" y1="510" x2="1280" y2="510" stroke="#141411" stroke-width="1"/>
+        <line x1="410" y1="505" x2="410" y2="515" stroke="#141411" stroke-width="1"/>
+        <line x1="1280" y1="505" x2="1280" y2="515" stroke="#141411" stroke-width="1"/>
+        <rect x="770" y="498" width="150" height="22" fill="#f4eed8"/>
+        <text x="845" y="514" text-anchor="middle" letter-spacing="1.5">LONGUEUR — L</text>
+
+        <!-- Cotation hauteur -->
+        <line x1="380" y1="180" x2="380" y2="430" stroke="#141411" stroke-width="1"/>
+        <line x1="375" y1="180" x2="385" y2="180" stroke="#141411" stroke-width="1"/>
+        <line x1="375" y1="430" x2="385" y2="430" stroke="#141411" stroke-width="1"/>
+        <rect x="335" y="295" width="90" height="22" fill="#f4eed8"/>
+        <text x="380" y="311" text-anchor="middle" letter-spacing="1.5">HAUTEUR — H</text>
+
+        <!-- Flèche volume utile -->
+        <g transform="translate(1310, 220)">
+          <line x1="0" y1="40" x2="50" y2="40" stroke="#141411" stroke-width="1"/>
+          <line x1="0" y1="40" x2="10" y2="35" stroke="#141411" stroke-width="1"/>
+          <line x1="0" y1="40" x2="10" y2="45" stroke="#141411" stroke-width="1"/>
+          <text x="55" y="34" font-family="Fraunces, serif" font-style="italic" font-size="18" letter-spacing="0">Volume</text>
+          <text x="55" y="58" font-size="14" font-weight="700" letter-spacing="1">SUR DEMANDE</text>
+        </g>
+
+        <!-- Charge utile -->
+        <g transform="translate(1310, 310)">
+          <line x1="0" y1="0" x2="50" y2="0" stroke="#141411" stroke-width="1"/>
+          <line x1="0" y1="0" x2="10" y2="-5" stroke="#141411" stroke-width="1"/>
+          <line x1="0" y1="0" x2="10" y2="5" stroke="#141411" stroke-width="1"/>
+          <text x="55" y="-6" font-family="Fraunces, serif" font-style="italic" font-size="18">Charge</text>
+          <text x="55" y="18" font-size="14" font-weight="700" letter-spacing="1">SELON MODÈLE</text>
+        </g>
+      </g>
+
+      <!-- Titre planche -->
+      <g font-family="Oswald, sans-serif" fill="#141411">
+        <text x="60" y="45" font-size="11" letter-spacing="3" font-weight="600" fill="#004900">PL. I — FOURGON UTILITAIRE · ATELIER DE VARENNES-LE-GRAND</text>
+      </g>
+    </svg>
+    <div class="photo-caption">
+      <span><span class="num">Pl.&nbsp;I</span> &nbsp;— &nbsp;Fourgon utilitaire, route de campagne <b>·</b> Saône-et-Loire (71) → Côte-d'Or (21)</span>
+      <span>Planche maison · <b>parc TOP Utilitaires</b></span>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ TICKER — vocabulaire 100% site source ============ -->
+<aside class="ticker" aria-label="Gamme TOP Utilitaires">
+  <div class="ticker-track">
+    <span><i></i>Fourgon<i></i>Fourgonnette<i></i>Dépanneuse<i></i>Camion&#8209;benne<i></i>Frigorifique<i></i>Remorque<i></i>Porte&#8209;voitures<i></i>Transport&nbsp;d'animaux<i></i><em>Depuis&nbsp;1991</em><i></i></span>
+    <span><i></i>Fourgon<i></i>Fourgonnette<i></i>Dépanneuse<i></i>Camion&#8209;benne<i></i>Frigorifique<i></i>Remorque<i></i>Porte&#8209;voitures<i></i>Transport&nbsp;d'animaux<i></i><em>Depuis&nbsp;1991</em><i></i></span>
+  </div>
+</aside>
+
+<!-- ============ GAMME ============ -->
+<section id="gamme" class="gamme">
+  <div class="container">
+    <header class="chapter">
+      <div class="chapter-mark">
+        <span class="chap-num">N°&nbsp;II</span>
+        <span class="chap-dot"></span>
+        <span class="chap-lede">La gamme</span>
+      </div>
+      <h2 class="chapter-title">
+        Vente &amp; location<br>
+        <em>de véhicules</em> <span class="amp">utilitaires</span><span class="dot-green">.</span>
+      </h2>
+      <p class="chapter-lead">
+        Fourgons, dépanneuses, camions-benne, transports d'animaux, véhicules frigorifiques, porte-voitures. <b>Véhicules neufs et d'occasion</b>, pour professionnels comme particuliers.
+      </p>
+    </header>
+
+    <div class="gamme-grid">
+      <!-- source: top-utilitaires.fr — gamme mentionnée : Fourgons, fourgonnettes, camions-benne, transports d'animaux, véhicules frigorifiques, porte-voitures, dépanneuses + permis B / location / vente -->
+      <article class="veh">
+        <div class="veh-plate"><span class="s">F</span><div><em>FRG&nbsp;-&nbsp;01&nbsp;-&nbsp;TU</em><small>71 · FOURGON</small></div><span class="s">71</span></div>
+        <div class="veh-body">
+          <div class="veh-head">
+            <span class="veh-num">N°&nbsp;01</span>
+            <h3>Fourgon</h3>
+          </div>
+          <p>Pour artisans, déménagement, livraison. <b>Permis B parfois suffisant</b> pour vos locations.</p>
+          <ul class="veh-tags">
+            <li>Vente</li><li>Location</li><li>Neuf &amp; occasion</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="veh">
+        <div class="veh-plate"><span class="s">F</span><div><em>FGN&nbsp;-&nbsp;02&nbsp;-&nbsp;TU</em><small>71 · FOURGONNETTE</small></div><span class="s">71</span></div>
+        <div class="veh-body">
+          <div class="veh-head">
+            <span class="veh-num">N°&nbsp;02</span>
+            <h3>Fourgonnette</h3>
+          </div>
+          <p>Véhicule utilitaire compact pour particuliers et professionnels. À la <b>journée</b>, à la <b>semaine</b> ou plus.</p>
+          <ul class="veh-tags">
+            <li>Permis B</li><li>Courte durée</li><li>Longue durée</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="veh">
+        <div class="veh-plate"><span class="s">F</span><div><em>DEP&nbsp;-&nbsp;03&nbsp;-&nbsp;TU</em><small>71 · DÉPANNEUSE</small></div><span class="s">71</span></div>
+        <div class="veh-body">
+          <div class="veh-head">
+            <span class="veh-num">N°&nbsp;03</span>
+            <h3>Dépanneuse</h3>
+          </div>
+          <p>Pour garagistes, carrossiers, professionnels de l'assistance. Disponibles <b>en vente</b> comme <b>en location</b>.</p>
+          <ul class="veh-tags">
+            <li>Vente</li><li>Location</li><li>Financement</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="veh">
+        <div class="veh-plate"><span class="s">F</span><div><em>BEN&nbsp;-&nbsp;04&nbsp;-&nbsp;TU</em><small>71 · CAMION-BENNE</small></div><span class="s">71</span></div>
+        <div class="veh-body">
+          <div class="veh-head">
+            <span class="veh-num">N°&nbsp;04</span>
+            <h3>Camion-benne</h3>
+          </div>
+          <p>Pour maçons, paysagistes, travaux. <em>« Confiez-nous vos besoins »</em>, nous vous trouverons le véhicule qu'il vous faut.</p>
+          <ul class="veh-tags">
+            <li>Vente</li><li>Location</li><li>Mise à disposition rapide</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="veh">
+        <div class="veh-plate"><span class="s">F</span><div><em>FRI&nbsp;-&nbsp;05&nbsp;-&nbsp;TU</em><small>71 · FRIGORIFIQUE</small></div><span class="s">71</span></div>
+        <div class="veh-body">
+          <div class="veh-head">
+            <span class="veh-num">N°&nbsp;05</span>
+            <h3>Frigorifique</h3>
+          </div>
+          <p>Véhicules <b>frigorifiques</b> pour le transport maîtrisé en température. Professionnels et événementiels.</p>
+          <ul class="veh-tags">
+            <li>Vente</li><li>Location</li><li>Courte &amp; longue durée</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="veh">
+        <div class="veh-plate"><span class="s">F</span><div><em>REM&nbsp;-&nbsp;06&nbsp;-&nbsp;TU</em><small>71 · REMORQUE</small></div><span class="s">71</span></div>
+        <div class="veh-body">
+          <div class="veh-head">
+            <span class="veh-num">N°&nbsp;06</span>
+            <h3>Remorque</h3>
+          </div>
+          <p>Notre cœur de métier depuis <b>1991</b>. Les <b>3 agences cumulent près de 500 remorques</b>, avec un stock disponible de suite.</p>
+          <ul class="veh-tags">
+            <li>Vente</li><li>Location</li><li>Attelages</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="veh">
+        <div class="veh-plate"><span class="s">F</span><div><em>PTV&nbsp;-&nbsp;07&nbsp;-&nbsp;TU</em><small>71 · PORTE-VOITURES</small></div><span class="s">71</span></div>
+        <div class="veh-body">
+          <div class="veh-head">
+            <span class="veh-num">N°&nbsp;07</span>
+            <h3>Porte-voitures</h3>
+          </div>
+          <p>Pour transporter un véhicule — vente de collection, livraison, sortie d'atelier. Vente ou location.</p>
+          <ul class="veh-tags">
+            <li>Vente</li><li>Location</li><li>Neuf &amp; occasion</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="veh">
+        <div class="veh-plate"><span class="s">F</span><div><em>ANM&nbsp;-&nbsp;08&nbsp;-&nbsp;TU</em><small>71 · TRANSPORT ANIMAUX</small></div><span class="s">71</span></div>
+        <div class="veh-body">
+          <div class="veh-head">
+            <span class="veh-num">N°&nbsp;08</span>
+            <h3>Transport d'animaux</h3>
+          </div>
+          <p>Pour <b>chiens de chasse</b>, <b>bétails</b>, <b>volailles</b> ou encore <b>chevaux</b>. Véhicules neufs et d'occasion pour coller à tous vos besoins.</p>
+          <ul class="veh-tags">
+            <li>Agriculteurs</li><li>Particuliers</li><li>Professionnels</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <footer class="gamme-foot">
+      <p><em>« Peu importe votre besoin, nous aurons un utilitaire pour y répondre. »</em> — TOP Utilitaires</p>
+      <a href="tel:0623194408" class="btn-primary">
+        Nous joindre
+        <svg viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 5h19M14 1l5 4-5 4"/></svg>
+      </a>
+    </footer>
+  </div>
+</section>
+
+<!-- ============ HISTOIRE — PULL QUOTE ============ -->
+<section id="histoire" class="histoire">
+  <div class="container">
+
+    <header class="chapter">
+      <div class="chapter-mark">
+        <span class="chap-num">N°&nbsp;III</span>
+        <span class="chap-dot"></span>
+        <span class="chap-lede">L'atelier, depuis 1991</span>
+      </div>
+      <h2 class="chapter-title">
+        Trois <em>parcs</em>, plus de<br>
+        trente ans<span class="dot-green">.</span>
+      </h2>
+      <p class="chapter-lead">
+        « Historiquement, nous étions une entreprise de vente et de location de remorques. Au fil des années, nous nous sommes diversifiés, ajoutant la location et la vente de véhicules de tourisme et utilitaires. » Le stock cumulé des trois agences frôle aujourd'hui les <b>500 remorques</b>, disponibles de suite.
+      </p>
+    </header>
+
+    <!-- Chiffres monumentaux -->
+    <div class="stats">
+      <article class="stat">
+        <span class="stat-lede">Fondation — Chalon-sur-Saône</span>
+        <span class="stat-num" data-count="1991">1991</span>
+        <span class="stat-foot">Premier parc de remorques</span>
+      </article>
+      <article class="stat stat-mid">
+        <span class="stat-lede">Parc cumulé sur 3 agences</span>
+        <span class="stat-num" data-count="500">0</span>
+        <span class="stat-foot">Remorques en stock — <b>neuves &amp; d'occasion</b></span>
+      </article>
+      <article class="stat">
+        <span class="stat-lede">Agences en Bourgogne &amp; Bresse</span>
+        <span class="stat-num" data-count="3">0</span>
+        <span class="stat-foot">Chalon · Dijon · Bourg-en-Bresse</span>
+      </article>
+    </div>
+  </div>
+
+  <!-- Pull quote fond vert -->
+  <div class="pullquote">
+    <div class="container pullquote-inner">
+      <span class="pq-mark" aria-hidden="true">«</span>
+      <blockquote>
+        <p>Confiez&#8209;nous <em>vos besoins</em>, vos projets, vos envies&nbsp;— et nous vous trouverons <em>le véhicule qu'il vous faut</em>.</p>
+        <footer>
+          <span class="pq-line"></span>
+          TOP Utilitaires · Varennes-le-Grand, Saône-et-Loire
+        </footer>
+      </blockquote>
+      <span class="pq-mark pq-mark-r" aria-hidden="true">»</span>
+    </div>
+  </div>
+
+  <!-- Timeline bornes kilométriques -->
+  <div class="container">
+    <div class="milestones">
+      <!-- source: top-utilitaires.fr/a-propos — dates clés -->
+      <article class="ms">
+        <div class="ms-borne">
+          <span class="ms-top">N6</span>
+          <span class="ms-mid">71</span>
+          <span class="ms-bot">CHALON</span>
+        </div>
+        <div class="ms-body">
+          <span class="ms-year">1991</span>
+          <h4>Création du 1<sup>er</sup> parc de remorques à Chalon-sur-Saône</h4>
+          <p>« Historiquement, nous étions une entreprise de <b>vente et de location de remorques</b>. »</p>
+        </div>
+      </article>
+      <article class="ms">
+        <div class="ms-borne">
+          <span class="ms-top">D974</span>
+          <span class="ms-mid">21</span>
+          <span class="ms-bot">DIJON</span>
+        </div>
+        <div class="ms-body">
+          <span class="ms-year">2000</span>
+          <h4>Ouverture d'un second site à Dijon</h4>
+          <p>« Au fil des années, nous nous sommes diversifiés en ajoutant la <b>location et la vente de véhicules de tourisme et utilitaires</b>. »</p>
+        </div>
+      </article>
+      <article class="ms">
+        <div class="ms-borne">
+          <span class="ms-top">A40</span>
+          <span class="ms-mid">01</span>
+          <span class="ms-bot">BOURG</span>
+        </div>
+        <div class="ms-body">
+          <span class="ms-year">2004</span>
+          <h4>Ouverture d'une troisième agence à Bourg-en-Bresse</h4>
+          <p>Les 3 agences cumulent désormais un total de <b>près de 500 remorques</b>, avec un stock disponible de suite.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+
+</section>
+
+<!-- ============ AGENCES ============ -->
+<section id="agences" class="agences">
+  <div class="container">
+
+    <header class="chapter">
+      <div class="chapter-mark">
+        <span class="chap-num">N°&nbsp;IV</span>
+        <span class="chap-dot"></span>
+        <span class="chap-lede">Nos trois parcs</span>
+      </div>
+      <h2 class="chapter-title">
+        Bourgogne,<br>
+        <em>Côte&#8209;d'Or</em> <span class="amp">&amp;</span> Ain<span class="dot-green">.</span>
+      </h2>
+      <p class="chapter-lead">
+        De Chalon à Dijon, de la Bresse à la Saône&nbsp;: trois adresses fixes, un stock en circulation permanente. <b>Mise à disposition rapide</b>, accompagnement au choix du véhicule, service d'immatriculation et pose de plaques sur place.
+      </p>
+    </header>
+
+    <div class="map-wrap">
+      <svg class="map" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" aria-label="Carte des trois agences : Chalon-sur-Saône, Dijon, Bourg-en-Bresse">
+        <defs>
+          <pattern id="map-dot" patternUnits="userSpaceOnUse" width="14" height="14">
+            <circle cx="1.2" cy="1.2" r="1" fill="#004900" opacity=".15"/>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="1200" height="600" fill="url(#map-dot)"/>
+
+        <!-- Saône rivière (trait) -->
+        <path d="M 150 80 Q 200 180 280 260 T 420 420 T 620 540 L 720 600" fill="none" stroke="#004900" stroke-width="2.5" stroke-dasharray="0" opacity=".5"/>
+        <text x="160" y="75" font-family="Fraunces, serif" font-style="italic" font-size="14" fill="#004900" opacity=".7">La Saône</text>
+
+        <!-- Routes -->
+        <path class="route" d="M 260 280 L 720 180 L 1000 440" fill="none" stroke="#141411" stroke-width="1.5" stroke-dasharray="6 6"/>
+        <path class="route" d="M 260 280 L 1000 440" fill="none" stroke="#141411" stroke-width="1.5" stroke-dasharray="6 6" opacity=".6"/>
+
+        <!-- Étiquettes routes -->
+        <text x="470" y="220" font-family="Oswald, sans-serif" font-size="11" letter-spacing="2" fill="#141411" opacity=".7">A36 · N6</text>
+        <text x="870" y="330" font-family="Oswald, sans-serif" font-size="11" letter-spacing="2" fill="#141411" opacity=".7">A6 · A40</text>
+        <text x="560" y="380" font-family="Oswald, sans-serif" font-size="11" letter-spacing="2" fill="#141411" opacity=".7">D978 · D974</text>
+
+        <!-- Chalon-sur-Saône -->
+        <g class="pin">
+          <circle cx="260" cy="280" r="22" fill="var(--mustard)" stroke="#141411" stroke-width="2.5"/>
+          <circle cx="260" cy="280" r="7" fill="#141411"/>
+          <text x="300" y="275" font-family="Fraunces, serif" font-size="24" font-weight="600" fill="#141411">Chalon&#8209;sur&#8209;Saône</text>
+          <text x="300" y="295" font-family="Oswald, sans-serif" font-size="10" letter-spacing="3" fill="#004900">71 · SAÔNE-ET-LOIRE — AGENCE MÈRE · 1991</text>
+        </g>
+
+        <!-- Dijon -->
+        <g class="pin">
+          <circle cx="720" cy="180" r="22" fill="var(--mustard)" stroke="#141411" stroke-width="2.5"/>
+          <circle cx="720" cy="180" r="7" fill="#141411"/>
+          <text x="760" y="175" font-family="Fraunces, serif" font-size="24" font-weight="600" fill="#141411">Dijon</text>
+          <text x="760" y="195" font-family="Oswald, sans-serif" font-size="10" letter-spacing="3" fill="#004900">21 · CÔTE-D'OR — OUVERTURE · 2000</text>
+        </g>
+
+        <!-- Bourg-en-Bresse -->
+        <g class="pin">
+          <circle cx="1000" cy="440" r="22" fill="var(--mustard)" stroke="#141411" stroke-width="2.5"/>
+          <circle cx="1000" cy="440" r="7" fill="#141411"/>
+          <text x="950" y="495" font-family="Fraunces, serif" font-size="24" font-weight="600" fill="#141411" text-anchor="end">Bourg&#8209;en&#8209;Bresse</text>
+          <text x="950" y="515" font-family="Oswald, sans-serif" font-size="10" letter-spacing="3" fill="#004900" text-anchor="end">01 · AIN — OUVERTURE · 2004</text>
+        </g>
+
+        <!-- Boussole -->
+        <g transform="translate(1080, 80)">
+          <circle cx="0" cy="0" r="32" fill="var(--cream-2)" stroke="#141411" stroke-width="1.5"/>
+          <path d="M 0 -24 L 5 0 L 0 24 L -5 0 Z" fill="#004900" stroke="#141411" stroke-width="1"/>
+          <path d="M 0 -24 L 5 0 L 0 0 Z" fill="#c3ac2b"/>
+          <text x="0" y="-36" text-anchor="middle" font-family="Oswald, sans-serif" font-size="11" font-weight="700" fill="#004900">N</text>
+        </g>
+
+        <!-- Échelle -->
+        <g transform="translate(60, 540)">
+          <line x1="0" y1="0" x2="120" y2="0" stroke="#141411" stroke-width="2"/>
+          <line x1="0" y1="-5" x2="0" y2="5" stroke="#141411" stroke-width="2"/>
+          <line x1="60" y1="-3" x2="60" y2="3" stroke="#141411" stroke-width="2"/>
+          <line x1="120" y1="-5" x2="120" y2="5" stroke="#141411" stroke-width="2"/>
+          <text x="60" y="22" text-anchor="middle" font-family="Oswald, sans-serif" font-size="11" letter-spacing="1.5" fill="#141411">≈ 50 km</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- Fiches agences -->
+    <div class="agences-grid">
+      <article class="agence">
+        <header>
+          <span class="ag-num">N°&nbsp;01</span>
+          <h3>Chalon&#8209;sur&#8209;Saône</h3>
+          <span class="ag-year">1991 — agence mère</span>
+        </header>
+        <dl>
+          <div><dt>Adresse siège</dt><dd>5 rue Champ Femelet<br>71240 Varennes-le-Grand</dd></div>
+          <div><dt>Téléphone</dt><dd><a href="tel:0623194408">06 23 19 44 08</a></dd></div>
+          <div><dt>Département</dt><dd>Saône&#8209;et&#8209;Loire (71)</dd></div>
+        </dl>
+      </article>
+
+      <article class="agence agence-mid">
+        <header>
+          <span class="ag-num">N°&nbsp;02</span>
+          <h3>Dijon</h3>
+          <span class="ag-year">2000 — seconde agence</span>
+        </header>
+        <dl>
+          <div><dt>Zone desservie</dt><dd>Côte-d'Or, Haute-Marne, nord Bourgogne</dd></div>
+          <div><dt>Téléphone</dt><dd><a href="tel:0623194408">06 23 19 44 08</a></dd></div>
+          <div><dt>Département</dt><dd>Côte&#8209;d'Or (21)</dd></div>
+        </dl>
+      </article>
+
+      <article class="agence">
+        <header>
+          <span class="ag-num">N°&nbsp;03</span>
+          <h3>Bourg&#8209;en&#8209;Bresse</h3>
+          <span class="ag-year">2004 — troisième parc</span>
+        </header>
+        <dl>
+          <div><dt>Zone desservie</dt><dd>Ain, Bresse, est Bourgogne, sud Jura</dd></div>
+          <div><dt>Téléphone</dt><dd><a href="tel:0623194408">06 23 19 44 08</a></dd></div>
+          <div><dt>Département</dt><dd>Ain (01)</dd></div>
+        </dl>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="services">
+  <div class="container">
+
+    <header class="chapter">
+      <div class="chapter-mark">
+        <span class="chap-num">N°&nbsp;V</span>
+        <span class="chap-dot"></span>
+        <span class="chap-lede">À l'atelier</span>
+      </div>
+      <h2 class="chapter-title">
+        Louer, acheter,<br>
+        <em>immatriculer</em><span class="dot-green">.</span>
+      </h2>
+      <p class="chapter-lead">
+        Location courte ou longue durée, achat comptant ou financement, <b>service après-vente</b>, pièces détachées, montage d'attelages et accessoires, immatriculation et création de carte grise, pose de plaques. Un guichet unique depuis 1991.
+      </p>
+    </header>
+
+    <div class="services-grid">
+      <!-- source: top-utilitaires.fr/location-utilitaire & /a-propos -->
+      <article class="serv">
+        <div class="serv-mark">
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="14" width="34" height="18" rx="2"/>
+            <path d="M6 14 L10 6 L30 6 L34 14"/>
+            <circle cx="12" cy="32" r="4"/>
+            <circle cx="28" cy="32" r="4"/>
+          </svg>
+        </div>
+        <h4>Location courte durée</h4>
+        <p>D'une journée à plusieurs jours. <em>« Pour vos locations d'utilitaires le permis B est parfois suffisant. »</em></p>
+        <span class="serv-tag">Permis B parfois suffisant</span>
+      </article>
+
+      <article class="serv">
+        <div class="serv-mark">
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M4 34 L4 12 L36 12 L36 34"/>
+            <rect x="10" y="20" width="20" height="14" rx="1"/>
+            <path d="M4 12 L20 2 L36 12"/>
+          </svg>
+        </div>
+        <h4>Location longue durée</h4>
+        <p>De plusieurs semaines à plusieurs années. <em>« Suite à la location de nos utilitaires, nous vous offrons la possibilité de les acheter. »</em></p>
+        <span class="serv-tag">Rachat possible</span>
+      </article>
+
+      <article class="serv">
+        <div class="serv-mark">
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="20" cy="20" r="15"/>
+            <path d="M20 12 V20 L26 24"/>
+          </svg>
+        </div>
+        <h4>Vente neuve &amp; occasion</h4>
+        <p>Achat comptant ou financement. Véhicules neufs et d'occasion pour coller à tous vos besoins.</p>
+        <span class="serv-tag">Comptant · financement</span>
+      </article>
+
+      <article class="serv">
+        <div class="serv-mark">
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="18" cy="18" r="12"/>
+            <path d="M28 28 L36 36"/>
+            <path d="M13 18 L23 18 M18 13 L18 23"/>
+          </svg>
+        </div>
+        <h4>Service après-vente</h4>
+        <p>Réparations, révisions, accessoires. Pièces détachées disponibles.</p>
+        <span class="serv-tag">Réparations · révisions</span>
+      </article>
+
+      <article class="serv">
+        <div class="serv-mark">
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="6" y="10" width="28" height="20" rx="2"/>
+            <path d="M6 18 L34 18"/>
+            <path d="M12 24 L22 24"/>
+          </svg>
+        </div>
+        <h4>Immatriculation &amp; carte grise</h4>
+        <p>Immatriculation de véhicules, création de cartes grises, installation et changement de plaques d'immatriculation.</p>
+        <span class="serv-tag">Service en agence</span>
+      </article>
+
+      <article class="serv">
+        <div class="serv-mark">
+          <svg viewBox="0 0 40 40" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="20" cy="28" r="4"/>
+            <path d="M12 28 L4 28 M28 28 L36 28"/>
+            <path d="M20 24 L20 8"/>
+            <circle cx="20" cy="8" r="3"/>
+          </svg>
+        </div>
+        <h4>Attelages &amp; accessoires</h4>
+        <p>Montage d'attelages et accessoires. Pièces détachées disponibles à l'atelier.</p>
+        <span class="serv-tag">Pièces détachées</span>
+      </article>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ CONTACT + FOOTER ============ -->
+<section id="contact" class="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-left">
+        <div class="chapter-mark">
+          <span class="chap-num">Colophon</span>
+          <span class="chap-dot"></span>
+          <span class="chap-lede">Contact</span>
+        </div>
+        <h2 class="contact-title">
+          Un projet, un <em>devis</em>&nbsp;?<br>
+          Un appel, une réponse<span class="dot-green">.</span>
+        </h2>
+
+        <div class="contact-meta">
+          <div>
+            <span class="cm-lede">Téléphone</span>
+            <a href="tel:0623194408" class="cm-big">06&nbsp;23&nbsp;19&nbsp;44&nbsp;08</a>
+          </div>
+          <div>
+            <span class="cm-lede">Adresse</span>
+            <span class="cm-med">5 rue Champ Femelet<br>71240 Varennes&#8209;le&#8209;Grand</span>
+          </div>
+          <div>
+            <span class="cm-lede">Courriel</span>
+            <a href="mailto:top.remorques@orange.fr" class="cm-med">top.remorques@orange.fr</a>
+          </div>
+          <div>
+            <span class="cm-lede">Réseaux</span>
+            <span class="cm-med"><a href="https://facebook.com/TOPREMORQUES71/">Facebook</a> · <a href="https://instagram.com/top_remorques">Instagram</a></span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="contact-plate">
+        <div class="plate plate-xl">
+          <div class="plate-side">F</div>
+          <div style="flex:1;">
+            <div class="plate-num">APPELEZ</div>
+            <div class="plate-dept">71 · VARENNES-LE-GRAND</div>
+          </div>
+          <div class="plate-side">71</div>
+        </div>
+        <a href="tel:0623194408" class="btn-primary btn-primary-lg">
+          06&nbsp;23&nbsp;19&nbsp;44&nbsp;08
+          <svg viewBox="0 0 20 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 5h19M14 1l5 4-5 4"/></svg>
+        </a>
+        <p class="contact-note">Atelier + 3 agences : <b>Chalon&#8209;sur&#8209;Saône</b> · <b>Dijon</b> · <b>Bourg&#8209;en&#8209;Bresse</b>.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <div>
+        <span class="foot-brand">TOP<em>Utilitaires</em></span>
+        <p class="foot-lede">Vente et location de véhicules utilitaires, en Bourgogne depuis MCMXCI.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Pied de page">
+        <a href="#gamme">La gamme</a>
+        <a href="#histoire">Histoire</a>
+        <a href="#agences">Agences</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+        <a href="https://www.leboncoin.fr/boutique/4378/top_remorques.htm">Notre boutique LBC</a>
+      </nav>
+    </div>
+    <div class="foot-rule"></div>
+    <div class="foot-bot">
+      <span>© MCMXCI — MMXXVI · TOP Utilitaires (TOP Remorques) · Varennes-le-Grand</span>
+      <span><a href="#">Mentions légales</a> · <a href="#">Vie privée</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Counter animation
+const counters = document.querySelectorAll('.stat-num[data-count]');
+const format = (n) => n.toLocaleString('fr-FR');
+const animate = (el) => {
+  const target = parseInt(el.dataset.count, 10);
+  if (target === 1991) { el.textContent = '1991'; return; }
+  const duration = 1600;
+  const start = performance.now();
+  const step = (now) => {
+    const p = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = format(Math.round(target * eased));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+};
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting) {
+      animate(e.target);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: .4 });
+counters.forEach((c) => io.observe(c));
+
+// Burger menu (mobile)
+const burger = document.querySelector('.nav-burger');
+const menu = document.querySelector('.nav-menu');
+if (burger) {
+  burger.addEventListener('click', () => {
+    const open = menu.classList.toggle('is-open');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+}
+</script>
+
+</body>
+</html>

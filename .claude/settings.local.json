@@ -59,7 +59,10 @@
       "Bash(curl -sL -A \"Mozilla/5.0\" \"https://unsplash.com/photos/aerial-view-of-city-buildings-during-daytime-aQurkj55aUA\")",
       "WebFetch(domain:www.ucampanile.com)",
       "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36\" -H \"Accept: text/html,application/xhtml+xml\" \"https://unsplash.com/photos/an-aerial-view-of-a-city-with-red-roofs-94avmgtEb2c\" -o \"/c/Users/monke/OneDrive/Bureau/Skypeo-maquettes/toitures-des-gones/_tmp.html\")",
-      "Bash(curl -sL -I -A \"Mozilla/5.0\" \"https://unsplash.com/photos/94avmgtEb2c/download?w=1600\")"
+      "Bash(curl -sL -I -A \"Mozilla/5.0\" \"https://unsplash.com/photos/94avmgtEb2c/download?w=1600\")",
+      "WebFetch(domain:www.toitservice-couverture-eure.fr)",
+      "Bash(curl -sI \"https://skypeo-maquettes.vercel.app/terre-sereine/assets/logoTerreSereine-sansFond.png\")",
+      "WebFetch(domain:www.top-utilitaires.fr)"
     ]
   }
 }
