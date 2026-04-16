@@ -117,7 +117,8 @@
       top: 0;
       z-index: 99999;
       background: var(--forest-deep);
-      border-bottom: 2px solid var(--mustard)
+      border-bottom: 2px solid var(--mustard);
+      padding: 0.5rem 0;
     }
 
     .nav-inner {
@@ -136,6 +137,10 @@
       font-size: clamp(1.2rem, 1.8vw, 1.5rem);
       color: var(--cream);
       letter-spacing: -.02em
+    }
+
+    .nav-brand img {
+      width: 120px;
     }
 
     .nav-brand em {
@@ -322,7 +327,8 @@
 
     .hero h1 em {
       font-style: italic;
-      font-weight: 300; font-style: italic;
+      font-weight: 300;
+      font-style: italic;
       color: var(--mustard)
     }
 
@@ -434,7 +440,7 @@
       font-size: clamp(.5rem, .65vw, .58rem);
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(244,238,216,.6);
+      color: rgba(244, 238, 216, .6);
       display: block;
       line-height: 1
     }
@@ -507,7 +513,8 @@
 
     .section-title em {
       font-style: italic;
-      font-weight: 300; font-style: italic;
+      font-weight: 300;
+      font-style: italic;
       color: var(--forest)
     }
 
@@ -943,7 +950,8 @@
 
     .cta-section h2 em {
       font-style: italic;
-      font-weight: 300; font-style: italic;
+      font-weight: 300;
+      font-style: italic;
       color: var(--mustard)
     }
 
@@ -1180,7 +1188,9 @@
   <!-- NAV -->
   <nav class="nav" aria-label="Navigation principale">
     <div class="nav-inner">
-      <a href="#" class="nav-brand">TOP <em>Utilitaires</em></a>
+      <a href="#" class="nav-brand">
+        <img src="./logoTopUtilitaire.png" alt="Top Utilitaire">
+      </a>
       <div class="nav-links">
         <a href="#intro"><span>01</span>Présentation</a>
         <a href="#catalogue"><span>02</span>Catalogue</a>
@@ -1233,23 +1243,24 @@
             <path id="cp" d="M 85,85 m -65,0 a 65,65 0 1,1 130,0 a 65,65 0 1,1 -130,0" />
           </defs>
           <!-- Outer ring -->
-          <circle cx="85" cy="85" r="83" fill="none" stroke="var(--mustard)" stroke-width="1.5" opacity=".5"/>
+          <circle cx="85" cy="85" r="83" fill="none" stroke="var(--mustard)" stroke-width="1.5" opacity=".5" />
           <!-- Dashed decorative ring -->
-          <circle cx="85" cy="85" r="78" fill="none" stroke="var(--mustard)" stroke-width=".5" stroke-dasharray="3 5" opacity=".4"/>
+          <circle cx="85" cy="85" r="78" fill="none" stroke="var(--mustard)" stroke-width=".5" stroke-dasharray="3 5"
+            opacity=".4" />
           <!-- Main disc -->
-          <circle cx="85" cy="85" r="72" fill="var(--forest-deep)"/>
+          <circle cx="85" cy="85" r="72" fill="var(--forest-deep)" />
           <!-- Inner decorative ring -->
-          <circle cx="85" cy="85" r="58" fill="none" stroke="var(--mustard)" stroke-width=".5" opacity=".35"/>
+          <circle cx="85" cy="85" r="58" fill="none" stroke="var(--mustard)" stroke-width=".5" opacity=".35" />
           <!-- Rotating text -->
           <text font-family="JetBrains Mono,monospace" font-size="9" font-weight="600" letter-spacing="3.2"
             fill="var(--cream)" class="sticker-text">
             <textPath href="#cp">DEPUIS 1991 · BOURGOGNE · 500+ REMORQUES · 3 AGENCES ·</textPath>
           </text>
           <!-- Small decorative dots -->
-          <circle cx="85" cy="15" r="2" fill="var(--mustard)" opacity=".6"/>
-          <circle cx="155" cy="85" r="2" fill="var(--mustard)" opacity=".6"/>
-          <circle cx="85" cy="155" r="2" fill="var(--mustard)" opacity=".6"/>
-          <circle cx="15" cy="85" r="2" fill="var(--mustard)" opacity=".6"/>
+          <circle cx="85" cy="15" r="2" fill="var(--mustard)" opacity=".6" />
+          <circle cx="155" cy="85" r="2" fill="var(--mustard)" opacity=".6" />
+          <circle cx="85" cy="155" r="2" fill="var(--mustard)" opacity=".6" />
+          <circle cx="15" cy="85" r="2" fill="var(--mustard)" opacity=".6" />
         </svg>
         <div class="sticker-center">
           <span class="sticker-year">Est.</span>
@@ -1354,7 +1365,8 @@
   <section class="pullquote">
     <div class="pullquote-inner" data-reveal>
       <div class="pq-mark">«</div>
-      <blockquote>Particuliers ou professionnels, faites le choix d'une entreprise avec <strong>une grande expérience</strong> dans le domaine de la vente et la location de véhicules utilitaires.</blockquote>
+      <blockquote>Particuliers ou professionnels, faites le choix d'une entreprise avec <strong>une grande
+          expérience</strong> dans le domaine de la vente et la location de véhicules utilitaires.</blockquote>
       <div class="pq-mark" style="transform:rotate(180deg)">«</div>
     </div>
   </section>
@@ -1367,27 +1379,33 @@
       <div class="service-card">
         <div class="service-num">N° 001</div>
         <h3>Vente de véhicules utilitaires</h3>
-        <p>Fourgons, camions-benne, dépanneuses, porte-voitures, véhicules frigorifiques — un large choix disponible immédiatement.</p>
+        <p>Fourgons, camions-benne, dépanneuses, porte-voitures, véhicules frigorifiques — un large choix disponible
+          immédiatement.</p>
         <div class="service-img">
-          <img src="https://le-de.cdn-website.com/a7b73c9102ad481ebd36c8f66faa45ac/dms3rep/multi/opt/20231019_120615-1920w.jpg"
+          <img
+            src="https://le-de.cdn-website.com/a7b73c9102ad481ebd36c8f66faa45ac/dms3rep/multi/opt/20231019_120615-1920w.jpg"
             alt="Véhicule utilitaire en vente" loading="lazy">
         </div>
       </div>
       <div class="service-card">
         <div class="service-num">N° 002</div>
         <h3>Location courte & longue durée</h3>
-        <p>Location ponctuelle pour un déménagement ou longue durée pour votre activité professionnelle. Tarifs compétitifs.</p>
+        <p>Location ponctuelle pour un déménagement ou longue durée pour votre activité professionnelle. Tarifs
+          compétitifs.</p>
         <div class="service-img">
-          <img src="https://le-de.cdn-website.com/a7b73c9102ad481ebd36c8f66faa45ac/dms3rep/multi/opt/Screenshot_20220317_160330-1920w.jpg"
+          <img
+            src="https://le-de.cdn-website.com/a7b73c9102ad481ebd36c8f66faa45ac/dms3rep/multi/opt/Screenshot_20220317_160330-1920w.jpg"
             alt="Véhicule en location" loading="lazy">
         </div>
       </div>
       <div class="service-card">
         <div class="service-num">N° 003</div>
         <h3>Remorques & attelages</h3>
-        <p>Plus de 500 remorques en stock permanent. Bétaillères, porte-engins, plateaux — nous sommes le spécialiste de la remorque en Bourgogne.</p>
+        <p>Plus de 500 remorques en stock permanent. Bétaillères, porte-engins, plateaux — nous sommes le spécialiste de
+          la remorque en Bourgogne.</p>
         <div class="service-img">
-          <img src="https://le-de.cdn-website.com/a7b73c9102ad481ebd36c8f66faa45ac/dms3rep/multi/opt/IMG_20230719_152905-1920w.jpg"
+          <img
+            src="https://le-de.cdn-website.com/a7b73c9102ad481ebd36c8f66faa45ac/dms3rep/multi/opt/IMG_20230719_152905-1920w.jpg"
             alt="Remorques en stock" loading="lazy">
         </div>
       </div>
@@ -1484,7 +1502,8 @@
   <section class="cta-section" id="contact">
     <div class="container">
       <h2>Besoin d'un <em>utilitaire</em> ?</h2>
-      <p>Contactez-nous pour un devis personnalisé ou venez découvrir notre parc dans l'une de nos 3 agences en Bourgogne.</p>
+      <p>Contactez-nous pour un devis personnalisé ou venez découvrir notre parc dans l'une de nos 3 agences en
+        Bourgogne.</p>
       <a href="mailto:top.remorques@orange.fr" class="btn-primary">Contactez-nous <svg viewBox="0 0 20 10" fill="none"
           stroke="currentColor" stroke-width="1.5">
           <path d="M0 5h19M14 1l5 4-5 4" />
@@ -1496,7 +1515,9 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <div class="footer-brand">TOP <em>Utilitaires</em></div>
+        <div class="footer-brand">
+          <img src="./logoTopUtilitaire.png" alt="Top Utilitaire">
+        </div>
         <div class="footer-contact">
           <a href="mailto:top.remorques@orange.fr">top.remorques@orange.fr</a>
           <a href="https://www.facebook.com/TOPREMORQUES71" target="_blank" rel="noopener">Facebook</a>
