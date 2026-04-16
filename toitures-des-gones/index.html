@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toitures Des Gones — Couvreur zingueur à Lyon</title>
+<meta name="description" content="Toitures Des Gones, entreprise de couverture, zinguerie et charpente à Lyon. Yoan Lopez, ancien Compagnon du Devoir. Devis gratuit.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============ TOKENS ============ */
+:root {
+  --slate: #181616;
+  --slate-2: #221f1e;
+  --tile: #b51515;
+  --tile-deep: #7a0d0d;
+  --cream: #f1ece0;
+  --cream-2: #e8e0cf;
+  --zinc: #8a8f8c;
+  --terracotta: #c9542a;
+  --ink: #0d0b0a;
+
+  --r-sm: 4px;
+  --r-md: 10px;
+  --r-lg: 22px;
+  --r-xl: 36px;
+  --r-pill: 999px;
+
+  --f-display: "Fraunces", "Times New Roman", serif;
+  --f-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --ease: cubic-bezier(.2,.7,.2,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);
+
+  --maxw: 1440px;
+  --gut: clamp(18px, 3.5vw, 56px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; min-width: 0; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+body {
+  background: var(--cream);
+  color: var(--slate);
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-variation-settings: "opsz" 14, "SOFT" 50;
+  line-height: 1.5;
+  overflow-x: clip;
+  max-width: 100vw;
+}
+img { max-width: 100%; display: block; object-fit: cover; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: 0; background: none; color: inherit; }
+
+/* ============ TEXTURE PAPIER KRAFT ============ */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: .38;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.30  0 0 0 0 0.15  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Grain zinc pour sections sombres */
+.section--slate { position: relative; isolation: isolate; }
+.section--slate::after {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: .25;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence baseFrequency='1.3' numOctaves='1'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.36  0 0 0 0 0.34  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001s !important; transition-duration: .001s !important; }
+}
+
+/* ============ HEADER ============ */
+.hdr {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px var(--gut);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--cream);
+  transition: padding .4s var(--ease), background .4s var(--ease), color .4s var(--ease), border-color .4s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.hdr.is-scrolled {
+  background: rgba(241, 236, 224, .92);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  color: var(--slate);
+  padding: 12px var(--gut);
+  border-bottom-color: rgba(24, 22, 22, .12);
+  box-shadow: 0 6px 24px -18px rgba(24, 22, 22, .35);
+}
+.hdr.is-scrolled .hdr__brand::before { background: var(--tile); }
+.hdr__brand {
+  font-family: var(--f-display);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.hdr__brand::before {
+  content: '';
+  width: 14px; height: 14px;
+  background: var(--tile);
+  border-radius: var(--r-sm);
+  transform: rotate(45deg);
+}
+.hdr__nav {
+  display: flex;
+  gap: 28px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  align-items: center;
+}
+.hdr__nav-foot { display: none; }
+.hdr__nav a {
+  position: relative;
+  padding: 6px 0;
+}
+.hdr__nav a::after {
+  content: '';
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .4s var(--ease-out);
+}
+.hdr__nav a:hover::after { transform: scaleX(1); }
+
+.hdr__cta {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border: 1px solid currentColor;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background .4s var(--ease), color .4s var(--ease);
+}
+.hdr__cta:hover { background: var(--cream); color: var(--slate); }
+.hdr.is-scrolled .hdr__cta { border-color: var(--slate); }
+.hdr.is-scrolled .hdr__cta:hover { background: var(--slate); color: var(--cream); }
+
+.burger {
+  display: none;
+  width: 44px; height: 44px;
+  border-radius: var(--r-pill);
+  border: 1.5px solid currentColor;
+  position: relative;
+  z-index: 200;
+  background: transparent;
+  transition: background .3s var(--ease), border-color .3s var(--ease), color .3s var(--ease);
+}
+.burger span {
+  position: absolute;
+  left: 12px; right: 12px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform .4s var(--ease), opacity .2s var(--ease), top .4s var(--ease);
+}
+.burger span:nth-child(1) { top: 16px; }
+.burger span:nth-child(2) { top: 25px; }
+.burger.open {
+  background: var(--tile);
+  border-color: var(--tile);
+  color: var(--cream);
+}
+.burger.open span { background: var(--cream); }
+.burger.open span:nth-child(1) { top: 20px; transform: rotate(45deg); }
+.burger.open span:nth-child(2) { top: 20px; transform: rotate(-45deg); }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  background: var(--slate);
+  color: var(--cream);
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  filter: contrast(1.05) saturate(.9) brightness(.55);
+}
+.hero__photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 30%, transparent 0%, rgba(24,22,22,.45) 70%),
+    linear-gradient(180deg, rgba(24,22,22,.15) 0%, rgba(24,22,22,.85) 100%);
+}
+
+.hero__grid {
+  position: relative; z-index: 2;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  padding: 100px var(--gut) 32px;
+}
+
+.hero__meta-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 24px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .85;
+  padding-top: 20px;
+}
+.hero__meta-top span { display: block; }
+.hero__meta-top .lbl { opacity: .55; margin-bottom: 4px; }
+.hero__meta-top .val { font-weight: 600; }
+
+.hero__title {
+  align-self: center;
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-size: clamp(64px, 13vw, 200px);
+  line-height: .82;
+  letter-spacing: -.04em;
+  margin: 40px 0;
+}
+.hero__title .l1 {
+  display: block;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.hero__title .l2 {
+  display: block;
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  color: var(--tile);
+  font-weight: 400;
+  padding-left: 22%;
+  margin-top: -.08em;
+}
+.hero__title .l2 em {
+  font-style: normal;
+  color: var(--cream);
+  font-weight: 300;
+  font-size: .62em;
+  vertical-align: super;
+  margin-right: .2em;
+  opacity: .7;
+}
+
+.hero__bottom {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 32px;
+  align-items: end;
+  padding-top: 40px;
+  border-top: 1px solid rgba(241,236,224,.18);
+}
+.hero__tagline {
+  font-family: var(--f-display);
+  font-size: clamp(17px, 1.5vw, 22px);
+  line-height: 1.35;
+  max-width: 34ch;
+  font-weight: 300;
+}
+.hero__tagline b {
+  color: var(--tile);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.hero__fiche {
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-align: right;
+  line-height: 1.8;
+  opacity: .82;
+}
+.hero__fiche .k { opacity: .5; }
+.hero__fiche .v { font-weight: 600; opacity: 1; }
+
+.hero__cta {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 18px 22px 16px;
+  background: var(--tile);
+  color: var(--cream);
+  border-radius: var(--r-sm);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  position: relative;
+  transition: transform .4s var(--ease), background .4s var(--ease);
+  justify-self: center;
+  align-self: end;
+  box-shadow: 6px 6px 0 0 rgba(24,22,22,.9);
+}
+.hero__cta::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px;
+  width: 4px; height: 4px;
+  background: var(--cream);
+  border-radius: 50%;
+  opacity: .7;
+}
+.hero__cta::after {
+  content: '';
+  position: absolute;
+  top: 6px; right: 6px;
+  width: 4px; height: 4px;
+  background: var(--cream);
+  border-radius: 50%;
+  opacity: .7;
+}
+.hero__cta small {
+  opacity: .65;
+  font-size: 9px;
+  letter-spacing: .2em;
+}
+.hero__cta strong {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+.hero__cta:hover {
+  transform: translate(-2px,-2px);
+  box-shadow: 8px 8px 0 0 rgba(24,22,22,.9);
+  background: var(--tile-deep);
+}
+
+/* ============ SECTION ATELIER (à propos) ============ */
+.atelier {
+  background: var(--cream);
+  color: var(--slate);
+  padding: clamp(80px, 10vw, 160px) var(--gut) clamp(80px, 10vw, 160px);
+  position: relative;
+}
+.atelier__wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+.section-marker {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--tile);
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-marker::before {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: currentColor;
+}
+.atelier h2 {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+  font-weight: 400;
+  font-size: clamp(40px, 6vw, 92px);
+  line-height: .95;
+  letter-spacing: -.02em;
+  margin-bottom: 24px;
+}
+.atelier h2 em {
+  font-style: italic;
+  color: var(--tile);
+}
+.atelier__photo {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  position: relative;
+  align-self: stretch;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  isolation: isolate;
+  z-index: 2;
+}
+.atelier__photo img {
+  width: 100%; height: 100%;
+  filter: contrast(1.03) saturate(.95);
+}
+.atelier__photo figcaption {
+  position: absolute;
+  bottom: 16px; left: 16px; right: 16px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: rgba(24,22,22,.7);
+  backdrop-filter: blur(6px);
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.atelier__text {
+  grid-column: 1;
+  padding-top: 60px;
+}
+.atelier__drop {
+  font-family: var(--f-display);
+  font-size: clamp(18px, 1.4vw, 20px);
+  line-height: 1.55;
+  font-weight: 350;
+  color: var(--slate);
+  max-width: 42ch;
+}
+.atelier__drop::first-letter {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 600;
+  font-variation-settings: "opsz" 144;
+  font-size: 5.2em;
+  float: left;
+  line-height: .85;
+  padding: 8px 14px 0 0;
+  color: var(--tile);
+}
+.atelier__drop + p {
+  margin-top: 22px;
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 42ch;
+  color: #3a3432;
+}
+
+.atelier__meta {
+  grid-column: 1;
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(24,22,22,.15);
+  border: 1px solid rgba(24,22,22,.15);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.atelier__meta > div {
+  background: var(--cream);
+  padding: 22px 20px;
+}
+.atelier__meta .k {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--tile);
+  display: block;
+  margin-bottom: 6px;
+}
+.atelier__meta .v {
+  font-family: var(--f-display);
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  line-height: 1.1;
+}
+.atelier__meta .v em {
+  font-size: 13px;
+  font-family: var(--f-mono);
+  font-style: normal;
+  font-weight: 400;
+  opacity: .55;
+  display: block;
+  margin-top: 4px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.atelier__badges {
+  grid-column: 1 / -1;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 44px);
+  flex-wrap: wrap;
+  padding-top: 32px;
+  border-top: 1px solid rgba(24,22,22,.15);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #6b5f58;
+}
+.atelier__badges b { color: var(--slate); font-weight: 700; }
+.atelier__badges::before {
+  content: 'CERTIFICATIONS';
+  color: var(--tile);
+}
+
+/* ============ SECTION CHANTIERS ============ */
+.chantiers {
+  background: var(--cream);
+  padding: clamp(80px, 10vw, 150px) var(--gut) clamp(80px, 10vw, 140px);
+  position: relative;
+}
+.chantiers__head {
+  max-width: var(--maxw);
+  margin: 0 auto clamp(50px, 7vw, 90px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+}
+.chantiers__head h2 {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+  font-weight: 500;
+  font-size: clamp(44px, 7vw, 108px);
+  line-height: .9;
+  letter-spacing: -.03em;
+  color: var(--slate);
+}
+.chantiers__head h2 em {
+  font-style: italic;
+  color: var(--tile);
+  font-weight: 400;
+}
+.chantiers__head p {
+  font-family: var(--f-display);
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 44ch;
+  color: #4a423e;
+  padding-bottom: 14px;
+}
+
+.planche {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 80px;
+  gap: 14px;
+  isolation: isolate;
+  z-index: 2;
+}
+.shot {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: var(--slate);
+  box-shadow: 0 2px 0 rgba(24,22,22,.08);
+  transition: transform .6s var(--ease-out);
+}
+.shot:hover { transform: translateY(-4px); }
+.shot img {
+  width: 100%; height: 100%;
+  filter: contrast(1.05) saturate(.92);
+  transition: transform 1.1s var(--ease-out), filter .6s var(--ease);
+}
+.shot:hover img { transform: scale(1.06); filter: contrast(1.1) saturate(1.1); }
+
+.shot__tag {
+  position: absolute;
+  bottom: 10px; left: 10px;
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  padding: 6px 10px;
+  background: rgba(24,22,22,.78);
+  backdrop-filter: blur(4px);
+  border-radius: var(--r-sm);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.shot__tag::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--tile);
+  border-radius: 50%;
+}
+.shot__num {
+  position: absolute;
+  top: 10px; right: 12px;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: .14em;
+  color: rgba(241,236,224,.7);
+  text-shadow: 0 1px 2px rgba(0,0,0,.4);
+}
+
+/* Composition asymétrique planche-contact */
+.shot--a { grid-column: 1 / span 7; grid-row: span 5; }
+.shot--b { grid-column: 8 / span 5; grid-row: span 3; }
+.shot--c { grid-column: 8 / span 5; grid-row: span 2; }
+.shot--d { grid-column: 1 / span 4; grid-row: span 4; }
+.shot--e { grid-column: 5 / span 4; grid-row: span 4; }
+.shot--f { grid-column: 9 / span 4; grid-row: span 4; }
+.shot--g { grid-column: 1 / span 5; grid-row: span 3; }
+.shot--h { grid-column: 6 / span 7; grid-row: span 3; }
+
+.planche-note {
+  max-width: var(--maxw);
+  margin: 40px auto 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #6b5f58;
+  padding-top: 24px;
+  border-top: 1px solid rgba(24,22,22,.15);
+}
+.planche-note b { color: var(--tile); }
+
+/* ============ SECTION CHIFFRES + ATELIER ============ */
+.chiffres {
+  background: var(--slate);
+  color: var(--cream);
+  padding: clamp(90px, 10vw, 150px) var(--gut);
+  position: relative;
+}
+.chiffres__wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: stretch;
+}
+.chiffres__big {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(241,236,224,.14);
+  border: 1px solid rgba(241,236,224,.14);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.chiffres__big > div {
+  background: var(--slate);
+  padding: clamp(28px, 3.5vw, 44px) clamp(22px, 2.5vw, 34px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 200px;
+  position: relative;
+}
+.chiffres__big > div::after {
+  content: '';
+  position: absolute;
+  top: 16px; right: 18px;
+  width: 6px; height: 6px;
+  background: var(--tile);
+  border-radius: 50%;
+  opacity: .7;
+}
+.chiffres__num {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-weight: 500;
+  font-size: clamp(72px, 9vw, 150px);
+  line-height: .85;
+  letter-spacing: -.04em;
+  color: var(--cream);
+}
+.chiffres__num em {
+  font-family: var(--f-mono);
+  font-style: normal;
+  font-size: .22em;
+  font-weight: 400;
+  color: var(--tile);
+  letter-spacing: .1em;
+  vertical-align: super;
+  margin-left: 8px;
+  text-transform: uppercase;
+}
+.chiffres__lbl {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #b3aa9c;
+}
+.chiffres__lbl b { color: var(--cream); font-weight: 700; }
+
+.chiffres__photo {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 100%;
+  aspect-ratio: 3/4;
+}
+.chiffres__photo img {
+  width: 100%; height: 100%;
+  filter: contrast(1.08) saturate(.88) brightness(.85);
+}
+.chiffres__photo figcaption {
+  position: absolute;
+  top: 18px; left: 18px; right: 18px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--cream);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.chiffres__photo figcaption b { color: var(--tile); }
+.chiffres__photo-quote {
+  position: absolute;
+  left: 24px; right: 24px; bottom: 22px;
+  font-family: var(--f-display);
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(20px, 2vw, 26px);
+  line-height: 1.25;
+  color: var(--cream);
+  text-shadow: 0 2px 12px rgba(0,0,0,.55);
+}
+.chiffres__photo-quote::before {
+  content: '« ';
+  color: var(--tile);
+  font-style: normal;
+}
+.chiffres__photo-quote::after {
+  content: ' »';
+  color: var(--tile);
+  font-style: normal;
+}
+
+.chiffres__head {
+  max-width: var(--maxw);
+  margin: 0 auto clamp(50px, 6vw, 80px);
+}
+.chiffres__head .section-marker { color: var(--tile); }
+.chiffres__head h2 {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+  font-weight: 500;
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: .95;
+  letter-spacing: -.02em;
+  max-width: 20ch;
+}
+.chiffres__head h2 em {
+  font-style: italic;
+  color: var(--tile);
+}
+
+/* ============ SECTION SAVOIR-FAIRE ============ */
+.savoir {
+  background: var(--slate);
+  color: var(--cream);
+  padding: clamp(80px, 10vw, 140px) 0 clamp(60px, 8vw, 120px);
+  position: relative;
+}
+.savoir__head {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gut);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  margin-bottom: clamp(60px, 8vw, 100px);
+}
+.savoir__head h2 {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-weight: 500;
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: .88;
+  letter-spacing: -.03em;
+}
+.savoir__head h2 em {
+  font-style: italic;
+  color: var(--tile);
+  font-weight: 400;
+}
+.savoir__head p {
+  font-family: var(--f-display);
+  font-size: clamp(16px, 1.3vw, 19px);
+  line-height: 1.55;
+  font-weight: 300;
+  max-width: 40ch;
+  padding-bottom: 12px;
+  color: #d3ccbd;
+}
+
+.savoir__list {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gut);
+}
+.svc {
+  display: grid;
+  grid-template-columns: 90px 1fr 1.2fr auto;
+  gap: clamp(20px, 3vw, 48px);
+  align-items: center;
+  padding: 28px 0;
+  border-top: 1px solid rgba(241,236,224,.14);
+  position: relative;
+  transition: padding .5s var(--ease);
+  isolation: isolate;
+  overflow: hidden;
+}
+.svc:last-child { border-bottom: 1px solid rgba(241,236,224,.14); }
+.svc::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--tile);
+  transform: translateY(100%);
+  transition: transform .6s var(--ease-out);
+  z-index: -1;
+}
+.svc:hover::before { transform: translateY(0); }
+
+.svc__num {
+  font-family: var(--f-display);
+  font-weight: 500;
+  font-variation-settings: "opsz" 144;
+  font-size: clamp(48px, 5vw, 72px);
+  line-height: 1;
+  letter-spacing: -.04em;
+  opacity: .4;
+  transition: opacity .5s var(--ease), color .5s var(--ease);
+}
+.svc:hover .svc__num { opacity: 1; color: var(--cream); }
+
+.svc__title {
+  font-family: var(--f-display);
+  font-size: clamp(24px, 3vw, 42px);
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+  transition: transform .6s var(--ease-out);
+}
+.svc:hover .svc__title { transform: translateX(16px); }
+
+.svc__desc {
+  font-family: var(--f-display);
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.5;
+  font-weight: 300;
+  color: #b3aa9c;
+  max-width: 44ch;
+  transition: color .5s var(--ease);
+}
+.svc:hover .svc__desc { color: var(--cream); }
+
+.svc__tag {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--tile);
+  padding: 6px 12px;
+  border: 1px solid currentColor;
+  border-radius: var(--r-pill);
+  transition: color .5s var(--ease), border-color .5s var(--ease);
+  white-space: nowrap;
+}
+.svc:hover .svc__tag { color: var(--cream); border-color: var(--cream); }
+
+/* ============ SECTION ZONE ============ */
+.zone {
+  background: var(--cream-2);
+  color: var(--slate);
+  padding: clamp(80px, 10vw, 140px) var(--gut);
+  position: relative;
+  overflow: hidden;
+}
+.zone__wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(40px, 6vw, 90px);
+  align-items: center;
+}
+.zone__text h2 {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144, "SOFT" 80;
+  font-weight: 500;
+  font-size: clamp(44px, 7vw, 100px);
+  line-height: .92;
+  letter-spacing: -.03em;
+  margin-bottom: 28px;
+}
+.zone__text h2 em { font-style: italic; color: var(--tile); }
+.zone__text p {
+  font-family: var(--f-display);
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.65;
+  font-weight: 300;
+  max-width: 42ch;
+  color: #3a3432;
+  margin-bottom: 28px;
+}
+.zone__villes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 26px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #6b5f58;
+  padding-top: 24px;
+  border-top: 1px solid rgba(24,22,22,.18);
+}
+.zone__villes span { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px dashed rgba(24,22,22,.12); }
+.zone__villes span b { color: var(--slate); font-weight: 600; }
+.zone__villes small {
+  color: var(--tile);
+  font-weight: 600;
+  letter-spacing: .15em;
+}
+
+.carte {
+  position: relative;
+  aspect-ratio: 1/1.05;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--slate);
+}
+.carte__img {
+  position: absolute;
+  inset: 0;
+}
+.carte__img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: contrast(1.05) saturate(1.05);
+}
+.carte__img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(24,22,22,.45) 0%, rgba(24,22,22,.1) 40%, rgba(24,22,22,.6) 100%);
+}
+.carte__top, .carte__bottom {
+  position: absolute;
+  left: 20px; right: 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--cream);
+  z-index: 2;
+  text-shadow: 0 1px 4px rgba(0,0,0,.5);
+}
+.carte__top { top: 18px; }
+.carte__bottom { bottom: 18px; }
+.carte__top b, .carte__bottom b { color: var(--tile); }
+.carte__pin {
+  position: absolute;
+  left: 50%; top: 52%;
+  z-index: 2;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+}
+.carte__pin-dot {
+  width: 14px; height: 14px;
+  background: var(--tile);
+  border: 2px solid var(--cream);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(181,21,21,.5);
+  animation: pinPulse 2.2s var(--ease) infinite;
+}
+.carte__pin-label {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--slate);
+  padding: 5px 10px;
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+}
+@keyframes pinPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(181,21,21,.55); }
+  60% { box-shadow: 0 0 0 18px rgba(181,21,21,0); }
+}
+
+/* ============ CONTACT ============ */
+.contact {
+  background: var(--slate);
+  color: var(--cream);
+  padding: clamp(90px, 11vw, 160px) var(--gut) clamp(60px, 7vw, 100px);
+  position: relative;
+  overflow: hidden;
+}
+.contact::before {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: .18;
+  mix-blend-mode: screen;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='k'><feTurbulence baseFrequency='0.7' numOctaves='3'/><feColorMatrix values='0 0 0 0 0.9  0 0 0 0 0.7  0 0 0 0 0.4  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23k)'/></svg>");
+}
+.contact__wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+.contact__head h2 {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-weight: 500;
+  font-size: clamp(50px, 8vw, 130px);
+  line-height: .88;
+  letter-spacing: -.03em;
+}
+.contact__head h2 em { font-style: italic; color: var(--tile); font-weight: 400; }
+.contact__head p {
+  font-family: var(--f-display);
+  font-size: clamp(16px, 1.25vw, 19px);
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 40ch;
+  color: #d3ccbd;
+  margin-top: 28px;
+}
+
+.contact__infos {
+  margin-top: 44px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid rgba(241,236,224,.18);
+}
+.contact__infos > a, .contact__infos > div {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(241,236,224,.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+  transition: padding-left .5s var(--ease), color .3s var(--ease);
+}
+.contact__infos > a:hover { padding-left: 14px; color: var(--tile); }
+.contact__infos .k {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--tile);
+  flex-shrink: 0;
+}
+.contact__infos .v {
+  font-family: var(--f-display);
+  font-size: clamp(18px, 1.8vw, 26px);
+  font-weight: 400;
+  letter-spacing: -.01em;
+  text-align: right;
+}
+
+.form {
+  background: var(--cream);
+  color: var(--slate);
+  padding: clamp(28px, 3vw, 44px);
+  border-radius: var(--r-lg);
+  box-shadow: 10px 10px 0 0 var(--tile);
+  position: relative;
+}
+.form__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(24,22,22,.15);
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #6b5f58;
+}
+.form__head b { color: var(--tile); }
+.form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.form__field {
+  display: block;
+}
+.form__field label {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 9.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--tile);
+  margin-bottom: 6px;
+}
+.form__field input,
+.form__field select,
+.form__field textarea {
+  width: 100%;
+  font: inherit;
+  font-family: var(--f-display);
+  font-size: 16px;
+  padding: 12px 14px;
+  background: transparent;
+  border: 1px solid rgba(24,22,22,.2);
+  border-radius: var(--r-sm);
+  color: var(--slate);
+  transition: border-color .3s var(--ease), background .3s var(--ease);
+}
+.form__field textarea { resize: vertical; min-height: 120px; font-size: 15px; line-height: 1.5; }
+.form__field input:focus,
+.form__field select:focus,
+.form__field textarea:focus {
+  outline: none;
+  border-color: var(--tile);
+  background: rgba(181,21,21,.04);
+}
+.form__submit {
+  width: 100%;
+  margin-top: 6px;
+  padding: 16px 18px;
+  background: var(--slate);
+  color: var(--cream);
+  border-radius: var(--r-sm);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background .4s var(--ease), transform .3s var(--ease);
+  box-shadow: 4px 4px 0 0 rgba(24,22,22,.25);
+}
+.form__submit:hover { background: var(--tile); transform: translate(-1px,-1px); box-shadow: 5px 5px 0 0 rgba(24,22,22,.25); }
+.form__submit span:last-child {
+  opacity: .7;
+  font-size: 9.5px;
+}
+
+/* ============ FOOTER ============ */
+.ftr {
+  background: var(--ink);
+  color: #a49d91;
+  padding: clamp(50px, 6vw, 80px) var(--gut) 30px;
+}
+.ftr__wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.ftr__big {
+  font-family: var(--f-display);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  font-weight: 600;
+  font-size: clamp(58px, 11vw, 180px);
+  line-height: .85;
+  letter-spacing: -.04em;
+  color: var(--cream);
+  text-transform: uppercase;
+  margin-bottom: 50px;
+}
+.ftr__big em {
+  font-style: italic;
+  color: var(--tile);
+  font-weight: 400;
+  text-transform: none;
+}
+.ftr__bot {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(241,236,224,.15);
+  font-family: var(--f-mono);
+  font-size: 10.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.ftr__bot b { color: var(--cream); }
+.ftr__links { display: flex; gap: 22px; flex-wrap: wrap; }
+.ftr__links a { transition: color .3s var(--ease); }
+.ftr__links a:hover { color: var(--tile); }
+
+@media (max-width: 900px) {
+  .hdr { background: rgba(24,22,22,.6); backdrop-filter: blur(10px); color: var(--cream); }
+  .hdr.is-scrolled { background: rgba(241,236,224,.94); color: var(--slate); }
+  .hdr__nav {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+    width: 100vw;
+    height: 100dvh;
+    background: var(--slate);
+    padding: 110px var(--gut) 40px;
+    flex-direction: column;
+    display: flex;
+    gap: 0;
+    font-size: 38px;
+    font-family: var(--f-display);
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+    font-weight: 500;
+    text-transform: none;
+    letter-spacing: -.02em;
+    color: var(--cream);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .4s var(--ease);
+    overflow-y: auto;
+    z-index: 150;
+  }
+  .hdr__nav::before {
+    content: '';
+    position: absolute; inset: 0;
+    pointer-events: none;
+    opacity: .22;
+    mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence baseFrequency='1.1' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.36  0 0 0 0 0.34  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .hdr__nav.open { opacity: 1; pointer-events: auto; }
+  .hdr__nav a {
+    padding: 22px 0;
+    border-bottom: 1px solid rgba(241,236,224,.14);
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+    transform: translateY(16px);
+    opacity: 0;
+    transition: transform .6s var(--ease-out), opacity .5s var(--ease), color .3s var(--ease);
+  }
+  .hdr__nav.open a { transform: translateY(0); opacity: 1; }
+  .hdr__nav.open a:nth-child(1) { transition-delay: .08s; }
+  .hdr__nav.open a:nth-child(2) { transition-delay: .14s; }
+  .hdr__nav.open a:nth-child(3) { transition-delay: .20s; }
+  .hdr__nav.open a:nth-child(4) { transition-delay: .26s; }
+  .hdr__nav.open a:nth-child(5) { transition-delay: .32s; }
+  .hdr__nav a::after { display: none; }
+  .hdr__nav a::before {
+    content: attr(data-num);
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--tile);
+    padding-right: 14px;
+  }
+  .hdr__nav a:hover { color: var(--tile); }
+  .hdr__nav-foot {
+    margin-top: auto;
+    padding-top: 32px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #a49d91;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hdr__nav-foot a {
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    color: var(--cream);
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .hdr__nav.open .hdr__nav-foot a { opacity: 1; transform: none; transition-delay: .38s; }
+  .hdr__nav-foot b { color: var(--tile); }
+  .hdr__cta { display: none; }
+  .burger { display: block; }
+  body.menu-open { overflow: hidden; }
+  .hero__meta-top { flex-direction: column; gap: 8px; }
+  .hero__bottom { grid-template-columns: 1fr; }
+  .hero__fiche { text-align: left; }
+  .hero__cta { justify-self: start; }
+  .atelier__wrap { grid-template-columns: 1fr; }
+  .atelier__photo { grid-row: auto; grid-column: 1; aspect-ratio: 4/5; }
+  .atelier__text { padding-top: 0; grid-column: 1; }
+  .atelier__meta { grid-template-columns: 1fr; }
+  .savoir__head { grid-template-columns: 1fr; gap: 20px; }
+  .svc { grid-template-columns: 54px 1fr; grid-template-rows: auto auto; gap: 10px 18px; padding: 20px 0; }
+  .svc__num { font-size: 38px; grid-row: 1 / span 2; }
+  .svc__title { grid-column: 2; }
+  .svc__desc { grid-column: 2; font-size: 14px; }
+  .svc__tag { display: none; }
+  .svc:hover .svc__title { transform: none; }
+  .chantiers__head { grid-template-columns: 1fr; gap: 20px; }
+  .planche { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 60px; }
+  .shot--a { grid-column: 1 / -1; grid-row: span 4; }
+  .shot--b { grid-column: 1 / span 6; grid-row: span 3; }
+  .shot--c { grid-column: 1 / span 3; grid-row: span 2; }
+  .shot--d { grid-column: 4 / span 3; grid-row: span 2; }
+  .shot--e { grid-column: 1 / span 6; grid-row: span 3; }
+  .shot--f { grid-column: 1 / span 3; grid-row: span 3; }
+  .shot--g { grid-column: 4 / span 3; grid-row: span 3; }
+  .shot--h { grid-column: 1 / -1; grid-row: span 3; }
+  .chiffres__wrap { grid-template-columns: 1fr; }
+  .chiffres__photo { aspect-ratio: 4/5; }
+  .chiffres__big { grid-template-columns: 1fr 1fr; }
+  .zone__wrap { grid-template-columns: 1fr; }
+  .contact__wrap { grid-template-columns: 1fr; }
+  .form__row { grid-template-columns: 1fr; }
+}
+@media (max-width: 520px) {
+  .chiffres__big { grid-template-columns: 1fr; }
+  .zone__villes { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="#" class="hdr__brand">TOITURES DES GONES</a>
+  <nav class="hdr__nav" id="nav" aria-label="Navigation principale">
+    <a href="#atelier" data-num="01">Atelier</a>
+    <a href="#savoir-faire" data-num="02">Savoir-faire</a>
+    <a href="#chantiers" data-num="03">Chantiers</a>
+    <a href="#zone" data-num="04">Zone</a>
+    <a href="#contact" data-num="05">Contact</a>
+    <div class="hdr__nav-foot">
+      <a href="tel:0482315275"><b>04 82 31 52 75</b></a>
+      <a href="mailto:toituresdesgones@gmail.com">toituresdesgones@gmail.com</a>
+      <span>6 rue des Mûriers · 69390 Vourles</span>
+    </div>
+  </nav>
+  <a href="#contact" class="hdr__cta">Devis · 04 82 31 52 75</a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<section class="hero" id="hero">
+  <div class="hero__photo">
+    <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/132891902_1055921321542832_5693157585292294_n-2880w.jpg" alt="Toiture en tuile, chantier Lyon">
+  </div>
+
+  <div class="hero__grid">
+    <div class="hero__meta-top">
+      <div>
+        <span class="lbl">Entreprise</span>
+        <span class="val">Couverture · Zinguerie · Charpente</span>
+      </div>
+      <div>
+        <span class="lbl">Lat. 45°43′ N — Lon. 4°46′ E</span>
+        <span class="val">Lyon &amp; Rhône · Dep. 69</span>
+      </div>
+    </div>
+
+    <h1 class="hero__title">
+      <span class="l1">Toitures</span>
+      <span class="l2"><em>des</em>Gones</span>
+    </h1>
+
+    <div class="hero__bottom">
+      <p class="hero__tagline">
+        Couverture, zinguerie sur mesure et charpente à Lyon.
+        <b>Artisans couvreurs-zingueurs</b>, anciens Compagnons du Devoir,
+        dix ans sur les toits du Rhône.
+      </p>
+
+      <a href="#contact" class="hero__cta">
+        <small>Fiche ·  0001</small>
+        <strong>Demander un devis</strong>
+      </a>
+
+      <div class="hero__fiche">
+        <div><span class="k">Fondée</span> · <span class="v">2018</span></div>
+        <div><span class="k">Équipe</span> · <span class="v">08 personnes</span></div>
+        <div><span class="k">Levage</span> · <span class="v">36 m de hauteur</span></div>
+        <div><span class="k">Label</span> · <span class="v">RGE Qualibat · CIP</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ATELIER ============ -->
+<section class="atelier" id="atelier">
+  <div class="atelier__wrap">
+    <div class="atelier__text">
+      <div class="section-marker">Chapitre 01 · L'atelier</div>
+      <h2>Artisans<br>couvreurs<br><em>du Rhône.</em></h2>
+      <p class="atelier__drop">
+        Créée en 2018 par Yoan Lopez, couvreur-zingueur, Toitures Des Gones est une entreprise à taille humaine
+        qui intervient sur la couverture, la zinguerie et la charpente à Lyon et dans le Rhône.
+      </p>
+      <p>
+        Pendant quatre ans, votre professionnel a été membre des Compagnons du Devoir :
+        un apprentissage au long cours du métier, de la main, du geste juste. Cette rigueur
+        de compagnonnage guide chaque chantier — du remplacement d'une tuile au lanternon
+        d'un Bâtiment de France fraîchement restauré.
+      </p>
+    </div>
+
+    <figure class="atelier__photo">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/98596243_886645591803740_1225823059718438912_o-2880w.jpg" alt="Équipe Toitures Des Gones sur chantier">
+      <figcaption>
+        <span>Yoan Lopez &amp; équipe</span>
+        <span>Vourles · 69</span>
+      </figcaption>
+    </figure>
+
+    <div class="atelier__meta">
+      <div>
+        <span class="k">Savoir-faire</span>
+        <span class="v">4 ans<em>Compagnons du Devoir</em></span>
+      </div>
+      <div>
+        <span class="k">Équipe</span>
+        <span class="v">08 personnes<em>6 couvreurs-zingueurs</em></span>
+      </div>
+      <div>
+        <span class="k">Atelier</span>
+        <span class="v">Pliage zinguerie<em>Sur mesure · Vourles</em></span>
+      </div>
+      <div>
+        <span class="k">Parc matériel</span>
+        <span class="v">36 mètres<em>Grues &amp; nacelles</em></span>
+      </div>
+    </div>
+
+    <div class="atelier__badges">
+      <span><b>RGE Qualibat</b> · Rénovation énergétique</span>
+      <span><b>Installateur Conseil Velux</b></span>
+      <span><b>CIP Patrimoine</b> · Bâtiments classés</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SAVOIR-FAIRE ============ -->
+<section class="savoir section--slate" id="savoir-faire">
+  <header class="savoir__head">
+    <h2>Huit<br>savoir-faire,<br><em>une main.</em></h2>
+    <p>
+      Neuf et rénovation. Du remplacement ciblé d'une tuile cassée à la
+      reprise complète d'une charpente traditionnelle, chaque intervention
+      est menée par la même équipe — de la visite jusqu'au faîtage.
+    </p>
+  </header>
+
+  <div class="savoir__list">
+    <div class="svc">
+      <div class="svc__num">01</div>
+      <div class="svc__title">Couverture</div>
+      <div class="svc__desc">Ardoise, tuile, tuile plate, tavaillon, couverture métallique et plomb. Réfection complète ou remplacement ponctuel.</div>
+      <div class="svc__tag">Neuf · Rénov.</div>
+    </div>
+    <div class="svc">
+      <div class="svc__num">02</div>
+      <div class="svc__title">Zinguerie sur mesure</div>
+      <div class="svc__desc">Gouttières, descentes, chéneaux, faîtages, abergements — pliés dans notre atelier à Vourles, en zinc ou cuivre.</div>
+      <div class="svc__tag">Atelier pliage</div>
+    </div>
+    <div class="svc">
+      <div class="svc__num">03</div>
+      <div class="svc__title">Charpente traditionnelle</div>
+      <div class="svc__desc">Chevrons, pannes, sablières, arbalétriers. Reprise et pose de charpente bois selon les règles du compagnonnage.</div>
+      <div class="svc__tag">Bois massif</div>
+    </div>
+    <div class="svc">
+      <div class="svc__num">04</div>
+      <div class="svc__title">Charpente industrielle</div>
+      <div class="svc__desc">Fermettes, ossature bois, solutions techniques pour construction neuve et extensions.</div>
+      <div class="svc__tag">Ossature</div>
+    </div>
+    <div class="svc">
+      <div class="svc__num">05</div>
+      <div class="svc__title">Fenêtres de toit</div>
+      <div class="svc__desc">Installateur Conseil Velux. Pose, remplacement et raccords étanches de fenêtres de toit et verrières.</div>
+      <div class="svc__tag">Velux agréé</div>
+    </div>
+    <div class="svc">
+      <div class="svc__num">06</div>
+      <div class="svc__title">Isolation sous toiture</div>
+      <div class="svc__desc">Isolation thermique des combles perdus et aménagés. Éligible MaPrimeRénov' via notre label RGE.</div>
+      <div class="svc__tag">RGE Qualibat</div>
+    </div>
+    <div class="svc">
+      <div class="svc__num">07</div>
+      <div class="svc__title">Restauration du patrimoine</div>
+      <div class="svc__desc">Bâtiments de France, monuments classés, galeries d'art. Label CIP Patrimoine à l'appui.</div>
+      <div class="svc__tag">CIP Patrimoine</div>
+    </div>
+    <div class="svc">
+      <div class="svc__num">08</div>
+      <div class="svc__title">Levage &amp; petits travaux</div>
+      <div class="svc__desc">Grues et nacelles jusqu'à 36 mètres, bardage, réparation de fuites, entretien annuel.</div>
+      <div class="svc__tag">Jusqu'à 36 m</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CHANTIERS ============ -->
+<section class="chantiers" id="chantiers">
+  <header class="chantiers__head">
+    <h2>Planche<br>de <em>chantiers.</em></h2>
+    <p>
+      Quelques toitures menées depuis l'atelier de Vourles — couverture tuile,
+      zinguerie cuivre, charpente traditionnelle, Velux, restauration de
+      Bâtiments de France. Extraits de l'album d'équipe.
+    </p>
+  </header>
+
+  <div class="planche">
+    <figure class="shot shot--a">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/85045287_816117122189921_7660982716912893952_o-2880w.jpg" alt="Réfection complète de toiture">
+      <span class="shot__num">№ 001 / 2019</span>
+      <span class="shot__tag">Réfection · tuile mécanique</span>
+    </figure>
+    <figure class="shot shot--b">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/119746355_979514549183510_5698097965609695731_n-2880w.jpg" alt="Toiture ardoise">
+      <span class="shot__num">№ 002</span>
+      <span class="shot__tag">Ardoise · pose neuve</span>
+    </figure>
+    <figure class="shot shot--c">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/80075587_776775372790763_2552673714562924544_n-2880w.jpg" alt="Couverture tuile plate">
+      <span class="shot__num">№ 003</span>
+      <span class="shot__tag">Tuile plate · rénovation</span>
+    </figure>
+    <figure class="shot shot--d">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/126900595_1033118950489736_4853715525345096446_o-2880w.jpg" alt="Zinguerie sur mesure">
+      <span class="shot__num">№ 004</span>
+      <span class="shot__tag">Zinguerie · sur mesure</span>
+    </figure>
+    <figure class="shot shot--e">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/84826165_816116948856605_1763387364123607040_o-2880w.jpg" alt="Chéneau zinc">
+      <span class="shot__num">№ 005</span>
+      <span class="shot__tag">Chéneau zinc · pliage atelier</span>
+    </figure>
+    <figure class="shot shot--f">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/109848584_930262280775404_2307680735257966941_o-2880w.jpg" alt="Équipe sur toiture">
+      <span class="shot__num">№ 006</span>
+      <span class="shot__tag">Équipe · couverture</span>
+    </figure>
+    <figure class="shot shot--g">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/60557766_623684798099822_863728707888480256_n-2880w.jpg" alt="Détail zinguerie">
+      <span class="shot__num">№ 007</span>
+      <span class="shot__tag">Détail zinc · faîtage</span>
+    </figure>
+    <figure class="shot shot--h">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/38896387_469461353522168_8232645651444269056_o-2880w.jpg" alt="Façade et toiture restaurée">
+      <span class="shot__num">№ 008</span>
+      <span class="shot__tag">Patrimoine · galerie d'art</span>
+    </figure>
+  </div>
+
+  <div class="planche-note">
+    <span>Album photo · Toitures Des Gones</span>
+    <span><b>Voir tous les chantiers →</b></span>
+    <span>Lyon · Rhône · 2018 → 2026</span>
+  </div>
+</section>
+
+<!-- ============ CHIFFRES & ATELIER ============ -->
+<section class="chiffres section--slate">
+  <header class="chiffres__head">
+    <div class="section-marker">Chapitre 03 · L'atelier de pliage</div>
+    <h2>Huit mains,<br>trente-six mètres<br>de <em>hauteur.</em></h2>
+  </header>
+
+  <div class="chiffres__wrap">
+    <div class="chiffres__big">
+      <div>
+        <div class="chiffres__lbl">Année de fondation</div>
+        <div class="chiffres__num">2018<em>↑ 2026</em></div>
+        <div class="chiffres__lbl">Entreprise <b>à taille humaine</b></div>
+      </div>
+      <div>
+        <div class="chiffres__lbl">L'équipe</div>
+        <div class="chiffres__num">08<em>compagnons</em></div>
+        <div class="chiffres__lbl">6 couvreurs · 1 chargé d'affaires · 1 gestion</div>
+      </div>
+      <div>
+        <div class="chiffres__lbl">Levage</div>
+        <div class="chiffres__num">36<em>mètres</em></div>
+        <div class="chiffres__lbl">Grues &amp; nacelles <b>intégrées à l'atelier</b></div>
+      </div>
+      <div>
+        <div class="chiffres__lbl">Compagnonnage</div>
+        <div class="chiffres__num">04<em>années</em></div>
+        <div class="chiffres__lbl">Compagnons du Devoir <b>à la main du gérant</b></div>
+      </div>
+    </div>
+
+    <figure class="chiffres__photo">
+      <img src="https://le-de.cdn-website.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/20250609_135942-1920w.jpg" alt="Atelier de pliage zinguerie Vourles">
+      <figcaption>
+        <span>Atelier · Vourles</span>
+        <span><b>Zinguerie sur mesure</b></span>
+      </figcaption>
+      <p class="chiffres__photo-quote">
+        Un toit n'est pas une façade qu'on pose.<br>C'est une mécanique qu'on plie.
+      </p>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ ZONE ============ -->
+<section class="zone" id="zone">
+  <div class="zone__wrap">
+    <div class="zone__text">
+      <div class="section-marker">Chapitre 04 · Zone d'intervention</div>
+      <h2>Lyon<br>&amp; tout <em>le Rhône.</em></h2>
+      <p>
+        Depuis l'atelier de Vourles, nous intervenons dans Lyon intra-muros,
+        sur la Métropole et dans tout le département du Rhône. Devis gratuit,
+        déplacement compris — quelle que soit la hauteur de votre toit.
+      </p>
+      <div class="zone__villes">
+        <span><b>Lyon</b><small>69</small></span>
+        <span><b>Villeurbanne</b><small>69100</small></span>
+        <span><b>Vourles</b><small>69390</small></span>
+        <span><b>Oullins</b><small>69600</small></span>
+        <span><b>Saint-Genis-Laval</b><small>69230</small></span>
+        <span><b>Brignais</b><small>69530</small></span>
+        <span><b>Francheville</b><small>69340</small></span>
+        <span><b>Caluire</b><small>69300</small></span>
+      </div>
+    </div>
+
+    <figure class="carte">
+      <div class="carte__img">
+        <img src="https://images.unsplash.com/photo-1682249301375-5c7f5a286d8c?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1600" alt="Vue aérienne des toits en tuiles rouges de Lyon">
+      </div>
+      <div class="carte__top">
+        <span>N · <b>45° 43′</b></span>
+        <span>E · <b>4° 46′</b></span>
+      </div>
+      <div class="carte__pin">
+        <div class="carte__pin-dot" aria-hidden="true"></div>
+        <div class="carte__pin-label">Lyon · 69</div>
+      </div>
+      <div class="carte__bottom">
+        <span>Département · <b>69</b> · Rhône</span>
+        <span>Vue · <b>Vieux Lyon</b></span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact section--slate" id="contact">
+  <div class="contact__wrap">
+    <div class="contact__head">
+      <div class="section-marker" style="color:var(--tile);">Fiche · 0001 · Devis</div>
+      <h2>Parlons de<br>votre <em>toiture.</em></h2>
+      <p>
+        Remplissez la fiche ci-contre ou appelez directement l'atelier —
+        Yoan Lopez vous rappelle dans la journée pour organiser une visite gratuite.
+      </p>
+
+      <div class="contact__infos">
+        <a href="tel:0482315275">
+          <span class="k">Fixe atelier</span>
+          <span class="v">04 82 31 52 75</span>
+        </a>
+        <a href="tel:0638430282">
+          <span class="k">Mobile</span>
+          <span class="v">06 38 43 02 82</span>
+        </a>
+        <a href="mailto:toituresdesgones@gmail.com">
+          <span class="k">Mail</span>
+          <span class="v">toituresdesgones@gmail.com</span>
+        </a>
+        <div>
+          <span class="k">Atelier</span>
+          <span class="v">6 rue Des Mûriers, 69390 Vourles</span>
+        </div>
+        <div>
+          <span class="k">Horaires</span>
+          <span class="v">Lun — Ven · 07:30 → 18:00</span>
+        </div>
+      </div>
+    </div>
+
+    <form class="form" onsubmit="event.preventDefault(); this.querySelector('.form__submit span:first-child').textContent='Demande envoyée';">
+      <div class="form__head">
+        <span>Fiche devis · <b>0001</b></span>
+        <span>Vourles · 69</span>
+      </div>
+      <div class="form__row">
+        <div class="form__field">
+          <label for="n">Nom</label>
+          <input type="text" id="n" name="n" required>
+        </div>
+        <div class="form__field">
+          <label for="p">Téléphone</label>
+          <input type="tel" id="p" name="p" required>
+        </div>
+      </div>
+      <div class="form__field" style="margin-bottom:14px;">
+        <label for="e">Email</label>
+        <input type="email" id="e" name="e" required>
+      </div>
+      <div class="form__row">
+        <div class="form__field">
+          <label for="t">Type de chantier</label>
+          <select id="t" name="t">
+            <option>Couverture / Réfection</option>
+            <option>Zinguerie sur mesure</option>
+            <option>Charpente traditionnelle</option>
+            <option>Charpente industrielle</option>
+            <option>Fenêtre de toit (Velux)</option>
+            <option>Isolation sous toiture</option>
+            <option>Patrimoine · Restauration</option>
+            <option>Petits travaux · Fuite</option>
+          </select>
+        </div>
+        <div class="form__field">
+          <label for="cp">Code postal</label>
+          <input type="text" id="cp" name="cp" placeholder="69000" pattern="[0-9]{5}">
+        </div>
+      </div>
+      <div class="form__field" style="margin-bottom:14px;">
+        <label for="m">Décrivez votre projet</label>
+        <textarea id="m" name="m" placeholder="Quelques lignes sur votre toit, son état, vos besoins..."></textarea>
+      </div>
+      <button type="submit" class="form__submit">
+        <span>Envoyer la demande</span>
+        <span>↗</span>
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ftr">
+  <div class="ftr__wrap">
+    <div class="ftr__big">Toitures <em>des Gones</em></div>
+    <div class="ftr__bot">
+      <div>
+        <b>Toitures Des Gones</b> · Couvreur zingueur Lyon &amp; Rhône<br>
+        6 rue des Mûriers, 69390 Vourles · SIRET en cours
+      </div>
+      <div class="ftr__links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Vie privée</a>
+        <a href="#">Cookies</a>
+        <a href="#contact">Recrutement</a>
+      </div>
+      <div>© 2018 → 2026 · <b>TDG</b></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Nav : fond crème + blur dès qu'on quitte le haut de page
+  const hdr = document.querySelector('.hdr');
+  const onScroll = () => {
+    if (window.scrollY > 40) hdr.classList.add('is-scrolled');
+    else hdr.classList.remove('is-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  const burger = document.getElementById('burger');
+  const nav = document.getElementById('nav');
+  if (burger && nav) {
+    const toggle = (force) => {
+      const open = force ?? !burger.classList.contains('open');
+      burger.classList.toggle('open', open);
+      nav.classList.toggle('open', open);
+      document.body.classList.toggle('menu-open', open);
+      burger.setAttribute('aria-expanded', open);
+      burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+    };
+    burger.addEventListener('click', () => toggle());
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+  }
+
+})();
+</script>
+
+</body>
+</html>

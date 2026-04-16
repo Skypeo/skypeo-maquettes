@@ -35,7 +35,31 @@
       "WebFetch(domain:www.ambulances-dore.fr)",
       "mcp__puppeteer__puppeteer_screenshot",
       "Bash(curl -sL \"https://www.ambulances-dore.fr/\")",
-      "WebFetch(domain:le-de.cdn-website.com)"
+      "WebFetch(domain:le-de.cdn-website.com)",
+      "Bash(pkill -f \"skills\")",
+      "Bash(npx -y skills add https://github.com/secondsky/claude-skills --skill motion --agent claude-code -y)",
+      "WebFetch(domain:www.toitures-des-gones.fr)",
+      "Bash(mkdir *)",
+      "Bash(curl -sL \"https://www.toitures-des-gones.fr/\" -o /tmp/tdg_home.html)",
+      "Bash(curl -sL \"https://www.toitures-des-gones.fr/nos-realisations\" -o /tmp/tdg_real.html)",
+      "Bash(curl -sL \"https://www.toitures-des-gones.fr/a-propos\" -o /tmp/tdg_about.html)",
+      "Bash(mkdir -p toitures-des-gones/_scrape)",
+      "Bash(curl -sL \"https://www.toitures-des-gones.fr/\" -o toitures-des-gones/_scrape/home.html)",
+      "Bash(curl -sL \"https://www.toitures-des-gones.fr/nos-realisations\" -o toitures-des-gones/_scrape/real.html)",
+      "Bash(curl -sL \"https://www.toitures-des-gones.fr/a-propos\" -o toitures-des-gones/_scrape/about.html)",
+      "Bash(curl -sL \"https://www.toitures-des-gones.fr/couverture\" -o toitures-des-gones/_scrape/couverture.html)",
+      "Bash(grep -hoE 'le-de\\\\.cdn-website\\\\.com/f8a6aa3313064f3093809cbd46989cfc/dms3rep/multi/opt/[A-Za-z0-9_-]+' *.html)",
+      "Bash(node *)",
+      "Bash(cp 'C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/trubert-construction-bois/index_screenshot.png' 'C:/Users/monke/.claude/projects/C--Users-monke-OneDrive-Bureau-Skypeo-maquettes/memory/references/trubert-desktop.png')",
+      "Bash(cp 'C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/trubert-construction-bois/index_screenshot_mobile.png' 'C:/Users/monke/.claude/projects/C--Users-monke-OneDrive-Bureau-Skypeo-maquettes/memory/references/trubert-mobile.png')",
+      "Bash(cp 'C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/sigot-traiteur/index_screenshot.png' 'C:/Users/monke/.claude/projects/C--Users-monke-OneDrive-Bureau-Skypeo-maquettes/memory/references/sigot-desktop.png')",
+      "Bash(cp 'C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/sigot-traiteur/index_screenshot_mobile.png' 'C:/Users/monke/.claude/projects/C--Users-monke-OneDrive-Bureau-Skypeo-maquettes/memory/references/sigot-mobile.png')",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://unsplash.com/photos/an-aerial-view-of-a-city-with-red-roofs-94avmgtEb2c\" -o /tmp/lyon.html)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://unsplash.com/photos/an-aerial-view-of-a-city-with-red-roofs-94avmgtEb2c\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://unsplash.com/photos/aerial-view-of-city-buildings-during-daytime-aQurkj55aUA\")",
+      "WebFetch(domain:www.ucampanile.com)",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 \\(KHTML, like Gecko\\) Chrome/120.0 Safari/537.36\" -H \"Accept: text/html,application/xhtml+xml\" \"https://unsplash.com/photos/an-aerial-view-of-a-city-with-red-roofs-94avmgtEb2c\" -o \"/c/Users/monke/OneDrive/Bureau/Skypeo-maquettes/toitures-des-gones/_tmp.html\")",
+      "Bash(curl -sL -I -A \"Mozilla/5.0\" \"https://unsplash.com/photos/94avmgtEb2c/download?w=1600\")"
     ]
   }
 }

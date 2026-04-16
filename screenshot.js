@@ -30,6 +30,23 @@ async function screenshot(htmlFile, options = {}) {
   await page.evaluate(() => document.fonts.ready);
   await new Promise(r => setTimeout(r, 1500));
 
+  // Trigger IntersectionObserver-based reveals by scrolling through page
+  const triggerReveals = async () => {
+    await page.evaluate(async () => {
+      const pageHeight = document.documentElement.scrollHeight;
+      const step = Math.max(300, window.innerHeight / 2);
+      for (let y = 0; y < pageHeight; y += step) {
+        window.scrollTo(0, y);
+        await new Promise(r => setTimeout(r, 80));
+      }
+      window.scrollTo(0, pageHeight);
+      await new Promise(r => setTimeout(r, 200));
+      window.scrollTo(0, 0);
+      await new Promise(r => setTimeout(r, 400));
+    });
+  };
+  await triggerReveals();
+
   const outputPath = output || filePath.replace('.html', '_screenshot.png');
   await page.screenshot({ path: outputPath, fullPage });
   console.log(`Screenshot saved: ${outputPath}`);
@@ -38,6 +55,7 @@ async function screenshot(htmlFile, options = {}) {
   const mobilePath = outputPath.replace('.png', '_mobile.png');
   await page.setViewport({ width: 375, height: 812 });
   await new Promise(r => setTimeout(r, 500));
+  await triggerReveals();
   await page.screenshot({ path: mobilePath, fullPage });
   console.log(`Mobile screenshot saved: ${mobilePath}`);
 

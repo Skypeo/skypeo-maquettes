@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "motion": {
+      "source": "secondsky/claude-skills",
+      "sourceType": "github",
+      "computedHash": "b0ca0f76affa8b0f2b13ff3bd846bff8162941d6a8fb699f3d57a4bfb3059668"
+    }
+  }
+}
