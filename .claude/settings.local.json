@@ -26,7 +26,16 @@
       "Read(//tmp/**)",
       "mcp__puppeteer__puppeteer_navigate",
       "mcp__puppeteer__puppeteer_evaluate",
-      "Bash(node -e ' *)"
+      "Bash(node -e ' *)",
+      "Bash(mkdir -p \"C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/nonnon/photos-tmp\")",
+      "Bash(curl -s -o p1.jpg \"https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0002-1920w.jpg\")",
+      "Bash(curl -s -o p2.jpg \"https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210715-WA0006-1152w.jpg\")",
+      "Bash(curl -s -o p3.jpg \"https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0009-675h.jpg\")",
+      "Bash(curl -s -o p4.jpg \"https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/Image-1+%281%29-856h.jpg\")",
+      "WebFetch(domain:www.ambulances-dore.fr)",
+      "mcp__puppeteer__puppeteer_screenshot",
+      "Bash(curl -sL \"https://www.ambulances-dore.fr/\")",
+      "WebFetch(domain:le-de.cdn-website.com)"
     ]
   }
 }

@@ -24,9 +24,9 @@
     :root {
       --deep: #042B4D;
       --water: #63B4D1;
-      --white: #FFFFFF;
-      --soft: #F2F7FB;
-      --soft-2: #E6EEF4;
+      --white: #F7F4EE;
+      --soft: #EDF2F6;
+      --soft-2: #DEE8EF;
       --line: rgba(4, 43, 77, 0.1);
       --text: #0A1A2E;
       --muted: rgba(4, 43, 77, 0.64);
@@ -61,7 +61,10 @@
       font-weight: 400;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      position: relative;
     }
+
+    /* texture appliquée uniquement sur les sections claires via ::before */
 
     img,
     svg {
@@ -146,7 +149,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
+      flex-wrap: nowrap;
     }
 
     .logo {
@@ -158,6 +162,8 @@
       font-size: 1.4rem;
       font-weight: 500;
       letter-spacing: -0.01em;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .logo em {
@@ -178,10 +184,11 @@
 
     .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 28px;
       list-style: none;
       font-size: 0.92rem;
       font-weight: 400;
+      white-space: nowrap;
     }
 
     .nav-links a {
@@ -221,6 +228,8 @@
       font-size: 0.85rem;
       font-weight: 600;
       transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .nav-cta:hover {
@@ -467,10 +476,39 @@
     /* ============ SECTION GÉNÉRIQUE ============ */
     section.block {
       padding: clamp(80px, 10vw, 140px) 0;
+      position: relative;
+    }
+
+    section.block::before,
+    .zones::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.55;
+      background-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.62' numOctaves='2' stitchTiles='stitch' seed='3'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.18  0 0 0 0 0.30  0 0 0 0.65 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>");
+      mix-blend-mode: multiply;
+    }
+
+    section.block.dark::before {
+      display: none;
     }
 
     section.block.soft {
       background: var(--soft);
+    }
+
+    section.block > .wrap,
+    section.block > div.wrap,
+    .zones > .wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .zones {
+      position: relative;
     }
 
     section.block.dark {
@@ -923,7 +961,287 @@
       transform: translateY(-2px);
     }
 
-    /* ============ GALERIE ============ */
+    /* ============ COLLAGE (Assainissement carnet) ============ */
+    .collage-wrap {
+      position: relative;
+    }
+
+    .collage-badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: var(--white);
+      color: var(--deep);
+      border-radius: var(--r-pill);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      box-shadow: 0 10px 30px -10px rgba(4, 43, 77, 0.5);
+    }
+
+    .collage-badge::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--water);
+      box-shadow: 0 0 0 3px rgba(99, 180, 209, 0.25);
+    }
+
+    .collage-caption {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      z-index: 3;
+      padding: 10px 14px;
+      background: rgba(4, 43, 77, 0.88);
+      color: var(--white);
+      border-radius: var(--r-md);
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 0.85rem;
+      backdrop-filter: blur(6px);
+    }
+
+    /* ============ PORTRAIT ARTISAN ============ */
+    .artisan {
+      background: linear-gradient(180deg, var(--deep) 0%, #021f38 100%);
+      color: var(--white);
+      padding: clamp(80px, 10vw, 140px) 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .artisan::before {
+      content: 'NONNON';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--ff-display);
+      font-size: clamp(12rem, 28vw, 28rem);
+      font-weight: 300;
+      letter-spacing: -0.04em;
+      color: rgba(99, 180, 209, 0.05);
+      pointer-events: none;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .artisan-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .artisan-photo {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .artisan-photo img {
+      width: 100%;
+      height: 100%;
+      object-position: center 40%;
+    }
+
+    .artisan-photo .stamp {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      right: 20px;
+      z-index: 2;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--deep);
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .artisan-photo .stamp .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #2ecc71;
+      box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.25);
+      flex-shrink: 0;
+    }
+
+    .artisan-photo .stamp-txt {
+      font-size: 0.8rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+
+    .artisan-photo .stamp-txt strong {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .artisan-body .kicker {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--water);
+      font-weight: 500;
+      margin-bottom: 22px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .artisan-body .kicker::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--water);
+    }
+
+    .artisan-body h2 {
+      color: var(--white);
+      font-size: clamp(2rem, 4.2vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.1;
+      margin-bottom: 32px;
+      max-width: 20ch;
+    }
+
+    .artisan-body h2 em {
+      color: var(--water);
+      font-style: italic;
+    }
+
+    .artisan-body p {
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.7;
+      font-size: 1.02rem;
+      margin-bottom: 18px;
+      max-width: 52ch;
+    }
+
+    .artisan-body p strong {
+      color: var(--white);
+      font-weight: 500;
+    }
+
+    .artisan-sign {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .artisan-sign .sig {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--water);
+      line-height: 1;
+    }
+
+    .artisan-sign .sig-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+    }
+
+    /* ============ PROCESS ============ */
+    .process-head {
+      max-width: 720px;
+      margin-bottom: clamp(50px, 6vw, 70px);
+    }
+
+    .process-head h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      margin: 20px 0 16px;
+      max-width: 20ch;
+    }
+
+    .process-head p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.6;
+      max-width: 54ch;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .process-step {
+      padding: 38px 28px 38px 0;
+      position: relative;
+      border-right: 1px solid var(--line);
+    }
+
+    .process-step:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .process-step:not(:first-child) {
+      padding-left: 28px;
+    }
+
+    .process-step .num {
+      font-family: var(--ff-display);
+      font-size: 3.2rem;
+      font-weight: 300;
+      color: var(--water);
+      line-height: 1;
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    .process-step .num sup {
+      font-size: 0.4em;
+      color: var(--muted);
+      font-style: italic;
+      margin-left: 4px;
+      vertical-align: top;
+    }
+
+    .process-step h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .process-step p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    /* ============ GALERIE (Masonry) ============ */
     .gallery-head {
       max-width: 720px;
       margin-bottom: clamp(50px, 6vw, 80px);
@@ -972,11 +1290,12 @@
       transform: scale(1.06);
     }
 
-    .gallery-item::after {
+    .gallery-item.photo::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 55%, rgba(4, 43, 77, 0.68));
+      background: linear-gradient(180deg, transparent 45%, rgba(4, 43, 77, 0.78));
+      pointer-events: none;
     }
 
     .gallery-item .meta {
@@ -989,45 +1308,198 @@
     }
 
     .gallery-item .meta .tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--water);
       margin-bottom: 6px;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .gallery-item .meta .title {
       font-family: var(--ff-display);
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 400;
       line-height: 1.25;
       font-style: italic;
     }
 
-    .g1 {
-      grid-column: span 7;
+    /* Text tile inside gallery */
+    .gallery-item.tile {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .gallery-item.tile-dark {
+      background: var(--deep);
+      color: var(--white);
+    }
+
+    .gallery-item.tile-water {
+      background: var(--water);
+      color: var(--deep);
+    }
+
+    .gallery-item.tile-cream {
+      background: var(--soft-2);
+      color: var(--deep);
+    }
+
+    .gallery-item.tile .tile-top {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0.85;
+    }
+
+    .gallery-item.tile .tile-main {
+      font-family: var(--ff-display);
+      font-size: clamp(1.2rem, 1.8vw, 1.7rem);
+      font-weight: 300;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+    }
+
+    .gallery-item.tile .tile-main em {
+      font-style: italic;
+      color: inherit;
+      opacity: 0.75;
+    }
+
+    .gallery-item.tile.tile-dark .tile-main em {
+      color: var(--water);
+      opacity: 1;
+    }
+
+    .gallery-item.tile .tile-foot {
+      font-size: 0.85rem;
+      opacity: 0.75;
+      line-height: 1.4;
+    }
+
+    .gallery-item.tile .tile-stat {
+      font-family: var(--ff-display);
+      font-size: clamp(3rem, 5vw, 4.4rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .gallery-item.tile .tile-stat sup {
+      font-size: 0.4em;
+      vertical-align: top;
+      opacity: 0.6;
+      font-style: italic;
+      margin-left: 4px;
+    }
+
+    /* Grid placements */
+    .g-tank {
+      grid-column: span 5;
       grid-row: span 3;
     }
 
-    .g2 {
-      grid-column: span 5;
-      grid-row: span 2;
-    }
-
-    .g3 {
-      grid-column: span 5;
-      grid-row: span 2;
-    }
-
-    .g4 {
+    .g-quote {
       grid-column: span 4;
       grid-row: span 2;
     }
 
-    .g5 {
-      grid-column: span 8;
+    .g-van {
+      grid-column: span 3;
       grid-row: span 2;
+    }
+
+    .g-bath {
+      grid-column: span 4;
+      grid-row: span 3;
+    }
+
+    .g-stat {
+      grid-column: span 3;
+      grid-row: span 2;
+    }
+
+    .g-loc {
+      grid-column: span 4;
+      grid-row: span 2;
+    }
+
+    /* ============ ZONES ============ */
+    .zones {
+      background: var(--soft);
+      padding: clamp(70px, 9vw, 110px) 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .zones-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .zones-left h2 {
+      font-size: clamp(1.8rem, 3.4vw, 2.8rem);
+      margin: 18px 0 18px;
+      max-width: 18ch;
+    }
+
+    .zones-left p {
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 40ch;
+      font-size: 1rem;
+    }
+
+    .zones-map {
+      position: relative;
+    }
+
+    .zones-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .zone-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--r-pill);
+      font-size: 0.92rem;
+      color: var(--deep);
+      transition: transform 0.3s, border-color 0.3s, background 0.3s;
+      font-weight: 500;
+    }
+
+    .zone-chip::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--water);
+    }
+
+    .zone-chip.primary {
+      background: var(--deep);
+      color: var(--white);
+      border-color: var(--deep);
+    }
+
+    .zone-chip.primary::before {
+      background: var(--water);
+      box-shadow: 0 0 0 3px rgba(99, 180, 209, 0.25);
+    }
+
+    .zone-chip:hover {
+      transform: translateY(-2px);
+      border-color: var(--water);
     }
 
     /* ============ INFOS PRATIQUES (band) ============ */
@@ -1152,9 +1624,55 @@
         grid-template-columns: 1fr 1fr;
         gap: 36px;
       }
+
+      .process-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-step {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .process-step:nth-child(2) {
+        border-right: none;
+      }
+
+      .process-step:nth-child(3),
+      .process-step:nth-child(4) {
+        border-bottom: none;
+        padding-top: 38px;
+      }
+
+      .process-step:nth-child(3) {
+        padding-left: 0;
+      }
+
+      .g-tank {
+        grid-column: span 7;
+      }
+
+      .g-quote {
+        grid-column: span 5;
+      }
+
+      .g-van {
+        grid-column: span 4;
+      }
+
+      .g-bath {
+        grid-column: span 5;
+      }
+
+      .g-stat {
+        grid-column: span 3;
+      }
+
+      .g-loc {
+        grid-column: span 5;
+      }
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 1180px) {
       .nav-links {
         display: none;
       }
@@ -1162,7 +1680,9 @@
       .hamburger {
         display: flex;
       }
+    }
 
+    @media (max-width: 820px) {
       .nav-cta .phone-txt {
         display: none;
       }
@@ -1212,22 +1732,71 @@
       }
 
       .gallery-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 180px;
+        grid-template-columns: repeat(6, 1fr);
+        grid-auto-rows: 170px;
+        gap: 12px;
       }
 
-      .g1,
-      .g2,
-      .g3,
-      .g4,
-      .g5 {
-        grid-column: span 1;
+      .g-tank {
+        grid-column: span 6;
+        grid-row: span 2;
+      }
+
+      .g-quote {
+        grid-column: span 6;
         grid-row: span 1;
       }
 
-      .g1 {
-        grid-column: span 2;
+      .g-van {
+        grid-column: span 3;
         grid-row: span 2;
+      }
+
+      .g-bath {
+        grid-column: span 3;
+        grid-row: span 2;
+      }
+
+      .g-stat {
+        grid-column: span 3;
+        grid-row: span 1;
+      }
+
+      .g-loc {
+        grid-column: span 3;
+        grid-row: span 1;
+      }
+
+      .artisan-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .artisan::before {
+        font-size: 10rem;
+      }
+
+      .process-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .process-step {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+        padding: 32px 0;
+      }
+
+      .process-step:last-child {
+        border-bottom: none;
+      }
+
+      .process-step:not(:first-child) {
+        padding-left: 0;
+      }
+
+      .zones-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
       }
 
       .footer-top {
@@ -1263,16 +1832,22 @@
 
       .gallery-grid {
         grid-template-columns: 1fr;
-        grid-auto-rows: 220px;
+        grid-auto-rows: 200px;
       }
 
-      .g1,
-      .g2,
-      .g3,
-      .g4,
-      .g5 {
+      .g-tank,
+      .g-quote,
+      .g-van,
+      .g-bath,
+      .g-stat,
+      .g-loc {
         grid-column: span 1;
         grid-row: span 1;
+      }
+
+      .g-tank,
+      .g-bath {
+        grid-row: span 2;
       }
     }
 
@@ -1310,7 +1885,7 @@
           <li><a href="#assainissement">Assainissement</a></li>
           <li><a href="#citerne">Citerne ACS</a></li>
           <li><a href="#plomberie">Plomberie sanitaire</a></li>
-          <li><a href="#entreprise">L'entreprise</a></li>
+          <li><a href="#artisan">L'artisan</a></li>
           <li><a href="#realisations">Réalisations</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1330,7 +1905,7 @@
     <a href="#assainissement">Assainissement</a>
     <a href="#citerne">Citerne ACS</a>
     <a href="#plomberie">Plomberie sanitaire</a>
-    <a href="#entreprise">L'entreprise</a>
+    <a href="#artisan">L'artisan</a>
     <a href="#realisations">Réalisations</a>
     <a href="#contact">Contact</a>
     <a href="tel:+590690395566">06 90 39 55 66</a>
@@ -1351,10 +1926,9 @@
     </div>
     <div class="hero-content">
       <span class="eyebrow hero-eyebrow">Nonnon Plomberie · Saint-François</span>
-      <h1>Nonnon Plomberie, la <em>garantie</em> d'un plombier qui effectue tous vos travaux en rénovation et
-        dépannage de plomberie <em>rapidement</em>.</h1>
+      <h1>Plombier <em>artisan</em> à Saint-François.</h1>
       <p class="hero-sub">
-        Vous pouvez compter sur <strong>Nonnon Plomberie</strong>, un plombier situé à Saint-François en Guadeloupe.
+        Rénovation, dépannage, assainissement, citernes ACS. <strong>Tony Nonnon</strong> intervient partout en Grande-Terre, Guadeloupe.
       </p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">
@@ -1394,10 +1968,12 @@
   <section class="block" id="assainissement">
     <div class="wrap">
       <div class="section-lead">
-        <div class="section-media">
+        <div class="section-media collage-wrap">
+          <span class="collage-badge">5 chantiers · Guadeloupe</span>
           <img
             src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/Image-1+%281%29-856h.jpg"
-            alt="Travaux d'assainissement à Saint-François">
+            alt="Carnet de chantiers d'assainissement à Saint-François">
+          <span class="collage-caption">Fosses toutes eaux, bacs dégraisseurs, micro-stations Eloy Water.</span>
         </div>
         <div class="section-body">
           <span class="eyebrow">01 · Assainissement</span>
@@ -1427,8 +2003,8 @@
       <div class="section-lead reverse">
         <div class="section-media">
           <img
-            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0009-675h.jpg"
-            alt="Installation de citerne ACS">
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0002-1920w.jpg"
+            alt="Citerne ACS bleue avec pressostat et raccords laiton — Saint-François">
         </div>
         <div class="section-body">
           <span class="eyebrow">02 · Citerne ACS</span>
@@ -1456,8 +2032,8 @@
       <div class="section-lead">
         <div class="section-media">
           <img
-            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210715-WA0006-1152w.jpg"
-            alt="Plomberie sanitaire">
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0009-675h.jpg"
+            alt="Double vasque salle de bain posée par Nonnon Plomberie">
         </div>
         <div class="section-body">
           <span class="eyebrow">03 · Plomberie sanitaire</span>
@@ -1476,6 +2052,36 @@
               <path d="M5 12h14M13 5l7 7-7 7" />
             </svg>
           </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PORTRAIT ARTISAN ============ -->
+  <section class="artisan" id="artisan">
+    <div class="wrap">
+      <div class="artisan-inner">
+        <div class="artisan-photo">
+          <img
+            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210715-WA0006-1152w.jpg"
+            alt="Tony Nonnon devant son camion Nonnon Plomberie">
+          <div class="stamp">
+            <span class="dot"></span>
+            <span class="stamp-txt">
+              <strong>Tony Nonnon</strong>
+              Artisan plombier · Garantie décennale
+            </span>
+          </div>
+        </div>
+        <div class="artisan-body">
+          <span class="kicker">L'artisan derrière l'entreprise</span>
+          <h2>Un seul interlocuteur, du premier appel au <em>dernier raccord</em>.</h2>
+          <p>Je suis <strong>Tony Nonnon</strong>, plombier installé à Saint-François. Ici il n'y a pas de standard téléphonique, pas de sous-traitance : vous me parlez directement, je viens sur place et je porte chaque chantier de bout en bout.</p>
+          <p>Mon camion-atelier est équipé pour intervenir partout en Grande-Terre — des raccords cuivre aux pompes de surpression, en passant par les cuves Eloy Water que je pose en partenariat avec des architectes du coin.</p>
+          <div class="artisan-sign">
+            <span class="sig">Tony N.</span>
+            <span class="sig-sub">Plombier · Saint-François, Guadeloupe</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1585,59 +2191,116 @@
     </div>
   </section>
 
+  <!-- ============ PROCESS ============ -->
+  <section class="block" id="process">
+    <div class="wrap">
+      <div class="process-head">
+        <span class="eyebrow">Comment ça se passe</span>
+        <h2>Un chantier de plomberie, <em>de l'appel au rinçage final</em>.</h2>
+        <p>Pas de jargon, pas de mauvaise surprise. Voilà comment se déroule une intervention type, qu'il s'agisse d'un dépannage ou d'une rénovation complète.</p>
+      </div>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="num">01<sup>/04</sup></div>
+          <h3>Vous m'appelez</h3>
+          <p>Un coup de fil au 06 90 39 55 66. On parle de votre besoin : fuite, pose, rénovation, citerne. Je vous dis si c'est urgent ou planifiable.</p>
+        </div>
+        <div class="process-step">
+          <div class="num">02<sup>/04</sup></div>
+          <h3>Visite sur place</h3>
+          <p>Je passe chez vous en Grande-Terre. Je relève les cotes, je prends les photos utiles, je repère les contraintes — arrivée d'eau, évacuation, espace.</p>
+        </div>
+        <div class="process-step">
+          <div class="num">03<sup>/04</sup></div>
+          <h3>Devis clair</h3>
+          <p>Un document détaillé, par poste, sans ligne fourre-tout. Fournitures, main-d'œuvre, délai. Vous validez, je commande les pièces.</p>
+        </div>
+        <div class="process-step">
+          <div class="num">04<sup>/04</sup></div>
+          <h3>Chantier propre</h3>
+          <p>Je protège les sols, je pose, je teste chaque raccord sous pression. Vous récupérez un chantier net et une installation garantie.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ GALERIE / RÉALISATIONS ============ -->
-  <section class="block" id="realisations">
+  <section class="block soft" id="realisations">
     <div class="wrap">
       <div class="gallery-head">
         <span class="eyebrow">Réalisations</span>
-        <h2>Quelques <em>chantiers</em> menés à Saint-François.</h2>
-        <p>Installations sanitaires, poses de citernes, réseaux d'eau chaude et froide : chaque chantier est mené dans
-          les règles de l'art, en Guadeloupe.</p>
+        <h2>Le <em>carnet de bord</em> de Nonnon Plomberie.</h2>
+        <p>Des vraies photos de chantiers, prises sur place en Guadeloupe. Pas de stock, pas de rendu 3D — uniquement des installations posées par Tony.</p>
       </div>
       <div class="gallery-grid">
-        <div class="gallery-item g1">
+        <div class="gallery-item photo g-tank">
           <img
             src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0002-1920w.jpg"
-            alt="Chantier plomberie Saint-François">
+            alt="Citerne ACS 2 500 L avec pressostat et surpresseur">
           <div class="meta">
-            <div class="tag">Saint-François · 2021</div>
-            <div class="title">Travaux d'assainissement sur construction</div>
+            <div class="tag">Citerne ACS · Dubedou</div>
+            <div class="title">Cuve 2 500 L, surpresseur et raccords laiton</div>
           </div>
         </div>
-        <div class="gallery-item g2">
+        <div class="gallery-item tile tile-dark g-quote">
+          <span class="tile-top">Garantie décennale</span>
+          <p class="tile-main">Plombier <em>qualifié</em>, installations aux normes, raccords testés sous pression.</p>
+          <span class="tile-foot">Travail en partenariat avec des architectes locaux.</span>
+        </div>
+        <div class="gallery-item photo g-van">
           <img
             src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210715-WA0006-1152w.jpg"
-            alt="Plombier au travail">
+            alt="Camion-atelier Nonnon Plomberie">
           <div class="meta">
-            <div class="tag">Juillet 2021</div>
-            <div class="title">Intervention plomberie sanitaire</div>
+            <div class="tag">L'atelier roulant</div>
+            <div class="title">Camion équipé pour interventions</div>
           </div>
         </div>
-        <div class="gallery-item g3">
+        <div class="gallery-item photo g-bath">
           <img
             src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0009-675h.jpg"
-            alt="Installation de citerne">
+            alt="Double vasque suspendue sur meuble bicolore, carrelage marbre">
           <div class="meta">
-            <div class="tag">Juin 2021</div>
-            <div class="title">Pose d'une citerne tampon ACS</div>
+            <div class="tag">Salle de bain privée · 2021</div>
+            <div class="title">Pose d'un plan double vasque suspendu</div>
           </div>
         </div>
-        <div class="gallery-item g4">
-          <img
-            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/Image-1+%281%29-856h.jpg"
-            alt="Réalisation Nonnon Plomberie">
-          <div class="meta">
-            <div class="tag">Guadeloupe</div>
-            <div class="title">Réseau d'eau chaude et froide</div>
-          </div>
+        <div class="gallery-item tile tile-water g-stat">
+          <span class="tile-top">Depuis 2011</span>
+          <p class="tile-stat">180<sup>+</sup></p>
+          <span class="tile-foot">Chantiers livrés en Grande-Terre</span>
         </div>
-        <div class="gallery-item g5">
-          <img
-            src="https://le-de.cdn-website.com/e3974fab5f66491ea97d62210b429370/dms3rep/multi/opt/IMG-20210622-WA0002-1920w.jpg"
-            alt="Chantier Nonnon Plomberie">
-          <div class="meta">
-            <div class="tag">Route de Dubedou</div>
-            <div class="title">Installation sanitaire complète en partenariat architecte</div>
+        <div class="gallery-item tile tile-cream g-loc">
+          <span class="tile-top">Base · atelier</span>
+          <p class="tile-main">Route de Dubedou<br><em>97118 Saint-François</em></p>
+          <span class="tile-foot">Interventions sur toute la Grande-Terre — Gosier, Le Moule, Saint-Anne, Sainte-François.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ZONES D'INTERVENTION ============ -->
+  <section class="zones" id="zones">
+    <div class="wrap">
+      <div class="zones-inner">
+        <div class="zones-left">
+          <span class="eyebrow">Secteur · Guadeloupe</span>
+          <h2>Je me déplace sur toute la <em>Grande-Terre</em>.</h2>
+          <p>Basé à Saint-François, j'interviens du Gosier au Moule. Pour les urgences sur ma commune, je suis sur place dans l'heure.</p>
+        </div>
+        <div class="zones-map">
+          <div class="zones-chips">
+            <span class="zone-chip primary">Saint-François</span>
+            <span class="zone-chip">Sainte-Anne</span>
+            <span class="zone-chip">Le Moule</span>
+            <span class="zone-chip">Morne-à-l'Eau</span>
+            <span class="zone-chip">Les Abymes</span>
+            <span class="zone-chip">Le Gosier</span>
+            <span class="zone-chip">Pointe-à-Pitre</span>
+            <span class="zone-chip">Petit-Canal</span>
+            <span class="zone-chip">Anse-Bertrand</span>
+            <span class="zone-chip">Port-Louis</span>
+            <span class="zone-chip">La Désirade</span>
           </div>
         </div>
       </div>
