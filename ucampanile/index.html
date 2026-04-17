@@ -1,1883 +1,2846 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>U Campanile · Artisan campanaire · Piève · Corsica · Depuis MCMXCVI</title>
-<meta name="description" content="U Campanile, artisan campanaire en Corse depuis 1996 : installation, restauration et électrification de cloches d'église, protection contre la foudre, sonorisation d'églises et filets anti-pigeons.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,700&family=Marcellus&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   U CAMPANILE — Éditorial Artisan (campaniste)
-   Registre 1 — Palette parchemin / encre / bourgogne
-   ============================================================ */
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>U Campanile — Artisan campanaire corse, cloches & horlogerie monumentale</title>
+  <meta name="description"
+    content="Artisan campanaire en Corse depuis 1996. Installation, restauration, électrification de cloches d'église, protection foudre, sonorisation. Bastia, Piève, Ajaccio.">
+  <link rel="icon" href="./logo.png">
 
-:root {
-  --cream:       #f2ebe1;
-  --cream-deep:  #e8ddc8;
-  --cream-soft:  #f7f2ea;
-  --ink:         #0e0b08;
-  --ink-soft:    #1e1915;
-  --ink-mute:    #4a413a;
-  --burgundy:    #580a12;
-  --burgundy-dp: #3d0708;
-  --burgundy-lt: #7a1820;
-  --gold:        #8c6d3b;
-  --gold-light:  #b89762;
-  --bronze:      #6b5538;
+  <!-- Google Fonts : DM Serif Display + Manrope + JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
-  --r-sm: 4px;
-  --r-md: 10px;
-  --r-lg: 22px;
-  --r-xl: 36px;
-  --r-pill: 999px;
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
 
-  --shadow-soft: 0 2px 18px rgba(14,11,8,.08);
-  --shadow-hard: 12px 12px 0 var(--ink);
+  <style>
+    /* ============ TOKENS ============ */
+    :root {
+      --cream: #f4eee2;
+      --cream-deep: #ebe1c9;
+      --cream-soft: #f9f4ea;
+      --bourgogne: #580a12;
+      --bourgogne-deep: #3d060d;
+      --bourgogne-ink: #2b0509;
+      --bronze: #8b6a3a;
+      --bronze-light: #b38c4d;
+      --bronze-patina: #5f6b4e;
+      --ink: #1a1414;
+      --ink-soft: #463939;
+      --ink-ghost: rgba(26, 20, 20, 0.55);
+      --line: rgba(26, 20, 20, 0.14);
+      --line-deep: rgba(26, 20, 20, 0.28);
+      --line-bourgogne: rgba(88, 10, 18, 0.22);
 
-  --ease-soft: cubic-bezier(.22,.61,.36,1);
-}
+      --r-sm: 4px;
+      --r-md: 10px;
+      --r-lg: 18px;
+      --r-pill: 999px;
 
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
-body {
-  margin: 0;
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Inter Tight', system-ui, sans-serif;
-  font-size: 17px;
-  line-height: 1.55;
-  overflow-x: hidden;
-  font-feature-settings: "ss01","ss02","kern";
-}
-img { max-width: 100%; height: auto; display: block; }
-a { color: inherit; text-decoration: none; }
-button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
-::selection { background: var(--burgundy); color: var(--cream); }
+      --font-display: 'DM Serif Display', 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
-/* Grain parchemin global */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  opacity: 0.42;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.28   0 0 0 0 0.20   0 0 0 0 0.12   0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  background-size: 320px 320px;
-}
+      --side-gutter: clamp(1.25rem, 4vw, 4.5rem);
+      --max-w: 1400px;
+    }
 
-/* =========================================================
-   TYPO — Cormorant display, Marcellus inscription, Inter body
-   ========================================================= */
-.display {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  letter-spacing: -0.018em;
-  line-height: 0.94;
-}
-.display-it {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 500;
-}
-.inscr {
-  font-family: 'Marcellus', serif;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-.mono-small {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.chiffre-romain {
-  font-family: 'Marcellus', serif;
-  font-feature-settings: "lnum";
-}
+    /* ============ RESET ============ */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-/* =========================================================
-   MASTHEAD — barre du journal liturgique
-   ========================================================= */
-.masthead {
-  background: var(--ink);
-  color: var(--cream);
-  padding: 10px 28px;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-family: 'Marcellus', serif;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-  position: relative;
-  z-index: 50;
-}
-.masthead__left, .masthead__right {
-  display: flex;
-  gap: 22px;
-  align-items: center;
-}
-.masthead__dot {
-  color: var(--burgundy-lt);
-  font-size: 14px;
-  line-height: 0;
-}
-.masthead__right a:hover { color: var(--gold-light); }
-@media (max-width: 820px) {
-  .masthead { font-size: 9px; letter-spacing: 0.16em; gap: 8px; padding: 8px 14px; }
-  .masthead__left span:nth-child(4),
-  .masthead__left span:nth-child(5),
-  .masthead__left span:nth-child(6),
-  .masthead__right span:nth-child(1),
-  .masthead__right span:nth-child(2) { display: none; }
-}
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
 
-/* =========================================================
-   HEADER — logo + nav + appel
-   ========================================================= */
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  background: var(--cream);
-  border-bottom: 1px solid rgba(14,11,8,0.09);
-  padding: 14px 28px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 28px;
-  align-items: center;
-}
-.brand {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  line-height: 1;
-  font-family: 'Marcellus', serif;
-}
-.brand__name {
-  font-size: 22px;
-  letter-spacing: 0.06em;
-  color: var(--ink);
-}
-.brand__name em {
-  font-style: normal;
-  color: var(--burgundy);
-}
-.brand__sub {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-.nav {
-  display: flex;
-  gap: 26px;
-  justify-content: center;
-  font-size: 13px;
-  letter-spacing: 0.02em;
-  font-weight: 500;
-}
-.nav a { position: relative; padding: 6px 0; transition: color .3s; }
-.nav a::after {
-  content: '';
-  position: absolute;
-  left: 0; right: 100%;
-  bottom: 0;
-  height: 1px;
-  background: var(--burgundy);
-  transition: right .4s var(--ease-soft);
-}
-.nav a:hover { color: var(--burgundy); }
-.nav a:hover::after { right: 0; }
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(0.98rem, 0.9rem + 0.2vw, 1.05rem);
+      line-height: 1.65;
+      color: var(--ink);
+      background: var(--cream);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
 
-.call {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 10px 18px 10px 14px;
-  border: 1px solid var(--ink);
-  border-radius: var(--r-pill);
-  background: var(--cream);
-  transition: background .3s, color .3s;
-  font-family: 'Marcellus', serif;
-  letter-spacing: 0.06em;
-  font-size: 14px;
-  white-space: nowrap;
-}
-.call__ring {
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  background: var(--burgundy);
-  color: var(--cream);
-  display: grid; place-items: center;
-  font-size: 12px;
-}
-.call:hover { background: var(--burgundy); color: var(--cream); border-color: var(--burgundy); }
-.call:hover .call__ring { background: var(--cream); color: var(--burgundy); }
+    img,
+    svg {
+      max-width: 100%;
+      display: block;
+    }
 
-.menu-toggle { display: none; }
-@media (max-width: 960px) {
-  .header { grid-template-columns: 1fr auto auto; padding: 12px 16px; gap: 14px; }
-  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 20px; background: var(--cream); border-bottom: 1px solid rgba(14,11,8,0.1); box-shadow: var(--shadow-soft); }
-  .nav.open { display: flex; }
-  .nav a { padding: 12px 4px; border-bottom: 1px solid rgba(14,11,8,0.06); font-size: 15px; }
-  .nav a::after { display: none; }
-  .call { font-size: 12px; padding: 8px 12px 8px 10px; letter-spacing: 0.04em; }
-  .call span:first-child { display: none; }
-  .menu-toggle {
-    display: inline-flex;
-    width: 40px; height: 40px;
-    align-items: center; justify-content: center;
-    border: 1px solid var(--ink);
-    border-radius: var(--r-sm);
-    background: var(--cream);
-  }
-  .menu-toggle svg { width: 20px; height: 20px; }
-}
-@media (max-width: 380px) {
-  .call { font-size: 11px; padding: 7px 10px; letter-spacing: 0.02em; }
-}
+    img {
+      height: auto;
+      object-fit: cover;
+    }
 
-/* =========================================================
-   HERO
-   ========================================================= */
-.hero {
-  position: relative;
-  padding: clamp(40px, 6vw, 84px) clamp(20px, 4vw, 56px) 0;
-  overflow: hidden;
-  isolation: isolate;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* cadre arrière avec cloche oscillante et ondes sonores */
-.hero__ambient {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  z-index: -1;
-}
-.hero__ambient svg { position: absolute; }
-.hero__bell-ghost {
-  top: 8%;
-  right: -4%;
-  width: min(56vw, 720px);
-  opacity: 0.07;
-  transform-origin: 50% 4%;
-  color: var(--ink);
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero__bell-ghost { animation: sway 4.2s ease-in-out infinite; }
-}
-@keyframes sway {
-  0%, 100% { transform: rotate(-3.5deg); }
-  50%      { transform: rotate(3.5deg); }
-}
+    button {
+      font: inherit;
+      cursor: pointer;
+    }
 
-.hero__waves {
-  left: -22%;
-  top: 30%;
-  width: min(900px, 98vw);
-  height: min(900px, 98vw);
-  color: var(--burgundy);
-  opacity: 0.25;
-}
-.hero__waves circle {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .hero__waves circle:nth-child(1) { animation: ring 3.6s linear infinite; }
-  .hero__waves circle:nth-child(2) { animation: ring 3.6s linear infinite 1.2s; }
-  .hero__waves circle:nth-child(3) { animation: ring 3.6s linear infinite 2.4s; }
-}
-@keyframes ring {
-  0%   { transform: scale(0.35); opacity: 0.55; }
-  100% { transform: scale(1.2); opacity: 0; }
-}
+    /* ============ TEXTURE PARCHEMIN ============ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.38;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 260 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.35 0 0 0 0 0.2 0 0 0 0.55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
 
-.hero__grid {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: clamp(28px, 5vw, 72px);
-  align-items: start;
-  position: relative;
-  padding-top: 20px;
-}
+    .isolate {
+      isolation: isolate;
+      z-index: 2;
+      position: relative;
+    }
 
-.hero__left { position: relative; }
+    /* ============ TYPOGRAPHIE ============ */
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0;
+    }
 
-.hero__kicker {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: var(--ink-mute);
-  margin-bottom: 22px;
-  font-size: 11px;
-}
-.hero__kicker::before {
-  content: '';
-  width: 42px; height: 1px;
-  background: var(--burgundy);
-}
+    h1 {
+      font-size: clamp(2.1rem, 1.25rem + 2.6vw, 4.2rem);
+    }
 
-.hero__title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  line-height: 0.94;
-  letter-spacing: -0.02em;
-  font-size: clamp(3.2rem, 8.8vw, 8.2rem);
-  margin: 0 0 26px;
-  color: var(--ink);
-}
-.hero__title em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--burgundy);
-}
-.hero__title .mcmx {
-  font-family: 'Marcellus', serif;
-  font-style: normal;
-  letter-spacing: 0.04em;
-  color: var(--gold);
-  font-weight: 400;
-  display: inline-block;
-  padding-left: 6px;
-}
+    h2 {
+      font-size: clamp(1.55rem, 1.1rem + 1.6vw, 2.5rem);
+    }
 
-.hero__lede {
-  max-width: 48ch;
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  margin: 0 0 32px;
-}
-.hero__lede em {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 22px;
-  color: var(--burgundy);
-}
+    h3 {
+      font-size: clamp(1.1rem, 0.95rem + 0.5vw, 1.4rem);
+    }
 
-.hero__ctas { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+    p {
+      margin: 0 0 1.1em;
+    }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 28px;
-  background: var(--burgundy);
-  color: var(--cream);
-  border-radius: var(--r-pill);
-  font-family: 'Marcellus', serif;
-  letter-spacing: 0.12em;
-  font-size: 13px;
-  text-transform: uppercase;
-  transition: transform .3s var(--ease-soft), background .3s;
-  position: relative;
-  overflow: hidden;
-}
-.btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--burgundy-dp);
-  transform: translateY(100%);
-  transition: transform .4s var(--ease-soft);
-  z-index: -1;
-}
-.btn:hover { background: var(--burgundy-dp); transform: translateY(-2px); }
-.btn__dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: var(--cream);
-  box-shadow: 0 0 0 3px rgba(242,235,225,0.22);
-}
+    p:last-child {
+      margin-bottom: 0;
+    }
 
-.btn--ghost {
-  background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--ink);
-  padding: 15px 26px;
-}
-.btn--ghost:hover { background: var(--ink); color: var(--cream); }
-.btn--ghost .btn__dot { background: var(--burgundy); }
+    em {
+      font-style: italic;
+      font-family: var(--font-display);
+    }
 
-/* Sticker rotatif "depuis MCMXCVI" */
-.sticker {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  width: 140px;
-  height: 140px;
-  color: var(--burgundy);
-  pointer-events: none;
-}
-.sticker__ring {
-  width: 100%; height: 100%;
-  animation: spin 22s linear infinite;
-  transform-origin: center;
-}
-.sticker__core {
-  position: absolute;
-  inset: 30%;
-  display: grid;
-  place-items: center;
-  color: var(--burgundy);
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-align: center;
-  line-height: 1;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-@media (max-width: 960px) { .sticker { top: -30px; right: 4px; width: 100px; height: 100px; } }
+    .mono {
+      font-family: var(--font-mono);
+      font-feature-settings: 'ss01';
+    }
 
-/* Planche photo hero */
-.hero__plate {
-  position: relative;
-  padding: 22px 22px 0 22px;
-  border-left: 1px solid rgba(14,11,8,0.16);
-}
-.hero__plate-frame {
-  position: relative;
-  border: 1px solid rgba(14,11,8,0.3);
-  padding: 12px;
-  background: var(--cream-soft);
-  box-shadow: var(--shadow-hard);
-  transform: rotate(-1.1deg);
-  transition: transform .6s var(--ease-soft);
-}
-.hero__plate-frame:hover { transform: rotate(0deg); }
-.hero__plate img {
-  width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-  filter: saturate(0.85) contrast(1.03);
-}
-.hero__plate-caption {
-  display: flex;
-  gap: 10px;
-  align-items: baseline;
-  padding: 12px 2px 4px;
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-}
-.hero__plate-caption strong {
-  color: var(--burgundy);
-  font-weight: 400;
-  border-right: 1px solid var(--ink-mute);
-  padding-right: 10px;
-}
+    .overline {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      font-weight: 500;
+    }
 
-.hero__plate-detail {
-  margin-top: 26px;
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  font-size: 13px;
-  color: var(--ink-soft);
-  line-height: 1.55;
-}
-.hero__plate-detail .initial {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-style: italic;
-  font-size: 52px;
-  line-height: 1;
-  color: var(--burgundy);
-  padding-top: 4px;
-}
-.hero__plate-detail p { margin: 0; max-width: 32ch; }
+    /* ============ CONTAINER ============ */
+    .wrap {
+      width: 100%;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      padding-inline: var(--side-gutter);
+    }
 
-@media (max-width: 900px) {
-  .hero__grid { grid-template-columns: 1fr; gap: 44px; }
-  .hero__plate { border-left: 0; padding: 0; }
-  .hero__plate-detail { padding-top: 12px; }
-}
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.95rem 1.55rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.02em;
+      border: 1.5px solid var(--bourgogne);
+      border-radius: var(--r-pill);
+      background: var(--bourgogne);
+      color: var(--cream-soft);
+      text-decoration: none;
+      transition: transform 280ms cubic-bezier(.2, .7, .3, 1), background 280ms, color 280ms, box-shadow 280ms;
+    }
 
-/* =========================================================
-   BANDE DES HEURES CANONIALES — signal hero #3
-   ========================================================= */
-.hours {
-  margin-top: clamp(40px, 6vw, 80px);
-  padding: 22px 28px;
-  background: var(--cream);
-  border-top: 1px solid rgba(14,11,8,0.14);
-  border-bottom: 1px solid rgba(14,11,8,0.14);
-  position: relative;
-  overflow: hidden;
-}
-.hours__inner {
-  display: grid;
-  grid-template-columns: 0.4fr repeat(6, 1fr);
-  gap: 18px;
-  align-items: center;
-}
-.hours__label {
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  border-right: 1px solid rgba(14,11,8,0.2);
-  padding-right: 18px;
-  line-height: 1.35;
-}
-.hour {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 4px;
-  border-left: 1px solid rgba(14,11,8,0.12);
-  padding-left: 14px;
-  position: relative;
-}
-.hour__roman {
-  font-family: 'Marcellus', serif;
-  font-size: clamp(26px, 3.4vw, 44px);
-  color: var(--ink);
-  line-height: 1;
-  letter-spacing: 0.06em;
-  transition: color .5s;
-}
-.hour__name {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-.hour.is-active .hour__roman { color: var(--burgundy); }
-.hour.is-active::before {
-  content: '';
-  position: absolute;
-  left: -1px;
-  top: 0; bottom: 0;
-  width: 2px;
-  background: var(--burgundy);
-}
+    .btn:hover {
+      background: var(--bourgogne-ink);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px -10px rgba(88, 10, 18, .55);
+    }
 
-@media (max-width: 820px) {
-  .hours__inner { grid-template-columns: repeat(3, 1fr); gap: 12px 10px; }
-  .hours__label { grid-column: span 3; border-right: 0; border-bottom: 1px solid rgba(14,11,8,0.2); padding: 0 0 10px; }
-  .hour { padding-left: 10px; }
-}
+    .btn--ghost {
+      background: transparent;
+      color: var(--bourgogne);
+    }
 
-/* =========================================================
-   TICKER VOCABULAIRE CAMPANAIRE
-   ========================================================= */
-.ticker {
-  background: var(--ink);
-  color: var(--cream);
-  padding: 18px 0;
-  overflow: hidden;
-  border-top: 1px solid var(--burgundy);
-  border-bottom: 1px solid var(--burgundy);
-}
-.ticker__track {
-  display: flex;
-  gap: 48px;
-  white-space: nowrap;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: clamp(22px, 2.6vw, 34px);
-  letter-spacing: 0.02em;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .ticker__track { animation: ticker 32s linear infinite; }
-}
-@keyframes ticker {
-  to { transform: translateX(-50%); }
-}
-.ticker__track span { display: inline-flex; align-items: center; gap: 48px; }
-.ticker__track .dot {
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--burgundy-lt);
-  display: inline-block;
-}
-.ticker__track .gold { color: var(--gold-light); font-style: normal; font-family: 'Marcellus', serif; font-size: 0.62em; letter-spacing: 0.22em; text-transform: uppercase; }
+    .btn--ghost:hover {
+      background: var(--bourgogne);
+      color: var(--cream-soft);
+    }
 
-/* =========================================================
-   CHAPITRE générique
-   ========================================================= */
-.chapter {
-  padding: clamp(70px, 10vw, 130px) clamp(20px, 4vw, 56px);
-  position: relative;
-}
-.chapter__head {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 28px;
-  align-items: end;
-  margin-bottom: clamp(36px, 5vw, 60px);
-  padding-bottom: 22px;
-  border-bottom: 1px solid rgba(14,11,8,0.18);
-}
-.chapter__num {
-  font-family: 'Marcellus', serif;
-  font-size: clamp(72px, 10vw, 148px);
-  color: var(--burgundy);
-  line-height: 0.85;
-  letter-spacing: 0.02em;
-}
-.chapter__labels {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding-bottom: 8px;
-}
-.chapter__cat {
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-.chapter__title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  letter-spacing: -0.018em;
-  line-height: 0.98;
-  font-size: clamp(2.2rem, 5vw, 4.4rem);
-  margin: 0;
-}
-.chapter__title em { font-style: italic; color: var(--burgundy); font-weight: 500; }
+    .btn__arrow {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      transition: transform 280ms;
+    }
 
-/* =========================================================
-   CHAPITRE I — Atelier (depuis 1996)
-   ========================================================= */
-.atelier__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(28px, 5vw, 76px);
-  align-items: start;
-}
-.atelier__text p {
-  font-size: 17px;
-  line-height: 1.72;
-  color: var(--ink-soft);
-  margin: 0 0 18px;
-  max-width: 52ch;
-}
-.atelier__text .dropcap::first-letter {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: 76px;
-  line-height: 0.82;
-  float: left;
-  padding: 8px 14px 0 0;
-  color: var(--burgundy);
-}
-.atelier__cartouche {
-  margin-top: 28px;
-  padding: 24px 26px;
-  border: 1px solid rgba(14,11,8,0.18);
-  background: var(--cream-soft);
-  position: relative;
-}
-.atelier__cartouche::before,
-.atelier__cartouche::after {
-  content: '';
-  position: absolute;
-  width: 18px; height: 18px;
-  border: 1px solid var(--burgundy);
-}
-.atelier__cartouche::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
-.atelier__cartouche::after  { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
-.atelier__cartouche p {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 22px;
-  line-height: 1.4;
-  margin: 0;
-  color: var(--ink);
-}
-.atelier__cartouche .sig {
-  font-family: 'Marcellus', serif;
-  font-size: 10px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  margin-top: 14px;
-  color: var(--burgundy);
-  display: block;
-}
+    .btn:hover .btn__arrow {
+      transform: translateX(4px);
+    }
 
-.atelier__plates {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
-}
-.plate {
-  background: var(--cream-soft);
-  border: 1px solid rgba(14,11,8,0.2);
-  padding: 12px 12px 0;
-  transition: transform .5s var(--ease-soft);
-}
-.plate:nth-child(1) { transform: rotate(-1.2deg); margin-top: 12px; }
-.plate:nth-child(2) { transform: rotate(0.6deg); margin-top: 48px; }
-.plate:nth-child(3) { transform: rotate(0.8deg); margin-top: -6px; }
-.plate:nth-child(4) { transform: rotate(-0.4deg); margin-top: 30px; }
-.plate:hover { transform: rotate(0deg) translateY(-4px); }
-.plate img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  filter: saturate(0.88) contrast(1.02);
-}
-.plate__cap {
-  padding: 8px 2px 10px;
-  font-family: 'Marcellus', serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  display: flex;
-  justify-content: space-between;
-}
-.plate__cap strong { color: var(--burgundy); font-weight: 400; }
+    /* ============ NAV ============ */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(244, 238, 226, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
 
-@media (max-width: 900px) {
-  .atelier__grid { grid-template-columns: 1fr; }
-}
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding-block: 0.85rem;
+    }
 
-/* =========================================================
-   PULL QUOTE NOIR
-   ========================================================= */
-.quote {
-  background: var(--ink);
-  color: var(--cream);
-  padding: clamp(80px, 14vw, 170px) clamp(20px, 4vw, 56px);
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-.quote::before {
-  content: '«';
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 220px;
-  line-height: 1;
-  color: var(--burgundy);
-  opacity: 0.7;
-}
-.quote p {
-  max-width: 22ch;
-  margin: 32px auto 0;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(2.4rem, 6vw, 5.2rem);
-  line-height: 1.02;
-  letter-spacing: -0.012em;
-}
-.quote p em {
-  font-style: normal;
-  color: var(--gold-light);
-}
-.quote__sig {
-  margin-top: 44px;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  font-family: 'Marcellus', serif;
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--cream);
-  opacity: 0.6;
-}
-.quote__sig::before, .quote__sig::after {
-  content: '';
-  width: 40px; height: 1px;
-  background: var(--cream);
-  opacity: 0.4;
-}
+    .nav__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--ink);
+      flex-shrink: 0;
+    }
 
-/* =========================================================
-   CHAPITRE II — Services (cloche, électrification, horloge...)
-   Liste éditoriale inspirée d'un missel
-   ========================================================= */
-.services {
-  padding: clamp(70px, 10vw, 130px) clamp(20px, 4vw, 56px);
-  background: var(--cream);
-}
-.services__list {
-  border-top: 1px solid rgba(14,11,8,0.18);
-}
-.service {
-  display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  gap: clamp(18px, 3vw, 48px);
-  padding: 32px 0;
-  border-bottom: 1px solid rgba(14,11,8,0.12);
-  align-items: baseline;
-  position: relative;
-  transition: background .4s;
-}
-.service:hover { background: linear-gradient(to right, rgba(88,10,18,0.04), transparent 60%); }
-.service__roman {
-  font-family: 'Marcellus', serif;
-  font-size: clamp(26px, 3vw, 42px);
-  color: var(--burgundy);
-  letter-spacing: 0.04em;
-  min-width: 60px;
-}
-.service__title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: clamp(26px, 3.2vw, 44px);
-  line-height: 1.05;
-  margin: 0;
-  letter-spacing: -0.015em;
-}
-.service__title em { font-style: italic; color: var(--burgundy); font-weight: 500; }
-.service__meta {
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-  text-align: right;
-}
-.service__arrow {
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  border: 1px solid var(--ink);
-  display: grid; place-items: center;
-  transition: background .3s, color .3s, transform .3s;
-}
-.service:hover .service__arrow { background: var(--burgundy); color: var(--cream); border-color: var(--burgundy); transform: translateX(4px); }
+    .nav__brand img {
+      width: 92px;
+      height: auto;
+    }
 
-.service__detail {
-  grid-column: 2 / -1;
-  max-width: 68ch;
-  margin-top: 10px;
-  font-size: 16px;
-  color: var(--ink-soft);
-  line-height: 1.65;
-}
+    .nav__brand-text {
+      display: none;
+    }
 
-@media (max-width: 820px) {
-  .service { grid-template-columns: auto 1fr auto; gap: 14px; }
-  .service__meta { display: none; }
-  .service__detail { grid-column: 1 / -1; }
-}
+    .nav__tel {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--bourgogne);
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+      margin-left: auto;
+    }
 
-/* =========================================================
-   BANDE OUTILLAGE — lexique gravé
-   ========================================================= */
-.lexique {
-  background: var(--burgundy-dp);
-  color: var(--cream);
-  padding: clamp(70px, 10vw, 120px) clamp(20px, 4vw, 56px);
-  position: relative;
-  overflow: hidden;
-}
-.lexique::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 20% 30%, rgba(184,151,98,0.08), transparent 55%);
-  pointer-events: none;
-}
-.lexique__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 54px;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.lexique__head h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-style: italic;
-  font-size: clamp(2rem, 4.4vw, 3.8rem);
-  margin: 0;
-  max-width: 22ch;
-  line-height: 1;
-}
-.lexique__head h2 em {
-  font-style: normal;
-  color: var(--gold-light);
-}
-.lexique__head .kicker {
-  color: var(--gold-light);
-  opacity: 0.9;
-}
-.lexique__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2px;
-  background: rgba(242,235,225,0.12);
-  border: 1px solid rgba(242,235,225,0.12);
-}
-.term {
-  background: var(--burgundy-dp);
-  padding: 28px 22px 26px;
-  position: relative;
-  transition: background .3s;
-}
-.term:hover { background: var(--burgundy); }
-.term__num {
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  color: var(--gold-light);
-  opacity: 0.7;
-  margin-bottom: 8px;
-  display: block;
-}
-.term__name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1;
-  margin-bottom: 10px;
-}
-.term__name em { font-style: italic; color: var(--gold-light); font-weight: 500; }
-.term__def {
-  font-size: 13px;
-  line-height: 1.55;
-  color: rgba(242,235,225,0.78);
-}
-@media (max-width: 900px) { .lexique__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .lexique__grid { grid-template-columns: 1fr; } }
+    .nav__tel::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bourgogne);
+      animation: livepulse 1.6s ease-in-out infinite;
+    }
 
-/* =========================================================
-   CHAPITRE III — Planche contact (photos)
-   ========================================================= */
-.planche {
-  padding: clamp(70px, 10vw, 130px) clamp(20px, 4vw, 56px);
-}
-.planche__grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-auto-rows: 150px;
-  gap: 14px;
-}
-.pl { position: relative; overflow: hidden; background: var(--cream-deep); }
-.pl img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-soft); filter: saturate(0.9) contrast(1.02); }
-.pl:hover img { transform: scale(1.06); }
-.pl__cap {
-  position: absolute;
-  left: 12px; bottom: 10px;
-  background: var(--ink);
-  color: var(--cream);
-  padding: 4px 10px;
-  font-family: 'Marcellus', serif;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-}
-.pl--1 { grid-column: span 8; grid-row: span 2; }
-.pl--2 { grid-column: span 4; grid-row: span 1; }
-.pl--3 { grid-column: span 4; grid-row: span 1; }
-.pl--4 { grid-column: span 4; grid-row: span 2; }
-.pl--5 { grid-column: span 4; grid-row: span 2; }
-.pl--6 { grid-column: span 4; grid-row: span 2; }
+    @keyframes livepulse {
 
-@media (max-width: 900px) {
-  .planche__grid { grid-template-columns: repeat(6, 1fr); grid-auto-rows: 120px; }
-  .pl--1 { grid-column: span 6; grid-row: span 2; }
-  .pl--2 { grid-column: span 3; grid-row: span 2; }
-  .pl--3 { grid-column: span 3; grid-row: span 2; }
-  .pl--4 { grid-column: span 3; grid-row: span 2; }
-  .pl--5 { grid-column: span 3; grid-row: span 2; }
-  .pl--6 { grid-column: span 6; grid-row: span 2; }
-}
+      0%,
+      100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 rgba(88, 10, 18, .5);
+      }
 
-/* =========================================================
-   ZONE INTERVENTION — carte au trait de la Corse
-   ========================================================= */
-.zone {
-  padding: clamp(70px, 10vw, 130px) clamp(20px, 4vw, 56px);
-  background: var(--cream-soft);
-  position: relative;
-  overflow: hidden;
-}
-.zone__inner {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(30px, 5vw, 80px);
-  align-items: center;
-}
-.zone__map {
-  position: relative;
-  aspect-ratio: 3/4;
-  max-height: 620px;
-  margin: 0 auto;
-}
-.zone__map svg { width: 100%; height: 100%; }
-.zone__map path.corsica { fill: none; stroke: var(--ink); stroke-width: 1.2; stroke-linejoin: round; }
-.zone__map .city { fill: var(--burgundy); }
-.zone__map .label {
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  fill: var(--ink);
-}
-.zone__map .compass {
-  fill: none;
-  stroke: var(--ink-mute);
-  stroke-width: 0.8;
-}
-.zone__map .compass text {
-  font-family: 'Marcellus', serif;
-  font-size: 9px;
-  fill: var(--ink-mute);
-  letter-spacing: 0.1em;
-}
+      50% {
+        opacity: 0.4;
+        box-shadow: 0 0 0 8px rgba(88, 10, 18, 0);
+      }
+    }
 
-.zone__text h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 600;
-  font-size: clamp(2.2rem, 5vw, 4rem);
-  line-height: 0.98;
-  margin: 0 0 24px;
-  letter-spacing: -0.015em;
-}
-.zone__text h2 em { font-style: italic; color: var(--burgundy); font-weight: 500; }
-.zone__text p {
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.65;
-  margin: 0 0 18px;
-  max-width: 48ch;
-}
-.zone__stat-row {
-  margin-top: 32px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 18px;
-  border-top: 1px solid rgba(14,11,8,0.14);
-  padding-top: 24px;
-}
-.zone__stat strong {
-  display: block;
-  font-family: 'Marcellus', serif;
-  font-size: clamp(30px, 4.4vw, 58px);
-  color: var(--burgundy);
-  line-height: 1;
-  letter-spacing: 0.02em;
-}
-.zone__stat span {
-  display: block;
-  margin-top: 8px;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-@media (max-width: 820px) { .zone__inner { grid-template-columns: 1fr; } }
+    /* Bouton MENU toujours visible */
+    .nav__menu-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.55rem 1rem 0.55rem 0.75rem;
+      background: transparent;
+      border: 1px solid var(--line-deep);
+      border-radius: var(--r-pill);
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 500;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--ink);
+      cursor: pointer;
+      transition: background 240ms, color 240ms, border-color 240ms;
+    }
 
-/* =========================================================
-   CONTACT
-   ========================================================= */
-.contact {
-  padding: clamp(80px, 12vw, 150px) clamp(20px, 4vw, 56px);
-  background: var(--ink);
-  color: var(--cream);
-  position: relative;
-  overflow: hidden;
-}
-.contact::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.5;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.95   0 0 0 0 0.88   0 0 0 0 0.76   0 0 0 0.25 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-.contact__inner {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: clamp(30px, 5vw, 80px);
-  align-items: end;
-}
-.contact__title {
-  font-family: 'Cormorant Garamond', serif;
-  font-weight: 500;
-  font-style: italic;
-  font-size: clamp(2.8rem, 7vw, 7rem);
-  line-height: 0.95;
-  letter-spacing: -0.015em;
-  margin: 0;
-  max-width: 12ch;
-}
-.contact__title em {
-  font-style: normal;
-  color: var(--gold-light);
-}
-.contact__phone {
-  margin-top: 28px;
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  font-family: 'Marcellus', serif;
-  font-size: clamp(32px, 4.6vw, 56px);
-  color: var(--cream);
-  letter-spacing: 0.04em;
-}
-.contact__phone .label {
-  font-size: 10px;
-  letter-spacing: 0.3em;
-  color: var(--gold-light);
-  text-transform: uppercase;
-  align-self: flex-start;
-  padding-top: 8px;
-}
-.contact__phone a:hover { color: var(--gold-light); }
+    .nav__menu-btn:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--cream-soft);
+    }
 
-.contact__right {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-.contact__block {
-  border-top: 1px solid rgba(242,235,225,0.25);
-  padding-top: 18px;
-}
-.contact__block .k {
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  opacity: 0.8;
-  margin-bottom: 6px;
-}
-.contact__block .v {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 22px;
-  font-style: italic;
-}
-.contact__block .v a:hover { color: var(--gold-light); }
+    .nav__menu-btn .bars {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 3px;
+    }
 
-.contact__cta {
-  margin-top: 32px;
-  align-self: flex-start;
-}
-.contact__cta.btn {
-  background: var(--burgundy);
-}
-.contact__cta.btn:hover { background: var(--burgundy-lt); }
+    .nav__menu-btn .bars span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: currentColor;
+    }
 
-@media (max-width: 900px) {
-  .contact__inner { grid-template-columns: 1fr; }
-  .contact__right { border-top: 1px solid rgba(242,235,225,0.2); padding-top: 24px; }
-}
+    @media (min-width: 900px) {
+      .nav__inner {
+        gap: 2.5rem;
+        padding-block: 1.1rem;
+      }
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
-.footer {
-  background: var(--ink-soft);
-  color: rgba(242,235,225,0.72);
-  padding: 60px clamp(20px, 4vw, 56px) 28px;
-  border-top: 1px solid rgba(242,235,225,0.08);
-  font-size: 13px;
-}
-.footer__top {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 1fr 1fr;
-  gap: 30px;
-  padding-bottom: 40px;
-  border-bottom: 1px solid rgba(242,235,225,0.1);
-}
-.footer__brand .name {
-  font-family: 'Marcellus', serif;
-  color: var(--cream);
-  font-size: 20px;
-  letter-spacing: 0.08em;
-}
-.footer__brand .name em { font-style: normal; color: var(--burgundy-lt); }
-.footer__brand .sub {
-  display: block;
-  margin-top: 6px;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(242,235,225,0.5);
-}
-.footer__brand p {
-  margin-top: 20px;
-  max-width: 32ch;
-  line-height: 1.6;
-}
-.footer h4 {
-  font-family: 'Marcellus', serif;
-  font-size: 11px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin: 0 0 16px;
-  font-weight: 400;
-}
-.footer ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
-.footer a:hover { color: var(--cream); }
+      .nav__brand img {
+        width: 105px;
+      }
+    }
 
-.footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  margin-top: 28px;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(242,235,225,0.5);
-  font-family: 'Marcellus', serif;
-}
-@media (max-width: 900px) {
-  .footer__top { grid-template-columns: 1fr 1fr; }
-  .footer__bottom { flex-direction: column; text-align: left; }
-}
-@media (max-width: 520px) {
-  .footer__top { grid-template-columns: 1fr; }
-}
+    /* Mobile : tel + bouton menu compactés */
+    @media (max-width: 640px) {
+      .nav__inner {
+        gap: 0.8rem;
+        padding-block: 0.65rem;
+      }
 
-/* =========================================================
-   REVEAL (signifiant seulement, pas sur hero)
-   ========================================================= */
-.reveal {
-  opacity: 0;
-  transform: translateY(22px);
-  transition: opacity .9s var(--ease-soft), transform .9s var(--ease-soft);
-}
-.reveal.in { opacity: 1; transform: none; }
+      .nav__brand img {
+        width: 78px;
+      }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal, .reveal.in { opacity: 1; transform: none; transition: none; }
-  .sticker__ring, .ticker__track, .hero__bell-ghost, .hero__waves circle { animation: none !important; }
-}
+      .nav__tel {
+        font-size: 0.74rem;
+        letter-spacing: 0.02em;
+        gap: 0.35rem;
+      }
 
-</style>
+      .nav__tel::before {
+        width: 6px;
+        height: 6px;
+      }
+
+      .nav__menu-btn {
+        padding: 0.45rem 0.8rem 0.45rem 0.6rem;
+        font-size: 0.66rem;
+        letter-spacing: 0.2em;
+        gap: 0.5rem;
+      }
+
+      .nav__menu-btn .bars span {
+        width: 14px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .nav__brand img {
+        width: 62px;
+      }
+
+      .nav__tel {
+        font-size: 0.68rem;
+        letter-spacing: 0.01em;
+      }
+
+      /* Masque le dot pulsant à < 380px pour gagner de la place */
+      .nav__tel::before {
+        display: none;
+      }
+
+      .nav__menu-btn {
+        padding: 0.4rem 0.7rem;
+        font-size: 0.6rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .nav__inner {
+        gap: 0.5rem;
+      }
+
+      .nav__tel {
+        font-size: 0.62rem;
+      }
+
+      .nav__brand img {
+        width: 54px;
+      }
+    }
+
+    /* ============ MENU OVERLAY ============ */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      background: var(--bourgogne);
+      color: var(--cream-soft);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 480ms cubic-bezier(.2, .7, .3, 1), visibility 0s linear 480ms;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .menu-overlay.is-open {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 480ms cubic-bezier(.2, .7, .3, 1), visibility 0s linear 0s;
+    }
+
+    .menu-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(139, 106, 58, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(139, 106, 58, 0.15) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .menu-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 260 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='m'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+      mix-blend-mode: overlay;
+    }
+
+    .menu-overlay__inner {
+      position: relative;
+      max-width: var(--max-w);
+      margin-inline: auto;
+      min-height: 100dvh;
+      padding: 1.25rem var(--side-gutter) 3rem;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .menu-overlay__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: clamp(2rem, 5vh, 4rem);
+      border-bottom: 1px solid rgba(244, 238, 226, 0.15);
+      flex-wrap: wrap;
+    }
+
+    .menu-overlay__brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.26em;
+      color: rgba(244, 238, 226, 0.65);
+      min-width: 0;
+      flex: 1;
+    }
+
+    .menu-overlay__brand-text {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    .menu-overlay__brand img {
+      width: 60px;
+      height: auto;
+      /* filter: brightness(1.35); */
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 480px) {
+      .menu-overlay__brand-text .since {
+        display: none;
+      }
+
+      .menu-overlay__brand {
+        font-size: 0.66rem;
+        letter-spacing: 0.22em;
+      }
+
+      .menu-overlay__brand img {
+        width: 48px;
+      }
+    }
+
+    .menu-overlay__close {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      padding: 0.55rem 1rem;
+      background: transparent;
+      border: 1px solid rgba(244, 238, 226, 0.3);
+      border-radius: var(--r-pill);
+      color: var(--cream-soft);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 220ms, border-color 220ms;
+    }
+
+    .menu-overlay__close:hover {
+      background: var(--cream-soft);
+      color: var(--bourgogne);
+      border-color: var(--cream-soft);
+    }
+
+    .menu-overlay__close svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .menu-overlay__grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      padding-block: clamp(2rem, 5vh, 5rem);
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .menu-overlay__grid {
+        grid-template-columns: 1.3fr 1fr;
+      }
+    }
+
+    .menu-overlay__over {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .menu-overlay__over::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--bronze-light);
+    }
+
+    .menu-overlay__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .menu-overlay__list li {
+      border-top: 1px solid rgba(244, 238, 226, 0.15);
+    }
+
+    .menu-overlay__list li:last-child {
+      border-bottom: 1px solid rgba(244, 238, 226, 0.15);
+    }
+
+    .menu-overlay__list a {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.9rem 0;
+      color: var(--cream-soft);
+      text-decoration: none;
+      transition: padding-left 360ms cubic-bezier(.2, .7, .3, 1), color 280ms;
+      position: relative;
+      flex-wrap: wrap;
+    }
+
+    .menu-overlay__list a:hover {
+      padding-left: 1.5rem;
+      color: var(--bronze-light);
+    }
+
+    .menu-overlay__list .num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      color: var(--bronze-light);
+      flex-shrink: 0;
+      min-width: 44px;
+    }
+
+    .menu-overlay__list .word {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.3rem, 0.95rem + 1.6vw, 2.8rem);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      flex: 1;
+      min-width: 0;
+      overflow-wrap: break-word;
+      word-break: normal;
+    }
+
+    .menu-overlay__list .arrow {
+      margin-left: auto;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 300ms, transform 300ms;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--bronze-light);
+      flex-shrink: 0;
+    }
+
+    .menu-overlay__list a:hover .arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .menu-overlay__aside {
+      position: relative;
+      padding: 2rem 1.8rem;
+      background: rgba(244, 238, 226, 0.05);
+      border: 1px solid rgba(244, 238, 226, 0.15);
+      border-radius: var(--r-lg);
+    }
+
+    .menu-overlay__aside-over {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      margin-bottom: 1rem;
+    }
+
+    .menu-overlay__aside-name {
+      font-family: var(--font-display);
+      font-size: 1.7rem;
+      line-height: 1.15;
+      margin-bottom: 0.8rem;
+    }
+
+    .menu-overlay__aside-detail {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: rgba(244, 238, 226, 0.7);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .menu-overlay__aside-tel {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--cream-soft);
+      text-decoration: none;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+      transition: color 260ms;
+    }
+
+    .menu-overlay__aside-tel:hover {
+      color: var(--bronze-light);
+    }
+
+    .menu-overlay__aside-sec {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: rgba(244, 238, 226, 0.65);
+      display: block;
+      margin-top: 0.4rem;
+    }
+
+    .menu-overlay__aside-sec a {
+      color: inherit;
+      border-bottom: 1px dashed rgba(244, 238, 226, 0.35);
+    }
+
+    .menu-overlay__bell {
+      position: absolute;
+      top: -28px;
+      right: -24px;
+      width: 78px;
+      height: 78px;
+      z-index: 2;
+      padding: 14px;
+      background: var(--cream-soft);
+      border-radius: 50%;
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, .35);
+    }
+
+    .menu-overlay__bell svg {
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 10%;
+      animation: bellSwing 4.2s cubic-bezier(.42, 0, .58, 1) infinite;
+    }
+
+    .menu-overlay__foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.8rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(244, 238, 226, 0.15);
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: rgba(244, 238, 226, 0.55);
+      text-transform: uppercase;
+    }
+
+    .menu-overlay__foot>span {
+      min-width: 0;
+      overflow-wrap: break-word;
+    }
+
+    .menu-overlay__foot .dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: var(--bronze-light);
+      border-radius: 50%;
+      margin-inline: 0.45em;
+      vertical-align: middle;
+    }
+
+    /* Empêcher le scroll du body quand overlay ouvert */
+    body.menu-open {
+      overflow: hidden;
+    }
+
+    /* ============ MASTHEAD CARTOUCHE ============ */
+    .masthead {
+      border-top: 1px solid var(--line-deep);
+      border-bottom: 1px solid var(--line-deep);
+      padding-block: 0.55rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: var(--cream-deep);
+    }
+
+    .masthead__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .masthead__dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: var(--bourgogne);
+      border-radius: 50%;
+      margin-inline: 0.6em;
+      vertical-align: middle;
+    }
+
+    .masthead__num {
+      color: var(--bourgogne);
+    }
+
+    /* Mobile : masthead compact et centré */
+    @media (max-width: 720px) {
+      .masthead {
+        padding-block: 0.45rem;
+        font-size: 0.58rem;
+        letter-spacing: 0.2em;
+      }
+
+      .masthead__inner {
+        justify-content: center;
+        text-align: center;
+        gap: 0.35rem 1rem;
+      }
+
+      .masthead__dot {
+        width: 4px;
+        height: 4px;
+        margin-inline: 0.5em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .masthead {
+        font-size: 0.52rem;
+        letter-spacing: 0.16em;
+        padding-block: 0.4rem;
+      }
+
+      .masthead__inner {
+        gap: 0.2rem 0.75rem;
+      }
+    }
+
+    /* En dessous de 380px : on force la colonne pour éviter une ligne tronquée */
+    @media (max-width: 380px) {
+      .masthead__inner {
+        flex-direction: column;
+        gap: 0.22rem;
+      }
+    }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      min-height: 92dvh;
+      padding-top: clamp(2.5rem, 4vw, 5rem);
+      padding-bottom: clamp(2rem, 5vw, 5rem);
+      overflow: hidden;
+      background: var(--cream);
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero__over {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--bourgogne);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero__over::before {
+      content: '';
+      width: 42px;
+      height: 1px;
+      background: var(--bourgogne);
+    }
+
+    .hero h1 {
+      color: var(--ink);
+      margin-bottom: clamp(1.2rem, 2vw, 1.8rem);
+    }
+
+    .hero h1 em {
+      color: var(--bourgogne);
+      font-style: italic;
+      font-family: var(--font-display);
+    }
+
+    .hero__kicker {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.15rem, 0.9rem + 0.6vw, 1.5rem);
+      line-height: 1.5;
+      color: var(--ink-soft);
+      max-width: 38ch;
+      margin-bottom: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    .hero__ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.2rem;
+      align-items: center;
+      margin-bottom: clamp(2rem, 3.5vw, 3rem);
+    }
+
+    .hero__tel {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.04em;
+    }
+
+    .hero__tel strong {
+      font-weight: 500;
+      color: var(--ink);
+      font-size: 1.05rem;
+    }
+
+    /* ==== FICHE CLOCHE HERO (côté gauche du titre) ==== */
+    .hero__fiche {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.6rem 1.4rem;
+      padding: 1.1rem 1.4rem;
+      border: 1px solid var(--line-deep);
+      background: var(--cream-soft);
+      border-radius: var(--r-md);
+      max-width: 520px;
+      position: relative;
+    }
+
+    .hero__fiche::before {
+      content: 'N° 01';
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      background: var(--bourgogne);
+      color: var(--cream-soft);
+      padding: 2px 10px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      border-radius: var(--r-sm);
+    }
+
+    .fiche__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.6rem;
+      border-bottom: 1px dotted var(--line);
+      padding-block: 0.3rem;
+    }
+
+    .fiche__label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .fiche__value {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--bourgogne);
+    }
+
+    /* ==== PLANCHE PHOTO SIGNATURE + ONDE ==== */
+    .hero__visual {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      max-width: 520px;
+      width: 100%;
+      margin-inline: auto;
+    }
+
+    .hero__plate {
+      position: absolute;
+      inset: 0;
+      margin: 0;
+      overflow: hidden;
+      border-radius: var(--r-lg);
+      border: 1px solid var(--line-deep);
+      box-shadow:
+        0 20px 48px -20px rgba(26, 20, 20, 0.35),
+        0 0 0 8px var(--cream-soft);
+      background: var(--ink);
+      z-index: 2;
+    }
+
+    .hero__plate img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: contrast(1.05) saturate(0.85);
+      transform: scale(1.02);
+    }
+
+    .hero__plate::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg,
+          rgba(26, 20, 20, 0.05) 0%,
+          rgba(26, 20, 20, 0.15) 55%,
+          rgba(26, 20, 20, 0.78) 100%);
+      pointer-events: none;
+    }
+
+    .hero__plate-caption {
+      position: absolute;
+      left: 1.2rem;
+      right: 1.2rem;
+      bottom: 1.1rem;
+      color: var(--cream-soft);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      line-height: 1.5;
+      z-index: 3;
+      display: flex;
+      gap: 0.7rem;
+      align-items: flex-start;
+    }
+
+    .hero__plate-caption .pl {
+      display: inline-block;
+      padding: 2px 8px;
+      background: var(--cream-soft);
+      color: var(--bourgogne);
+      font-weight: 500;
+      border-radius: var(--r-sm);
+      letter-spacing: 0.24em;
+      font-size: 0.68rem;
+      flex-shrink: 0;
+    }
+
+    /* Onde sonore en overlay sur la photo */
+    .hero__waves {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .hero__waves circle {
+      fill: none;
+      stroke: var(--cream-soft);
+      stroke-width: 1.4;
+      transform-box: fill-box;
+      transform-origin: center;
+      opacity: 0;
+      animation: wavePulse 2.4s cubic-bezier(.35, .05, .35, 1) infinite;
+    }
+
+    .hero__waves circle:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .hero__waves circle:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+
+    .hero__waves circle:nth-child(3) {
+      animation-delay: 1.6s;
+    }
+
+    @keyframes wavePulse {
+      0% {
+        transform: scale(0.3);
+        opacity: 0.8;
+      }
+
+      80% {
+        opacity: 0.3;
+      }
+
+      100% {
+        transform: scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__waves circle {
+        animation: none;
+        opacity: 0.35;
+      }
+    }
+
+    /* Petite cloche SVG signature (signal hero qui oscille) */
+    .hero__bell-mark {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      width: 68px;
+      height: 68px;
+      z-index: 4;
+      background: var(--cream-soft);
+      border-radius: 50%;
+      padding: 10px;
+      box-shadow: 0 6px 18px -4px rgba(26, 20, 20, .4);
+    }
+
+    .hero__bell-mark svg {
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 10%;
+      animation: bellSwing 4.2s cubic-bezier(.42, 0, .58, 1) infinite;
+    }
+
+    @keyframes bellSwing {
+
+      0%,
+      100% {
+        transform: rotate(-6deg);
+      }
+
+      50% {
+        transform: rotate(6deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__bell-mark svg {
+        animation: none;
+      }
+    }
+
+    /* Tampon rotatif depuis 1996 */
+    .hero__stamp {
+      position: absolute;
+      right: -28px;
+      bottom: -28px;
+      width: 128px;
+      height: 128px;
+      z-index: 5;
+      animation: stampRotate 32s linear infinite;
+    }
+
+    .hero__stamp svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes stampRotate {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero__stamp {
+        animation: none;
+      }
+    }
+
+    @media (min-width: 960px) {
+      .hero__grid {
+        grid-template-columns: 1.1fr 1fr;
+      }
+
+      .hero__visual {
+        max-width: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero__visual {
+        aspect-ratio: 4 / 5;
+        max-width: 380px;
+      }
+
+      .hero__stamp {
+        width: 96px;
+        height: 96px;
+        right: -18px;
+        bottom: -18px;
+      }
+
+      .hero__bell-mark {
+        width: 54px;
+        height: 54px;
+        padding: 8px;
+      }
+    }
+
+    /* ============ TICKER ============ */
+    .ticker {
+      background: var(--bourgogne);
+      color: var(--cream-soft);
+      padding-block: 1.1rem;
+      overflow: hidden;
+      border-top: 1px solid var(--bourgogne-deep);
+      border-bottom: 1px solid var(--bourgogne-deep);
+      position: relative;
+    }
+
+    .ticker__track {
+      display: flex;
+      gap: 3rem;
+      white-space: nowrap;
+      animation: tickerSlide 32s linear infinite;
+      width: max-content;
+    }
+
+    @keyframes tickerSlide {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .ticker__word {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.2rem, 0.9rem + 1.1vw, 1.85rem);
+      letter-spacing: -0.005em;
+      display: inline-flex;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .ticker__word::after {
+      content: '✦';
+      color: var(--bronze-light);
+      font-style: normal;
+      font-size: 0.65em;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .ticker__track {
+        animation: none;
+      }
+    }
+
+    /* ============ MANIFESTE CORSE ============ */
+    .manifeste {
+      padding: clamp(4rem, 8vw, 8rem) var(--side-gutter);
+      background: var(--bourgogne);
+      color: var(--cream-soft);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .manifeste::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(139, 106, 58, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(139, 106, 58, 0.12) 0%, transparent 45%);
+      pointer-events: none;
+    }
+
+    .manifeste__inner {
+      max-width: 920px;
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .manifeste__over {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .manifeste__over::before,
+    .manifeste__over::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--bronze-light);
+      opacity: 0.5;
+    }
+
+    .manifeste blockquote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.3rem, 1rem + 1.3vw, 2.15rem);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      margin: 0 0 2.2rem;
+      color: var(--cream-soft);
+    }
+
+    .manifeste blockquote em {
+      color: var(--bronze-light);
+      font-style: italic;
+    }
+
+    .manifeste cite {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      font-style: normal;
+    }
+
+    .manifeste__ornament {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      width: 80px;
+      height: 80px;
+      opacity: 0.25;
+      animation: ornamentFloat 18s ease-in-out infinite;
+    }
+
+    @keyframes ornamentFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-5deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(5deg);
+      }
+    }
+
+    /* ============ CHAPITRES STRIP ============ */
+    .chapitres {
+      padding: clamp(3.5rem, 6vw, 6rem) var(--side-gutter);
+      background: var(--cream-soft);
+      border-block: 1px solid var(--line);
+    }
+
+    .chapitres__head {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      align-items: end;
+      justify-content: space-between;
+    }
+
+    .chapitres__head h2 {
+      max-width: 18ch;
+    }
+
+    .chapitres__grid {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--line-deep);
+      border-left: 1px solid var(--line-deep);
+    }
+
+    .chapitre {
+      padding: 1.6rem 1.4rem;
+      border-right: 1px solid var(--line-deep);
+      border-bottom: 1px solid var(--line-deep);
+      background: var(--cream-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transition: background 280ms, color 280ms;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .chapitre:hover {
+      background: var(--cream-deep);
+    }
+
+    .chapitre__num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      color: var(--bronze);
+      font-weight: 500;
+    }
+
+    .chapitre__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 0.9rem + 0.6vw, 1.55rem);
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .chapitre__arrow {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      color: var(--bourgogne);
+      transition: transform 280ms;
+    }
+
+    .chapitre:hover .chapitre__arrow {
+      transform: translateX(4px);
+    }
+
+    /* ============ SECTION BIGROW (expertise/foudre/sono) ============ */
+    .bigrow {
+      padding: clamp(4rem, 7vw, 7rem) var(--side-gutter);
+      position: relative;
+    }
+
+    .bigrow--cream {
+      background: var(--cream);
+    }
+
+    .bigrow--cream-soft {
+      background: var(--cream-soft);
+    }
+
+    .bigrow__grid {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 4.5rem);
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .bigrow__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .bigrow--reverse .bigrow__grid {
+        direction: rtl;
+      }
+
+      .bigrow--reverse .bigrow__grid>* {
+        direction: ltr;
+      }
+    }
+
+    .bigrow__text {
+      max-width: 56ch;
+    }
+
+    .bigrow__num {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--bronze);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .bigrow__num::before {
+      content: '';
+      width: 38px;
+      height: 1px;
+      background: var(--bronze);
+    }
+
+    .bigrow h2 {
+      margin-bottom: 1.2rem;
+    }
+
+    .bigrow__lede {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 0.9rem + 0.5vw, 1.35rem);
+      line-height: 1.45;
+      color: var(--bourgogne);
+      margin-bottom: 1.8rem;
+    }
+
+    .bigrow__body p {
+      color: var(--ink-soft);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    .bigrow__body strong {
+      font-weight: 600;
+      color: var(--ink);
+      border-bottom: 1px solid var(--bourgogne);
+      padding-bottom: 1px;
+    }
+
+    .bigrow__cta {
+      margin-top: 2rem;
+    }
+
+    .bigrow__visual {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      box-shadow:
+        0 20px 44px -18px rgba(26, 20, 20, 0.3),
+        0 0 0 6px var(--cream-soft);
+      background: var(--ink);
+    }
+
+    .bigrow__visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: contrast(1.03) saturate(0.92);
+    }
+
+    .bigrow__visual-tag {
+      position: absolute;
+      top: 1.2rem;
+      left: 1.2rem;
+      padding: 0.35rem 0.85rem;
+      background: var(--cream-soft);
+      color: var(--bourgogne);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      border-radius: var(--r-sm);
+      font-weight: 500;
+    }
+
+    .bigrow__visual-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.4rem 1.4rem 1rem;
+      background: linear-gradient(to top, rgba(26, 20, 20, 0.88), rgba(26, 20, 20, 0));
+      color: var(--cream-soft);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      line-height: 1.5;
+    }
+
+    /* ============ POINTS FORTS ============ */
+    .points {
+      padding: clamp(4rem, 7vw, 7rem) var(--side-gutter);
+      background: var(--ink);
+      color: var(--cream-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .points__inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .points__head {
+      max-width: 640px;
+      margin-bottom: clamp(2.5rem, 4vw, 4rem);
+    }
+
+    .points__head h2 {
+      color: var(--cream-soft);
+    }
+
+    .points__head h2 em {
+      color: var(--bronze-light);
+    }
+
+    .points__over {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.36em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .points__over::before {
+      content: '';
+      width: 38px;
+      height: 1px;
+      background: var(--bronze-light);
+    }
+
+    .points__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .point {
+      padding: 1.8rem 1.6rem;
+      border: 1px solid rgba(244, 238, 226, 0.14);
+      border-radius: var(--r-md);
+      background: rgba(244, 238, 226, 0.03);
+      position: relative;
+    }
+
+    .point__num {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
+      color: var(--bronze-light);
+      margin-bottom: 0.9rem;
+    }
+
+    .point h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--cream-soft);
+      margin-bottom: 0.8rem;
+    }
+
+    .point p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: rgba(244, 238, 226, 0.78);
+      margin: 0;
+    }
+
+    .point__list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+
+    .point__list li::before {
+      content: '▸';
+      color: var(--bronze-light);
+      margin-right: 0.5em;
+    }
+
+    /* ============ ANTI-PIGEONS (typographique fort) ============ */
+    .pigeons {
+      padding: clamp(4rem, 7vw, 7rem) var(--side-gutter);
+      background: var(--cream-deep);
+      color: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pigeons__inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .pigeons__flex {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    @media (min-width: 960px) {
+      .pigeons__flex {
+        grid-template-columns: 1.2fr 1fr;
+      }
+    }
+
+    .pigeons h2 {
+      font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.7rem);
+      margin-bottom: 1.4rem;
+    }
+
+    .pigeons h2 em {
+      color: var(--bourgogne);
+      font-style: italic;
+    }
+
+    .pigeons__quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.15rem, 0.95rem + 0.7vw, 1.55rem);
+      line-height: 1.4;
+      color: var(--bourgogne);
+      border-left: 3px solid var(--bourgogne);
+      padding-left: 1.4rem;
+      margin: 2rem 0;
+    }
+
+    .pigeons__body p {
+      color: var(--ink-soft);
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .pigeons__conclusion {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 0.95rem + 0.8vw, 1.5rem);
+      line-height: 1.4;
+      color: var(--ink);
+      margin-top: 2rem;
+    }
+
+    .pigeons__conclusion strong {
+      color: var(--bourgogne);
+      font-style: italic;
+      font-family: var(--font-display);
+      font-weight: 400;
+    }
+
+    .pigeons__aside {
+      padding: 1.8rem 1.6rem;
+      background: var(--cream-soft);
+      border: 1px solid var(--line-deep);
+      border-radius: var(--r-lg);
+      position: relative;
+    }
+
+    .pigeons__aside-num {
+      position: absolute;
+      top: -14px;
+      left: 20px;
+      padding: 3px 12px;
+      background: var(--ink);
+      color: var(--cream-soft);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.24em;
+      border-radius: var(--r-sm);
+    }
+
+    .pigeons__aside h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin: 0.3rem 0 0.8rem;
+    }
+
+    .pigeons__aside ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+    }
+
+    .pigeons__aside ul li::before {
+      content: '✕';
+      color: var(--bourgogne);
+      margin-right: 0.5em;
+    }
+
+    /* ============ RELEVÉ D'INTERVENTION (ex-carte) ============ */
+    .corse {
+      padding: clamp(4rem, 7vw, 7rem) var(--side-gutter);
+      background: var(--cream);
+      border-block: 1px solid var(--line);
+      position: relative;
+    }
+
+    .corse__inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .corse__head {
+      max-width: 720px;
+      margin-bottom: clamp(2.5rem, 4vw, 4rem);
+    }
+
+    .corse__head h2 em {
+      color: var(--bourgogne);
+      font-style: italic;
+    }
+
+    .corse__relevé {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border: 1px solid var(--line-deep);
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      background: var(--cream-soft);
+      position: relative;
+    }
+
+    @media (min-width: 820px) {
+      .corse__relevé {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .zone-card {
+      padding: 2rem 1.8rem 2.2rem;
+      position: relative;
+      border-bottom: 1px solid var(--line-deep);
+    }
+
+    @media (min-width: 820px) {
+      .zone-card {
+        border-bottom: none;
+        border-right: 1px solid var(--line-deep);
+      }
+
+      .zone-card:last-child {
+        border-right: none;
+      }
+    }
+
+    .zone-card:last-child {
+      border-bottom: none;
+    }
+
+    .zone-card__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px dotted var(--line-deep);
+    }
+
+    .zone-card__num {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      color: var(--bronze);
+    }
+
+    .zone-card__role {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      color: var(--ink-soft);
+    }
+
+    .zone-card__name {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 1.3rem + 1.5vw, 2.6rem);
+      line-height: 1;
+      color: var(--ink);
+      margin: 0 0 0.6rem;
+    }
+
+    .zone-card__dep {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.4rem;
+    }
+
+    .zone-card__body {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin: 0 0 1.2rem;
+    }
+
+    .zone-card__tel {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--bourgogne);
+      border-top: 1px solid var(--line);
+      padding-top: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .zone-card__tel::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--bourgogne);
+    }
+
+    .zone-card__extent {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      color: var(--bronze);
+      opacity: 0.85;
+    }
+
+    /* Barre de portée */
+    .corse__extent {
+      margin-top: 2rem;
+      padding: 1.2rem 1.6rem;
+      background: var(--ink);
+      color: var(--cream-soft);
+      border-radius: var(--r-md);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+    }
+
+    .corse__extent strong {
+      color: var(--bronze-light);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+    }
+
+    /* ============ CONTACT MONUMENTAL ============ */
+    .contact {
+      padding: clamp(5rem, 8vw, 9rem) var(--side-gutter);
+      background: var(--ink);
+      color: var(--cream-soft);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 25% 30%, rgba(88, 10, 18, 0.35) 0%, transparent 40%),
+        radial-gradient(circle at 75% 70%, rgba(139, 106, 58, 0.2) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .contact__inner {
+      max-width: 960px;
+      margin-inline: auto;
+      position: relative;
+    }
+
+    .contact__over {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      margin-bottom: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .contact__over::before,
+    .contact__over::after {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--bronze-light);
+      opacity: 0.5;
+    }
+
+    .contact h2 {
+      color: var(--cream-soft);
+      font-size: clamp(1.75rem, 1.2rem + 2vw, 3.2rem);
+      margin-bottom: 2.5rem;
+    }
+
+    .contact h2 em {
+      color: var(--bronze-light);
+      font-style: italic;
+    }
+
+    .contact__tel {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 1.1rem + 3vw, 3.8rem);
+      color: var(--cream-soft);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      text-decoration: none;
+      transition: color 280ms;
+    }
+
+    .contact__tel:hover {
+      color: var(--bronze-light);
+    }
+
+    .contact__tel-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      color: rgba(244, 238, 226, 0.5);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .contact__secondary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem 2.5rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(244, 238, 226, 0.12);
+    }
+
+    .contact__secondary a {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      color: var(--cream-soft);
+      border-bottom: 1px dashed rgba(244, 238, 226, 0.3);
+      padding-bottom: 2px;
+      transition: color 280ms, border-color 280ms;
+    }
+
+    .contact__secondary a:hover {
+      color: var(--bronze-light);
+      border-color: var(--bronze-light);
+    }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--bourgogne-ink);
+      color: rgba(244, 238, 226, 0.7);
+      padding: clamp(2.5rem, 4vw, 4rem) var(--side-gutter) 1.5rem;
+      font-size: 0.82rem;
+    }
+
+    .footer__inner {
+      max-width: var(--max-w);
+      margin-inline: auto;
+    }
+
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(244, 238, 226, 0.12);
+    }
+
+    @media (min-width: 720px) {
+      .footer__top {
+        grid-template-columns: 1.4fr 1fr 1fr;
+      }
+    }
+
+    .footer__brand img {
+      width: 90px;
+      margin-bottom: 1rem;
+      /* filter: brightness(1.3); */
+    }
+
+    .footer__brand p {
+      max-width: 32ch;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: rgba(244, 238, 226, 0.6);
+    }
+
+    .footer__col h4 {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--bronze-light);
+      margin-bottom: 1rem;
+    }
+
+    .footer__col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .footer__col a {
+      color: rgba(244, 238, 226, 0.75);
+      transition: color 200ms;
+    }
+
+    .footer__col a:hover {
+      color: var(--cream-soft);
+    }
+
+    .footer__bottom {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      color: rgba(244, 238, 226, 0.5);
+    }
+
+    /* ============ RESPONSIVE ============ */
+    @media (max-width: 640px) {
+      .nav__tel {
+        font-size: 0.78rem;
+      }
+
+      .hero__visual {
+        max-width: 340px;
+      }
+
+      .hero__quote {
+        right: 0;
+        max-width: 200px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero__fiche {
+        padding: 0.9rem 1rem;
+      }
+
+      .hero__ctas {
+        gap: 0.8rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- ================================================================
-     MASTHEAD
-     ================================================================ -->
-<div class="masthead">
-  <div class="masthead__left">
-    <span>U Campanile</span>
-    <span class="masthead__dot">◆</span>
-    <span>Artisan Campanaire</span>
-    <span class="masthead__dot">◆</span>
-    <span>Piève · Haute-Corse</span>
-    <span class="masthead__dot">◆</span>
-    <span>N° I — MMXXVI</span>
-  </div>
-  <div class="masthead__right">
-    <span>Vox campanae ex Corsica</span>
-    <span class="masthead__dot">◆</span>
-    <a href="#contact">Prendre rendez-vous</a>
-  </div>
-</div>
+  <!-- ============ NAV ============ -->
+  <nav class="nav" aria-label="Navigation principale">
+    <div class="wrap nav__inner">
+      <a href="#" class="nav__brand" aria-label="U Campanile — Accueil">
+        <img src="./logo.png" alt="U Campanile — Artisan campanaire">
+      </a>
 
-<!-- ================================================================
-     HEADER
-     ================================================================ -->
-<header class="header">
-  <a href="#" class="brand">
-    <span class="brand__name">U <em>Campanile</em></span>
-    <span class="brand__sub">Depuis MCMXCVI · Piève</span>
-  </a>
-  <nav class="nav" id="nav">
-    <a href="#atelier">Atelier</a>
-    <a href="#services">Métiers</a>
-    <a href="#lexique">Lexique</a>
-    <a href="#planche">Chantiers</a>
-    <a href="#zone">Corsica</a>
-    <a href="#contact">Contact</a>
+      <a href="tel:0495352269" class="nav__tel">04 95 35 22 69</a>
+
+      <button class="nav__menu-btn" id="menuOpen" aria-label="Ouvrir le menu" aria-expanded="false"
+        aria-controls="menuOverlay">
+        <span class="bars" aria-hidden="true"><span></span><span></span><span></span></span>
+        Menu
+      </button>
+    </div>
   </nav>
-  <div style="display:flex; gap:10px; align-items:center;">
-    <a href="tel:0495352269" class="call">
-      <span class="call__ring">⌕</span>
-      <span>04 95 35 22 69</span>
-    </a>
-    <button class="menu-toggle" aria-label="Menu" aria-expanded="false" onclick="document.getElementById('nav').classList.toggle('open'); this.setAttribute('aria-expanded', document.getElementById('nav').classList.contains('open'));">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-    </button>
-  </div>
-</header>
 
-<!-- ================================================================
-     HERO
-     ================================================================ -->
-<section class="hero">
-  <!-- cloche oscillante et ondes sonores (ambient) -->
-  <div class="hero__ambient" aria-hidden="true">
-    <svg class="hero__bell-ghost" viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg">
-      <g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round">
-        <!-- joug -->
-        <rect x="80" y="8" width="240" height="24" rx="3"/>
-        <line x1="200" y1="8" x2="200" y2="32"/>
-        <!-- chaînes -->
-        <line x1="140" y1="32" x2="150" y2="92"/>
-        <line x1="260" y1="32" x2="250" y2="92"/>
-        <!-- cloche -->
-        <path d="M130 98 q0 -30 70 -30 q70 0 70 30 l12 180 q0 40 -82 40 q-82 0 -82 -40 z"/>
-        <line x1="130" y1="260" x2="270" y2="260"/>
-        <line x1="124" y1="278" x2="276" y2="278"/>
-        <!-- ornement -->
-        <line x1="148" y1="120" x2="252" y2="120"/>
-        <line x1="148" y1="128" x2="252" y2="128"/>
-        <!-- effigie -->
-        <rect x="180" y="170" width="40" height="50"/>
-        <line x1="200" y1="170" x2="200" y2="220"/>
-        <line x1="190" y1="180" x2="210" y2="180"/>
-        <!-- battant -->
-        <line x1="200" y1="98" x2="200" y2="290"/>
-        <circle cx="200" cy="295" r="9" fill="currentColor"/>
+  <!-- ============ MENU OVERLAY ============ -->
+  <div class="menu-overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Menu principal">
+    <div class="menu-overlay__inner">
+      <div class="menu-overlay__top">
+        <div class="menu-overlay__brand">
+          <img src="./logo.png" alt="">
+          <span class="menu-overlay__brand-text">Carnet du campaniste<span class="since"
+              style="color: rgba(244,238,226,0.45); margin-left:.55rem;">· depuis 1996</span></span>
+        </div>
+        <button class="menu-overlay__close" id="menuClose" aria-label="Fermer le menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+          Fermer
+        </button>
+      </div>
+
+      <div class="menu-overlay__grid">
+        <nav aria-label="Sommaire du site">
+          <div class="menu-overlay__over">Sommaire</div>
+          <ul class="menu-overlay__list">
+            <li><a href="#expertise" data-close>
+                <span class="num">01 /</span>
+                <span class="word">Expertise & restauration de cloche</span>
+                <span class="arrow" aria-hidden="true">⟶</span>
+              </a></li>
+            <li><a href="#foudre" data-close>
+                <span class="num">02 /</span>
+                <span class="word">Protection foudre</span>
+                <span class="arrow" aria-hidden="true">⟶</span>
+              </a></li>
+            <li><a href="#points" data-close>
+                <span class="num">03 /</span>
+                <span class="word">Points forts & certifications</span>
+                <span class="arrow" aria-hidden="true">⟶</span>
+              </a></li>
+            <li><a href="#sonorisation" data-close>
+                <span class="num">04 /</span>
+                <span class="word">Sonorisation d'église</span>
+                <span class="arrow" aria-hidden="true">⟶</span>
+              </a></li>
+            <li><a href="#pigeons" data-close>
+                <span class="num">05 /</span>
+                <span class="word">Filets anti-pigeons</span>
+                <span class="arrow" aria-hidden="true">⟶</span>
+              </a></li>
+            <li><a href="#corse" data-close>
+                <span class="num">06 /</span>
+                <span class="word">Toute la Corse</span>
+                <span class="arrow" aria-hidden="true">⟶</span>
+              </a></li>
+            <li><a href="#contact" data-close>
+                <span class="num">07 /</span>
+                <span class="word">Contact</span>
+                <span class="arrow" aria-hidden="true">⟶</span>
+              </a></li>
+          </ul>
+        </nav>
+
+        <aside class="menu-overlay__aside">
+          <!-- Cloche déco qui oscille -->
+          <div class="menu-overlay__bell" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <g stroke="var(--bourgogne)" stroke-width="2.2" fill="none" stroke-linejoin="round"
+                stroke-linecap="round">
+                <line x1="30" y1="16" x2="70" y2="16" />
+                <path d="M 44 16 Q 50 8 56 16" />
+                <path
+                  d="M 38 22 L 62 22 Q 66 22 67 28 L 74 58 Q 78 70 82 82 L 18 82 Q 22 70 26 58 L 33 28 Q 34 22 38 22 Z"
+                  fill="var(--bourgogne)" />
+                <line x1="50" y1="30" x2="50" y2="78" />
+                <circle cx="50" cy="82" r="3.5" fill="var(--bourgogne)" />
+              </g>
+            </svg>
+          </div>
+
+          <div class="menu-overlay__aside-over">Appelez directement</div>
+          <div class="menu-overlay__aside-name">Votre campaniste, à l'écoute</div>
+          <p class="menu-overlay__aside-detail">Un spécialiste à l'écoute de vos besoins. Devis gratuit, intervention
+            rapide en cas d'urgence ou de dépannage.</p>
+
+          <a href="tel:0495352269" class="menu-overlay__aside-tel">04 95 35 22 69</a>
+          <span class="menu-overlay__aside-sec">Mobile <a href="tel:0611816899">06 11 81 68 99</a> · <a
+              href="mailto:ucampanile@wanadoo.fr">ucampanile@wanadoo.fr</a></span>
+        </aside>
+      </div>
+
+      <div class="menu-overlay__foot">
+        <span>SOC D'Exploitation ETS U Campanile</span>
+        <span>Bastia<span class="dot"></span>Piève<span class="dot"></span>Ajaccio</span>
+        <span style="margin-left:auto;">Artisan campanaire · Corse · Depuis 1996</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MASTHEAD CARTOUCHE ============ -->
+  <div class="masthead">
+    <div class="wrap masthead__inner">
+      <span><span class="masthead__num">N°</span>&nbsp;Carnet du Campaniste<span class="masthead__dot"></span>Artisan
+        Campanaire</span>
+      <span>Bastia <span class="masthead__dot"></span> Piève <span class="masthead__dot"></span> Ajaccio</span>
+      <span>Depuis <span class="masthead__num">1996</span></span>
+    </div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero isolate">
+    <div class="wrap hero__grid">
+
+      <!-- Colonne texte -->
+      <div class="hero__text">
+        <div class="hero__over">Un grand savoir-faire</div>
+
+        <h1>
+          Un campaniste au service de vos <em>bâtiments religieux</em> à Bastia.
+        </h1>
+
+        <p class="hero__kicker">
+          Installation, restauration, électrification de cloches d'église — et horlogerie électrique monumentale, depuis
+          1996.
+        </p>
+
+        <div class="hero__ctas">
+          <a href="#contact" class="btn">
+            Contactez notre entreprise
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+          <div class="hero__tel">
+            ou appelez<br>
+            <strong>04 95 35 22 69</strong>
+          </div>
+        </div>
+
+        <!-- Fiche d'inventaire signature -->
+        <div class="hero__fiche" aria-label="Fiche d'inventaire — cloche du hero">
+          <div class="fiche__row">
+            <span class="fiche__label">Ø Diamètre</span>
+            <span class="fiche__value mono">1,12 m</span>
+          </div>
+          <div class="fiche__row">
+            <span class="fiche__label">Poids</span>
+            <span class="fiche__value mono">740 kg</span>
+          </div>
+          <div class="fiche__row">
+            <span class="fiche__label">Note</span>
+            <span class="fiche__value">Mi³</span>
+          </div>
+          <div class="fiche__row">
+            <span class="fiche__label">Alliage</span>
+            <span class="fiche__value mono">78/22</span>
+          </div>
+          <div class="fiche__row" style="grid-column: 1 / -1;">
+            <span class="fiche__label">Mention</span>
+            <span class="fiche__value" style="font-style:italic;">« Refondue en — Don des paroissiens »</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Colonne visuel : planche photo signature + onde sonore + cloche miniature + tampon -->
+      <div class="hero__visual">
+        <figure class="hero__plate">
+          <img src="./assets/bell-restoration.jpg"
+            alt="Cloche en bronze patiné, suspendue dans la charpente d'un clocher corse restauré par U Campanile"
+            loading="eager">
+          <figcaption class="hero__plate-caption">
+            <span class="pl">Pl. I</span>
+            <span>Cloche en bronze patiné, charpente chêne d'origine — Refondue sur don des paroissiens · restauration
+              atelier Piève</span>
+          </figcaption>
+        </figure>
+
+        <!-- Onde sonore qui pulse depuis la cloche -->
+        <svg class="hero__waves" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <circle cx="200" cy="180" r="60" />
+          <circle cx="200" cy="180" r="100" />
+          <circle cx="200" cy="180" r="150" />
+        </svg>
+
+        <!-- Petite cloche SVG qui oscille (signal hero vivant) -->
+        <div class="hero__bell-mark" aria-hidden="true">
+          <svg viewBox="0 0 100 100">
+            <g stroke="var(--bourgogne)" stroke-width="2.2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+              <!-- joug -->
+              <line x1="30" y1="16" x2="70" y2="16" />
+              <!-- anse -->
+              <path d="M 44 16 Q 50 8 56 16" />
+              <!-- corps de cloche -->
+              <path
+                d="M 38 22 L 62 22 Q 66 22 67 28 L 74 58 Q 78 70 82 82 L 18 82 Q 22 70 26 58 L 33 28 Q 34 22 38 22 Z"
+                fill="var(--bourgogne)" />
+              <!-- battant -->
+              <line x1="50" y1="30" x2="50" y2="78" />
+              <circle cx="50" cy="82" r="3.5" fill="var(--bourgogne)" />
+            </g>
+          </svg>
+        </div>
+
+        <!-- Tampon rotatif "DEPUIS 1996 · ARTISAN CAMPANAIRE" -->
+        <div class="hero__stamp" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs>
+              <path id="stamp-circle" d="M 100,100 m -72,0 a 72,72 0 1,1 144,0 a 72,72 0 1,1 -144,0" />
+            </defs>
+            <circle cx="100" cy="100" r="92" fill="none" stroke="var(--bourgogne)" stroke-width="1.5" opacity="0.45" />
+            <circle cx="100" cy="100" r="82" fill="none" stroke="var(--bourgogne)" stroke-width="0.8" opacity="0.7" />
+            <text fill="var(--bourgogne)" font-family="JetBrains Mono" font-size="11" letter-spacing="3"
+              font-weight="500">
+              <textPath href="#stamp-circle" startOffset="0">
+                ARTISAN · CAMPANAIRE · DEPUIS · 1996 · CORSE ·
+              </textPath>
+            </text>
+            <!-- petit bourdon stylisé au centre -->
+            <g transform="translate(100 100)" fill="var(--bourgogne)">
+              <path
+                d="M -14 -12 L 14 -12 Q 18 -12 19 -6 L 24 12 Q 26 22 28 30 L -28 30 Q -26 22 -24 12 L -19 -6 Q -18 -12 -14 -12 Z" />
+              <circle cx="0" cy="32" r="3" />
+              <line x1="-16" y1="-12" x2="16" y2="-12" stroke="var(--bourgogne)" stroke-width="2" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span class="ticker__word">Bourdon</span>
+      <span class="ticker__word">Battant</span>
+      <span class="ticker__word">Volée</span>
+      <span class="ticker__word">Tintement</span>
+      <span class="ticker__word">Joug</span>
+      <span class="ticker__word">Bronze</span>
+      <span class="ticker__word">Angelus</span>
+      <span class="ticker__word">Glas</span>
+      <span class="ticker__word">Carillon</span>
+      <span class="ticker__word">Bastia</span>
+      <span class="ticker__word">Piève</span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker__word">Bourdon</span>
+      <span class="ticker__word">Battant</span>
+      <span class="ticker__word">Volée</span>
+      <span class="ticker__word">Tintement</span>
+      <span class="ticker__word">Joug</span>
+      <span class="ticker__word">Bronze</span>
+      <span class="ticker__word">Angelus</span>
+      <span class="ticker__word">Glas</span>
+      <span class="ticker__word">Carillon</span>
+      <span class="ticker__word">Bastia</span>
+      <span class="ticker__word">Piève</span>
+    </div>
+  </div>
+
+  <!-- ============ MANIFESTE CORSE ============ -->
+  <section class="manifeste" id="corse-manifest">
+    <svg class="manifeste__ornament" viewBox="0 0 100 100" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round">
+        <line x1="30" y1="16" x2="70" y2="16" />
+        <path d="M 44 16 Q 50 8 56 16" />
+        <path d="M 38 22 L 62 22 Q 66 22 67 28 L 74 58 Q 78 70 82 82 L 18 82 Q 22 70 26 58 L 33 28 Q 34 22 38 22 Z" />
+        <line x1="50" y1="30" x2="50" y2="78" />
       </g>
     </svg>
+    <div class="manifeste__inner">
+      <span class="manifeste__over">Parole de campaniste</span>
+      <blockquote>
+        « Corses, nous avons particulièrement à cœur et à souhait de <em>conserver et de protéger le patrimoine</em> de
+        notre île de beauté — ainsi que celui de chacune de nos communes. »
+      </blockquote>
+      <cite>U Campanile · Piève, Haute-Corse · Depuis 1996</cite>
+    </div>
+  </section>
 
-    <svg class="hero__waves" viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="450" cy="450" r="150"/>
-      <circle cx="450" cy="450" r="150"/>
-      <circle cx="450" cy="450" r="150"/>
-    </svg>
-  </div>
-
-  <div class="hero__grid">
-    <div class="hero__left">
-      <div class="hero__kicker">
-        <span class="inscr">Pl. I · Ouvrage de campaniste</span>
+  <!-- ============ CHAPITRES STRIP (menu métier) ============ -->
+  <section class="chapitres" id="chapitres">
+    <div class="chapitres__head">
+      <div>
+        <div class="bigrow__num" style="margin-bottom:1rem;">Le métier</div>
+        <h2>Sept chapitres du <em>savoir-faire</em> campanaire</h2>
       </div>
-
-      <h1 class="hero__title">
-        Le son des<br>
-        villages de Corse,<br>
-        <em>depuis</em> <span class="mcmx">MCMXCVI</span>.
-      </h1>
-
-      <p class="hero__lede">
-        Artisan campanaire familial installé à Piève, U Campanile restaure,
-        électrifie et installe les cloches d'église de l'île. <em>Pour qu'en
-        chaque clocher, le glas, la volée et l'angélus retrouvent leur son
-        d'origine.</em>
+      <p style="max-width: 36ch; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6;">
+        De l'installation d'une cloche neuve à la protection du clocher contre la foudre, le campaniste accompagne
+        chaque édifice religieux sur la durée.
       </p>
+    </div>
+    <div class="chapitres__grid">
+      <a class="chapitre" href="#expertise">
+        <span class="chapitre__num">Chap. 01</span>
+        <span class="chapitre__title">Installation de cloche d'église</span>
+        <span class="chapitre__arrow">Voir →</span>
+      </a>
+      <a class="chapitre" href="#expertise">
+        <span class="chapitre__num">Chap. 02</span>
+        <span class="chapitre__title">Restauration de cloche</span>
+        <span class="chapitre__arrow">Voir →</span>
+      </a>
+      <a class="chapitre" href="#expertise">
+        <span class="chapitre__num">Chap. 03</span>
+        <span class="chapitre__title">Électrification de cloche</span>
+        <span class="chapitre__arrow">Voir →</span>
+      </a>
+      <a class="chapitre" href="#expertise">
+        <span class="chapitre__num">Chap. 04</span>
+        <span class="chapitre__title">Horlogerie électrique monumentale</span>
+        <span class="chapitre__arrow">Voir →</span>
+      </a>
+      <a class="chapitre" href="#foudre">
+        <span class="chapitre__num">Chap. 05</span>
+        <span class="chapitre__title">Protection contre la foudre</span>
+        <span class="chapitre__arrow">Voir →</span>
+      </a>
+      <a class="chapitre" href="#sonorisation">
+        <span class="chapitre__num">Chap. 06</span>
+        <span class="chapitre__title">Sonorisation d'église</span>
+        <span class="chapitre__arrow">Voir →</span>
+      </a>
+      <a class="chapitre" href="#pigeons">
+        <span class="chapitre__num">Chap. 07</span>
+        <span class="chapitre__title">Protection contre les pigeons</span>
+        <span class="chapitre__arrow">Voir →</span>
+      </a>
+    </div>
+  </section>
 
-      <div class="hero__ctas">
-        <a href="#contact" class="btn"><span class="btn__dot"></span>Prendre rendez-vous</a>
-        <a href="#services" class="btn btn--ghost"><span class="btn__dot"></span>Nos métiers</a>
+  <!-- ============ EXPERTISE (Section 1) ============ -->
+  <section class="bigrow bigrow--cream" id="expertise">
+    <div class="bigrow__grid">
+      <div class="bigrow__text">
+        <div class="bigrow__num">Expertise N° I</div>
+        <h2>Notre expertise en installation, réparation et restauration de cloche</h2>
+        <p class="bigrow__lede">Faites appel à un campaniste expérimenté pour tous vos monuments religieux.</p>
+        <div class="bigrow__body">
+          <p>Forte de notre expérience depuis 1996, notre entreprise spécialisée dans l'horlogerie électrique
+            monumentale met à votre service tout son savoir-faire. Nous sommes à votre entière disposition pour réaliser
+            les projets de votre commune, aussi bien pour l'installation d'une cloche neuve que pour la remise en bon
+            état de fonctionnement de vos installations déjà existantes.</p>
+          <p>Découvrez notre expertise en matière de <strong>restauration et d'électrification de cloche</strong>. Nous
+            mettons tout en œuvre pour redonner à vos éléments leur son d'origine. Votre campaniste se déplace et
+            analyse votre installation actuelle afin de vous établir une étude personnalisée définissant les réparations
+            et réglages à apporter sur les cloches de l'église de votre commune.</p>
+        </div>
+        <a href="#contact" class="btn bigrow__cta">
+          Découvrez les services de votre campaniste
+          <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
       </div>
-
-      <!-- sticker rotatif -->
-      <div class="sticker" aria-hidden="true">
-        <svg class="sticker__ring" viewBox="0 0 140 140">
-          <defs>
-            <path id="circle" d="M 70,70 m -56,0 a 56,56 0 1,1 112,0 a 56,56 0 1,1 -112,0"/>
-          </defs>
-          <text font-family="Marcellus, serif" font-size="10.5" fill="currentColor" letter-spacing="3">
-            <textPath href="#circle">★ ARTISAN CAMPANAIRE ★ DEPUIS MCMXCVI ★ PIÈVE ★ ARTISAN CAMPANAIRE ★ </textPath>
-          </text>
-        </svg>
-        <div class="sticker__core">
-          XXX<br><span style="font-size:8px;letter-spacing:0.2em;">ANS</span>
+      <div class="bigrow__visual">
+        <span class="bigrow__visual-tag">Pl. II · Chantier</span>
+        <img src="./assets/chantier.jpg" alt="Cloche en bronze clair dans son attelage — chantier U Campanile"
+          loading="lazy">
+        <div class="bigrow__visual-caption">
+          Cloche en bronze · attelage bois et cordes · intervention terrain
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Planche photo -->
-    <aside class="hero__plate">
-      <figure class="hero__plate-frame">
-        <img src="assets/bell-grand.jpg" alt="Cloche de volée Bodet 2015 restaurée par U Campanile" loading="eager">
-        <figcaption class="hero__plate-caption">
-          <strong>Pl. I</strong>
-          <span>Cloche de volée · Bodet · MMXV · restaurée en Corsica</span>
-        </figcaption>
-      </figure>
-      <div class="hero__plate-detail">
-        <span class="initial">L</span>
-        <p>
-          Chaque cloche porte gravée son année de fonte en chiffres romains, le
-          nom de sa paroisse et celui de son parrain — nous en conservons
-          l'inscription à l'identique, soudure par recharge de matière.
+  <!-- ============ FOUDRE (Section 2) ============ -->
+  <section class="bigrow bigrow--cream-soft bigrow--reverse" id="foudre">
+    <div class="bigrow__grid">
+      <div class="bigrow__text">
+        <div class="bigrow__num">Expertise N° II</div>
+        <h2>Protégez efficacement églises et édifices contre la foudre</h2>
+        <p class="bigrow__lede">La solution la plus adaptée pour protéger vos bâtiments religieux grâce à votre
+          campaniste.</p>
+        <div class="bigrow__body">
+          <p>Votre campaniste tient également à sécuriser vos bâtiments religieux des dégâts qui peuvent être causés par
+            la foudre, en vous proposant la pose d'installations spécifiques telles que le parafoudre et le
+            paratonnerre.</p>
+          <p>En effet, les bâtiments religieux, et particulièrement les églises de par leur hauteur mais aussi par la
+            masse métallique qui recouvre leur sommet, sont des victimes faciles de la foudre. Comme ils reçoivent du
+            public, l'installation d'équipements contre la foudre est devenue une obligation. Votre campaniste vous
+            rencontre, et vous établit une étude de risque. Il se charge également de la fourniture et de l'installation
+            de votre parafoudre et/ou de votre paratonnerre, mais peut également intervenir si vous avez besoin d'une
+            réparation ou d'un dépannage.</p>
+          <p
+            style="font-family: var(--font-display); font-style: italic; font-size: 1.2rem; color: var(--bourgogne); margin-top: 1.5rem;">
+            Confiez la <strong>sécurité de votre église</strong> à votre campaniste.</p>
+        </div>
+        <a href="#contact" class="btn bigrow__cta">
+          Besoin d'une protection contre la foudre&nbsp;?
+          <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      <div class="bigrow__visual">
+        <span class="bigrow__visual-tag">Pl. III · Clocher</span>
+        <img src="./assets/bell-03.jpg" alt="Clocher corse avec horloge monumentale, dôme et croix latine"
+          loading="lazy">
+        <div class="bigrow__visual-caption">
+          Clocher corse · horloge monumentale · dôme et croix · cible naturelle de la foudre
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POINTS FORTS ============ -->
+  <section class="points" id="points">
+    <div class="points__inner">
+      <div class="points__head">
+        <div class="points__over">Les points forts</div>
+        <h2>Découvrez quels sont les points forts de <em>notre entreprise</em></h2>
+      </div>
+
+      <div class="points__grid">
+        <article class="point">
+          <div class="point__num">N° 01</div>
+          <h3>Devis gratuit</h3>
+          <p>Un spécialiste à l'écoute de vos besoins.</p>
+        </article>
+        <article class="point">
+          <div class="point__num">N° 02</div>
+          <h3>Tous travaux</h3>
+          <p>Réalise toutes interventions sur bâtiments religieux.</p>
+        </article>
+        <article class="point">
+          <div class="point__num">N° 03</div>
+          <h3>Certifications</h3>
+          <ul class="point__list">
+            <li>Qualification pour travaux en hauteur</li>
+            <li>Habilitation électrique UTEC 18-510</li>
+            <li>Garantie décennale</li>
+          </ul>
+        </article>
+        <article class="point">
+          <div class="point__num">N° 04</div>
+          <h3>Rapidité de service</h3>
+          <p>Un professionnel disponible et une intervention rapide en cas d'urgence ou de dépannage.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SONORISATION (Section 4) ============ -->
+  <section class="bigrow bigrow--cream" id="sonorisation">
+    <div class="bigrow__grid">
+      <div class="bigrow__text">
+        <div class="bigrow__num">Expertise N° III</div>
+        <h2>Un service de sonorisation pour l'intérieur de votre église</h2>
+        <p class="bigrow__lede">La fourniture et la pose de nombreux équipements sonores.</p>
+        <div class="bigrow__body">
+          <p style="font-family: var(--font-display); font-style: italic; font-size: 1.15rem; color: var(--ink);">Vous
+            souhaitez faire sonoriser l'église de votre commune&nbsp;?</p>
+          <p>Notre entreprise vous propose l'installation d'équipements sonores pour que vos cérémonies et messes soient
+            toujours réussies.</p>
+          <p>Micro sans fil, micro simple et haut-parleurs… Demandez l'intervention de notre professionnel de la
+            sonorisation de bâtiments religieux, pour vous assurer une bonne <strong>qualité sonore</strong> en fonction
+            de la configuration, l'architecture et la superficie de l'édifice.</p>
+          <p>Vous souhaitez faire installer des équipements sonores dans l'église de votre commune&nbsp;? Faîtes appel à
+            notre campaniste spécialisé à Bastia, Ajaccio et dans toute la Corse.</p>
+        </div>
+        <a href="#contact" class="btn bigrow__cta">
+          Je m'informe sur la sonorisation d'église
+          <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      <div class="bigrow__visual">
+        <span class="bigrow__visual-tag">Pl. IV · Régie sonore</span>
+        <img src="./assets/bell-04.jpg" alt="Rack de sonorisation Fulgor Service — régie complète pour église"
+          loading="lazy">
+        <div class="bigrow__visual-caption">
+          Régie Fulgor Service · amplification & distribution · micro sans fil, simple et haut-parleurs
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ANTI-PIGEONS ============ -->
+  <section class="pigeons" id="pigeons">
+    <div class="pigeons__inner">
+      <div class="pigeons__flex">
+        <div>
+          <div class="bigrow__num">Expertise N° IV</div>
+          <h2>L'installation de filets anti-pigeons contre les <em>volatiles nuisibles</em></h2>
+          <p class="bigrow__lede"
+            style="color: var(--ink-soft); font-family: var(--font-display); font-style: italic; font-size: 1.2rem;">
+            Protégez votre clocher des salissures et des nuisances sonores.</p>
+          <div class="pigeons__quote">La chambre des cloches de votre église est devenue le pied-à-terre des
+            pigeons&nbsp;?</div>
+          <div class="pigeons__body">
+            <p>Intervenez rapidement pour limiter les dégâts causés par une invasion de pigeons dans votre clocher. En
+              effet, bien logés, leur prolifération et leur nidation sont une catastrophe pour votre église. Fientes,
+              salissures, nuisances sonores… Tant de troubles que l'on refuse dans nos bâtiments religieux.</p>
+          </div>
+          <p class="pigeons__conclusion">Contactez votre campaniste pour une solution radicale : <strong>le filet
+              anti-pigeons.</strong></p>
+          <a href="#contact" class="btn" style="margin-top: 2rem;">
+            Je protège mon clocher&nbsp;!
+            <svg class="btn__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <aside class="pigeons__aside" aria-label="Nuisances constatées">
+          <span class="pigeons__aside-num">Dégâts constatés</span>
+          <h3>Nuisances dans la chambre des cloches</h3>
+          <ul>
+            <li>Fientes et salissures sur la charpente</li>
+            <li>Nidation dans le beffroi</li>
+            <li>Nuisances sonores</li>
+            <li>Corrosion accélérée du bronze</li>
+            <li>Blocage des mécanismes d'horlogerie</li>
+          </ul>
+          <p
+            style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--ink-soft); letter-spacing: 0.1em; margin: 0;">
+            Solution recommandée : pose d'un filet anti-pigeons sur toutes les ouvertures du clocher.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ RELEVÉ D'INTERVENTION (3 zones, sans fausse carte) ============ -->
+  <section class="corse" id="corse">
+    <div class="corse__inner">
+      <div class="corse__head">
+        <div class="bigrow__num">Toute la Corse</div>
+        <h2>Votre campaniste se déplace <em>de Bastia à Ajaccio</em> — et dans toute la Corse.</h2>
+        <p style="color: var(--ink-soft); line-height: 1.7; margin-top: 1.2rem; max-width: 60ch;">
+          Depuis 1996, U Campanile intervient dans les clochers des communes corses pour toute question campanaire,
+          d'horlogerie monumentale, de protection foudre et de sonorisation d'église.
         </p>
       </div>
-    </aside>
-  </div>
-</section>
 
-<!-- ================================================================
-     BANDE DES HEURES CANONIALES
-     ================================================================ -->
-<section class="hours" aria-label="Chapitrage en heures canoniales">
-  <div class="hours__inner">
-    <div class="hours__label">
-      Les heures<br>du clocher
-    </div>
-    <div class="hour"><span class="hour__roman">VI</span><span class="hour__name">Matines</span></div>
-    <div class="hour"><span class="hour__roman">IX</span><span class="hour__name">Laudes</span></div>
-    <div class="hour"><span class="hour__roman">XII</span><span class="hour__name">Angélus</span></div>
-    <div class="hour"><span class="hour__roman">XV</span><span class="hour__name">None</span></div>
-    <div class="hour"><span class="hour__roman">XVIII</span><span class="hour__name">Vêpres</span></div>
-    <div class="hour"><span class="hour__roman">XXI</span><span class="hour__name">Complies</span></div>
-  </div>
-</section>
+      <div class="corse__relevé" aria-label="Zones d'intervention">
+        <article class="zone-card">
+          <span class="zone-card__extent">N° 01</span>
+          <div class="zone-card__head">
+            <span class="zone-card__num">Siège</span>
+            <span class="zone-card__role">Haute-Corse</span>
+          </div>
+          <h3 class="zone-card__name">Bastia</h3>
+          <div class="zone-card__dep">2B · Haute-Corse</div>
+          <p class="zone-card__body">Bureau principal de l'entreprise. C'est ici qu'arrivent les appels et que se
+            coordonne chaque intervention campanaire en Corse.</p>
+          <a href="tel:0495352269" class="zone-card__tel">04 95 35 22 69</a>
+        </article>
 
-<!-- ================================================================
-     CHAPITRE I — L'atelier
-     ================================================================ -->
-<section class="chapter" id="atelier">
-  <div class="chapter__head reveal">
-    <div class="chapter__num">I</div>
-    <div class="chapter__labels">
-      <span class="chapter__cat">Chapitre I · L'atelier</span>
-      <h2 class="chapter__title">Un artisan campanaire <em>au service du tintement</em> des villages de l'Île de Beauté.</h2>
-    </div>
-  </div>
+        <article class="zone-card">
+          <span class="zone-card__extent">N° 02</span>
+          <div class="zone-card__head">
+            <span class="zone-card__num">Atelier</span>
+            <span class="zone-card__role">Haute-Corse</span>
+          </div>
+          <h3 class="zone-card__name">Piève</h3>
+          <div class="zone-card__dep">2B · Haute-Corse</div>
+          <p class="zone-card__body">Atelier de l'artisan campanaire. Lieu de fabrication, de diagnostic et de
+            restauration — la cloche y passe sous les mains du campaniste avant son retour au clocher.</p>
+          <a href="tel:0611816899" class="zone-card__tel">06 11 81 68 99</a>
+        </article>
 
-  <div class="atelier__grid">
-    <div class="atelier__text reveal">
-      <p class="dropcap">Créée en 1996, notre entreprise familiale se démarque par ses années d'expertise ainsi que par sa passion et son amour pour le patrimoine corse. Monuments religieux, édifices et monuments historiques doivent garder tout leur charme et leur histoire.</p>
-      <p>Nous avons à cœur de conserver notre patrimoine et de faire tout pour que chaque commune puisse le faire. Expérimentés, nous savons nous adapter en fonction de chaque besoin tout en respectant les valeurs spécifiques de chaque paroisse.</p>
-      <p>Nous travaillons aux côtés de maisons reconnues — <em>Bodet, Mamias, Cornille Havard, Fulgor Service</em> — dans le respect des normes UTE C 18-510 et sous garantie décennale.</p>
-
-      <blockquote class="atelier__cartouche">
-        <p>« Confiez-nous vos projets, votre artisan campanaire saura vous satisfaire et répondre à toutes vos demandes tout en respectant notre patrimoine, qui nous est cher. »</p>
-        <span class="sig">— U Campanile · Piève · Haute-Corse</span>
-      </blockquote>
-    </div>
-
-    <div class="atelier__plates reveal">
-      <figure class="plate">
-        <img src="assets/team-work-02.jpg" alt="Pose d'une cloche en clocher">
-        <figcaption class="plate__cap"><strong>Pl. II</strong><span>Dépose · Bastia · MMXX</span></figcaption>
-      </figure>
-      <figure class="plate">
-        <img src="assets/mecanisme.jpg" alt="Mécanisme de volée électrique">
-        <figcaption class="plate__cap"><strong>Pl. III</strong><span>Joug · MMXIX</span></figcaption>
-      </figure>
-      <figure class="plate">
-        <img src="assets/bell-close.jpg" alt="Cloche patinée verte au cœur du clocher">
-        <figcaption class="plate__cap"><strong>Pl. IV</strong><span>Bronze patiné</span></figcaption>
-      </figure>
-      <figure class="plate">
-        <img src="assets/team-work-01.jpg" alt="Campaniste en intervention">
-        <figcaption class="plate__cap"><strong>Pl. V</strong><span>Campaniste · en volée</span></figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================
-     TICKER CAMPANAIRE
-     ================================================================ -->
-<div class="ticker" aria-hidden="true">
-  <div class="ticker__track">
-    <span>
-      Volée <span class="dot"></span> Tintement <span class="dot"></span> Angélus
-      <span class="dot"></span> <span class="gold">Glas</span> <span class="dot"></span> Carillon
-      <span class="dot"></span> Joug <span class="dot"></span> Battant <span class="dot"></span>
-      Cerveau <span class="dot"></span> <span class="gold">Bélière</span> <span class="dot"></span>
-      Noyau <span class="dot"></span> Fonte <span class="dot"></span>
-    </span>
-    <span>
-      Volée <span class="dot"></span> Tintement <span class="dot"></span> Angélus
-      <span class="dot"></span> <span class="gold">Glas</span> <span class="dot"></span> Carillon
-      <span class="dot"></span> Joug <span class="dot"></span> Battant <span class="dot"></span>
-      Cerveau <span class="dot"></span> <span class="gold">Bélière</span> <span class="dot"></span>
-      Noyau <span class="dot"></span> Fonte <span class="dot"></span>
-    </span>
-  </div>
-</div>
-
-<!-- ================================================================
-     PULL QUOTE
-     ================================================================ -->
-<section class="quote">
-  <p>Le <em>glas</em>, la volée, l'<em>angélus</em>.<br>Trois gestes. Une seule cloche.</p>
-  <span class="quote__sig">Vox campanae · ex Corsica · MMXXVI</span>
-</section>
-
-<!-- ================================================================
-     CHAPITRE II — Les métiers
-     ================================================================ -->
-<section class="services" id="services">
-  <div class="chapter__head reveal">
-    <div class="chapter__num">II</div>
-    <div class="chapter__labels">
-      <span class="chapter__cat">Chapitre II · Les métiers du campaniste</span>
-      <h2 class="chapter__title">Six <em>savoir-faire</em> qui se parlent de clocher en clocher.</h2>
-    </div>
-  </div>
-
-  <ol class="services__list">
-    <li class="service reveal">
-      <span class="service__roman">I</span>
-      <div>
-        <h3 class="service__title">Installation & <em>fourniture</em> de cloches</h3>
-        <p class="service__detail">Étude personnalisée, pose de cloches neuves, dépose et récupération d'installations existantes partout en Corse — aux côtés de Bodet, Mamias, Cornille Havard et Fulgor Service.</p>
+        <article class="zone-card">
+          <span class="zone-card__extent">N° 03</span>
+          <div class="zone-card__head">
+            <span class="zone-card__num">Intervention</span>
+            <span class="zone-card__role">Corse-du-Sud</span>
+          </div>
+          <h3 class="zone-card__name">Ajaccio</h3>
+          <div class="zone-card__dep">2A · Corse-du-Sud</div>
+          <p class="zone-card__body">Zone d'intervention sud. Le campaniste se déplace dans les communes de Corse-du-Sud
+            pour installation, restauration, protection foudre et sonorisation d'église.</p>
+          <a href="mailto:ucampanile@wanadoo.fr" class="zone-card__tel">ucampanile@wanadoo.fr</a>
+        </article>
       </div>
-      <span class="service__meta">Cloche neuve · Fourniture</span>
-      <span class="service__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </span>
-    </li>
 
-    <li class="service reveal">
-      <span class="service__roman">II</span>
-      <div>
-        <h3 class="service__title">Restauration des <em>cloches anciennes</em> ou classées</h3>
-        <p class="service__detail">Soudure par recharge de matière sur cloches fissurées ou fêlées, remplacement des éléments usés — noyau, cerveau, bélière, jupe, battant, points de frappe — dans le respect du son d'origine.</p>
+      <div class="corse__extent">
+        <span><strong>Portée</strong> · Toute la Corse · Haute-Corse et Corse-du-Sud</span>
+        <span><strong>Depuis</strong> · 1996</span>
+        <span><strong>Spécialité</strong> · Horlogerie électrique monumentale</span>
       </div>
-      <span class="service__meta">Soudure · Ornementation</span>
-      <span class="service__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </span>
-    </li>
+    </div>
+  </section>
 
-    <li class="service reveal">
-      <span class="service__roman">III</span>
-      <div>
-        <h3 class="service__title">Électrification & <em>tintement automatique</em></h3>
-        <p class="service__detail">Moteurs de volée électronique, tintement programmable, armoires de sécurité électrique aux normes UTE C 18-510 — une solution fiable, complète et sécurisée, sans jamais dénaturer l'authenticité de la cloche.</p>
+  <!-- ============ CONTACT MONUMENTAL ============ -->
+  <section class="contact" id="contact">
+    <div class="contact__inner">
+      <div class="contact__over">Contactez notre entreprise</div>
+      <h2>Un campaniste <em>au service</em> de vos bâtiments religieux.</h2>
+
+      <span class="contact__tel-label">Appelez directement</span>
+      <a href="tel:0495352269" class="contact__tel">04 95 35 22 69</a>
+
+      <div class="contact__secondary">
+        <a href="tel:0611816899">Mobile · 06 11 81 68 99</a>
+        <a href="mailto:ucampanile@wanadoo.fr">ucampanile@wanadoo.fr</a>
       </div>
-      <span class="service__meta">Moteur · Programmation</span>
-      <span class="service__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </span>
-    </li>
-
-    <li class="service reveal">
-      <span class="service__roman">IV</span>
-      <div>
-        <h3 class="service__title">Cadrans monumentaux & <em>horloge de clocher</em></h3>
-        <p class="service__detail">Fourniture, pose et réparation de cadrans monumentaux — émaillés ou en bois, chiffres romains ou arabes — pour chaque façade de clocher, avec mouvement électrique ou mécanique.</p>
-      </div>
-      <span class="service__meta">Cadran · Horlogerie</span>
-      <span class="service__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </span>
-    </li>
-
-    <li class="service reveal">
-      <span class="service__roman">V</span>
-      <div>
-        <h3 class="service__title">Protection contre la <em>foudre</em></h3>
-        <p class="service__detail">Étude de risques, fourniture et installation de parafoudres et paratonnerres sur les édifices religieux. Dépannage et maintenance partout en Corse, sous garantie décennale.</p>
-      </div>
-      <span class="service__meta">Parafoudre · Paratonnerre</span>
-      <span class="service__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </span>
-    </li>
-
-    <li class="service reveal">
-      <span class="service__roman">VI</span>
-      <div>
-        <h3 class="service__title">Sonorisation d'église & <em>filets anti-pigeons</em></h3>
-        <p class="service__detail">Câblages, micros, amplificateurs, enceintes et consoles pour la sonorisation des lieux de culte — mais aussi pose de filets anti-pigeons pour protéger le patrimoine des salissures.</p>
-      </div>
-      <span class="service__meta">Sono · Nettoyage</span>
-      <span class="service__arrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" width="18" height="18"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-      </span>
-    </li>
-  </ol>
-</section>
-
-<!-- ================================================================
-     LEXIQUE CAMPANAIRE
-     ================================================================ -->
-<section class="lexique" id="lexique">
-  <div class="lexique__head reveal">
-    <span class="inscr kicker">Chapitre III · Glossarium campanarium</span>
-    <h2>Le <em>vocabulaire</em> gravé sur la paroi d'une cloche.</h2>
-  </div>
-  <div class="lexique__grid">
-    <div class="term">
-      <span class="term__num">I</span>
-      <div class="term__name">Cerveau</div>
-      <div class="term__def">Partie supérieure de la cloche, couronnée par les anses, qui reçoit le joug.</div>
     </div>
-    <div class="term">
-      <span class="term__num">II</span>
-      <div class="term__name">Battant</div>
-      <div class="term__def">Pièce métallique suspendue à l'intérieur qui frappe la paroi au tintement.</div>
-    </div>
-    <div class="term">
-      <span class="term__num">III</span>
-      <div class="term__name">Joug</div>
-      <div class="term__def">Pièce de bois ou de métal solidaire de la cloche, autour de laquelle elle oscille.</div>
-    </div>
-    <div class="term">
-      <span class="term__num">IV</span>
-      <div class="term__name">Pincée</div>
-      <div class="term__def">Zone la plus épaisse, à la base ; c'est là que le battant frappe et naît le son.</div>
-    </div>
-    <div class="term">
-      <span class="term__num">V</span>
-      <div class="term__name">Volée</div>
-      <div class="term__def">Sonnerie de joie où la cloche oscille pleinement — les grandes fêtes, les mariages.</div>
-    </div>
-    <div class="term">
-      <span class="term__num">VI</span>
-      <div class="term__name">Glas</div>
-      <div class="term__def">Sonnerie funéraire, au tintement lent, qui annonce la mort et les obsèques.</div>
-    </div>
-    <div class="term">
-      <span class="term__num">VII</span>
-      <div class="term__name">Angélus</div>
-      <div class="term__def">Trois séries de trois coups à six, midi et dix-huit heures — la prière du village.</div>
-    </div>
-    <div class="term">
-      <span class="term__num">VIII</span>
-      <div class="term__name">Bélière</div>
-      <div class="term__def">Anse de fer forgé qui solidarise la cloche au joug ; elle se remplace à l'usure.</div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- ================================================================
-     PLANCHE CONTACT
-     ================================================================ -->
-<section class="planche" id="planche">
-  <div class="chapter__head reveal">
-    <div class="chapter__num">IV</div>
-    <div class="chapter__labels">
-      <span class="chapter__cat">Chapitre IV · Planche d'ouvrages</span>
-      <h2 class="chapter__title">Quelques <em>chantiers récents</em> à travers l'île.</h2>
-    </div>
-  </div>
-  <div class="planche__grid">
-    <figure class="pl pl--1"><img src="assets/hero-home.jpg" alt="Atelier"><figcaption class="pl__cap">Pl. VI · Atelier</figcaption></figure>
-    <figure class="pl pl--2"><img src="assets/horloge-cadran.jpg" alt="Cadran monumental"><figcaption class="pl__cap">Pl. VII · Cadran</figcaption></figure>
-    <figure class="pl pl--3"><img src="assets/church-exterior.jpg" alt="Façade église"><figcaption class="pl__cap">Pl. VIII · Façade</figcaption></figure>
-    <figure class="pl pl--4"><img src="assets/paratonnerre-01.jpg" alt="Paratonnerre"><figcaption class="pl__cap">Pl. IX · Foudre</figcaption></figure>
-    <figure class="pl pl--5"><img src="assets/paratonnerre-02.jpg" alt="Installation paratonnerre"><figcaption class="pl__cap">Pl. X · Paratonnerre</figcaption></figure>
-    <figure class="pl pl--6"><img src="assets/restauration-01.jpg" alt="Restauration de cloche"><figcaption class="pl__cap">Pl. XI · Restauration</figcaption></figure>
-  </div>
-</section>
-
-<!-- ================================================================
-     ZONE D'INTERVENTION — Corse au trait
-     ================================================================ -->
-<section class="zone" id="zone">
-  <div class="zone__inner">
-    <div class="zone__map reveal" aria-hidden="true">
-      <svg viewBox="0 0 300 400">
-        <!-- Contour stylisé de la Corse -->
-        <path class="corsica" d="
-          M 168 22
-          Q 180 30 175 48
-          Q 170 60 182 72
-          Q 196 86 190 104
-          Q 184 122 198 138
-          Q 210 154 204 172
-          Q 198 192 214 208
-          Q 228 222 220 246
-          Q 214 266 222 284
-          Q 228 302 212 318
-          Q 196 332 178 332
-          Q 158 332 152 352
-          Q 148 372 130 368
-          Q 112 362 106 344
-          Q 100 322 86 310
-          Q 72 298 74 276
-          Q 76 254 62 236
-          Q 50 218 58 196
-          Q 68 176 58 156
-          Q 50 136 66 120
-          Q 84 104 88 86
-          Q 90 70 104 58
-          Q 120 46 136 42
-          Q 154 38 158 26
-          Q 162 20 168 22 Z
-        "/>
-        <!-- Villes -->
-        <circle class="city" cx="188" cy="90" r="4"/>
-        <text class="label" x="200" y="94">Bastia</text>
-
-        <circle class="city" cx="104" cy="262" r="4"/>
-        <text class="label" x="40" y="266">Ajaccio</text>
-
-        <circle class="city" cx="140" cy="150" r="5"/>
-        <text class="label" x="152" y="154">Piève · Atelier</text>
-
-        <circle class="city" cx="158" cy="330" r="3"/>
-        <text class="label" x="168" y="334">Bonifacio</text>
-
-        <circle class="city" cx="86" cy="142" r="3"/>
-        <text class="label" x="18" y="146">Calvi</text>
-
-        <!-- Boussole -->
-        <g transform="translate(50 60)">
-          <circle class="compass" cx="0" cy="0" r="22"/>
-          <circle class="compass" cx="0" cy="0" r="14"/>
-          <line class="compass" x1="0" y1="-22" x2="0" y2="22"/>
-          <line class="compass" x1="-22" y1="0" x2="22" y2="0"/>
-          <text x="-3" y="-26">N</text>
-          <text x="-3" y="32">S</text>
-          <text x="26" y="3">E</text>
-          <text x="-32" y="3">O</text>
-        </g>
-      </svg>
-    </div>
-    <div class="zone__text reveal">
-      <span class="inscr" style="color:var(--burgundy);font-size:11px;">Chapitre V · Zone d'intervention</span>
-      <h2 style="margin-top:12px;">Partout <em>en Corse</em>, à la saison de la paroisse.</h2>
-      <p>Basé à Piève, en Haute-Corse, nous nous déplaçons dans toutes les communes de l'île pour l'étude, la pose, la restauration ou le dépannage — des clochers de Bastia aux chapelles du Cap Corse, d'Ajaccio à Bonifacio.</p>
-      <p>Chaque commune a ses spécificités : patrimoine classé, accessibilité, valeurs locales. Nous prenons le temps de comprendre la vôtre avant toute intervention.</p>
-
-      <div class="zone__stat-row">
-        <div class="zone__stat">
-          <strong>XXX</strong>
-          <span>Années d'atelier</span>
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="./logo.png" alt="U Campanile">
+          <p>Artisan campanaire en Corse depuis 1996. Installation, restauration, électrification de cloches d'église,
+            protection foudre, sonorisation d'église.</p>
         </div>
-        <div class="zone__stat">
-          <strong>IV</strong>
-          <span>Maisons partenaires</span>
+
+        <div class="footer__col">
+          <h4>Le métier</h4>
+          <ul>
+            <li><a href="#expertise">Installation · Restauration</a></li>
+            <li><a href="#expertise">Électrification</a></li>
+            <li><a href="#expertise">Horlogerie monumentale</a></li>
+            <li><a href="#foudre">Protection foudre</a></li>
+            <li><a href="#sonorisation">Sonorisation</a></li>
+            <li><a href="#pigeons">Anti-pigeons</a></li>
+          </ul>
         </div>
-        <div class="zone__stat">
-          <strong>X<sup style="font-size:0.4em; letter-spacing:0;">ᵃⁿˢ</sup></strong>
-          <span>Garantie décennale</span>
+
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:0495352269">04 95 35 22 69</a></li>
+            <li><a href="tel:0611816899">06 11 81 68 99</a></li>
+            <li><a href="mailto:ucampanile@wanadoo.fr">ucampanile@wanadoo.fr</a></li>
+            <li>Bastia · Piève · Ajaccio</li>
+          </ul>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================
-     CONTACT
-     ================================================================ -->
-<section class="contact" id="contact">
-  <div class="contact__inner">
-    <div>
-      <span class="inscr" style="color:var(--gold-light);font-size:11px;">Chapitre VI · Correspondance</span>
-      <h2 class="contact__title" style="margin-top:14px;">Faites appel à votre <em>campaniste</em>.</h2>
-      <div class="contact__phone">
-        <span class="label">Appeler</span>
-        <a href="tel:0495352269">04 95 35 22 69</a>
+      <div class="footer__bottom">
+        <span>© U Campanile · SOC D EXPLOITATION ETS U CAMPANILE</span>
+        <span>Artisan campanaire · Corse · Depuis 1996</span>
       </div>
     </div>
-    <div class="contact__right">
-      <div class="contact__block">
-        <div class="k">Mobile</div>
-        <div class="v"><a href="tel:0611816899">06 11 81 68 99</a></div>
-      </div>
-      <div class="contact__block">
-        <div class="k">Courrier électronique</div>
-        <div class="v"><a href="mailto:ucampanile@wanadoo.fr">ucampanile@wanadoo.fr</a></div>
-      </div>
-      <div class="contact__block">
-        <div class="k">Atelier</div>
-        <div class="v">U Campanile, route de Plaine<br>20246 Piève · Haute-Corse</div>
-      </div>
-      <a href="mailto:ucampanile@wanadoo.fr" class="btn contact__cta"><span class="btn__dot"></span>Demander un devis gratuit</a>
-    </div>
-  </div>
-</section>
+  </footer>
 
-<!-- ================================================================
-     FOOTER
-     ================================================================ -->
-<footer class="footer">
-  <div class="footer__top">
-    <div class="footer__brand">
-      <span class="name">U <em>Campanile</em></span>
-      <span class="sub">Depuis MCMXCVI · Piève · Corsica</span>
-      <p>SOC D EXPLOITATION ETS U CAMPANILE — artisan campanaire et horloger électrique monumental en Corse depuis 1996.</p>
-    </div>
-    <div>
-      <h4>Métiers</h4>
-      <ul>
-        <li><a href="#services">Installation de cloches</a></li>
-        <li><a href="#services">Restauration</a></li>
-        <li><a href="#services">Électrification</a></li>
-        <li><a href="#services">Horloge de clocher</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Protections</h4>
-      <ul>
-        <li><a href="#services">Parafoudre</a></li>
-        <li><a href="#services">Paratonnerre</a></li>
-        <li><a href="#services">Sonorisation</a></li>
-        <li><a href="#services">Filets anti-pigeons</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="tel:0495352269">04 95 35 22 69</a></li>
-        <li><a href="tel:0611816899">06 11 81 68 99</a></li>
-        <li><a href="mailto:ucampanile@wanadoo.fr">ucampanile@wanadoo.fr</a></li>
-        <li><a href="https://www.facebook.com/ucampanile.sarl/" target="_blank" rel="noopener">Facebook</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer__bottom">
-    <span>© MMXXVI · U Campanile · Tous droits réservés</span>
-    <span>Vox Campanae · Ex Corsica · MCMXCVI</span>
-  </div>
-</footer>
+  <script>
+    // ============ MENU OVERLAY ============
+    (() => {
+      const overlay = document.getElementById('menuOverlay');
+      const openBtn = document.getElementById('menuOpen');
+      const closeBtn = document.getElementById('menuClose');
+      if (!overlay || !openBtn || !closeBtn) return;
 
-<script>
-  // Rotation des heures canoniales (signal hero #3)
-  const hours = document.querySelectorAll('.hour');
-  if (hours.length) {
-    let i = 0;
-    hours[0].classList.add('is-active');
-    setInterval(() => {
-      hours[i].classList.remove('is-active');
-      i = (i + 1) % hours.length;
-      hours[i].classList.add('is-active');
-    }, 2600);
-  }
+      const open = () => {
+        overlay.classList.add('is-open');
+        document.body.classList.add('menu-open');
+        openBtn.setAttribute('aria-expanded', 'true');
+        // focus piège light : focus sur close
+        setTimeout(() => closeBtn.focus(), 50);
+      };
+      const close = () => {
+        overlay.classList.remove('is-open');
+        document.body.classList.remove('menu-open');
+        openBtn.setAttribute('aria-expanded', 'false');
+        openBtn.focus();
+      };
 
-  // Compteur années : MCMXCVI -> 30 ans en 2026
-  const now = new Date().getFullYear();
-  const founded = 1996;
-  const years = now - founded;
-  const toRoman = (n) => {
-    const v = [['M',1000],['CM',900],['D',500],['CD',400],['C',100],['XC',90],['L',50],['XL',40],['X',10],['IX',9],['V',5],['IV',4],['I',1]];
-    let out = '';
-    for (const [s, val] of v) while (n >= val) { out += s; n -= val; }
-    return out;
-  };
-  document.querySelectorAll('.sticker__core').forEach(el => {
-    el.innerHTML = `${toRoman(years)}<br><span style="font-size:8px;letter-spacing:0.2em;">ANS</span>`;
-  });
-  document.querySelectorAll('.zone__stat strong').forEach((el) => {
-    if (el.textContent === 'XXX') el.textContent = toRoman(years);
-  });
+      openBtn.addEventListener('click', open);
+      closeBtn.addEventListener('click', close);
 
-  // Reveal signifiant (not hero)
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.14 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-</script>
+      // Ferme quand on clique un lien interne du menu
+      overlay.querySelectorAll('[data-close]').forEach(a => {
+        a.addEventListener('click', () => setTimeout(close, 50));
+      });
 
+      // Echap pour fermer
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+      });
+
+      // Clic en dehors (sur le fond) pour fermer
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) close();
+      });
+    })();
+  </script>
 </body>
+
 </html>
