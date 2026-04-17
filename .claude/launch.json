@@ -1,0 +1,18 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Totem Mousse (static)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "http-server", "./totem-mousse", "-c-1", "--silent"],
+      "port": 5503,
+      "autoPort": true
+    },
+    {
+      "name": "Skypeo racine — toutes maquettes (static)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "http-server", ".", "-p", "5502", "-c-1", "--silent"],
+      "port": 5502
+    }
+  ]
+}
