@@ -86,16 +86,20 @@ Un seul repo git à la racine `Skypeo-maquettes/` (déjà init). Chaque projet =
 
 ---
 
-## Le standard de qualité — Trubert & Sigot
+## ⚡ Discipline de vitesse — non négociable
 
-Les maquettes **Trubert** et **Sigot** sont les étalons. Chaque maquette doit être à ce niveau ou au-dessus. Si en regardant le screenshot tu te dis "c'est un template", c'est raté.
+**Objectif : 30-45 min par maquette, pas 2 heures.** Le rythme 5-6 maquettes/jour n'est atteignable que si Claude ne s'enferme pas dans des ping-pongs inutiles.
 
-**AVANT toute Phase 2 (plan), LIRE obligatoirement** :
-- `memory/references/trubert-desktop.png`
-- `memory/references/sigot-desktop.png`
-- `memory/references/reference-guide.md`
-
-Ces trois fichiers définissent le niveau de finition attendu.
+### Règles dures pour Claude
+- **Phase 2 = UNE réponse ultra-courte, pas 5 blocs.** Juste : registre + palette (3 hex) + typos + geste signature. 6 lignes max. Attendre validation en UN tour.
+- **Ne pas proposer de variations de direction artistique** si le user n'en a pas demandé. Partir, montrer, ajuster. Ne pas me proposer "A/B/C" sauf si explicitement demandé.
+- **Ne jamais refondre une section déjà validée** pour "repenser le concept". Corriger en place.
+- **Demander UNE fois les préférences clés** (polices si hésitation, style de hero) AVANT de partir, pas après avoir écrit 2000 lignes.
+- **Un screenshot à la fin, pas à chaque itération.** Sauf si on itère spécifiquement sur un bloc.
+- **Pas de chat-essais** en réponse : réponse 2-4 lignes + action. Pas de récap ni de "voilà ce que j'ai fait".
+- **Pas de Phase 2 proposée** si le registre et l'angle sont évidents depuis le brief — partir direct en Phase 3, montrer, le user corrigera ce qu'il y a à corriger.
+- **Verbatim strict du scrape + brief.** Ne pas inventer de sous-titres, descriptions, CTAs. Si un bloc manque de matière → le supprimer ou demander au user, ne pas combler.
+- **Max 3 ronds de retours utilisateur** avant de livrer (commit + push). Si plus, c'est que le concept est à reprendre en Phase 2 à zéro, pas à rafistoler.
 
 ---
 
@@ -103,7 +107,7 @@ Ces trois fichiers définissent le niveau de finition attendu.
 
 **Un projet = UN registre, jamais un mix.** Le registre est la décision n°1 du projet — il détermine palette, typo, patterns signature, mouvement, interdits.
 
-### Registre 1 — Éditorial Artisan (étalons : Trubert, Sigot)
+### Registre 1 — Éditorial Artisan
 - **Métiers** : charpentier, traiteur, boulanger, ébéniste, tonnelier, vigneron, horloger, restaurateur d'art, atelier d'art, marbrier
 - **Signal** : tradition, matière, geste ancien, patrimoine familial
 - **Palette** : crème + noir + 1 accent chaud (ocre, jaune moutarde, bourgogne) — 3 couleurs max, zéro gradient
@@ -112,7 +116,7 @@ Ces trois fichiers définissent le niveau de finition attendu.
 - **Mouvement obligatoire** : 1 ticker métier + 1 sticker rotatif (loop 20s) + 1 counter animé
 - **Interdits** : gradient, glassmorphism, bento, hexagones, dark mode
 
-### Registre 2 — Relevé Technique (réf : Toitures Des Gones, Nonnon)
+### Registre 2 — Relevé Technique
 - **Métiers** : couvreur, plombier, électricien, maçon, carreleur, charpentier côté technique, géomètre, bureau d'études, frigoriste, serrurier métier
 - **Signal** : précision, expertise, plan, schéma, cotation, compagnonnage
 - **Palette** : crème technique OU blanc technique + ardoise/encre + UN accent (rouge brique `#b51515` OU bleu plan) — jamais les deux
@@ -121,7 +125,7 @@ Ces trois fichiers définissent le niveau de finition attendu.
 - **Mouvement obligatoire** : 1 schéma SVG qui se trace au scroll (stroke-dashoffset) + 1 cotation qui s'étire au reveal + 1 boussole qui réagit au scroll
 - **Interdits** : photos lifestyle, gradient, glassmorphism, icônes Lucide
 
-### Registre 3 — Sensoriel / Bien-être (réf : Trouillet)
+### Registre 3 — Sensoriel / Bien-être
 - **Métiers** : ostéopathe, kiné, spa, institut de beauté, massage, coach bien-être, sophrologue, naturopathe, yoga, pilates
 - **Signal** : douceur, rituel, respiration, organique, tactile
 - **Palette** : nude/crème + terracotta OU vert sauge OU nude rosé + doré sobre — tons chauds, désaturés
@@ -130,7 +134,7 @@ Ces trois fichiers définissent le niveau de finition attendu.
 - **Mouvement obligatoire** : blobs morphing 18-26s + gradient qui respire + photos qui flottent (translateY loop 6-8s décalées)
 - **Interdits** : lignes droites dominantes, noir pur, hexagones, grilles rigides, gradient violet/bleu
 
-### Registre 4 — Service d'Urgence / Confiance Active (aucune réf réussie pour l'instant)
+### Registre 4 — Service d'Urgence / Confiance Active
 - **Métiers** : ambulance, VSL, taxi sanitaire, dépannage 24/7, serrurier urgence, SOS, sécurité, plombier urgence, remorquage
 - **Signal** : disponibilité, fiabilité, contact immédiat, terrain, action
 - **Palette** : blanc franc (`#fff` ou `#f8f8f8`) + noir + UN accent vital (rouge urgence `#e60012` OU bleu franc `#0066cc`) — jamais de navy gradient foncé, jamais de glass
@@ -139,7 +143,7 @@ Ces trois fichiers définissent le niveau de finition attendu.
 - **Mouvement obligatoire** : dot vert qui pulse + ligne ECG qui trace en continu en bas hero + numéro de téléphone avec compteur flip au chargement + carte avec pin qui bounce
 - **Interdits ABSOLUS** : gradient bleu foncé, hexagones médicaux, stats en grille centrée "X années / Y véhicules", glassmorphism, fonds bleu nuit — ce sont exactement les clichés IA du secteur
 
-### Registre 5 — Institutionnel / Expertise Libérale (aucune réf encore)
+### Registre 5 — Institutionnel / Expertise Libérale
 - **Métiers** : avocat, notaire, architecte, expert-comptable, cabinet conseil, audit, gestion de patrimoine, étude d'huissier
 - **Signal** : sérieux, discrétion, livre, signature, tradition intellectuelle
 - **Palette** : ivoire + encre + 1 accent feutré (bourgogne `#6b1f2a`, vert bouteille `#1f3d2e`, bleu nuit `#1a2847`)
@@ -231,19 +235,18 @@ Le skill `scrape-site` fait tout le travail :
 
 Puis lire `memory/styles-used.md` pour vérifier les registres/styles déjà pris.
 
-### PHASE 2 — Plan condensé (EN UNE SEULE RÉPONSE, à valider avant code)
+### PHASE 2 — Mini plan (UNE réponse de 6 lignes max)
 
-Avant d'écrire une ligne de CSS, répondre au user **en UNE fois** avec ces 5 blocs (format court, 2-3 lignes chacun) :
+**Format imposé, ultra-court** :
+- Registre : N° X (une phrase de justification)
+- Palette : 3 hex
+- Typos : display + body (Google Fonts)
+- Geste signature : 1 mot-clé métier
+- Ticker : 5-8 mots vocabulaire métier
 
-1. **Registre retenu (1-5)** + justification métier en 1 phrase + pourquoi pas les 4 autres (1 ligne chacun)
-2. **Boîte à outils** : palette exacte (3 hex), typo display + body (Google Fonts), 3 patterns signature du registre
-3. **Concept du site en 10 mots max** (ex : "atelier charpente au lever du soleil, bois brut et ocre")
-4. **Geste métier signature** : 1 mot du vocabulaire du client qui devient l'élément graphique dominant (pas de la déco, LE geste central)
-5. **Les 3 mouvements ambiants** : ticker (avec vocabulaire), élément ambiant, signal hero — nommés en 1 ligne chacun
+**Attendre validation en UN tour.** Si doute sur un choix clé (polices, style hero), poser UNE question courte, pas 3 options. Si le registre + l'angle sont évidents depuis le brief, **sauter cette phase** et partir direct en Phase 3.
 
-**Attendre validation user avant d'écrire du code.**
-
-Cette phase fusionne les anciennes phases 2.0, 2, 2.5, 2.75. Plus de ping-pong entre 4 validations — une seule.
+Interdit : proposer "A / B / C" spontanément. Interdit : répéter le plan en fin de réponse.
 
 ### PHASE 3 — Build + gate de livraison
 
@@ -310,9 +313,19 @@ Teintée au secteur via `feColorMatrix`. `isolation: isolate` + `z-index: 9999` 
 
 ### Pas de réutilisation entre projets
 - Respecter `memory/styles-used.md`
-- Polaroids = Sigot, blobs = Trouillet, coupe technique = Toitures Des Gones, hexagones = échec Ambulances
+- Vérifier `memory/styles-used.md` pour la liste exhaustive des signatures consommées
 - Chaque ticker a son vocabulaire métier unique
 - Pas de clip-path pour les reveals (bug) → opacity + transform
+
+### R1 Éditorial Artisan — tropes INTERDITS (feedback user récurrent)
+Les R1 ont tendance à toutes converger vers un même pattern « éditorial magazine ». Pour toute nouvelle R1, **INTERDIT** de réutiliser ces 4 tropes (déjà consommés par plusieurs projets) :
+
+1. **Masthead cartouche en haut** sous la nav (« N° XX · Carnet du X · Depuis YYYY »)
+2. **Captions `Pl. I` / `Pl. II` / `Pl. III`** sur les photos
+3. **Strip de chapitres numérotés `Chap. 01 → 07`**
+4. **Tampon circulaire rotatif** type « DEPUIS YYYY · ARTISAN · SECTEUR »
+
+Si la Phase 2 d'une R1 ne propose que du masthead + chapters + tampon, **reprendre la Phase 2 à zéro** — c'est un signal que le concept n'est pas assez creusé. Lire `memory/feedback_r1_tropes_a_eviter.md` pour les 10 angles R1 encore disponibles (almanach, enseigne peinte, fresque horizontale, carnet d'atelier manuscrit, catalogue fondeur, livret typographique XIXème, plaquette gaufrée, livre d'or, affiche théâtre XIXème, menu gravé).
 
 ---
 
@@ -353,4 +366,3 @@ Skills optionnels disponibles :
 - Mettre à jour `memory/<slug>.md` avec résumé projet (registre, palette, patterns utilisés, photos d'où)
 - Mettre à jour `memory/styles-used.md` avec nouveau style + registre
 - Mettre à jour `memory/MEMORY.md` avec lien
-- Si la maquette atteint le niveau Trubert/Sigot pour son registre → copier les screenshots dans `memory/references/` comme nouvelle référence du registre

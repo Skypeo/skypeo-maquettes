@@ -62,7 +62,27 @@
       "Bash(curl -sL -I -A \"Mozilla/5.0\" \"https://unsplash.com/photos/94avmgtEb2c/download?w=1600\")",
       "WebFetch(domain:www.toitservice-couverture-eure.fr)",
       "Bash(curl -sI \"https://skypeo-maquettes.vercel.app/terre-sereine/assets/logoTerreSereine-sansFond.png\")",
-      "WebFetch(domain:www.top-utilitaires.fr)"
+      "WebFetch(domain:www.top-utilitaires.fr)",
+      "Bash(mkdir -p \"C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/toiture-naveri/_scrape/images\" \"C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/toiture-naveri/.claude\" \"C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/toiture-naveri/.vscode\")",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.toiture-naveri.fr/\" -o \"C:/Users/monke/OneDrive/Bureau/Skypeo-maquettes/toiture-naveri/_scrape/home.html\")",
+      "Bash(curl -sL -o img-01-camionette.jpeg \"https://le-de.cdn-website.com/849876da25e54ad1820b9f789da9439d/dms3rep/multi/opt/IMG_1919-1190w.jpeg\")",
+      "Bash(curl -sL -o img-02-terrasse.jpeg \"https://le-de.cdn-website.com/849876da25e54ad1820b9f789da9439d/dms3rep/multi/opt/IMG_1921-784h.jpeg\")",
+      "Bash(curl -sL -o img-03-toiture-finie.jpeg \"https://le-de.cdn-website.com/849876da25e54ad1820b9f789da9439d/dms3rep/multi/opt/IMG_1913-784h.jpeg\")",
+      "Bash(curl -sL -o img-04-pose-tuiles.jpeg \"https://le-de.cdn-website.com/849876da25e54ad1820b9f789da9439d/dms3rep/multi/opt/IMG_1903-784h.jpeg\")",
+      "Bash(curl -sL -o img-05-batiment-reno.jpeg \"https://le-de.cdn-website.com/849876da25e54ad1820b9f789da9439d/dms3rep/multi/opt/IMG_1376-784h.jpeg\")",
+      "Bash(curl -sL -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\" \"https://www.tixier-travaux-publics-aulon.fr/\" -o tixier-tp/_scrape/home.html)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/7d870f66-c457-4254-a950-dce31472dc50-759h.png\" -o minipelle.png)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/AdobeStock_528222242-1920w.jpeg\" -o terrassement-pavillon.jpg)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/AdobeStock_502762047-832h.jpeg\" -o fosse-toutes-eaux.jpg)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/AdobeStock_80428946-1920w.jpeg\" -o transport-terre.jpg)",
+      "Bash(mkdir -p tixier-tp/assets)",
+      "Bash(cp tixier-tp/_scrape/images/*.png tixier-tp/_scrape/images/*.jpg tixier-tp/assets/)",
+      "Read(//c/c/Users/monke/OneDrive/Bureau/Skypeo-maquettes/tixier-tp/**)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/AdobeStock_393139049-1200w.jpeg\" -o prestation-1.jpg)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/AdobeStock_544007890+%281%29-1200w.jpeg\" -o prestation-2.jpg)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/AdobeStock_279646218-800h.jpeg\" -o card-3.jpg)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/AdobeStock_493193129-800h.jpeg\" -o card-4.jpg)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" \"https://le-de.cdn-website.com/4e033941ecc54efd85ed1d5e117cf4a8/dms3rep/multi/opt/AdobeStock_70814018-800h.jpeg\" -o card-5.jpg)"
     ]
   }
 }

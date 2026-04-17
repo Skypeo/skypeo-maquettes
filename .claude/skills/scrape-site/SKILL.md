@@ -31,16 +31,16 @@ description: Phase 1 du workflow Skypeo - scrape une URL client, extrait textes 
 2. Créer le sous-dossier : `mkdir -p <slug>/_scrape <slug>/_scrape/images`
 3. Créer `<slug>/.claude/settings.local.json` et `<slug>/.vscode/settings.json` selon le CLAUDE.md racine
 
-### Étape 2 — Aspirer les pages
+### Étape 2 — Aspirer la page d'accueil
 
-Identifier les pages à scraper : home, à propos, services/prestations, réalisations, contact. Pour chaque page :
+**One-page = on scrape UNIQUEMENT la page d'accueil.** Pas de sous-pages (à propos, services, etc.) — tout le contenu de la maquette vient de la home. Si des infos critiques manquent (tel, adresse), vérifier la page contact en dernier recours.
 
 ```bash
 curl -sL -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" \
-  "<URL>" -o <slug>/_scrape/<nom-page>.html
+  "<URL>" -o <slug>/_scrape/home.html
 ```
 
-Si un site est bloqué par curl (cloudflare, etc.) → utiliser `WebFetch` avec un prompt d'extraction ou `mcp__puppeteer__puppeteer_navigate` suivi de `mcp__puppeteer__puppeteer_evaluate` pour récupérer le HTML.
+Si le site est bloqué par curl (cloudflare, etc.) → utiliser `WebFetch` avec un prompt d'extraction ou `mcp__puppeteer__puppeteer_navigate` suivi de `mcp__puppeteer__puppeteer_evaluate` pour récupérer le HTML.
 
 ### Étape 3 — Extraire le contenu structuré
 
