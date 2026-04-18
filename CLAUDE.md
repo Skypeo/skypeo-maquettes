@@ -285,6 +285,7 @@ Le skill prend les 4 captures (320/375/768/1440) et répond par écrit aux 7 que
 - **Zéro lorem ipsum**
 - **Zéro stock générique** : vraies photos client. Si insuffisant → Unsplash du même secteur, à préciser
 - **Palette du site original** : couleurs CSS exactes. Variantes clair/foncé OK, nouvelles teintes interdites sauf contraintes registre
+- **Zéro dessin spontané** : ne pas inventer de schémas SVG, cartes de ville/département, tampons rotatifs, épis de toit, coupes techniques, ECG, silhouettes de véhicules, plaques, etc. UNIQUEMENT si le user le demande explicitement. Par défaut : utiliser les photos client. Si manque de matière → supprimer la section ou demander au user.
 
 ### Technique
 - **Fichier unique** `index.html` (CSS + JS inline), autonome sauf Google Fonts + CDN GSAP/Motion One + images
