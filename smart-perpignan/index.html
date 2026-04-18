@@ -1,0 +1,2756 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart — Prêt-à-porter haut de gamme · Perpignan · Depuis 2005</title>
+  <meta name="description"
+    content="Boutique Smart, prêt-à-porter masculin et féminin à Perpignan. Barbour, Gant, Hackett London, Paul & Shark. Depuis 21 ans au 3 rue de la République.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&family=Open+Sans:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/SplitText.min.js"></script>
+
+  <style>
+    /* ========== TOKENS ========== */
+    :root {
+      --ivory: #f4ede0;
+      --ivory-deep: #ece3d0;
+      --paper: #f8f2e6;
+      --ink: #0f0e0c;
+      --ink-soft: #2a2622;
+      --ink-mute: #6b6457;
+      --line: rgba(15, 14, 12, .14);
+      --line-soft: rgba(15, 14, 12, .08);
+      --burgundy: #681e29;
+      --burgundy-deep: #4a1219;
+      --tan: #681e29;
+      --gold: #681e29;
+
+      --r-sm: 6px;
+      --r-md: 14px;
+      --r-lg: 22px;
+      --r-xl: 32px;
+      --r-pill: 999px;
+
+      --fs-mono: "JetBrains Mono", ui-monospace, monospace;
+      --fs-body: "Open Sans", system-ui, sans-serif;
+      --fs-display: "Unbounded", "Fraunces", "Times New Roman", serif;
+
+      --gutter: clamp(1.25rem, 4vw, 4rem);
+      --max: 1480px;
+      --topbar-h: 28px;
+      --nav-h: 72px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--ivory);
+      color: var(--ink);
+      font-family: var(--fs-body);
+      font-size: clamp(15px, .93vw + 11px, 17px);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      min-height: 100dvh;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+      color: inherit;
+      background: none;
+      border: 0;
+      cursor: pointer;
+    }
+
+    /* Texture grain SVG fixée */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: .42;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 .28  0 0 0 0 .24  0 0 0 0 .18  0 0 0 .38 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
+
+    /* Ambiance fond : halos qui respirent */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .ambient span {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: .55;
+      mix-blend-mode: multiply;
+    }
+
+    .ambient .a1 {
+      width: 48vw;
+      height: 48vw;
+      left: -10vw;
+      top: -12vw;
+      background: radial-gradient(circle, rgba(168, 137, 92, .55), transparent 70%);
+      animation: breathe 14s ease-in-out infinite;
+    }
+
+    .ambient .a2 {
+      width: 42vw;
+      height: 42vw;
+      right: -8vw;
+      top: 30vh;
+      background: radial-gradient(circle, rgba(107, 31, 42, .35), transparent 70%);
+      animation: breathe 18s ease-in-out infinite reverse;
+    }
+
+    .ambient .a3 {
+      width: 38vw;
+      height: 38vw;
+      left: 15vw;
+      bottom: -12vw;
+      background: radial-gradient(circle, rgba(139, 106, 58, .35), transparent 70%);
+      animation: breathe 22s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+        opacity: .45;
+      }
+
+      50% {
+        transform: translate(4vw, -3vw) scale(1.1);
+        opacity: .62;
+      }
+    }
+
+    /* ========== LAYOUT ========== */
+    .wrap {
+      max-width: var(--max);
+      padding-inline: var(--gutter);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ========== TOPBAR (marquee noir, scroll avec la page) ========== */
+    .topbar {
+      position: relative;
+      z-index: 2;
+      height: var(--topbar-h);
+      background: var(--ink);
+      color: var(--ivory);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(244, 237, 224, .08);
+    }
+
+    .topbar-track {
+      display: flex;
+      gap: 2.4rem;
+      width: max-content;
+      animation: tick 48s linear infinite;
+      will-change: transform;
+      padding-inline: 1.2rem;
+    }
+
+    .topbar-track span {
+      font-family: var(--fs-mono);
+      font-size: .58rem;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 2.4rem;
+      color: rgba(244, 237, 224, .92);
+    }
+
+    .topbar-track span::after {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--tan);
+      opacity: .8;
+    }
+
+    .topbar-track span i {
+      font-style: normal;
+      color: var(--tan);
+      font-weight: 500;
+    }
+
+    /* ========== NAV (sticky top:0, reste fixe au scroll) ========== */
+    .nav {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      min-height: var(--nav-h);
+      background: rgba(244, 237, 224, .92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .nav-brand {
+      font-family: var(--fs-display);
+      font-weight: 500;
+      font-size: clamp(1.6rem, 2.2vw, 2.1rem);
+      letter-spacing: -.02em;
+      line-height: 1;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      display: flex;
+      align-items: baseline;
+      gap: .55rem;
+    }
+
+    .nav-brand i {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .nav-brand sup {
+      font-family: var(--fs-mono);
+      font-size: .52rem;
+      letter-spacing: .2em;
+      color: var(--ink-mute);
+      font-weight: 500;
+      top: -1.2em;
+      position: relative;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.75rem;
+      font-family: var(--fs-mono);
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: .35rem 0;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      height: 1px;
+      background: var(--burgundy);
+      transition: right .4s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .nav-links a:hover::after {
+      right: 0;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      font-family: var(--fs-mono);
+      font-size: .68rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      padding: .7rem 1.2rem;
+      border: 1px solid var(--ink);
+      border-radius: var(--r-pill);
+      background: var(--ink);
+      color: var(--ivory);
+      transition: background .3s, color .3s, transform .3s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-cta span {
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--burgundy);
+      border-color: var(--burgundy);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta .dot {
+      width: 6px;
+      height: 6px;
+      background: #7ae5a0;
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(122, 229, 160, .7);
+      animation: pulse 1.6s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(122, 229, 160, .7);
+      }
+
+      80% {
+        box-shadow: 0 0 0 8px rgba(122, 229, 160, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(122, 229, 160, 0);
+      }
+    }
+
+    .burger {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    /* ========== HERO (split image + dark panel) ========== */
+    .hero {
+      position: relative;
+      padding: 0;
+      display: flex;
+      overflow: hidden;
+    }
+
+    .hero-split {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      width: 100%;
+      height: calc(100dvh - var(--topbar-h) - var(--nav-h));
+      min-height: 560px;
+      gap: 0;
+    }
+
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--ink-soft);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.04);
+      will-change: transform;
+    }
+
+    .hero-photo .photo-cap {
+      position: absolute;
+      left: clamp(1rem, 2.2vw, 2rem);
+      bottom: clamp(1rem, 2.2vw, 2rem);
+      color: var(--ivory);
+      font-family: var(--fs-mono);
+      font-size: .64rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      padding: .5rem .8rem;
+      background: rgba(15, 14, 12, .58);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: var(--r-pill);
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+    }
+
+    .hero-photo .photo-cap b {
+      color: var(--tan);
+      font-weight: 500;
+    }
+
+    .hero-panel {
+      background: var(--ink);
+      color: var(--ivory);
+      padding: clamp(2rem, 4vw, 4.5rem) clamp(1.75rem, 3.5vw, 4rem);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 2rem;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(500px circle at 80% 20%, rgba(107, 31, 42, .38), transparent 60%),
+        radial-gradient(400px circle at 20% 85%, rgba(139, 106, 58, .22), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+      animation: panelBreathe 16s ease-in-out infinite;
+    }
+
+    @keyframes panelBreathe {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: .9;
+      }
+
+      50% {
+        transform: scale(1.08);
+        opacity: 1;
+      }
+    }
+
+    .hero-panel>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--fs-mono);
+      font-size: .7rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--tan);
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 2.2rem;
+      height: 1px;
+      background: var(--tan);
+      display: inline-block;
+    }
+
+    .hero-title {
+      font-family: var(--fs-display);
+      font-weight: 200;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-size: clamp(1.7rem, 3.5vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -.025em;
+      color: var(--ivory);
+      margin: 0;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--tan);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      font-weight: 300;
+    }
+
+    .hero-title .block {
+      display: block;
+    }
+
+    .hero-meta {
+      font-family: var(--fs-mono);
+      font-size: .7rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(244, 237, 224, .62);
+      line-height: 1.7;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(244, 237, 224, .14);
+    }
+
+    .hero-meta b {
+      color: var(--ivory);
+      font-weight: 500;
+    }
+
+    .hero-meta .dash {
+      color: var(--tan);
+      margin: 0 .5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: .5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      padding: 1.1rem 1.8rem;
+      font-family: var(--fs-mono);
+      font-size: .72rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      background: var(--ivory);
+      color: var(--ink);
+      border: 1px solid var(--ivory);
+      border-radius: var(--r-pill);
+      transition: transform .3s, background .3s, color .3s, border-color .3s;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .hero-cta:hover {
+      background: var(--tan);
+      border-color: var(--tan);
+      color: var(--ink);
+      transform: translateY(-2px);
+    }
+
+    .hero-cta .arrow {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      position: relative;
+      transition: transform .3s;
+    }
+
+    .hero-cta .arrow::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: translateY(-50%);
+    }
+
+    .hero-cta .arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .hero-cta:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .hero-cta-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      padding: 1.1rem 1.4rem;
+      font-family: var(--fs-mono);
+      font-size: .68rem;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      color: rgba(244, 237, 224, .78);
+      border: 1px solid rgba(244, 237, 224, .2);
+      border-radius: var(--r-pill);
+      transition: background .3s, color .3s, border-color .3s;
+    }
+
+    .hero-cta-ghost:hover {
+      background: rgba(244, 237, 224, .08);
+      color: var(--ivory);
+      border-color: rgba(244, 237, 224, .45);
+    }
+
+    .hero-counter {
+      display: flex;
+      align-items: baseline;
+      gap: .6rem;
+      color: var(--ivory);
+    }
+
+    .hero-counter .num {
+      font-family: var(--fs-display);
+      font-size: clamp(3.2rem, 5.8vw, 5rem);
+      line-height: .85;
+      font-weight: 200;
+      font-variation-settings: "opsz" 144, "SOFT" 20;
+      letter-spacing: -.04em;
+      color: var(--tan);
+    }
+
+    .hero-counter .lbl {
+      font-family: var(--fs-mono);
+      font-size: .62rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(244, 237, 224, .68);
+      max-width: 12ch;
+      line-height: 1.5;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      padding: 1rem 1.6rem;
+      font-family: var(--fs-mono);
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      border: 1px solid var(--ink);
+      border-radius: var(--r-pill);
+      background: transparent;
+      color: var(--ink);
+      transition: background .3s, color .3s, transform .3s, border-color .3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: var(--ink);
+      color: var(--ivory);
+      transform: translateY(-1px);
+    }
+
+    .btn.filled {
+      background: var(--ink);
+      color: var(--ivory);
+    }
+
+    .btn.filled:hover {
+      background: var(--burgundy);
+      border-color: var(--burgundy);
+    }
+
+    .btn .arrow {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      position: relative;
+      transition: transform .3s;
+    }
+
+    .btn .arrow::before,
+    .btn .arrow::after {
+      content: '';
+      position: absolute;
+      background: currentColor;
+    }
+
+    .btn .arrow::before {
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      transform: translateY(-50%);
+    }
+
+    .btn .arrow::after {
+      right: 0;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: translateY(-50%) rotate(45deg);
+      background: transparent;
+      border-left: 0;
+      border-bottom: 0;
+    }
+
+    .btn:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    /* ========== TICKER ========== */
+    .ticker {
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 1.1rem 0;
+      background: var(--ivory);
+      position: relative;
+      z-index: 1;
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 3.2rem;
+      animation: tick 42s linear infinite;
+      width: max-content;
+    }
+
+    .ticker-track span {
+      font-family: var(--fs-display);
+      font-size: clamp(1.3rem, 2vw, 1.85rem);
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 3.2rem;
+    }
+
+    .ticker-track span::after {
+      content: '✦';
+      color: var(--burgundy);
+      font-size: .55em;
+      transform: translateY(-.1em);
+    }
+
+    .ticker-track span i {
+      font-style: italic;
+      color: var(--burgundy);
+      font-variation-settings: "opsz" 144, "SOFT" 80;
+    }
+
+    @keyframes tick {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ========== SECTION : LA MAISON ========== */
+    .maison {
+      padding: clamp(6rem, 10vw, 10rem) var(--gutter) clamp(3rem, 6vw, 5rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .maison-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .maison-photo {
+      position: relative;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+      isolation: isolate;
+      box-shadow: 0 30px 60px -30px rgba(15, 14, 12, .35);
+    }
+
+    .maison-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .eyebrow {
+      font-family: var(--fs-mono);
+      font-size: .72rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 2.2rem;
+      height: 1px;
+      background: var(--burgundy);
+      display: inline-block;
+    }
+
+    .maison-num {
+      font-family: var(--fs-display);
+      font-weight: 200;
+      font-size: clamp(10rem, 28vw, 24rem);
+      line-height: .78;
+      letter-spacing: -.06em;
+      color: var(--ink);
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      position: relative;
+      display: inline-block;
+    }
+
+    .maison-num em {
+      font-style: italic;
+      color: var(--burgundy);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    .maison-num sup {
+      font-family: var(--fs-mono);
+      font-size: .07em;
+      letter-spacing: .2em;
+      color: var(--ink-mute);
+      position: absolute;
+      right: -.2em;
+      top: .2em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .maison-num sup span {
+      display: block;
+    }
+
+    .maison-text h2 {
+      font-family: var(--fs-display);
+      font-weight: 300;
+      font-size: clamp(2rem, 3.8vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      margin: 0 0 1.5rem;
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+      max-width: 18ch;
+    }
+
+    .maison-text h2 em {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .maison-text p {
+      font-size: 1.02rem;
+      line-height: 1.65;
+      color: var(--ink-soft);
+      margin: 0 0 1.1rem;
+      max-width: 46ch;
+    }
+
+    .maison-text p+p {
+      margin-top: 0;
+    }
+
+    .signature {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .signature-svg {
+      width: 120px;
+      height: 50px;
+    }
+
+    .signature-text {
+      font-family: var(--fs-mono);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      line-height: 1.6;
+    }
+
+    .signature-text b {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* Bande horizontale large photo + chiffres */
+    .maison-strip {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr 1fr;
+      gap: clamp(1rem, 2vw, 2rem);
+      align-items: stretch;
+    }
+
+    .stat-card {
+      padding: 2rem 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      background: rgba(255, 255, 255, .3);
+      backdrop-filter: blur(4px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card .idx {
+      font-family: var(--fs-mono);
+      font-size: .68rem;
+      letter-spacing: .22em;
+      color: var(--ink-mute);
+      text-transform: uppercase;
+      margin-bottom: auto;
+    }
+
+    .stat-card .val {
+      font-family: var(--fs-display);
+      font-weight: 300;
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      line-height: .9;
+      letter-spacing: -.025em;
+      color: var(--ink);
+      font-variation-settings: "opsz" 144;
+      margin-top: 1.5rem;
+    }
+
+    .stat-card .val em {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .stat-card .lbl {
+      font-family: var(--fs-body);
+      font-size: .9rem;
+      color: var(--ink-soft);
+      line-height: 1.4;
+      margin-top: .8rem;
+      max-width: 24ch;
+    }
+
+    .strip-photo {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      position: relative;
+      min-height: 280px;
+      isolation: isolate;
+    }
+
+    .strip-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ========== SECTION MARQUES ========== */
+    .brands {
+      padding: clamp(6rem, 10vw, 10rem) var(--gutter);
+      background: var(--paper);
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brands-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+    }
+
+    .brands-head h2 {
+      font-family: var(--fs-display);
+      font-weight: 300;
+      font-size: clamp(2.5rem, 6vw, 6rem);
+      line-height: .92;
+      letter-spacing: -.03em;
+      margin: 0;
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+      max-width: 12ch;
+    }
+
+    .brands-head h2 em {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .brands-head p {
+      font-size: 1.02rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      max-width: 42ch;
+      margin: 0;
+      justify-self: end;
+    }
+
+    .brands-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-left: 1px solid var(--line);
+    }
+
+    .brand-row {
+      padding: clamp(1.8rem, 3.2vw, 3rem);
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      background: var(--paper);
+      transition: background .4s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-row:hover {
+      background: var(--ivory-deep);
+    }
+
+    .brand-row::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--burgundy);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .6s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .brand-row:hover::after {
+      transform: scaleX(1);
+    }
+
+    .brand-num {
+      font-family: var(--fs-mono);
+      font-size: .72rem;
+      letter-spacing: .2em;
+      color: var(--ink-mute);
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .brand-main {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .brand-name {
+      font-family: var(--fs-display);
+      font-weight: 400;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1;
+      letter-spacing: -.02em;
+      color: var(--ink);
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+    }
+
+    .brand-name em {
+      font-style: italic;
+      color: var(--burgundy);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    .brand-tag {
+      font-family: var(--fs-mono);
+      font-size: .65rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    .brand-origin {
+      font-family: var(--fs-display);
+      font-style: italic;
+      font-size: .95rem;
+      color: var(--ink-soft);
+      font-weight: 300;
+      text-align: right;
+      line-height: 1.3;
+      max-width: 18ch;
+    }
+
+    .brand-origin b {
+      display: block;
+      font-style: normal;
+      font-family: var(--fs-mono);
+      font-size: .62rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      font-weight: 500;
+      margin-bottom: .3rem;
+    }
+
+    /* ========== AVANTAGES / SERVICES ========== */
+    .avantages {
+      padding: clamp(6rem, 10vw, 10rem) var(--gutter);
+      position: relative;
+      z-index: 1;
+    }
+
+    .avantages-head {
+      margin-bottom: clamp(3rem, 5vw, 4.5rem);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .avantages-head h2 {
+      font-family: var(--fs-display);
+      font-weight: 300;
+      font-size: clamp(2.5rem, 4vw, 5rem);
+      line-height: .95;
+      letter-spacing: -.025em;
+      margin: 0;
+      max-width: 14ch;
+    }
+
+    .avantages-head h2 em {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .avantages-head .note {
+      font-family: var(--fs-display);
+      font-size: clamp(1.05rem, 1.3vw, 1.25rem);
+      line-height: 1.5;
+      color: var(--ink-soft);
+      font-style: italic;
+      font-weight: 300;
+      justify-self: end;
+      max-width: 36ch;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(1rem, 1.6vw, 1.5rem);
+    }
+
+    .service {
+      padding: 2rem 1.8rem 1.6rem;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      background: var(--paper);
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      transition: transform .4s, background .4s, border-color .4s;
+    }
+
+    .service:hover {
+      transform: translateY(-3px);
+      border-color: var(--burgundy);
+      background: var(--ivory-deep);
+    }
+
+    .service-idx {
+      font-family: var(--fs-mono);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      font-weight: 500;
+    }
+
+    .service-icon {
+      width: 64px;
+      height: 64px;
+      margin: auto 0 1.5rem;
+      stroke: var(--ink);
+      stroke-width: 1;
+      fill: none;
+      color: var(--ink);
+    }
+
+    .service-name {
+      font-family: var(--fs-display);
+      font-size: 1.4rem;
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin: 0 0 .3rem;
+      font-variation-settings: "opsz" 144;
+    }
+
+    .service-name em {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .service-desc {
+      font-family: var(--fs-body);
+      font-size: .82rem;
+      color: var(--ink-mute);
+      line-height: 1.5;
+    }
+
+    /* ========== SECTION VESTIAIRE HOMMES / FEMMES ========== */
+    .vestiaire {
+      padding: clamp(6rem, 10vw, 10rem) var(--gutter);
+      position: relative;
+      z-index: 1;
+      background: var(--ink);
+      color: var(--ivory);
+      overflow: hidden;
+    }
+
+    .vestiaire::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(600px circle at 20% 30%, rgba(107, 31, 42, .35), transparent 60%),
+        radial-gradient(500px circle at 80% 70%, rgba(139, 106, 58, .2), transparent 60%);
+      pointer-events: none;
+      opacity: .9;
+    }
+
+    .vestiaire-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .vestiaire-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: clamp(3rem, 6vw, 5rem);
+      align-items: end;
+    }
+
+    .vestiaire-head h2 {
+      font-family: var(--fs-display);
+      font-weight: 200;
+      font-size: clamp(3rem, 6vw, 5rem);
+      line-height: .88;
+      letter-spacing: -.035em;
+      margin: 0;
+      font-variation-settings: "opsz" 144, "SOFT" 20;
+      color: var(--ivory);
+    }
+
+    .vestiaire-head h2 em {
+      font-style: italic;
+      color: var(--tan);
+      font-variation-settings: "opsz" 144, "SOFT" 80;
+    }
+
+    .vestiaire-head p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(244, 237, 224, .72);
+      max-width: 40ch;
+      justify-self: end;
+      margin: 0;
+    }
+
+    .univers-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(1rem, 2vw, 2rem);
+    }
+
+    .univers {
+      position: relative;
+      min-height: 420px;
+      border-radius: var(--r-md);
+      overflow: hidden;
+      border: 1px solid rgba(244, 237, 224, .12);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(180deg, rgba(15, 14, 12, .4) 0%, rgba(15, 14, 12, .9) 100%);
+      isolation: isolate;
+      transition: transform .5s, border-color .4s;
+    }
+
+    .univers:hover {
+      transform: translateY(-4px);
+      border-color: var(--tan);
+    }
+
+    .univers-label {
+      font-family: var(--fs-mono);
+      font-size: .7rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .univers-label::before {
+      content: '';
+      width: 1.5rem;
+      height: 1px;
+      background: var(--tan);
+    }
+
+    .univers-name {
+      font-family: var(--fs-display);
+      font-weight: 300;
+      font-size: clamp(2.4rem, 5vw, 4.5rem);
+      line-height: .95;
+      letter-spacing: -.025em;
+      color: var(--ivory);
+      font-variation-settings: "opsz" 144, "SOFT" 40;
+      margin: 0 0 1rem;
+    }
+
+    .univers-name em {
+      font-style: italic;
+      color: var(--tan);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    .univers-desc {
+      font-size: .95rem;
+      line-height: 1.55;
+      color: rgba(244, 237, 224, .75);
+      max-width: 38ch;
+      margin: 0 0 1.8rem;
+    }
+
+    .univers-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .8rem;
+      font-family: var(--fs-mono);
+      font-size: .7rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      padding: .7rem 1.3rem;
+      border: 1px solid rgba(244, 237, 224, .3);
+      border-radius: var(--r-pill);
+      width: fit-content;
+      transition: background .3s, border-color .3s;
+    }
+
+    .univers-cta:hover {
+      background: var(--ivory);
+      color: var(--ink);
+      border-color: var(--ivory);
+    }
+
+    .univers-cta .arrow {
+      width: 14px;
+      height: 14px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .univers-cta .arrow::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      transform: translateY(-50%);
+    }
+
+    .univers-cta .arrow::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      width: 7px;
+      height: 7px;
+      border-top: 1px solid currentColor;
+      border-right: 1px solid currentColor;
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .univers-hommes {
+      background:
+        linear-gradient(180deg, rgba(15, 14, 12, .35) 0%, rgba(15, 14, 12, .92) 100%),
+        url("_scrape/images/homme-mannequin.jpg") center/cover;
+    }
+
+    .univers-femmes {
+      background:
+        linear-gradient(180deg, rgba(107, 31, 42, .4) 0%, rgba(15, 14, 12, .9) 100%),
+        url("_scrape/images/femme-3.jpg") center/cover;
+    }
+
+    /* ========== PLANCHE PHOTOS ========== */
+    .planche {
+      padding: clamp(5rem, 9vw, 9rem) var(--gutter);
+      position: relative;
+      z-index: 1;
+    }
+
+    .planche-head {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: clamp(2.5rem, 4vw, 4rem);
+    }
+
+    .planche-head h2 {
+      font-family: var(--fs-display);
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5vw, 5rem);
+      line-height: .95;
+      letter-spacing: -.025em;
+      margin: 0;
+      max-width: 14ch;
+    }
+
+    .planche-head h2 em {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .planche-head .note {
+      font-family: var(--fs-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      color: var(--ink-soft);
+      max-width: 36ch;
+      justify-self: end;
+      line-height: 1.55;
+    }
+
+    .planche-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr 1fr;
+      grid-template-rows: auto auto;
+      gap: clamp(.8rem, 1.6vw, 1.4rem);
+    }
+
+    .planche-cell {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--r-md);
+      isolation: isolate;
+      background: var(--ink);
+    }
+
+    .planche-cell img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.2s cubic-bezier(.2, .8, .2, 1);
+    }
+
+    .planche-cell:hover img {
+      transform: scale(1.04);
+    }
+
+    .planche-cell .cap {
+      position: absolute;
+      left: 1rem;
+      bottom: .9rem;
+      font-family: var(--fs-mono);
+      font-size: .62rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--ivory);
+      background: rgba(15, 14, 12, .65);
+      backdrop-filter: blur(6px);
+      padding: .35rem .7rem;
+      border-radius: var(--r-pill);
+      z-index: 2;
+    }
+
+    .planche-cell .num {
+      position: absolute;
+      right: 1rem;
+      top: .9rem;
+      font-family: var(--fs-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--ivory);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .4);
+      z-index: 2;
+      font-weight: 400;
+    }
+
+    .planche-cell.c1 {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+      min-height: 600px;
+    }
+
+    .planche-cell.c2 {
+      grid-column: 2;
+      grid-row: 1;
+      min-height: 290px;
+    }
+
+    .planche-cell.c3 {
+      grid-column: 3;
+      grid-row: 1;
+      min-height: 290px;
+    }
+
+    .planche-cell.c4 {
+      grid-column: 2 / span 2;
+      grid-row: 2;
+      min-height: 300px;
+    }
+
+    @media (max-width:960px) {
+      .planche-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+
+      .planche-cell.c1,
+      .planche-cell.c2,
+      .planche-cell.c3,
+      .planche-cell.c4 {
+        grid-column: auto;
+        grid-row: auto;
+        min-height: 260px;
+      }
+
+      .planche-cell.c1 {
+        grid-column: 1 / -1;
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width:720px) {
+      .planche-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .planche-cell.c1 {
+        grid-column: auto;
+        min-height: 340px;
+      }
+    }
+
+    /* ========== TICKER VERTICAL (DEPUIS DEUX MILLE CINQ) ========== */
+    .mille-cinq {
+      padding: clamp(3rem, 4vw, 4rem) 0;
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      position: relative;
+      z-index: 1;
+      background: var(--ivory);
+    }
+
+    .mille-track {
+      display: flex;
+      gap: 3.5rem;
+      animation: tick2 50s linear infinite;
+      width: max-content;
+      align-items: center;
+    }
+
+    .mille-track span {
+      font-family: var(--fs-display);
+      font-weight: 200;
+      font-size: clamp(4rem, 5vw, 5rem);
+      line-height: 1;
+      letter-spacing: -.03em;
+      color: var(--ink);
+      font-variation-settings: "opsz" 144, "SOFT" 20;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 3.5rem;
+    }
+
+    .mille-track span i {
+      font-style: italic;
+      color: var(--burgundy);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      font-weight: 300;
+    }
+
+    .mille-track span .star {
+      font-size: .5em;
+      color: var(--burgundy);
+      display: inline-block;
+      transform: translateY(-.1em);
+    }
+
+    @keyframes tick2 {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ========== VISITE / CONTACT ========== */
+    .visite {
+      padding: clamp(6rem, 10vw, 10rem) var(--gutter) clamp(4rem, 6vw, 6rem);
+      position: relative;
+      z-index: 1;
+    }
+
+    .visite-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+
+    .visite-left h2 {
+      font-family: var(--fs-display);
+      font-weight: 200;
+      font-size: clamp(2.8rem, 7vw, 7.5rem);
+      line-height: .9;
+      letter-spacing: -.035em;
+      margin: 0 0 2rem;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      max-width: 12ch;
+    }
+
+    .visite-left h2 em {
+      font-style: italic;
+      color: var(--burgundy);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    .visite-left p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: var(--ink-soft);
+      margin: 0 0 1.1rem;
+      max-width: 42ch;
+    }
+
+    .visite-right {
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      overflow: hidden;
+      background: var(--paper);
+    }
+
+    .visite-row {
+      padding: 1.8rem 2rem;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      transition: background .3s;
+    }
+
+    .visite-row:hover {
+      background: var(--ivory-deep);
+    }
+
+    .visite-row:last-child {
+      border-bottom: 0;
+    }
+
+    .visite-label {
+      font-family: var(--fs-mono);
+      font-size: .68rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--burgundy);
+      font-weight: 500;
+      margin-bottom: .4rem;
+    }
+
+    .visite-val {
+      font-family: var(--fs-display);
+      font-weight: 400;
+      font-size: clamp(1.3rem, 2vw, 1.8rem);
+      line-height: 1.1;
+      color: var(--ink);
+      font-variation-settings: "opsz" 144;
+    }
+
+    .visite-val em {
+      font-style: italic;
+      color: var(--burgundy);
+    }
+
+    .visite-val a {
+      color: inherit;
+      transition: color .3s;
+    }
+
+    .visite-val a:hover {
+      color: var(--burgundy);
+    }
+
+    .visite-arrow {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .3s, border-color .3s, color .3s;
+      color: var(--ink-soft);
+    }
+
+    .visite-row:hover .visite-arrow {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--ivory);
+    }
+
+    .visite-arrow svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* ========== HOURS MENTION ========== */
+    .hours-cta {
+      margin-top: 2rem;
+      padding: 1.3rem 1.8rem;
+      background: var(--ink);
+      color: var(--ivory);
+      border-radius: var(--r-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      transition: background .3s;
+      cursor: pointer;
+    }
+
+    .hours-cta:hover {
+      background: var(--burgundy);
+    }
+
+    .hours-cta .txt {
+      font-family: var(--fs-mono);
+      font-size: .72rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .hours-cta .val {
+      font-family: var(--fs-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.1rem;
+      color: var(--ivory);
+    }
+
+    /* ========== FOOTER ========== */
+    .foot {
+      background: var(--ink);
+      color: var(--ivory);
+      padding: clamp(4rem, 8vw, 7rem) var(--gutter) 2rem;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .foot::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(700px circle at 85% 20%, rgba(107, 31, 42, .4), transparent 55%),
+        radial-gradient(500px circle at 10% 80%, rgba(139, 106, 58, .22), transparent 60%);
+      pointer-events: none;
+    }
+
+    .foot-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .foot-mark {
+      font-family: var(--fs-display);
+      font-weight: 200;
+      font-size: clamp(5rem, 7vw, 15rem);
+      line-height: .85;
+      letter-spacing: -.05em;
+      color: var(--ivory);
+      font-variation-settings: "opsz" 144, "SOFT" 20;
+      margin-bottom: clamp(3rem, 5vw, 4rem);
+    }
+
+    .foot-mark em {
+      font-style: italic;
+      color: var(--tan);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+
+    .foot-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(244, 237, 224, .15);
+      margin-bottom: 4rem;
+    }
+
+    .foot-col {
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .foot-col .lbl {
+      font-family: var(--fs-mono);
+      font-size: .66rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--tan);
+      margin-bottom: .7rem;
+    }
+
+    .foot-col .val {
+      font-family: var(--fs-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.15rem;
+      color: var(--ivory);
+      line-height: 1.35;
+    }
+
+    .foot-col .val b {
+      font-style: normal;
+      font-family: var(--fs-body);
+      font-weight: 400;
+      font-size: .95rem;
+      color: rgba(244, 237, 224, .75);
+      display: block;
+      margin-top: .2rem;
+    }
+
+    .foot-col a {
+      transition: color .3s;
+    }
+
+    .foot-col a:hover {
+      color: var(--tan);
+    }
+
+    .foot-col p {
+      font-family: var(--fs-body);
+      font-size: .88rem;
+      color: rgba(244, 237, 224, .65);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .foot-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(244, 237, 224, .1);
+      font-family: var(--fs-mono);
+      font-size: .65rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: rgba(244, 237, 224, .5);
+    }
+
+    .foot-sub a:hover {
+      color: var(--ivory);
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1100px) {
+      .nav {
+        gap: 1rem;
+      }
+
+      .nav-links {
+        gap: 1.2rem;
+        font-size: .68rem;
+      }
+
+      .nav-cta {
+        font-size: .64rem;
+        padding: .6rem 1rem;
+        letter-spacing: .18em;
+      }
+    }
+
+    @media (max-width: 960px) {
+      :root {
+        --topbar-h: 26px;
+        --nav-h: 64px;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .hero {
+        padding: 0;
+      }
+
+      .hero-split {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        height: calc(100dvh - var(--topbar-h) - var(--nav-h));
+        min-height: 560px;
+        position: relative;
+      }
+
+      .hero-photo {
+        grid-column: 1;
+        grid-row: 1;
+        min-height: 0;
+        aspect-ratio: auto;
+        z-index: 0;
+      }
+
+      .hero-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-photo .photo-cap {
+        display: none;
+      }
+
+      .hero-panel {
+        grid-column: 1;
+        grid-row: 1;
+        min-height: 0;
+        padding: 2.5rem 1.5rem;
+        background: transparent;
+        z-index: 1;
+        justify-content: center;
+        gap: 1.25rem;
+      }
+
+      .hero-panel::before {
+        background:
+          linear-gradient(180deg, rgba(15, 14, 12, .6) 0%, rgba(15, 14, 12, .75) 50%, rgba(15, 14, 12, .9) 100%);
+        animation: none;
+        opacity: 1;
+      }
+
+      .hero-title {
+        text-shadow: 0 2px 24px rgba(0, 0, 0, .4);
+      }
+
+      .hero-meta {
+        border-top-color: rgba(244, 237, 224, .3);
+      }
+
+      .maison-top {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .maison-num {
+        font-size: clamp(8rem, 32vw, 16rem);
+      }
+
+      .maison-strip {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .strip-photo {
+        grid-column: 1 / -1;
+      }
+
+      .brands-head,
+      .avantages-head,
+      .vestiaire-head,
+      .visite-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .brands-head p,
+      .avantages-head .note,
+      .vestiaire-head p {
+        justify-self: start;
+      }
+
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .univers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .foot-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .foot-mark {
+        font-size: clamp(4rem, 22vw, 10rem);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+
+      .burger {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: var(--r-pill);
+        background: var(--ivory);
+      }
+
+      .burger span {
+        width: 18px;
+        height: 1px;
+        background: var(--ink);
+        transition: transform .3s, opacity .3s;
+      }
+
+      .burger[aria-expanded="true"] span:nth-child(1) {
+        transform: rotate(45deg) translate(3px, 3px);
+      }
+
+      .burger[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .burger[aria-expanded="true"] span:nth-child(3) {
+        transform: rotate(-45deg) translate(3px, -3px);
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        background: var(--ivory);
+        z-index: 99;
+        padding: 5rem var(--gutter) 2rem;
+        transform: translateX(100%);
+        transition: transform .5s cubic-bezier(.2, .8, .2, 1);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .mobile-menu.open {
+        transform: translateX(0);
+      }
+
+      .mobile-menu a {
+        font-family: var(--fs-display);
+        font-size: 2rem;
+        font-weight: 300;
+        border-bottom: 1px solid var(--line);
+        padding: 1rem 0;
+        color: var(--ink);
+      }
+
+      .mobile-menu a em {
+        color: var(--burgundy);
+        font-style: italic;
+      }
+
+      .hero-photo {
+        min-height: 48dvh;
+      }
+
+      .hero-panel {
+        padding: 2.5rem 1.25rem;
+        gap: 1.5rem;
+      }
+
+      .hero-title {
+        font-size: clamp(1.6rem, 6.5vw, 2.6rem);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .hero-cta,
+      .hero-cta-ghost {
+        justify-content: center;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .maison-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .brand-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .brand-origin {
+        text-align: left;
+      }
+
+      .foot-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .hero-title {
+        font-size: clamp(1.4rem, 7vw, 2rem);
+      }
+
+      .maison-num {
+        font-size: clamp(7rem, 42vw, 14rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .ticker-track,
+      .mille-track,
+      .ambient span {
+        animation: none !important;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01s !important;
+        animation-duration: .01s !important;
+      }
+    }
+
+    /* Fade-in on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ambient" aria-hidden="true">
+    <span class="a1"></span>
+    <span class="a2"></span>
+    <span class="a3"></span>
+  </div>
+
+  <!-- TOPBAR MARQUEE -->
+  <div id="top" class="topbar" role="complementary" aria-label="Informations boutique">
+    <div class="topbar-track">
+      <span>Vêtements de luxe <i>— hommes &amp; femmes</i> depuis 21 ans</span>
+      <span>Barbour <i>·</i> Gant <i>·</i> Hackett London <i>·</i> Paul &amp; Shark</span>
+      <span>Retouches <i>·</i> Carte cadeau <i>·</i></span>
+
+      <!-- duplicate for seamless loop -->
+      <span>Vêtements de luxe <i>— hommes &amp; femmes</i> depuis 21 ans</span>
+      <span>Barbour <i>·</i> Gant <i>·</i> Hackett London <i>·</i> Paul &amp; Shark</span>
+      <span>Retouches <i>·</i> Carte cadeau <i>·</i></span>
+
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <header class="nav" role="banner">
+    <a href="#" class="nav-brand" aria-label="Smart · Maison de prêt-à-porter">
+      <span>Smart<i>.</i></span>
+      <sup>EST<br>2005</sup>
+    </a>
+    <nav class="nav-links" aria-label="Principale">
+      <a href="#top">Accueil</a>
+      <a href="#hommes">Hommes</a>
+      <a href="#femmes">Femmes</a>
+      <a href="#marques">Marques</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="tel:0617252217" class="nav-cta">
+      <span class="dot" aria-hidden="true"></span>
+      <span>06 17 25 22 17</span>
+    </a>
+    <button class="burger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <div class="mobile-menu" aria-hidden="true">
+    <a href="#top"><em>Accueil</em></a>
+    <a href="#hommes">L'univers <em>des hommes</em></a>
+    <a href="#femmes">L'univers <em>des femmes</em></a>
+    <a href="#marques">Les <em>Marques</em></a>
+    <a href="#contact"><em>Contact</em></a>
+    <a href="tel:0617252217">06 17 25 22 17</a>
+  </div>
+
+  <!-- HERO (split : photo + panneau sombre) -->
+  <section class="hero" role="region" aria-label="Introduction">
+    <div class="hero-split">
+      <div class="hero-photo">
+        <span class="photo-cap"><b>N° 3</b> rue de la République · Perpignan</span>
+        <img src="_scrape/images/hero-boutique.jpg" alt="Intérieur de la boutique Smart, sélection de vestes Barbour"
+          fetchpriority="high">
+      </div>
+
+      <div class="hero-panel">
+        <span class="hero-eyebrow">Prêt-à-porter · Perpignan</span>
+
+        <h1 class="hero-title">
+          Smart :
+          la boutique de
+          prêt-à-porter
+          masculin et féminin
+          à Perpignan.
+        </h1>
+
+
+
+        <p class="hero-meta">
+          Située au 3 rue de la République à Perpignan
+
+
+        </p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="hero-cta">Visiter la boutique <span class="arrow" aria-hidden="true"></span></a>
+          <a href="#contact" class="hero-cta-ghost">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER MARQUES -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Barbour </span>
+      <span>Gant </span>
+      <span>Hackett London </span>
+      <span>Paul &amp; Shark </span>
+      <span>Barbour International </span>
+
+      <!-- duplicate for loop -->
+      <span>Barbour </span>
+      <span>Gant </span>
+      <span>Hackett London </span>
+      <span>Paul &amp; Shark </span>
+      <span>Barbour International </span>
+
+
+    </div>
+  </div>
+
+  <!-- LA MAISON -->
+  <section id="maison" class="maison">
+    <div class="wrap" style="padding:0;">
+      <div class="maison-top">
+        <div class="maison-photo">
+          <img src="_scrape/images/boutique-interieur.jpg" alt="Intérieur de la boutique Smart à Perpignan">
+        </div>
+        <div class="maison-text">
+          <h2>Vente de vêtements de luxe pour hommes et pour femmes depuis 21 ans</h2>
+          <p>Poussez les portes de notre boutique de prêt-à-porter Smart située à Perpignan. Découvrez un univers dédié
+            aux vêtements haut de gamme pour hommes et pour femmes.</p>
+          <p>Notre vendeur de vêtements passionné par son métier vous reçoit et vous conseille dans le choix de vos
+            tenues vestimentaires.</p>
+          <p>Découvrez un grand choix de vêtements, de maroquineries et d'accessoires renouvelés à chaque changement de
+            saison.</p>
+          <div class="signature">
+            <div class="signature-text">
+              <b>Jean-Michel Tixador</b><br>
+              Vendeur · Perpignan
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUES -->
+  <section id="marques" class="brands">
+    <div class="wrap" style="padding:0;">
+      <div class="brands-head">
+        <h2>Des grandes <em>marques</em> du prêt-à-porter</h2>
+        <p>Vous souhaitez porter des vêtements de luxe qui peuvent garder une place à long terme dans votre dressing ?
+
+
+
+          Notre magasin Smart vous invite à découvrir les marques Barbour® et Barbour International®, Gant, Hackett
+          London et Paul & Shark.
+
+
+
+          Les collections de prêt-à-porter de la boutique s'adressent aux hommes et aux femmes.
+
+
+
+          Vous souhaitez en apprendre davantage ? Rendez-vous chez Smart !</p>
+      </div>
+    </div>
+
+    <div class="wrap" style="padding:0;">
+      <div class="brands-list">
+        <article class="brand-row">
+          <span class="brand-num">N° 01</span>
+          <div class="brand-main">
+            <span class="brand-name"><em>Barbour</em></span>
+            <span class="brand-tag">Vestes cirées · héritage britannique</span>
+          </div>
+          <div class="brand-origin"><b>Angleterre · 1894</b>South Shields</div>
+        </article>
+
+        <article class="brand-row">
+          <span class="brand-num">N° 02</span>
+          <div class="brand-main">
+            <span class="brand-name">Barbour <em>International</em></span>
+            <span class="brand-tag">Héritage motard · ligne noire</span>
+          </div>
+          <div class="brand-origin"><b>Angleterre · 1936</b>Collection sport</div>
+        </article>
+
+        <article class="brand-row">
+          <span class="brand-num">N° 03</span>
+          <div class="brand-main">
+            <span class="brand-name"><em>Gant</em></span>
+            <span class="brand-tag">Oxford button-down · preppy</span>
+          </div>
+          <div class="brand-origin"><b>New Haven · 1949</b>Connecticut, USA</div>
+        </article>
+
+        <article class="brand-row">
+          <span class="brand-num">N° 04</span>
+          <div class="brand-main">
+            <span class="brand-name">Hackett <em>London</em></span>
+            <span class="brand-tag">Tailleur anglais · flanelles</span>
+          </div>
+          <div class="brand-origin"><b>Londres · 1979</b>King's Road</div>
+        </article>
+
+        <article class="brand-row" style="grid-column:1 / -1; border-right:1px solid var(--line);">
+          <span class="brand-num">N° 05</span>
+          <div class="brand-main">
+            <span class="brand-name">Paul &amp; <em>Shark</em></span>
+            <span class="brand-tag">Maille italienne · technique mer</span>
+          </div>
+          <div class="brand-origin"><b>Italie · 1975</b>Masnago, Varese</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANCHE PHOTOS -->
+  <section class="planche" aria-label="Aperçu de la boutique">
+    <div class="wrap" style="padding:0;">
+      <div class="planche-head">
+        <h2>Aperçu de <em>la boutique.</em></h2>
+        <p class="note">Quelques images prises entre deux changements de saison, au 3 rue de la République.</p>
+      </div>
+      <div class="planche-grid">
+        <figure class="planche-cell c1">
+          <span class="num">i</span>
+          <span class="cap">Vitrine · Barbour Evergreen</span>
+          <img src="_scrape/images/homme-vitrine.jpg" alt="Vitrine Barbour Evergreen Icons, boutique Smart Perpignan"
+            loading="lazy">
+        </figure>
+        <figure class="planche-cell c2">
+          <span class="num">ii</span>
+          <span class="cap">Vestiaire homme</span>
+          <img src="_scrape/images/hero-boutique.jpg" alt="Sélection de vestes Barbour en boutique" loading="lazy">
+        </figure>
+        <figure class="planche-cell c3">
+          <span class="num">iii</span>
+          <span class="cap">Vestiaire femme</span>
+          <img src="_scrape/images/femme-1.jpg" alt="Collection femme Smart Perpignan" loading="lazy">
+        </figure>
+        <figure class="planche-cell c4">
+          <span class="num">iv</span>
+          <span class="cap">3 rue de la République · Perpignan</span>
+          <img src="_scrape/images/facade-1.jpg" alt="Façade de la boutique Smart à Perpignan" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- MILLE CINQ -->
+  <div class="mille-cinq" aria-hidden="true">
+    <div class="mille-track">
+      <span><i>Depuis</i> deux mille cinq <span class="star">✦</span></span>
+      <span>Smart <i>— Perpignan</i> <span class="star">✦</span></span>
+      <span>Prêt-à-porter <i>— haut de gamme</i> <span class="star">✦</span></span>
+      <!-- dup -->
+      <span><i>Depuis</i> deux mille cinq <span class="star">✦</span></span>
+      <span>Smart <i>— Perpignan</i> <span class="star">✦</span></span>
+
+      <span>Prêt-à-porter <i>— haut de gamme</i> <span class="star">✦</span></span>
+    </div>
+  </div>
+
+  <!-- AVANTAGES / SERVICES -->
+  <section class="avantages">
+    <div class="wrap" style="padding:0;">
+      <div class="avantages-head">
+        <h2>De nombreux <em>avantages</em> vous attendent dans notre boutique</h2>
+        <p class="note">Carte cadeau, envoi de commandes, retouches, parking offert.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service">
+          <span class="service-idx">01</span>
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="10" y="22" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1" fill="none" />
+            <path d="M 10 30 L 54 30" stroke="currentColor" stroke-width="1" />
+            <path d="M 32 22 Q 24 8 16 18 Q 12 22 18 24 L 32 24 Z" stroke="currentColor" stroke-width="1" fill="none" />
+            <path d="M 32 22 Q 40 8 48 18 Q 52 22 46 24 L 32 24 Z" stroke="currentColor" stroke-width="1" fill="none" />
+          </svg>
+          <div>
+            <h3 class="service-name"><em>Carte</em> Cadeau</h3>
+            <p class="service-desc">À offrir, valable en boutique sur l'ensemble du vestiaire.</p>
+          </div>
+        </div>
+
+        <div class="service">
+          <span class="service-idx">02</span>
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="8" y="20" width="48" height="30" rx="2" stroke="currentColor" stroke-width="1" fill="none" />
+            <path d="M 8 30 L 30 42 L 56 30" stroke="currentColor" stroke-width="1" fill="none" />
+            <path d="M 40 12 L 56 12 M 48 6 L 48 18" stroke="currentColor" stroke-width="1" />
+          </svg>
+          <div>
+            <h3 class="service-name">Envoi de <em>commandes</em></h3>
+            <p class="service-desc">Expédition de vos pièces où vous êtes, France et international.</p>
+          </div>
+        </div>
+
+        <div class="service">
+          <span class="service-idx">03</span>
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="20" cy="22" r="7" stroke="currentColor" stroke-width="1" fill="none" />
+            <circle cx="44" cy="22" r="7" stroke="currentColor" stroke-width="1" fill="none" />
+            <path d="M 20 29 L 32 52 L 44 29" stroke="currentColor" stroke-width="1" fill="none" />
+            <path d="M 32 52 L 32 58" stroke="currentColor" stroke-width="1" />
+          </svg>
+          <div>
+            <h3 class="service-name"><em>Retouches</em> vêtements</h3>
+            <p class="service-desc">Ourlets, ajustements, finitions — réalisés pour un tombé impeccable.</p>
+          </div>
+        </div>
+
+        <div class="service">
+          <span class="service-idx">04</span>
+          <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="10" y="10" width="44" height="44" rx="4" stroke="currentColor" stroke-width="1" fill="none" />
+            <path d="M 24 44 L 24 20 L 36 20 Q 44 20 44 28 Q 44 36 36 36 L 24 36" stroke="currentColor"
+              stroke-width="1.4" fill="none" />
+          </svg>
+          <div>
+            <h3 class="service-name"><em>Parking</em> offert</h3>
+            <p class="service-desc">Accès facilité au cœur de Perpignan, sans souci de stationnement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VESTIAIRE HOMMES / FEMMES -->
+  <section id="vestiaire" class="vestiaire">
+    <div class="vestiaire-inner wrap" style="padding:0;">
+      <div class="vestiaire-head">
+        <h2>Des vêtements pour <em>hommes et pour femmes</em> dans notre magasin</h2>
+        <p>Habillez-vous avec des tenues vestimentaires des marques connues et reconnues.</p>
+      </div>
+
+      <div class="univers-grid">
+        <article id="hommes" class="univers univers-hommes">
+          <span class="univers-label">N° 01 · Homme</span>
+          <h3 class="univers-name">L'univers <em>des hommes</em></h3>
+          <p class="univers-desc">La mode masculine — vestes cirées, chemises oxford, mailles italiennes, flanelles et
+            accessoires.</p>
+          <a href="https://www.smart-perpignan.fr/vetements-hommes" class="univers-cta">Découvrir <span
+              class="arrow"></span></a>
+        </article>
+
+        <article id="femmes" class="univers univers-femmes">
+          <span class="univers-label">N° 02 · Femme</span>
+          <h3 class="univers-name">L'univers <em>des femmes</em></h3>
+          <p class="univers-desc">Collections saisonnières, maroquinerie et pièces signature — choisies avec la même
+            exigence.</p>
+          <a href="https://www.smart-perpignan.fr/vetements-femmes" class="univers-cta">Découvrir <span
+              class="arrow"></span></a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISITE -->
+  <section id="contact" class="visite">
+    <div class="wrap" style="padding:0;">
+      <div class="visite-grid">
+        <div class="visite-left">
+          <span class="eyebrow">Contact</span>
+          <h2>Contactez <em>notre vendeur</em></h2>
+          <p>Notre boutique de vêtements est située au 3 rue de la République à Perpignan. Notre vendeur vous reçoit et
+            vous conseille dans le choix de vos tenues.</p>
+          <p>Vous souhaitez en apprendre davantage&nbsp;? Rendez-vous chez Smart.</p>
+          <div class="hours-cta" onclick="window.location.href='https://www.smart-perpignan.fr/contact'">
+            <span class="txt">Consultez les horaires —</span>
+            <span class="val">ouvert du mardi au samedi</span>
+          </div>
+        </div>
+
+        <div class="visite-right">
+          <a href="https://www.google.com/maps/search/?api=1&query=3+rue+de+la+République+Perpignan" target="_blank"
+            rel="noopener" class="visite-row">
+            <div>
+              <div class="visite-label">L'adresse</div>
+              <div class="visite-val"><em>3</em> rue de la République<br>66000 Perpignan</div>
+            </div>
+            <span class="visite-arrow"><svg viewBox="0 0 16 16">
+                <path d="M2 8 L14 8 M9 3 L14 8 L9 13" stroke="currentColor" stroke-width="1.2" fill="none" />
+              </svg></span>
+          </a>
+
+          <a href="tel:0617252217" class="visite-row">
+            <div>
+              <div class="visite-label">Le téléphone</div>
+              <div class="visite-val">06 17 25 22 17</div>
+            </div>
+            <span class="visite-arrow"><svg viewBox="0 0 16 16">
+                <path d="M2 8 L14 8 M9 3 L14 8 L9 13" stroke="currentColor" stroke-width="1.2" fill="none" />
+              </svg></span>
+          </a>
+
+          <a href="mailto:tixadorjeanmichel@gmail.com" class="visite-row">
+            <div>
+              <div class="visite-label">Écrire</div>
+              <div class="visite-val">Écrivez au <em>magasin</em></div>
+            </div>
+            <span class="visite-arrow"><svg viewBox="0 0 16 16">
+                <path d="M2 8 L14 8 M9 3 L14 8 L9 13" stroke="currentColor" stroke-width="1.2" fill="none" />
+              </svg></span>
+          </a>
+
+          <a href="https://www.smart-perpignan.fr/contact" class="visite-row">
+            <div>
+              <div class="visite-label">Contacter le vendeur</div>
+              <div class="visite-val">Contactez notre <em>vendeur</em></div>
+            </div>
+            <span class="visite-arrow"><svg viewBox="0 0 16 16">
+                <path d="M2 8 L14 8 M9 3 L14 8 L9 13" stroke="currentColor" stroke-width="1.2" fill="none" />
+              </svg></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="foot">
+    <div class="foot-inner wrap" style="padding:0;">
+      <h2 class="foot-mark">Smart<em>.</em></h2>
+      <div class="foot-grid">
+        <div class="foot-col">
+          <span class="lbl">La Maison</span>
+          <p>Boutique de prêt-à-porter masculin et féminin à Perpignan. Depuis 2005, un vestiaire haut de gamme pensé
+            pour durer.</p>
+        </div>
+        <div class="foot-col">
+          <span class="lbl">Adresse</span>
+          <span class="val"><em>3</em> rue de la République<br><b>66000 Perpignan</b></span>
+        </div>
+        <div class="foot-col">
+          <span class="lbl">Contact</span>
+          <span class="val"><a href="tel:0617252217">06 17 25 22 17</a><br><b><a
+                href="mailto:tixadorjeanmichel@gmail.com">Écrivez au magasin</a></b></span>
+        </div>
+        <div class="foot-col">
+          <span class="lbl">Navigation</span>
+          <span class="val">
+            <a href="#hommes">Hommes</a><br>
+            <a href="#femmes">Femmes</a><br>
+            <a href="#marques">Marques</a><br>
+            <a href="#contact">Contact</a>
+          </span>
+        </div>
+      </div>
+
+      <div class="foot-sub">
+        <span>© 2026 Smart · Perpignan</span>
+        <span>Mentions légales · Vie privée · Cookies</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Burger
+      const burger = document.querySelector('.burger');
+      const menu = document.querySelector('.mobile-menu');
+      if (burger && menu) {
+        const toggle = (force) => {
+          const next = force !== undefined ? force : burger.getAttribute('aria-expanded') !== 'true';
+          burger.setAttribute('aria-expanded', next);
+          menu.classList.toggle('open', next);
+          menu.setAttribute('aria-hidden', !next);
+          document.body.style.overflow = next ? 'hidden' : '';
+        };
+        burger.addEventListener('click', () => toggle());
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+      }
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      // GSAP setup
+      gsap.registerPlugin(ScrollTrigger);
+      if (window.SplitText) gsap.registerPlugin(SplitText);
+
+      // Hero above-the-fold : aucune anim d'entrée, tout visible frame 1.
+
+      // Hero photo kenburns
+      gsap.to('.hero-photo img', {
+        scale: 1.15,
+        scrollTrigger: {
+          trigger: '.hero-photo',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+
+      // Age counter 0 -> 21
+      const counter = document.getElementById('ageCounter');
+      if (counter) {
+        const obj = { n: 0 };
+        gsap.to(obj, {
+          n: 21,
+          duration: 1.8,
+          delay: .4,
+          ease: 'power2.out',
+          onUpdate: () => counter.textContent = Math.round(obj.n)
+        });
+      }
+
+      // Signature path trace
+      const sigPath = document.querySelector('.sig-path');
+      if (sigPath) {
+        const len = sigPath.getTotalLength();
+        sigPath.style.strokeDasharray = len;
+        sigPath.style.strokeDashoffset = len;
+        gsap.to(sigPath, {
+          strokeDashoffset: 0,
+          duration: 2.2,
+          ease: 'power2.inOut',
+          scrollTrigger: {
+            trigger: '.signature',
+            start: 'top 80%'
+          }
+        });
+      }
+
+      // Reveal utility: tie to ScrollTrigger
+      const reveals = [
+        '.maison-text > *',
+        '.stat-card',
+        '.strip-photo',
+        '.brands-head > *',
+        '.brand-row',
+        '.avantages-head > *',
+        '.service',
+        '.vestiaire-head > *',
+        '.univers',
+        '.visite-left > *',
+        '.visite-row',
+        '.foot-col'
+      ];
+      reveals.forEach(sel => {
+        gsap.utils.toArray(sel).forEach((el, i) => {
+          gsap.from(el, {
+            y: 30,
+            opacity: 0,
+            duration: .9,
+            delay: (i % 4) * .08,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%'
+            }
+          });
+        });
+      });
+
+      // Foot-mark big type reveal
+      gsap.from('.foot-mark', {
+        y: 60, opacity: 0, duration: 1.3, ease: 'power3.out',
+        scrollTrigger: { trigger: '.foot-mark', start: 'top 80%' }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
