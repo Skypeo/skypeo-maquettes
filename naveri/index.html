@@ -1,0 +1,2032 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ArtToitureNaveri — Artisan couvreur à Nîmes (Gard)</title>
+  <meta name="description"
+    content="Atelier de couverture, charpente, zinguerie et isolation à Nîmes. Pose, rénovation, entretien sur Nîmes, Arles, Alès et tout le Gard.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+  <style>
+    /* === Tokens === */
+    :root {
+      --pierre: #f1ead7;
+      --pierre-dark: #e6dcc1;
+      --encre: #1d1a17;
+      --ocre: #e71f02;
+      --ocre-deep: #b31500;
+      --zinc: #5b5247;
+      --rule: #1d1a1722;
+      --rule-strong: #1d1a1755;
+      --r-sm: 6px;
+      --r-md: 14px;
+      --r-lg: 28px;
+      --r-pill: 999px;
+      --pad-x: clamp(1.25rem, 4vw, 4rem);
+      --serif: 'Oswald', 'Impact', 'Arial Narrow', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --sans: 'Inter', system-ui, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: auto
+    }
+
+    body {
+      margin: 0;
+      background: var(--pierre);
+      color: var(--encre);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Texture pierre calcaire */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: .42;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0 0.18  0 0 0 0.45 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      mix-blend-mode: multiply;
+    }
+
+    /* Papier millimétré très subtil */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9997;
+      opacity: .18;
+      background-image:
+        linear-gradient(to right, #1d1a1709 1px, transparent 1px),
+        linear-gradient(to bottom, #1d1a1709 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    img,
+    svg {
+      max-width: 100%;
+      height: auto;
+      display: block
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: 0;
+      background: none;
+      color: inherit
+    }
+
+    /* === Header === */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--pierre) 92%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      padding: .85rem var(--pad-x);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      background: var(--ocre);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: .85rem;
+      letter-spacing: .06em;
+      color: var(--pierre);
+      flex-shrink: 0;
+    }
+
+    .brand-name {
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .brand-sub {
+      font-family: var(--mono);
+      font-style: normal;
+      font-size: .62rem;
+      letter-spacing: .18em;
+      color: var(--zinc);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.6rem;
+      font-family: var(--mono);
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: .4rem 0
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 1px;
+      background: var(--ocre);
+      transform-origin: left;
+      transform: scaleX(0);
+      transition: transform .35s ease;
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1)
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      padding: .65rem 1.1rem;
+      border: 1px solid var(--encre);
+      border-radius: var(--r-pill);
+      background: var(--encre);
+      color: var(--pierre);
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      background: var(--ocre)
+    }
+
+    .nav-cta .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #21c474;
+      box-shadow: 0 0 0 0 #21c47466;
+      animation: pulse 1.8s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 #21c47480
+      }
+
+      100% {
+        box-shadow: 0 0 0 10px #21c47400
+      }
+    }
+
+    .burger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+      border: 1px solid var(--rule-strong);
+      border-radius: var(--r-pill);
+      background: var(--pierre);
+      cursor: pointer;
+      transition: background .2s ease;
+    }
+
+    .burger:hover {
+      background: var(--pierre-dark)
+    }
+
+    .burger span {
+      display: block;
+      width: 18px;
+      height: 1.6px;
+      background: var(--encre);
+      transition: transform .3s ease, opacity .2s ease;
+    }
+
+    .burger[aria-expanded="true"] span:nth-child(1) {
+      transform: translateY(6.6px) rotate(45deg)
+    }
+
+    .burger[aria-expanded="true"] span:nth-child(2) {
+      opacity: 0
+    }
+
+    .burger[aria-expanded="true"] span:nth-child(3) {
+      transform: translateY(-6.6px) rotate(-45deg)
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      background: var(--encre);
+      color: var(--pierre);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 6rem var(--pad-x) 3rem;
+      transform: translateY(-100%);
+      transition: transform .4s cubic-bezier(.6, 0, .2, 1);
+    }
+
+    .mobile-menu[data-open="true"] {
+      transform: translateY(0)
+    }
+
+    .mobile-menu nav {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 1.3rem;
+      width: 100%;
+      flex: 1;
+    }
+
+    .mobile-menu a {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2rem, 8vw, 3rem);
+      line-height: 1;
+      letter-spacing: -.015em;
+      padding: .4rem 0;
+      border-bottom: 1px solid #ffffff18;
+      display: block;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:focus {
+      color: var(--ocre)
+    }
+
+    .mobile-menu-foot {
+      margin-top: auto;
+      padding-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .7rem;
+      font-family: var(--mono);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #a89c84;
+      width: 100%;
+      border-top: 1px solid #ffffff18;
+    }
+
+    .mobile-menu-foot a {
+      font-family: var(--mono);
+      font-size: .9rem;
+      border: 0;
+      padding: 0;
+      color: var(--pierre);
+      letter-spacing: .1em;
+    }
+
+    /* === Hero === */
+    .hero {
+      position: relative;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 var(--pad-x) clamp(2.5rem, 5vw, 4rem);
+      overflow: hidden;
+      isolation: isolate;
+      color: var(--pierre);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      filter: contrast(1.08) saturate(.82) brightness(.58);
+      transform: scale(1.02);
+    }
+
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10, 8, 6, .72) 0%, rgba(10, 8, 6, .55) 35%, rgba(10, 8, 6, .6) 60%, rgba(10, 8, 6, .92) 100%),
+        linear-gradient(100deg, rgba(10, 8, 6, .7) 0%, rgba(10, 8, 6, .15) 60%);
+      z-index: 1;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='280' height='280'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.22'/></svg>");
+      mix-blend-mode: overlay;
+      opacity: .6;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: clamp(1.5rem, 3vw, 2.5rem) 0 0;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #e4d9bd;
+      margin-bottom: auto;
+    }
+
+    .hero-top .block {
+      display: flex;
+      flex-direction: column;
+      gap: .3rem
+    }
+
+    .hero-top b {
+      color: var(--pierre);
+      font-weight: 500;
+      font-size: .74rem
+    }
+
+    .hero-top .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .45rem .85rem;
+      border: 1px solid #ffffff40;
+      border-radius: var(--r-pill);
+      background: rgba(29, 26, 23, .4);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-top .pill .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #48d480;
+      box-shadow: 0 0 0 0 #48d48055;
+      animation: pulse 1.8s ease-out infinite;
+    }
+
+    .hero-body {
+      position: relative;
+      max-width: 1200px;
+      padding-top: clamp(3rem, 8vw, 6rem);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .9rem;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ocre);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px;
+      height: 1px;
+      background: var(--ocre);
+    }
+
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.6rem, 8.4vw, 8rem);
+      line-height: .95;
+      letter-spacing: -.028em;
+      margin: 0 0 1.5rem;
+      max-width: 14ch;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+      color: #f2b77e;
+      font-variation-settings: "opsz" 60;
+    }
+
+    .hero h1 .amp {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--ocre);
+      display: inline-block;
+    }
+
+    .hero-lede {
+      font-family: var(--serif);
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+      line-height: 1.45;
+      max-width: 48ch;
+      color: #ece3cc;
+      margin: 0 0 2.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem 1.4rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      padding: 1rem 1.7rem;
+      background: var(--ocre);
+      color: var(--pierre);
+      border-radius: var(--r-pill);
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      background: var(--ocre-deep)
+    }
+
+    .btn-primary svg {
+      transition: transform .3s ease
+    }
+
+    .btn-primary:hover svg {
+      transform: translateX(4px)
+    }
+
+    .btn-link {
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 3px;
+      color: var(--pierre);
+      transition: color .2s ease, border-color .2s ease;
+    }
+
+    .btn-link:hover {
+      color: var(--ocre)
+    }
+
+    .btn-link.dark {
+      color: var(--encre);
+      border-color: var(--encre)
+    }
+
+    .btn-link.dark:hover {
+      color: var(--ocre);
+      border-color: var(--ocre)
+    }
+
+    /* Tampon arpenteur : fixé dans le hero, en haut à droite, par-dessus l'image */
+    .stamp {
+      position: absolute;
+      top: clamp(5rem, 10vw, 7rem);
+      right: clamp(1.5rem, 5vw, 4rem);
+      width: clamp(90px, 12vw, 140px);
+      aspect-ratio: 1;
+      z-index: 3;
+      animation: rotate 28s linear infinite;
+      filter: drop-shadow(0 2px 20px rgba(0, 0, 0, .3));
+    }
+
+    @keyframes rotate {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    .stamp text {
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: .18em;
+      fill: #f2b77e;
+      text-transform: uppercase;
+    }
+
+    /* Footer hero (scroll hint + numéro) */
+    .hero-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      padding-top: clamp(3rem, 6vw, 5rem);
+      margin-top: 3rem;
+      border-top: 1px solid #ffffff25;
+      font-family: var(--mono);
+      font-size: .68rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #c4b89e;
+    }
+
+    .hero-foot b {
+      color: var(--pierre);
+      font-weight: 500
+    }
+
+    .scroll-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .scroll-hint .line {
+      width: 42px;
+      height: 1px;
+      background: var(--ocre);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .scroll-hint .line::before {
+      content: '';
+      position: absolute;
+      left: -42px;
+      top: 0;
+      width: 42px;
+      height: 1px;
+      background: var(--pierre);
+      animation: slide 2.4s ease-in-out infinite;
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(0)
+      }
+
+      100% {
+        transform: translateX(84px)
+      }
+    }
+
+    /* Boussole : animation wobble scopée fill-box */
+    .needle {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: wobble 7s ease-in-out infinite;
+    }
+
+    @keyframes wobble {
+
+      0%,
+      100% {
+        transform: rotate(-5deg)
+      }
+
+      50% {
+        transform: rotate(5deg)
+      }
+    }
+
+    /* Pin ring : animation scale via transform (SVG) */
+    .pin-ring {
+      transform-box: fill-box;
+      transform-origin: 50% 50%;
+      animation: ping 2.4s ease-out infinite;
+    }
+
+    @keyframes ping {
+      0% {
+        transform: scale(1);
+        opacity: .8
+      }
+
+      100% {
+        transform: scale(3);
+        opacity: 0
+      }
+    }
+
+    /* === Ticker === */
+    .ticker {
+      position: relative;
+      overflow: hidden;
+      border-block: 1px solid var(--encre);
+      background: var(--encre);
+      color: var(--pierre);
+      padding: 1.1rem 0;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 3rem;
+      width: max-content;
+      animation: scroll 32s linear infinite;
+      will-change: transform;
+    }
+
+    .ticker-track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 3rem;
+      white-space: nowrap;
+    }
+
+    .ticker-track .sep {
+      color: var(--ocre);
+      font-style: normal;
+      font-family: var(--mono);
+      font-size: .7em;
+    }
+
+    @keyframes scroll {
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* === Section générique === */
+    .section {
+      padding: clamp(3.5rem, 7vw, 6rem) var(--pad-x);
+      position: relative;
+    }
+
+    .section-head {
+      margin-bottom: clamp(2rem, 5vw, 3.5rem);
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--rule);
+      max-width: 60ch;
+    }
+
+    .section-eye {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ocre-deep);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .section-h {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2rem, 4.4vw, 3.6rem);
+      line-height: 1.1;
+      letter-spacing: -.01em;
+      margin: 0;
+    }
+
+    .section-h em {
+      font-style: italic;
+      color: var(--ocre-deep)
+    }
+
+    /* === Service block === */
+    .service {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: start;
+      padding: clamp(2.5rem, 5vw, 4rem) 0;
+      border-top: 1px dashed var(--rule-strong);
+    }
+
+    .service:first-of-type {
+      border-top: 0;
+      padding-top: 0
+    }
+
+    .service-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--zinc);
+      margin-bottom: 1.2rem;
+    }
+
+    .service-meta b {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.6rem;
+      color: var(--ocre-deep);
+      letter-spacing: 0;
+    }
+
+    .service h3 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      line-height: 1.1;
+      letter-spacing: -.012em;
+      margin: 0 0 1.3rem;
+    }
+
+    .service h3 em {
+      font-style: italic;
+      color: var(--ocre-deep)
+    }
+
+    .service p {
+      font-size: 1.02rem;
+      line-height: 1.7;
+      margin: 0 0 1.05rem;
+      color: #2a2620;
+      max-width: 55ch;
+    }
+
+    .service-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: .6rem;
+      margin-top: .6rem;
+      font-family: var(--mono);
+      font-size: .74rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--encre);
+      padding-bottom: 3px;
+      border-bottom: 1px solid var(--encre);
+    }
+
+    .service-cta:hover {
+      color: var(--ocre);
+      border-color: var(--ocre)
+    }
+
+    .service-cta::after {
+      content: '→';
+      transition: transform .3s ease
+    }
+
+    .service-cta:hover::after {
+      transform: translateX(4px)
+    }
+
+    .service-visual {
+      position: relative;
+      border-radius: var(--r-md);
+      isolation: isolate;
+      z-index: 1;
+    }
+
+    .service-visual.alt {
+      order: -1
+    }
+
+    @media (max-width:780px) {
+      .service-visual.alt {
+        order: 0
+      }
+    }
+
+    .service-photo {
+      width: 100%;
+      aspect-ratio: 5/4;
+      object-fit: cover;
+      border-radius: var(--r-md);
+      filter: contrast(1.04) saturate(.92);
+      isolation: isolate;
+      z-index: 9999;
+      position: relative;
+    }
+
+    .service-caption {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--zinc);
+      margin-top: .6rem;
+      padding-inline: .2rem;
+    }
+
+    .service-caption b {
+      color: var(--encre);
+      font-weight: 500
+    }
+
+    /* === Schéma tuile canal SVG (Couverture) === */
+    .schema-card {
+      background: var(--pierre-dark);
+      border: 1px solid var(--rule-strong);
+      border-radius: var(--r-md);
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .schema-card-h {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-family: var(--mono);
+      font-size: .62rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--zinc);
+      margin-bottom: 1rem;
+      border-bottom: 1px dashed var(--rule-strong);
+      padding-bottom: .7rem;
+    }
+
+    .schema-svg {
+      width: 100%;
+      height: auto
+    }
+
+    .schema-svg .canal {
+      fill: none;
+      stroke: var(--encre);
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round
+    }
+
+    .schema-svg .canal-fill {
+      fill: var(--ocre);
+      opacity: .16;
+      stroke: none
+    }
+
+    .schema-svg .liteau {
+      fill: none;
+      stroke: var(--zinc);
+      stroke-width: 1;
+      stroke-dasharray: 4 3
+    }
+
+    .schema-svg .cote {
+      fill: none;
+      stroke: var(--ocre-deep);
+      stroke-width: .8
+    }
+
+    .schema-svg text {
+      font-family: var(--mono);
+      font-size: 9px;
+      fill: var(--zinc);
+      letter-spacing: .04em
+    }
+
+    .schema-svg .label {
+      fill: var(--encre);
+      font-weight: 500
+    }
+
+    .schema-svg .label-ocre {
+      fill: var(--ocre-deep)
+    }
+
+    .schema-card-legend {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: .4rem 1.2rem;
+      font-family: var(--mono);
+      font-size: .7rem;
+      margin-top: 1rem;
+      padding-top: .9rem;
+      border-top: 1px dashed var(--rule-strong);
+    }
+
+    .schema-card-legend .num {
+      color: var(--ocre-deep);
+      font-weight: 500
+    }
+
+    .schema-card-legend .desc {
+      color: var(--encre)
+    }
+
+    .schema-card-legend .unit {
+      color: var(--zinc);
+      text-align: right
+    }
+
+    /* === Quote pleine largeur === */
+    .quote-band {
+      background: var(--encre);
+      color: var(--pierre);
+      padding: clamp(4rem, 8vw, 7rem) var(--pad-x);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .quote-eyebrow {
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #a89c84;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .quote-eyebrow::before {
+      content: '';
+      width: 30px;
+      height: 1px;
+      background: var(--ocre);
+    }
+
+    .quote-text {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -.015em;
+      margin: 0 0 2rem;
+      max-width: 24ch;
+    }
+
+    .quote-text b {
+      font-style: normal;
+      color: var(--ocre);
+      font-weight: 300;
+    }
+
+    .quote-foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      font-family: var(--mono);
+      font-size: .74rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #a89c84;
+      border-top: 1px solid #ffffff20;
+      padding-top: 1.5rem;
+    }
+
+    .quote-foot b {
+      color: var(--pierre);
+      font-weight: 500
+    }
+
+    /* ECG ligne en bas du quote */
+    .ecg {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 60px;
+      pointer-events: none;
+      opacity: .32;
+    }
+
+    .ecg path {
+      fill: none;
+      stroke: var(--ocre);
+      stroke-width: 1.5;
+      stroke-dasharray: 1200;
+      stroke-dashoffset: 1200;
+      animation: ecg 6s linear infinite;
+    }
+
+    @keyframes ecg {
+      0% {
+        stroke-dashoffset: 1200
+      }
+
+      100% {
+        stroke-dashoffset: -1200
+      }
+    }
+
+    /* === Engagements / domaines === */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--rule);
+      border: 1px solid var(--rule);
+      border-radius: var(--r-md);
+      overflow: hidden;
+    }
+
+    .grid-3 .cell {
+      background: var(--pierre);
+      padding: clamp(1.5rem, 3vw, 2.4rem);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      min-height: 280px;
+    }
+
+    .cell-num {
+      font-family: var(--mono);
+      font-size: .66rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--zinc);
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .cell-num b {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 1.4rem;
+      color: var(--ocre-deep);
+    }
+
+    .cell h4 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-style: italic;
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      line-height: 1.15;
+      margin: 0;
+      color: var(--encre);
+      letter-spacing: -.005em;
+    }
+
+    .cell p {
+      font-size: .95rem;
+      line-height: 1.55;
+      margin: 0;
+      color: #3a342d;
+      margin-top: auto;
+    }
+
+    /* === Zone d'intervention (liste) === */
+    .zone-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0 clamp(2rem, 5vw, 4rem);
+      border-top: 1px solid var(--rule-strong);
+    }
+
+    .zone-list>div {
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--rule-strong);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .5rem 1.2rem;
+    }
+
+    .zone-city {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      color: var(--encre);
+      line-height: 1;
+      letter-spacing: -.01em;
+      flex: 0 0 auto;
+    }
+
+    .zone-coord {
+      color: var(--zinc);
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .08em;
+      flex: 1 1 auto;
+    }
+
+    .zone-dist {
+      color: var(--ocre);
+      font-family: var(--mono);
+      font-size: .78rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .zone-foot {
+      margin-top: 2rem;
+      font-family: var(--mono);
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--zinc);
+      padding-top: 1.2rem;
+      border-top: 1px dashed var(--rule-strong);
+    }
+
+    /* === Galerie réalisations === */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+
+    .gallery figure {
+      margin: 0;
+      position: relative;
+      isolation: isolate;
+      z-index: 1
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--r-md);
+      isolation: isolate;
+      z-index: 9999;
+      position: relative;
+      filter: contrast(1.05) saturate(.93);
+    }
+
+    .gallery figcaption {
+      margin-top: .5rem;
+      font-family: var(--mono);
+      font-size: .6rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--zinc);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .gallery figcaption b {
+      color: var(--encre);
+      font-weight: 500
+    }
+
+    .g1 {
+      grid-column: span 7;
+      aspect-ratio: 5/4
+    }
+
+    .g2 {
+      grid-column: span 5;
+      aspect-ratio: 4/5
+    }
+
+    .g3 {
+      grid-column: span 4;
+      aspect-ratio: 4/5
+    }
+
+    .g4 {
+      grid-column: span 4;
+      aspect-ratio: 4/5
+    }
+
+    .g5 {
+      grid-column: span 4;
+      aspect-ratio: 4/5
+    }
+
+    /* === CTA finale === */
+    .closing {
+      padding: clamp(4rem, 8vw, 7rem) var(--pad-x);
+      text-align: center;
+      background: var(--pierre-dark);
+      border-block: 1px solid var(--rule);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .closing-eye {
+      font-family: var(--mono);
+      font-size: .74rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--zinc);
+      margin-bottom: 1.5rem;
+    }
+
+    .closing h2 {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.2rem, 5.4vw, 4.4rem);
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin: 0 0 1rem;
+      max-width: 22ch;
+      margin-inline: auto;
+    }
+
+    .closing h2 em {
+      font-style: italic;
+      color: var(--ocre-deep)
+    }
+
+    .closing-sub {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--zinc);
+      margin: 0 0 2.5rem;
+    }
+
+    .closing-tel {
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(2.4rem, 6.4vw, 5rem);
+      color: var(--ocre-deep);
+      letter-spacing: .02em;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 1rem;
+      transition: transform .3s ease;
+    }
+
+    .closing-tel:hover {
+      transform: scale(1.02)
+    }
+
+    .closing-actions {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    /* === Footer === */
+    .footer {
+      background: var(--encre);
+      color: var(--pierre);
+      padding: clamp(3rem, 6vw, 5rem) var(--pad-x) 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: clamp(2rem, 4vw, 3rem);
+      padding-bottom: 3rem;
+      border-bottom: 1px solid #ffffff15;
+    }
+
+    .footer h5 {
+      font-family: var(--mono);
+      font-size: .66rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #a89c84;
+      margin: 0 0 1.2rem;
+      font-weight: 500;
+    }
+
+    .footer-brand {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 2rem;
+      line-height: 1.1;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand em {
+      color: var(--ocre)
+    }
+
+    .footer p,
+    .footer a {
+      font-size: .92rem;
+      line-height: 1.7;
+      color: #d8cfb6;
+      margin: 0;
+    }
+
+    .footer a:hover {
+      color: var(--ocre)
+    }
+
+    .footer-list {
+      display: flex;
+      flex-direction: column;
+      gap: .4rem
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.5rem;
+      font-family: var(--mono);
+      font-size: .7rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #a89c84;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width:980px) {
+      .service {
+        grid-template-columns: 1fr;
+        gap: 2rem
+      }
+
+      .service-visual.alt {
+        order: 0
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .zone-list {
+        grid-template-columns: 1fr
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .gallery {
+        grid-template-columns: repeat(6, 1fr)
+      }
+
+      .g1 {
+        grid-column: span 6;
+        aspect-ratio: 16/10
+      }
+
+      .g2 {
+        grid-column: span 6;
+        aspect-ratio: 16/10
+      }
+
+      .g3,
+      .g4,
+      .g5 {
+        grid-column: span 2
+      }
+    }
+
+    @media (max-width:980px) {
+      .nav-links {
+        display: none
+      }
+
+      .burger {
+        display: inline-flex
+      }
+
+      .nav-cta {
+        padding: .6rem 1rem;
+        font-size: .66rem
+      }
+    }
+
+    @media (max-width:780px) {
+      .nav-inner {
+        padding: .7rem var(--pad-x);
+        gap: .8rem
+      }
+
+      .brand-sub {
+        display: none
+      }
+
+      .hero-top {
+        font-size: .6rem;
+        gap: 1rem
+      }
+
+      .hero-top b {
+        font-size: .66rem
+      }
+
+      .hero-foot {
+        font-size: .6rem;
+        gap: .6rem 1.2rem
+      }
+
+      .hero-foot span {
+        flex: 1 1 auto
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: 1rem
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .g1,
+      .g2,
+      .g3,
+      .g4,
+      .g5 {
+        grid-column: span 2;
+        aspect-ratio: 4/3
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .closing-tel {
+        font-size: clamp(1.8rem, 9vw, 3rem)
+      }
+
+      .quote-text {
+        font-size: clamp(1.6rem, 8vw, 2.6rem)
+      }
+
+      .hero h1 {
+        font-size: clamp(2.4rem, 11vw, 4.5rem)
+      }
+    }
+
+    @media (max-width:520px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem
+      }
+
+      .brand-mark {
+        width: 34px;
+        height: 34px;
+        font-size: .75rem
+      }
+
+      .brand-name {
+        font-size: .95rem
+      }
+
+      .nav-cta .dot {
+        display: none
+      }
+    }
+
+    @media (max-width:380px) {
+      :root {
+        --pad-x: 1.1rem
+      }
+
+      .hero h1 {
+        font-size: clamp(2.2rem, 11vw, 3.6rem)
+      }
+
+      .hero-top {
+        gap: .7rem
+      }
+
+      .hero-top .pill {
+        padding: .35rem .65rem;
+        font-size: .58rem
+      }
+
+      .stamp {
+        top: 5rem;
+        right: 1rem;
+        width: 78px
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important
+      }
+    }
+
+    /* Reveal init state */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px)
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============== NAV ============== -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a href="#" class="brand">
+        <span class="brand-mark">ATN</span>
+        <span>
+          <span class="brand-name">ArtToiture<em>Naveri</em></span>
+          <span class="brand-sub">Couvreur · Nîmes · Gard</span>
+        </span>
+      </a>
+      <nav class="nav-links" aria-label="primaire">
+        <a href="#couverture">Couverture</a>
+        <a href="#charpente">Charpente</a>
+        <a href="#zinguerie">Zinguerie</a>
+        <a href="#engagements">Engagements</a>
+        <a href="#realisations">Réalisations</a>
+      </nav>
+      <div style="display:flex;gap:.7rem;align-items:center">
+        <a href="tel:0667047351" class="nav-cta">
+          <span class="dot"></span>
+          <span>06 67 04 73 51</span>
+        </a>
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============== MOBILE MENU ============== -->
+  <div class="mobile-menu" id="mobileMenu" data-open="false" aria-hidden="true">
+    <nav aria-label="navigation mobile">
+      <a href="#couverture">Couverture</a>
+      <a href="#charpente">Charpente</a>
+      <a href="#zinguerie">Zinguerie</a>
+      <a href="#engagements">Engagements</a>
+      <a href="#realisations">Réalisations</a>
+    </nav>
+    <div class="mobile-menu-foot">
+      <span>Atelier Nîmes · Gard</span>
+      <a href="tel:0667047351">06 67 04 73 51</a>
+      <a href="mailto:artoiture.naveri@gmail.com">artoiture.naveri@gmail.com</a>
+    </div>
+  </div>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="_scrape/images/img-03-toiture-finale.jpeg"
+        alt="Toiture méditerranéenne en tuile canal rénovée par ArtToitureNaveri" fetchpriority="high">
+    </div>
+
+    <div class="hero-top">
+      <div class="block">
+        <span>Artisan couvreur</span>
+        <b>Nîmes · Gard</b>
+      </div>
+      <span class="pill"><span class="dot"></span>Atelier ouvert · Lun–Sam 07–19h</span>
+    </div>
+
+    <div class="hero-body">
+      <div class="hero-eyebrow">Couverture · Charpente · Zinguerie</div>
+      <h1>
+        Artisan couvreur <em>par passion</em> <span class="amp">à&nbsp;</span>Nîmes.
+      </h1>
+      <p class="hero-lede">
+        Une équipe spécialisée dans les travaux de construction et de rénovation de l'habitat — sur Nîmes, Arles, Alès
+        et partout dans le Gard.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          Demander un devis
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+        </a>
+        <a href="#realisations" class="btn-link">Voir nos réalisations →</a>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <div class="scroll-hint">
+        <span class="line"></span>
+        <span>Défiler pour découvrir</span>
+      </div>
+      <span><b>06 67 04 73 51</b> · devis gratuit</span>
+      <span>177 Route de Beaucaire · Nîmes</span>
+    </div>
+  </section>
+
+  <!-- ============== TICKER ============== -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Faîtage <b class="sep">+</b> Chéneau <b class="sep">+</b> Lucarne <b class="sep">+</b> Épi de toiture <b
+          class="sep">+</b> Bardage <b class="sep">+</b> Couvertine <b class="sep">+</b> Bandeau de rive <b
+          class="sep">+</b> Tuile canal <b class="sep">+</b> Zinc <b class="sep">+</b>&nbsp;</span>
+      <span>Faîtage <b class="sep">+</b> Chéneau <b class="sep">+</b> Lucarne <b class="sep">+</b> Épi de toiture <b
+          class="sep">+</b> Bardage <b class="sep">+</b> Couvertine <b class="sep">+</b> Bandeau de rive <b
+          class="sep">+</b> Tuile canal <b class="sep">+</b> Zinc <b class="sep">+</b>&nbsp;</span>
+    </div>
+  </div>
+
+  <!-- ============== SECTION DOMAINES ============== -->
+  <section class="section" id="couverture">
+    <div class="section-head">
+      <span class="section-eye">Nos domaines de compétence</span>
+      <h2 class="section-h">Faites confiance à notre couvreur pour réaliser vos <em>projets de rénovation</em>.</h2>
+    </div>
+
+    <!-- COUVERTURE -->
+    <article class="service">
+      <div>
+        <div class="service-meta"><b>01</b><span>Couverture</span></div>
+        <h3>Travaux de pose, de rénovation et d'entretien de la <em>toiture</em></h3>
+        <p>Chez ArtToitureNaveri, nous réalisons tous types de travaux de toiture et de couverture. Qu'il s'agisse de
+          construction, de pose, de rénovation ou de réparation de fuites, nous intervenons sur tous les types de
+          couverture pour des toits en zinc, tuiles, métal, plomb ou Fibrociment.</p>
+        <p>Nos équipes assurent l'installation de bardage, de couvertines en aluminium ou en bois et de bandeaux de
+          rives qui viennent protéger et orner les bordures de toit. Notre priorité est d'assurer une étanchéité
+          optimale et une zinguerie de haute qualité pour protéger votre toiture et garantir sa durabilité.</p>
+        <a href="#contact" class="service-cta">Réalisez vos travaux de toiture</a>
+      </div>
+      <div class="service-visual">
+        <img class="service-photo" src="_scrape/images/img-04-pose-tuiles.jpeg"
+          alt="Pose de tuiles canal sur toiture à Nîmes" loading="lazy">
+        <div class="service-caption"><span>Chantier · Pose tuiles canal</span><span>Nîmes · 30</span></div>
+      </div>
+    </article>
+
+    <!-- CHARPENTE -->
+    <article class="service" id="charpente">
+      <div>
+        <div class="service-meta"><b>02</b><span>Charpente</span></div>
+        <h3>Pose et traitement de charpente en <em>bois traditionnel</em></h3>
+        <p>Nous assurons les travaux de charpente qui forment la structure essentielle de votre toit. Nos charpentes en
+          bois traditionnelles sont conçues avec soin et nous assurons aussi bien la pose que le traitement du bois pour
+          prévenir tout risque de dégradation.</p>
+        <p>Pour une charpente de maison neuve ou pour l'extension d'une structure existante, nous nous adaptons aux
+          exigences architecturales de votre habitat. Le bois, en plus d'être un matériau durable et esthétique, apporte
+          une touche authentique à la construction et nous veillons à lui assurer une résistance optimale grâce à des
+          traitements préventifs de qualité.</p>
+        <a href="#contact" class="service-cta">Solidifiez votre maison</a>
+      </div>
+      <div class="service-visual alt">
+        <img class="service-photo" src="_scrape/images/img-05-batiment-renov.jpeg"
+          alt="Bâtiment en rénovation par ArtToitureNaveri" loading="lazy">
+        <div class="service-caption"><span>Chantier · Bâtiment en rénovation</span><span>Gard</span></div>
+      </div>
+    </article>
+
+    <!-- GOUTTIÈRE -->
+    <article class="service" id="gouttiere">
+      <div>
+        <div class="service-meta"><b>03</b><span>Gouttière</span></div>
+        <h3>Création et installation de votre <em>réseau de gouttières</em> à Nîmes</h3>
+        <p>En complément de la toiture, la pose de gouttières sur mesure est indispensable pour une gestion efficace des
+          eaux de pluie. Nos gouttières en aluminium sans jonction, créées sur mesure, s'ajustent parfaitement à la
+          longueur de chaque façade et assurent une finition nette et durable.</p>
+        <p>Pour un fonctionnement optimal, nous installons les descentes de gouttières qui permettent une évacuation
+          directe des eaux vers les zones d'écoulement. En cas de besoin, nous proposons des services de nettoyage pour
+          assurer leur bon fonctionnement et leur pérennité.</p>
+        <a href="#contact" class="service-cta">Installez vos gouttières</a>
+      </div>
+      <div class="service-visual">
+        <img class="service-photo" src="_scrape/images/img-02-toiture-terrasse.jpeg"
+          alt="Toiture terrasse rénovée par ArtToitureNaveri" loading="lazy">
+        <div class="service-caption"><span>Chantier · Toiture terrasse</span><span>Gard</span></div>
+      </div>
+    </article>
+
+    <!-- ZINGUERIE -->
+    <article class="service" id="zinguerie">
+      <div>
+        <div class="service-meta"><b>04</b><span>Zinguerie</span></div>
+        <h3>Composants d'étanchéité et éléments décoratifs en <em>zinc</em></h3>
+        <p>La zinguerie est un facteur essentiel de l'étanchéité et de l'esthétique de la toiture. Nous créons des
+          pièces uniques et sur mesure comme des éléments de jonction, des évacuations, des lucarnes, des épis de
+          toiture, des chéneaux ou des faîtages.</p>
+        <p>Nos créations sur mesure garantissent l'étanchéité parfaite de chaque raccord et assurent l'évacuation rapide
+          des eaux pluviales. Nous fabriquons également des pièces décoratives en zinc pour ajouter une touche
+          d'élégance à votre toiture.</p>
+        <a href="#contact" class="service-cta">Imaginez votre pièce en zinc</a>
+      </div>
+      <div class="service-visual alt">
+        <img class="service-photo" src="_scrape/images/img-01-camionnette.jpeg"
+          alt="Camionnette ArtToitureNaveri avec banderole sur toiture" loading="lazy">
+        <div class="service-caption"><span>Atelier roulant · Chantier zinguerie</span><span>Nîmes · 30</span></div>
+      </div>
+    </article>
+
+    <!-- ISOLATION -->
+    <article class="service" id="isolation">
+      <div>
+        <div class="service-meta"><b>05</b><span>Isolation</span></div>
+        <h3>Gagnez en performances thermiques grâce à <em>l'isolation</em> de la toiture</h3>
+        <p>Pour ce qui est de l'isolation, nous mettons en avant des solutions adaptées à chaque type de toiture et de
+          sous-toiture. Nos isolants en laine de verre, laine de roche ou laine de bois sont appliqués en rouleaux ou
+          projetés pour garantir une performance thermique optimale.</p>
+        <p>Vous avez besoin d'isoler des combles aménageables ? Des combles perdus ? Notre approche de l'isolation par
+          l'intérieur est un gage d'efficacité et de confort. Une bonne isolation contribue à réduire les pertes de
+          chaleur en hiver et maintient la fraîcheur en été. Vous optimisez ainsi la consommation énergétique de votre
+          habitat tout en améliorant votre confort.</p>
+        <a href="#contact" class="service-cta">Isolez votre toiture</a>
+      </div>
+      <div class="service-visual">
+        <img class="service-photo" src="_scrape/images/img-03-toiture-finale.jpeg" alt="Toiture finalisée après travaux"
+          loading="lazy">
+        <div class="service-caption"><span>Chantier · Toiture finalisée</span><span>Gard</span></div>
+      </div>
+    </article>
+
+    <!-- FENÊTRE DE TOIT -->
+    <article class="service" id="fenetre">
+      <div>
+        <div class="service-meta"><b>06</b><span>Fenêtre de toit</span></div>
+        <h3>Aménagez vos combles grâce à la pose d'une <em>fenêtre de toit</em></h3>
+        <p>Notre savoir-faire s'étend à la pose et au remplacement des fenêtres de toit en aluminium. Ces fenêtres
+          permettent d'apporter une lumière naturelle précieuse dans les combles et les espaces sous toiture.</p>
+        <p>ArtToitureNaveri garantit une étanchéité parfaite lors de la pose ainsi qu'un ajustement adapté pour éviter
+          tout risque d'infiltration d'eau. En cas de besoin, nous intervenons également pour le remplacement d'une
+          fenêtre de toit.</p>
+        <a href="#contact" class="service-cta">Aménagez vos combles</a>
+      </div>
+      <div class="service-visual alt">
+        <img class="service-photo" src="_scrape/images/img-04-pose-tuiles.jpeg" alt="Pose de tuiles sur une toiture"
+          loading="lazy">
+        <div class="service-caption"><span>Chantier · Pose tuiles</span><span>Gard</span></div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ============== QUOTE BAND ============== -->
+  <section class="quote-band">
+    <div class="quote-inner">
+      <div class="quote-eyebrow">Carnet de l'atelier · Verbatim</div>
+      <p class="quote-text">
+        Un couvreur au savoir-faire <b>unique</b>, transmis de <b>génération en génération.</b>
+      </p>
+      <div class="quote-foot">
+        <span><b>Devis gratuit</b> · frais de déplacement inclus</span>
+        <span>Atelier ArtToitureNaveri · Nîmes · 30</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== ENGAGEMENTS ============== -->
+  <section class="section" id="engagements">
+    <div class="section-head">
+      <span class="section-eye">Nos engagements</span>
+      <h2 class="section-h">Les valeurs et points forts de notre <em>entreprise de couverture</em>.</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="cell">
+        <div class="cell-num"><span>Engagement n°</span><b>01</b></div>
+        <h4>Atelier de proximité</h4>
+        <p>Implantés au 177 Route de Beaucaire à Nîmes, nous intervenons sur Nîmes, Arles, Alès et tout le département
+          du Gard.</p>
+      </div>
+      <div class="cell">
+        <div class="cell-num"><span>Engagement n°</span><b>02</b></div>
+        <h4>Devis gratuit, frais inclus</h4>
+        <p>Le devis est offert et intègre les frais de déplacement. Aucune surprise sur la facture finale.</p>
+      </div>
+      <div class="cell">
+        <div class="cell-num"><span>Engagement n°</span><b>03</b></div>
+        <h4>Étanchéité haute qualité</h4>
+        <p>Notre priorité reste l'étanchéité optimale et une zinguerie de haute qualité pour protéger votre toiture et
+          garantir sa durabilité.</p>
+      </div>
+      <div class="cell">
+        <div class="cell-num"><span>Engagement n°</span><b>04</b></div>
+        <h4>Sur mesure, sans jonction</h4>
+        <p>Gouttières aluminium sans jonction et pièces de zinguerie créées sur mesure, ajustées à chaque façade.</p>
+      </div>
+      <div class="cell">
+        <div class="cell-num"><span>Engagement n°</span><b>05</b></div>
+        <h4>Bois traditionnel traité</h4>
+        <p>Charpentes en bois traditionnelles, traitées préventivement pour prévenir tout risque de dégradation.</p>
+      </div>
+      <div class="cell">
+        <div class="cell-num"><span>Engagement n°</span><b>06</b></div>
+        <h4>Amplitude 6 jours / 7</h4>
+        <p>Atelier ouvert du lundi au samedi, 07:00 à 19:00. Intervention rapide sur l'ensemble du Gard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== CARTE / ZONE ============== -->
+  <section class="section" id="zone">
+    <div class="section-head">
+      <span class="section-eye">Zone d'intervention</span>
+      <h2 class="section-h">Présents à Nîmes, Arles, Alès — et <em>partout</em> dans le département du Gard.</h2>
+    </div>
+
+    <div class="zone-list">
+      <div><span class="zone-city">Nîmes</span></div>
+      <div><span class="zone-city">Arles</span></div>
+      <div><span class="zone-city">Alès</span></div>
+      <div><span class="zone-city">Beaucaire</span></div>
+      <div><span class="zone-city">Uzès</span></div>
+      <div><span class="zone-city">Vauvert</span></div>
+    </div>
+    <p class="zone-foot">+ tout le département du Gard · 30</p>
+  </section>
+
+  <!-- ============== RÉALISATIONS ============== -->
+  <section class="section" id="realisations">
+    <div class="section-head">
+      <span class="section-eye">Nos réalisations</span>
+      <h2 class="section-h">Quelques images de nos précédents <em>travaux</em> de toiture ou rénovation.</h2>
+    </div>
+
+    <div class="gallery">
+      <figure class="g1">
+        <img src="_scrape/images/img-01-camionnette.jpeg" alt="Camionnette de l'entreprise avec banderole sur toiture">
+        <figcaption><span>Atelier roulant</span><b>Nîmes · 30</b></figcaption>
+      </figure>
+      <figure class="g2">
+        <img src="_scrape/images/img-04-pose-tuiles.jpeg" alt="Pose de tuiles sur une toiture">
+        <figcaption><span>Pose tuiles canal</span><b>Gard</b></figcaption>
+      </figure>
+      <figure class="g3">
+        <img src="_scrape/images/img-02-toiture-terrasse.jpeg" alt="Toiture terrasse rénovée">
+        <figcaption><span>Toiture terrasse</span><b>Gard</b></figcaption>
+      </figure>
+      <figure class="g4">
+        <img src="_scrape/images/img-03-toiture-finale.jpeg" alt="Toiture finalisée après travaux">
+        <figcaption><span>Toiture finale</span><b>Gard</b></figcaption>
+      </figure>
+      <figure class="g5">
+        <img src="_scrape/images/img-05-batiment-renov.jpeg" alt="Bâtiment en rénovation">
+        <figcaption><span>Rénovation</span><b>Gard</b></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============== CLOSING ============== -->
+  <section class="closing" id="contact">
+    <div class="closing-eye">— Contact direct —</div>
+    <h2>Faites confiance à notre couvreur pour réaliser vos <em>projets de rénovation.</em></h2>
+    <p class="closing-sub">Devis gratuit avec frais de déplacement inclus.</p>
+    <a href="tel:0667047351" class="closing-tel">06&nbsp;67&nbsp;04&nbsp;73&nbsp;51</a>
+    <div class="closing-actions">
+      <a href="mailto:artoiture.naveri@gmail.com" class="btn-primary">
+        Écrire à l'atelier
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M1 7h12m0 0L8 2m5 5l-5 5" stroke="currentColor" stroke-width="1.5" />
+        </svg>
+      </a>
+      <a href="https://maps.google.com/?q=177+Route+de+Beaucaire+30000+Nîmes" target="_blank" rel="noopener"
+        class="btn-link" style="color:black">Voir l'atelier sur la carte</a>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand">ArtToiture<em>Naveri</em></p>
+        <p>Atelier de couverture, charpente, zinguerie et isolation. Artisan couvreur par passion à Nîmes — savoir-faire
+          transmis de génération en génération.</p>
+      </div>
+      <div>
+        <h5>Atelier</h5>
+        <p>177 Route de Beaucaire<br>30000 Nîmes<br>France</p>
+      </div>
+      <div>
+        <h5>Horaires</h5>
+        <p>Lun – Sam<br>07:00 – 19:00<br>Dimanche fermé</p>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <div class="footer-list">
+          <a href="tel:0667047351">06 67 04 73 51</a>
+          <a href="mailto:artoiture.naveri@gmail.com">artoiture.naveri@gmail.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ArtToitureNaveri · Tous droits réservés</span>
+      <span>Mentions légales · Vie privée · Cookies</span>
+    </div>
+  </footer>
+
+  <script>
+    // === Hamburger mobile ===
+    (function () {
+      const burger = document.getElementById('burger');
+      const menu = document.getElementById('mobileMenu');
+      if (!burger || !menu) return;
+      const toggle = (force) => {
+        const open = typeof force === 'boolean' ? force : burger.getAttribute('aria-expanded') !== 'true';
+        burger.setAttribute('aria-expanded', String(open));
+        menu.setAttribute('data-open', String(open));
+        menu.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
+        burger.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+      };
+      burger.addEventListener('click', () => toggle());
+      menu.addEventListener('click', (e) => { if (e.target.tagName === 'A') toggle(false); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggle(false); });
+    })();
+
+    // ScrollTrigger reveals minimaux : section heads + service blocks (jamais sur le hero)
+    if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.utils.toArray('.section-head, .service > div, .schema-card, .service-photo, .gallery figure, .grid-3 .cell, .closing > *')
+        .forEach(el => {
+          gsap.fromTo(el,
+            { opacity: 0, y: 24 },
+            {
+              opacity: 1, y: 0, duration: .7, ease: 'power2.out',
+              scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+            });
+        });
+
+      // Schéma tuile : trace les chemins canal au scroll
+      const canals = document.querySelectorAll('.schema-svg .canal path');
+      canals.forEach(p => {
+        const len = p.getTotalLength?.() || 200;
+        p.style.strokeDasharray = len;
+        p.style.strokeDashoffset = len;
+      });
+      ScrollTrigger.create({
+        trigger: '#couverture .schema-svg',
+        start: 'top 70%',
+        onEnter: () => {
+          canals.forEach((p, i) => {
+            gsap.to(p, { strokeDashoffset: 0, duration: 1.4, delay: i * .06, ease: 'power2.out' });
+          });
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>
