@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Univers Décor — Mousse sur mesure à Paris 18e depuis 47 ans</title>
+<meta name="description" content="Atelier de découpe de mousse, confection sur mesure, literie et oreillers au 13 rue Seveste, Paris 18e. Made in France depuis 1979.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Manrope:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+
+<style>
+/* ============ TOKENS ============ */
+:root {
+  --cream:      #f5efe4;
+  --cream-2:    #efe6d5;
+  --cream-3:    #e8dcc5;
+  --ink:        #1f2421;
+  --ink-soft:   #3a3833;
+  --terra:      #c97a4c;   /* terracotta douce */
+  --terra-deep: #a55a37;
+  --sauge:      #8a9a7b;   /* vert sauge */
+  --mousse:     #e8d675;   /* jaune mousse (rappel atelier) */
+  --bordeau:    #6e2a2e;
+
+  --r-xs: .35rem;
+  --r-sm: .65rem;
+  --r-md: 1rem;
+  --r-lg: 1.75rem;
+  --r-xl: 2.5rem;
+  --r-pill: 999rem;
+
+  --max: 1440px;
+  --gutter: clamp(1.25rem, 3.5vw, 3rem);
+
+  --font-d: "Cormorant Garamond", Georgia, serif;
+  --font-s: "Instrument Serif", Georgia, serif;
+  --font-b: "Manrope", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: auto; }
+body {
+  font-family: var(--font-b);
+  font-weight: 400;
+  font-size: clamp(.95rem, .2vw + .9rem, 1.05rem);
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+/* Fixed grain overlay teinté terracotta */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: .28;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' seed='7'/><feColorMatrix values='0 0 0 0 .32  0 0 0 0 .25  0 0 0 0 .18  0 0 0 .35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode: soft-light;
+}
+
+/* ============ LAYOUT ============ */
+.wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  position: relative;
+}
+.iso { isolation: isolate; z-index: 1; }
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: color-mix(in oklab, var(--cream) 82%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 1.1rem;
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  color: var(--ink);
+}
+.logo svg { flex: 0 0 auto; }
+.logo-word {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+.logo-word b {
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: .04em;
+  font-size: .72em;
+  text-transform: uppercase;
+  font-family: var(--font-b);
+  margin-left: .55rem;
+  color: var(--terra-deep);
+}
+.ord {
+  font-size: .55em;
+  vertical-align: super;
+  line-height: 0;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  margin-left: -.18em;
+}
+.nowrap { white-space: nowrap; }
+.nav-links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: .92rem;
+  font-weight: 500;
+}
+.nav-links a {
+  position: relative;
+  padding-block: .3rem;
+  color: var(--ink-soft);
+  transition: color .3s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: var(--terra);
+  transition: right .35s ease;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { right: 0; }
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .75rem 1.2rem;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--cream);
+  font-size: .85rem;
+  font-weight: 500;
+  letter-spacing: .02em;
+  transition: background .3s ease, transform .3s ease;
+}
+.nav-cta:hover { background: var(--terra-deep); transform: translateY(-1px); }
+.nav-cta .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--mousse);
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--mousse) 80%, transparent);
+  animation: pulse 2.4s ease-in-out infinite;
+  flex: 0 0 auto;
+}
+.nav-cta .phone-icon { display: none; flex: 0 0 auto; }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--mousse) 70%, transparent); }
+  50%     { box-shadow: 0 0 0 7px color-mix(in oklab, var(--mousse) 0%, transparent); }
+}
+.burger { display: none; }
+
+@media (max-width: 900px) {
+  .nav-links { display: none; }
+  .nav-cta .lbl, .nav-cta .dot { display: none; }
+  .nav-cta .phone-icon { display: inline-flex; }
+  .nav-cta { padding: .7rem .85rem; }
+  .burger {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: .6rem;
+    border-radius: var(--r-sm);
+    background: transparent;
+    width: 44px;
+    height: 44px;
+    z-index: 110;
+  }
+  .burger span {
+    width: 22px; height: 1.5px;
+    background: var(--ink);
+    display: block;
+    transition: transform .35s ease, opacity .35s ease;
+    transform-origin: center;
+  }
+  .burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+}
+
+/* Mobile drawer */
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: var(--cream);
+  transform: translateX(100%);
+  transition: transform .5s cubic-bezier(.22,.8,.2,1);
+  display: flex;
+  flex-direction: column;
+  padding: 5.5rem 2rem 2rem;
+  overflow-y: auto;
+  visibility: hidden;
+}
+.drawer[aria-hidden="false"] {
+  transform: translateX(0);
+  visibility: visible;
+}
+.drawer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  padding-top: 2rem;
+}
+.drawer-list a {
+  font-family: var(--font-d);
+  font-size: 2rem;
+  line-height: 1.1;
+  font-weight: 400;
+  color: var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: .8rem;
+  padding-block: .3rem;
+}
+.drawer-list a em {
+  font-family: var(--font-b);
+  font-style: normal;
+  font-size: .7rem;
+  font-weight: 500;
+  color: var(--terra-deep);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.drawer-foot {
+  margin-top: auto;
+  padding-top: 2.5rem;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  display: grid;
+  gap: .9rem;
+  font-size: .95rem;
+}
+.drawer-foot strong {
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--terra-deep);
+  font-weight: 500;
+  margin-bottom: .25rem;
+}
+.drawer-foot a { color: var(--ink); }
+body.nav-open { overflow: hidden; }
+
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  padding-top: clamp(3rem, 6vw, 5.5rem);
+  padding-bottom: clamp(3.5rem, 6vw, 6rem);
+  overflow: hidden;
+}
+.hero-halos { position: absolute; inset: 0; z-index: 0; pointer-events: none; filter: blur(90px); opacity: .65; }
+.hero-halos span {
+  position: absolute; display: block;
+  width: 50vw; height: 50vw; max-width: 720px; max-height: 720px;
+  border-radius: 50%;
+}
+.hero-halos span:nth-child(1) { left: -10vw; top: 10%; background: radial-gradient(circle, var(--terra) 0%, transparent 65%); animation: drift1 22s ease-in-out infinite; }
+.hero-halos span:nth-child(2) { right: -10vw; top: 30%; background: radial-gradient(circle, var(--mousse) 0%, transparent 65%); animation: drift2 26s ease-in-out infinite; }
+.hero-halos span:nth-child(3) { left: 35%; bottom: -20%; background: radial-gradient(circle, var(--sauge) 0%, transparent 65%); animation: drift3 30s ease-in-out infinite; }
+@keyframes drift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(6vw, -4vw) scale(1.1); } }
+@keyframes drift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-5vw, 5vw) scale(1.12); } }
+@keyframes drift3 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-3vw, -6vw) scale(.92); } }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: .8rem;
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--terra-deep);
+  margin-bottom: 1.5rem;
+}
+.kicker::before {
+  content: '';
+  width: 36px; height: 1px;
+  background: currentColor;
+}
+
+.h1 {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 6.5vw, 6rem);
+  line-height: .98;
+  letter-spacing: -.025em;
+  margin: 0 0 1.8rem;
+  color: var(--ink);
+}
+.h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--terra-deep);
+}
+.h1 .soft {
+  display: block;
+  font-family: var(--font-s);
+  font-style: italic;
+  font-size: .85em;
+  color: var(--ink-soft);
+  margin-top: .15em;
+}
+
+.hero-lede {
+  font-size: clamp(1rem, .4vw + .95rem, 1.2rem);
+  line-height: 1.55;
+  max-width: 44ch;
+  color: var(--ink-soft);
+  margin: 0 0 2.3rem;
+}
+
+.cta-row { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: .65rem;
+  padding: 1rem 1.6rem;
+  border-radius: var(--r-pill);
+  font-weight: 500;
+  font-size: .95rem;
+  letter-spacing: .01em;
+  transition: transform .3s ease, background .3s ease, color .3s ease;
+}
+.btn-dark {
+  background: var(--ink);
+  color: var(--cream);
+}
+.btn-dark:hover { background: var(--terra-deep); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid color-mix(in oklab, var(--ink) 30%, transparent);
+}
+.btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+.btn .arr { transition: transform .3s ease; }
+.btn:hover .arr { transform: translateX(4px); }
+
+/* Hero visual : tranches de mousse empilées qui respirent */
+.hero-visual {
+  position: relative;
+  aspect-ratio: 1 / 1.1;
+  max-width: 520px;
+  margin-inline: auto;
+  width: 100%;
+}
+.slabs {
+  position: absolute;
+  inset: 0;
+}
+.slab {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(var(--y, 0));
+  width: var(--w);
+  height: var(--h);
+  border-radius: var(--r-md);
+  top: var(--t);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, #fff 35%, transparent) inset,
+    0 -1px 0 0 color-mix(in oklab, #000 15%, transparent) inset,
+    0 30px 50px -25px color-mix(in oklab, var(--ink) 25%, transparent);
+  overflow: hidden;
+  isolation: isolate;
+}
+.slab::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='2.2' numOctaves='2' seed='3'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .32 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  mix-blend-mode: multiply;
+  opacity: .75;
+}
+.slab::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, color-mix(in oklab, #fff 10%, transparent), transparent 30%, transparent 70%, color-mix(in oklab, #000 8%, transparent));
+  pointer-events: none;
+}
+.slab-1 { --w: 78%; --h: 18%; --t: 6%;  background: color-mix(in oklab, var(--mousse) 72%, #fff); }
+.slab-2 { --w: 92%; --h: 22%; --t: 28%; background: color-mix(in oklab, var(--terra) 35%, #fff); }
+.slab-3 { --w: 68%; --h: 16%; --t: 54%; background: color-mix(in oklab, var(--sauge) 40%, #fff); }
+.slab-4 { --w: 86%; --h: 24%; --t: 72%; background: color-mix(in oklab, var(--cream-3) 70%, var(--terra) 30%); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .slab-1 { animation: slabFloat 7s ease-in-out infinite; }
+  .slab-2 { animation: slabFloat 8.5s ease-in-out infinite -2.2s; }
+  .slab-3 { animation: slabFloat 9s ease-in-out infinite -4s; }
+  .slab-4 { animation: slabFloat 7.8s ease-in-out infinite -1s; }
+}
+@keyframes slabFloat {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50%     { transform: translateX(-50%) translateY(-12px); }
+}
+
+.hero-tag {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .45rem .9rem;
+  background: var(--cream);
+  border: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+  border-radius: var(--r-pill);
+  font-size: .78rem;
+  font-weight: 500;
+  box-shadow: 0 8px 25px -15px color-mix(in oklab, var(--ink) 35%, transparent);
+}
+.hero-tag-1 { top: 8%; right: -4%; transform: rotate(4deg); }
+.hero-tag-2 { bottom: 12%; left: -8%; transform: rotate(-3deg); color: var(--terra-deep); }
+
+.hero-meta {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem 3rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+.hero-meta dt {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: 2.4rem;
+  line-height: 1;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: .4rem;
+}
+.hero-meta dd {
+  margin: 0;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.hero-meta dt sup {
+  font-family: var(--font-b);
+  font-size: .9rem;
+  font-style: normal;
+  font-weight: 500;
+  color: var(--terra-deep);
+  margin-left: .2rem;
+  vertical-align: top;
+  top: .4em;
+  position: relative;
+}
+
+/* ============ TICKER ============ */
+.ticker {
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--cream);
+  padding-block: 1.1rem;
+  border-radius: var(--r-lg);
+  margin-block: clamp(3rem, 6vw, 5rem);
+  position: relative;
+}
+.ticker-track {
+  display: flex;
+  gap: 3.5rem;
+  width: max-content;
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.8vw, 2.5rem);
+  font-weight: 400;
+  letter-spacing: -.005em;
+  white-space: nowrap;
+  animation: tick 38s linear infinite;
+}
+.ticker-track span { display: inline-flex; align-items: center; gap: 3.5rem; }
+.ticker-track em { font-style: normal; color: var(--mousse); opacity: .55; font-size: 1rem; letter-spacing: .3em; text-transform: uppercase; font-family: var(--font-b); }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* ============ SECTION TITLES ============ */
+.sect-title {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: clamp(2rem, 5vw, 4.25rem);
+  line-height: 1;
+  letter-spacing: -.02em;
+  margin: 0 0 1.5rem;
+  max-width: 18ch;
+}
+.sect-title em { font-style: italic; color: var(--terra-deep); }
+.sect-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .7rem;
+  font-size: .75rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--terra-deep);
+  font-weight: 500;
+  margin-bottom: 1.2rem;
+}
+.sect-eyebrow::before {
+  content: '';
+  width: 28px; height: 1px; background: currentColor;
+}
+
+/* ============ SECTION EXPERTISE ============ */
+.expertise {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.expertise-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.expertise-head p {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  max-width: 42ch;
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .expertise-head { grid-template-columns: 1fr; gap: 1.5rem; }
+}
+
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+@media (max-width: 900px) { .exp-grid { grid-template-columns: 1fr; } }
+
+.exp-card {
+  position: relative;
+  padding: 2.2rem 1.8rem;
+  background: var(--cream-2);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform .5s cubic-bezier(.2,.8,.2,1), background .5s ease;
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+}
+.exp-card:hover { transform: translateY(-6px); background: var(--cream-3); }
+.exp-num {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--terra-deep);
+  letter-spacing: .02em;
+}
+.exp-title {
+  font-family: var(--font-d);
+  font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -.01em;
+}
+.exp-list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+}
+.exp-list li {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  font-size: .95rem;
+  color: var(--ink-soft);
+  padding: .5rem 0;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+}
+.exp-list li::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--terra);
+  flex: 0 0 auto;
+}
+.exp-visual {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 180px;
+  opacity: .3;
+  pointer-events: none;
+}
+
+.exp-card-c2 { background: color-mix(in oklab, var(--terra) 18%, var(--cream)); }
+.exp-card-c2:hover { background: color-mix(in oklab, var(--terra) 25%, var(--cream)); }
+.exp-card-c3 { background: color-mix(in oklab, var(--sauge) 28%, var(--cream)); }
+.exp-card-c3:hover { background: color-mix(in oklab, var(--sauge) 38%, var(--cream)); }
+
+/* ============ MATIÈRE (split) ============ */
+.matiere {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.matiere-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+@media (max-width: 900px) { .matiere-grid { grid-template-columns: 1fr; } }
+.matiere-img {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  background: var(--cream-3);
+}
+.matiere-img img {
+  width: 100%; height: 100%; object-fit: cover;
+  transform: scale(1.02);
+  transition: transform 1.4s ease;
+}
+.matiere-img:hover img { transform: scale(1.06); }
+.matiere-label {
+  position: absolute;
+  top: 1.4rem; left: 1.4rem;
+  background: var(--cream);
+  padding: .45rem .9rem;
+  border-radius: var(--r-pill);
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.matiere-copy h2 { margin-top: 0; }
+.matiere-copy p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 48ch;
+}
+.matiere-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 2.2rem;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+}
+.matiere-stats div span:first-child {
+  display: block;
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--terra-deep);
+  margin-bottom: .35rem;
+}
+.matiere-stats div span:last-child {
+  font-size: .8rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* ============ CRÉATIONS ============ */
+.creations {
+  padding-block: clamp(4rem, 8vw, 7rem);
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--cream-2) 50%, transparent) 18%, color-mix(in oklab, var(--cream-2) 50%, transparent) 82%, transparent);
+}
+.creations-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  flex-wrap: wrap;
+}
+.creations-head p { max-width: 38ch; color: var(--ink-soft); margin: 0; }
+.creations-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.25rem;
+}
+.crea {
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background: var(--cream-3);
+  isolation: isolate;
+}
+.crea img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 1.2s ease;
+}
+.crea:hover img { transform: scale(1.04); }
+.crea-1 { grid-row: span 2; aspect-ratio: 4/5; }
+.crea-2 { aspect-ratio: 5/4; }
+.crea-3 { aspect-ratio: 5/4; }
+.crea-4 { aspect-ratio: 3/4; grid-column: 2; }
+.crea-5 { aspect-ratio: 3/4; grid-column: 3; }
+.crea-cap {
+  position: absolute;
+  bottom: 1rem; left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  background: color-mix(in oklab, var(--cream) 90%, transparent);
+  padding: .45rem .85rem;
+  border-radius: var(--r-pill);
+  font-size: .78rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  backdrop-filter: blur(4px);
+}
+.crea-cap em {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--terra-deep);
+}
+@media (max-width: 900px) {
+  .creations-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .crea-1 { grid-row: auto; grid-column: span 2; aspect-ratio: 3/2; }
+  .crea-4, .crea-5 { grid-column: auto; }
+}
+@media (max-width: 560px) {
+  .creations-grid { grid-template-columns: 1fr; }
+  .crea-1, .crea-4, .crea-5 { grid-column: auto; }
+}
+
+/* pastel texture swatches (no photo) */
+.swatch {
+  position: relative;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 100%);
+  overflow: hidden;
+}
+.swatch::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='1.8' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .42 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
+  mix-blend-mode: multiply;
+  opacity: .7;
+}
+.swatch-1 { --c1: #f2dcc0; --c2: #d48b5c; }
+.swatch-2 { --c1: #e8d675; --c2: #c2a13c; }
+.swatch-3 { --c1: #c4cfb7; --c2: #8a9a7b; }
+
+/* ============ RITUEL (process) ============ */
+.rituel {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.rituel-list {
+  counter-reset: step;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+.rituel-list li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 120px 1fr 2fr;
+  gap: 2.5rem;
+  align-items: start;
+  padding-block: 2rem;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+  transition: padding-left .5s ease;
+}
+.rituel-list li:last-child { border-bottom: 1px solid color-mix(in oklab, var(--ink) 12%, transparent); }
+.rituel-list li:hover { padding-left: 1rem; }
+.rituel-list li::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: 2.2rem;
+  color: var(--terra-deep);
+  font-weight: 500;
+}
+.rituel-list h3 {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  margin: 0;
+  letter-spacing: -.01em;
+  line-height: 1.05;
+}
+.rituel-list p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: .98rem;
+  line-height: 1.6;
+  max-width: 56ch;
+}
+@media (max-width: 800px) {
+  .rituel-list li {
+    grid-template-columns: 1fr;
+    gap: .8rem;
+  }
+  .rituel-list li::before { font-size: 1.6rem; }
+}
+
+/* ============ ATELIER / VISITE ============ */
+.visit {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.visit-card {
+  position: relative;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--r-xl);
+  padding: clamp(2.5rem, 5vw, 5rem);
+  overflow: hidden;
+  isolation: isolate;
+}
+.visit-card::before {
+  content: '';
+  position: absolute;
+  right: -20%;
+  top: -30%;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--terra) 50%, transparent) 0%, transparent 65%);
+  filter: blur(80px);
+  opacity: .7;
+  z-index: 0;
+  animation: drift1 22s ease-in-out infinite;
+  pointer-events: none;
+}
+.visit-card::after {
+  content: '';
+  position: absolute;
+  left: -15%;
+  bottom: -40%;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--mousse) 35%, transparent) 0%, transparent 65%);
+  filter: blur(90px);
+  opacity: .6;
+  z-index: 0;
+  animation: drift2 26s ease-in-out infinite;
+  pointer-events: none;
+}
+.visit-card > * { position: relative; z-index: 1; }
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (max-width: 850px) { .visit-grid { grid-template-columns: 1fr; } }
+
+.visit h2 {
+  font-family: var(--font-d);
+  font-weight: 400;
+  font-size: clamp(2rem, 4.5vw, 3.8rem);
+  line-height: 1;
+  margin: 0 0 1.5rem;
+  letter-spacing: -.02em;
+  max-width: 16ch;
+}
+.visit h2 em { font-style: italic; color: var(--mousse); }
+.visit p {
+  color: color-mix(in oklab, var(--cream) 75%, transparent);
+  max-width: 38ch;
+  font-size: 1.02rem;
+  margin: 0 0 2rem;
+}
+
+.visit-info {
+  display: grid;
+  gap: 1.2rem;
+}
+.visit-info > div {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1.1rem 1.3rem;
+  background: color-mix(in oklab, var(--cream) 8%, transparent);
+  border-radius: var(--r-md);
+  border: 1px solid color-mix(in oklab, var(--cream) 12%, transparent);
+}
+.visit-info svg { flex: 0 0 auto; margin-top: 2px; }
+.visit-info strong {
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--mousse);
+  margin-bottom: .25rem;
+}
+.visit-info span:last-of-type {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--cream);
+  line-height: 1.3;
+}
+.visit-info a { color: var(--cream); }
+
+.visit-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: 1rem 1.7rem;
+  background: var(--mousse);
+  color: var(--ink);
+  border-radius: var(--r-pill);
+  font-weight: 500;
+  font-size: .95rem;
+  letter-spacing: .01em;
+  transition: transform .3s ease, background .3s ease;
+}
+.visit-cta:hover { background: var(--cream); transform: translateY(-2px); }
+
+/* ============ FOOTER ============ */
+.foot {
+  padding-block: clamp(3rem, 5vw, 4rem);
+  border-top: 1px solid color-mix(in oklab, var(--ink) 15%, transparent);
+}
+.foot-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+}
+@media (max-width: 800px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { .foot-grid { grid-template-columns: 1fr; } }
+.foot h5 {
+  font-size: .72rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--terra-deep);
+  margin: 0 0 1rem;
+}
+.foot ul { list-style: none; padding: 0; margin: 0; }
+.foot li { margin-bottom: .55rem; font-size: .95rem; color: var(--ink-soft); }
+.foot li a:hover { color: var(--ink); }
+.foot-desc {
+  font-family: var(--font-d);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 32ch;
+  margin: 1rem 0 0;
+  line-height: 1.45;
+}
+
+.foot-bot {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid color-mix(in oklab, var(--ink) 10%, transparent);
+  font-size: .8rem;
+  color: var(--ink-soft);
+  flex-wrap: wrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#" aria-label="Univers Décor — accueil">
+      <svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true">
+        <defs>
+          <linearGradient id="logoG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#c97a4c"/>
+            <stop offset="100%" stop-color="#6e2a2e"/>
+          </linearGradient>
+        </defs>
+        <circle cx="22" cy="22" r="20.5" fill="none" stroke="url(#logoG)" stroke-width="1"/>
+        <!-- ondulation matière -->
+        <path d="M8 24 Q14 19 22 24 T36 24" fill="none" stroke="url(#logoG)" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M8 28 Q14 23 22 28 T36 28" fill="none" stroke="#c97a4c" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+        <!-- UD imbriqué -->
+        <text x="22" y="19" font-family="Cormorant Garamond, serif" font-style="italic" font-size="14" font-weight="500" fill="#1f2421" text-anchor="middle">UD</text>
+      </svg>
+      <span class="logo-word">Univers Décor<b><span class="nowrap">Paris 18<span class="ord">e</span></span></b></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#matiere">Matière</a></li>
+      <li><a href="#creations">Créations</a></li>
+      <li><a href="#rituel">Sur mesure</a></li>
+      <li><a href="#visite">Atelier</a></li>
+    </ul>
+    <a href="tel:0142511808" class="nav-cta" aria-label="Appelez l'atelier au 01 42 51 18 08">
+      <span class="dot" aria-hidden="true"></span>
+      <svg class="phone-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+      <span class="lbl">01 42 51 18 08</span>
+    </a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============ MOBILE DRAWER ============ -->
+<aside class="drawer" id="drawer" aria-hidden="true" aria-label="Menu mobile">
+  <ul class="drawer-list">
+    <li><a href="#expertise">Expertise <em>i</em></a></li>
+    <li><a href="#decoupe">Découpe de mousse <em>ii</em></a></li>
+    <li><a href="#confection">Confection sur mesure <em>iii</em></a></li>
+    <li><a href="#atelier">Notre atelier <em>iv</em></a></li>
+    <li><a href="#visite">Contact <em>v</em></a></li>
+  </ul>
+  <div class="drawer-foot">
+    <div>
+      <strong>Atelier</strong>
+      <span>13 rue Seveste, 75018 Paris</span>
+    </div>
+    <div>
+      <strong>Appelez-nous sur le fixe</strong>
+      <a href="tel:0142511808">01 42 51 18 08</a>
+    </div>
+    <div>
+      <strong>Appelez-nous sur le mobile</strong>
+      <a href="tel:0615327858">06 15 32 78 58</a>
+    </div>
+    <div>
+      <strong>Envoyez-nous un e-mail</strong>
+      <a href="mailto:universdecor@orange.fr">universdecor@orange.fr</a>
+    </div>
+  </div>
+</aside>
+
+<!-- ============ HERO ============ -->
+<section class="hero iso">
+  <div class="hero-halos" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="kicker">Atelier · <span class="nowrap">Paris 18<span class="ord">e</span></span> · Depuis 1979</div>
+      <h1 class="h1">
+        Bienvenue chez<br>
+        <em>Univers Décor</em>
+        <span class="soft">De la mousse sur mesure à Paris 18<span class="ord">e</span>.</span>
+      </h1>
+      <p class="hero-lede">
+        Découpe de mousse, confection sur mesure, literie et aménagements.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-dark" href="#visite">
+          Contactez-nous
+          <span class="arr" aria-hidden="true">→</span>
+        </a>
+        <a class="btn btn-ghost" href="#expertise">
+          Notre savoir-faire
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="slabs">
+        <div class="slab slab-1"></div>
+        <div class="slab slab-2"></div>
+        <div class="slab slab-3"></div>
+        <div class="slab slab-4"></div>
+      </div>
+      <div class="hero-tag hero-tag-1">
+        <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="4" fill="#c97a4c"/></svg>
+        Made in France
+      </div>
+      <div class="hero-tag hero-tag-2">
+        47 <span style="font-family:var(--font-d);font-style:italic">années</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <dl class="hero-meta">
+      <div><dt>47<sup>ans</sup></dt><dd>Artisans tapissiers<br>depuis 1979</dd></div>
+      <div><dt>100<sup>%</sup></dt><dd>Mousses et fibres<br>made in France</dd></div>
+      <div><dt>26<sup>avis</sup></dt><dd>Notés sur la<br>qualité et l'accueil</dd></div>
+      <div><dt>13</dt><dd>Rue Seveste,<br><span class="nowrap">Paris 18<span class="ord">e</span></span></dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="wrap">
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>
+        Mousse <em>·</em> Latex <em>·</em> Bultex <em>·</em> Polyéther <em>·</em> Coussin <em>·</em> Matelas <em>·</em> Oreiller <em>·</em> Housse <em>·</em> Banquette <em>·</em> Fauteuil <em>·</em> Assise <em>·</em>&nbsp;
+      </span>
+      <span>
+        Mousse <em>·</em> Latex <em>·</em> Bultex <em>·</em> Polyéther <em>·</em> Coussin <em>·</em> Matelas <em>·</em> Oreiller <em>·</em> Housse <em>·</em> Banquette <em>·</em> Fauteuil <em>·</em> Assise <em>·</em>&nbsp;
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ EXPERTISE ============ -->
+<section class="expertise iso" id="expertise">
+  <div class="wrap">
+    <div class="expertise-head">
+      <div>
+        <div class="sect-eyebrow">I — Savoir-faire</div>
+        <h2 class="sect-title">Trois domaines d'<em>expertise</em>.</h2>
+      </div>
+      <p>
+        Découvrez les différents domaines d'expertise de nos tapissiers-décorateurs
+        et repartez avec votre mousse synthétique ou naturelle.
+      </p>
+    </div>
+
+    <div class="exp-grid">
+      <article class="exp-card">
+        <div>
+          <div class="exp-num">— i.</div>
+          <h3 class="exp-title">Découpe de mousse</h3>
+        </div>
+        <ul class="exp-list">
+          <li>Coussins et literie</li>
+          <li>Canapés et banquettes</li>
+          <li>Fauteuils et assises</li>
+          <li>Mousse synthétique ou naturelle</li>
+        </ul>
+      </article>
+
+      <article class="exp-card exp-card-c2">
+        <div>
+          <div class="exp-num">— ii.</div>
+          <h3 class="exp-title">Confection sur mesure</h3>
+        </div>
+        <ul class="exp-list">
+          <li>Matelas</li>
+          <li>Housses</li>
+          <li>Oreillers et literie</li>
+          <li>Confection artisanale</li>
+        </ul>
+      </article>
+
+      <article class="exp-card exp-card-c3">
+        <div>
+          <div class="exp-num">— iii.</div>
+          <h3 class="exp-title">Atelier de confection</h3>
+        </div>
+        <ul class="exp-list">
+          <li>Produits pour la literie</li>
+          <li>Produits pour la mode</li>
+          <li>Aménagements</li>
+          <li>Solutions sur mesure</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MATIÈRE ============ -->
+<section class="matiere iso" id="matiere">
+  <div class="wrap matiere-grid">
+    <div class="matiere-img">
+      <img src="_scrape/images/img-03.jpeg" alt="Blocs de mousse haute densité — coupe nette" loading="lazy" style="object-position: center 22%; transform: scale(1.6);">
+      <span class="matiere-label">Mousse&nbsp;·&nbsp;haute densité</span>
+    </div>
+    <div class="matiere-copy">
+      <div class="sect-eyebrow">II — Matière</div>
+      <h2 class="sect-title">Un confort inégalé, une <em>matière</em> française.</h2>
+      <p>
+        Notre expertise en découpe de mousse, 100&nbsp;% made in France, vous offre un confort inégalé.
+        Un service de confection artisanale sur mesure pour votre literie et vos oreillers,
+        pensé à la main et réalisé dans notre atelier du <span class="nowrap">18<span class="ord">e</span></span>.
+      </p>
+      <div class="matiere-stats">
+        <div><span>47</span><span>années<br>d'atelier</span></div>
+        <div><span>100%</span><span>made in<br>France</span></div>
+        <div><span>26</span><span>avis clients<br>vérifiés</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CRÉATIONS ============ -->
+<section class="creations iso" id="creations">
+  <div class="wrap">
+    <div class="creations-head">
+      <div>
+        <div class="sect-eyebrow">III — Créations</div>
+        <h2 class="sect-title">De la <em>plaque</em> à la pièce finie.</h2>
+      </div>
+      <p>
+        Des produits de notre atelier de confection pour la literie et la mode,
+        et une infinité de matières à feuilleter chez nous.
+      </p>
+    </div>
+
+    <div class="creations-grid">
+      <figure class="crea crea-1">
+        <img src="_scrape/images/img-02-atelier.jpeg" alt="Atelier Univers Décor — plaques de mousse" loading="lazy">
+        <figcaption class="crea-cap"><em>Atelier</em>&nbsp;·&nbsp;Seveste</figcaption>
+      </figure>
+      <figure class="crea crea-2">
+        <div class="swatch swatch-1" aria-hidden="true"></div>
+        <figcaption class="crea-cap"><em>Coussins</em>&nbsp;·&nbsp;sur mesure</figcaption>
+      </figure>
+      <figure class="crea crea-3">
+        <img src="_scrape/images/img-04.jpeg" alt="Fibres polyester anti-bactériennes" loading="lazy">
+        <figcaption class="crea-cap"><em>Rembourrage</em>&nbsp;·&nbsp;fibres</figcaption>
+      </figure>
+      <figure class="crea crea-4">
+        <div class="swatch swatch-2" aria-hidden="true"></div>
+        <figcaption class="crea-cap"><em>Matelas</em>&nbsp;·&nbsp;confection</figcaption>
+      </figure>
+      <figure class="crea crea-5">
+        <div class="swatch swatch-3" aria-hidden="true"></div>
+        <figcaption class="crea-cap"><em>Housses</em>&nbsp;·&nbsp;atelier</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RITUEL / SUR MESURE ============ -->
+<section class="rituel iso" id="rituel">
+  <div class="wrap">
+    <div class="sect-eyebrow">IV — Le sur-mesure</div>
+    <h2 class="sect-title">Une conversation, une <em>mesure</em>, une pièce.</h2>
+    <ol class="rituel-list">
+      <li>
+        <h3>Échange en magasin</h3>
+        <p>Venez échanger avec nos experts. On écoute l'usage, on parle densité, on feuillette les matières. Un conseil franc, sans rendez-vous obligatoire.</p>
+      </li>
+      <li>
+        <h3>Mesure et devis</h3>
+        <p>Dimensions précises de votre coussin, canapé, fauteuil ou matelas. Choix de la mousse — synthétique ou naturelle — et d'un rembourrage adapté.</p>
+      </li>
+      <li>
+        <h3>Découpe à l'atelier</h3>
+        <p>Découpe de précision au 13 rue Seveste. Une plaque devient une pièce. Pour la literie, nos tapissiers-décorateurs prennent la suite.</p>
+      </li>
+      <li>
+        <h3>Confection &amp; housse</h3>
+        <p>Matelas, housses, oreillers. Confection artisanale sur mesure, finitions cousues à la main, pour la literie comme pour la mode.</p>
+      </li>
+      <li>
+        <h3>Retrait</h3>
+        <p>On vous appelle quand c'est prêt. Vous repartez avec votre mousse au 13 rue Seveste, <span class="nowrap">Paris 18<span class="ord">e</span></span>.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ VISITE ATELIER ============ -->
+<section class="visit iso" id="visite">
+  <div class="wrap">
+    <div class="visit-card">
+      <div class="visit-grid">
+        <div>
+          <div class="sect-eyebrow" style="color: var(--mousse)">V — Visite</div>
+          <h2>Venez <em>échanger</em> avec nos experts.</h2>
+          <p>
+            Notre magasin de mousse sur mesure vous accompagne dans tous vos projets.
+            Passez à l'atelier, on prend le temps d'en parler.
+          </p>
+          <a class="visit-cta" href="tel:0142511808">
+            Appeler l'atelier
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div class="visit-info">
+          <div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8d675" stroke-width="1.6"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <div>
+              <strong>Atelier</strong>
+              <span>13 rue Seveste<br>75018 Paris</span>
+            </div>
+          </div>
+          <div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8d675" stroke-width="1.6"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+            <div>
+              <strong>Téléphone</strong>
+              <span><a href="tel:0142511808">01 42 51 18 08</a><br><a href="tel:0615327858">06 15 32 78 58</a></span>
+            </div>
+          </div>
+          <div>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e8d675" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <div>
+              <strong>Écrire</strong>
+              <span><a href="mailto:universdecor@orange.fr">universdecor@orange.fr</a></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#" style="margin-bottom: 1rem">
+          <svg width="36" height="36" viewBox="0 0 44 44" aria-hidden="true">
+            <circle cx="22" cy="22" r="20.5" fill="none" stroke="#1f2421" stroke-width="1"/>
+            <path d="M8 24 Q14 19 22 24 T36 24" fill="none" stroke="#c97a4c" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M8 28 Q14 23 22 28 T36 28" fill="none" stroke="#c97a4c" stroke-width="1" stroke-linecap="round" opacity=".5"/>
+            <text x="22" y="19" font-family="Cormorant Garamond, serif" font-style="italic" font-size="14" font-weight="500" fill="#1f2421" text-anchor="middle">UD</text>
+          </svg>
+          <span class="logo-word">Univers Décor</span>
+        </a>
+        <p class="foot-desc">Atelier de mousse sur mesure et tapisserie, <span class="nowrap">Paris 18<span class="ord">e</span></span>, depuis 1979.</p>
+      </div>
+      <div>
+        <h5>Savoir-faire</h5>
+        <ul>
+          <li><a href="#expertise">Découpe de mousse</a></li>
+          <li><a href="#expertise">Confection sur mesure</a></li>
+          <li><a href="#expertise">Atelier de confection</a></li>
+          <li><a href="#rituel">Sur mesure</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Visiter</h5>
+        <ul>
+          <li>13 rue Seveste</li>
+          <li>75018 Paris</li>
+          <li>Lun → Ven</li>
+          <li>À deux pas d'Anvers</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:0142511808">01 42 51 18 08</a></li>
+          <li><a href="tel:0615327858">06 15 32 78 58</a></li>
+          <li><a href="mailto:universdecor@orange.fr">universdecor@orange.fr</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 Univers Décor — tous droits réservés.</span>
+      <span>Mentions légales · Vie privée · Cookies</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile drawer
+  (() => {
+    const burger = document.querySelector('.burger');
+    const drawer = document.getElementById('drawer');
+    if (!burger || !drawer) return;
+    const toggle = (open) => {
+      const willOpen = open ?? burger.getAttribute('aria-expanded') !== 'true';
+      burger.setAttribute('aria-expanded', willOpen);
+      drawer.setAttribute('aria-hidden', !willOpen);
+      document.body.classList.toggle('nav-open', willOpen);
+      burger.setAttribute('aria-label', willOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+    };
+    burger.addEventListener('click', () => toggle());
+    drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') toggle(false); });
+    document.addEventListener('click', e => {
+      if (drawer.getAttribute('aria-hidden') === 'false' &&
+          !drawer.contains(e.target) && !burger.contains(e.target)) toggle(false);
+    });
+  })();
+
+  // ScrollTrigger reveals below-the-fold uniquement (hero jamais)
+  if (window.gsap && window.ScrollTrigger && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.utils.toArray('.sect-title, .exp-card, .rituel-list li, .matiere-img, .matiere-copy, .crea, .visit-card').forEach(el => {
+      gsap.from(el, {
+        y: 28,
+        opacity: 0,
+        duration: .9,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          once: true
+        }
+      });
+    });
+
+  }
+</script>
+</body>
+</html>
