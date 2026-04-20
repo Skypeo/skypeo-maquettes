@@ -723,8 +723,68 @@
       align-items: start;
     }
 
+    .atelier-right {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(2rem, 3.5vw, 3rem);
+      position: relative;
+    }
+
     @media (max-width: 960px) {
       .atelier-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Photo éditoriale : showroom atelier */
+    .atelier-photo {
+      position: relative;
+      margin: 0;
+      overflow: hidden;
+      border: 1px solid var(--c-line);
+      background: var(--c-cream-soft);
+    }
+    .atelier-photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+    }
+    .atelier-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.2s cubic-bezier(.2,.7,.2,1);
+      filter: saturate(.92);
+    }
+    .atelier-photo:hover .atelier-photo-frame img {
+      transform: scale(1.04);
+    }
+    .atelier-photo-cap {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: .85rem clamp(.9rem, 1.5vw, 1.1rem);
+      border-top: 1px solid var(--c-line);
+      font-family: var(--f-mono);
+      font-size: .7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--c-ink-soft);
+      opacity: .8;
+    }
+    .atelier-photo-cap em {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: .85rem;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--c-teal-dark);
+      opacity: 1;
+    }
+
+    @media (max-width: 960px) {
+      .atelier-photo { margin-top: 1rem; }
     }
 
     .atelier-intro .section-title {
@@ -1887,10 +1947,23 @@
             <svg width="14" height="14" viewBox="0 0 10 10" fill="none" style="margin-left:.4rem"><path d="M1 5h8m0 0L5 1m4 4L5 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
           </a>
         </div>
-        <blockquote class="atelier-quote">
-          Une seule bonne raison : notre artisanat.
-          <span class="atelier-quote-src">— Totem Mousse, l'artisanat est le cœur de notre métier</span>
-        </blockquote>
+        <div class="atelier-right">
+          <blockquote class="atelier-quote">
+            Une seule bonne raison : notre artisanat.
+            <span class="atelier-quote-src">— Totem Mousse, l'artisanat est le cœur de notre métier</span>
+          </blockquote>
+
+          <!-- Photo éditoriale : showroom de l'atelier -->
+          <figure class="atelier-photo">
+            <div class="atelier-photo-frame">
+              <img src="_scrape/images/hero-tapisserie.webp" alt="Ensemble de fauteuils restaurés dans l'atelier Totem Mousse" loading="lazy">
+            </div>
+            <figcaption class="atelier-photo-cap">
+              <span>Fauteuils restaurés · <em>atelier</em></span>
+              <span>Villeurbanne</span>
+            </figcaption>
+          </figure>
+        </div>
       </div>
 
       <!-- Chiffres -->
