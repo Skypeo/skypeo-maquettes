@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Couverture De San — Couvreur à Savigny-sur-Orge · 50 ans de métier · Île-de-France</title>
+  <meta name="description"
+    content="Couverture De San, entreprise familiale de couverture depuis 50 ans à Savigny-sur-Orge. Tuiles, ardoise, zinc, zinguerie, charpente, ravalement, isolation, dépannage urgence. Zones 77·78·91·92·94.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..800;1,6..72,300..800&family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* ============ TOKENS ============ */
+    :root {
+      --paper: #ffffff;
+      --paper-2: #f7f5ef;
+      --paper-3: #eee9dc;
+      --ink: #0c1220;
+      --ink-2: #1a2133;
+      --slate: #2f3a4b;
+      --slate-2: #4a5668;
+      --slate-ghost: rgba(12, 18, 32, 0.55);
+      --line: rgba(12, 18, 32, 0.14);
+      --line-deep: rgba(12, 18, 32, 0.32);
+      --line-trace: rgba(12, 18, 32, 0.7);
+
+      --blue: #1d82c8;
+      --blue-deep: #0e4d8c;
+      --blue-soft: #e6f1fa;
+      --blue-ghost: rgba(29, 130, 200, 0.12);
+
+      --r-sm: 4px;
+      --r-md: 12px;
+      --r-lg: 22px;
+      --r-xl: 36px;
+      --r-pill: 999px;
+
+      --f-display: "Newsreader", "Times New Roman", ui-serif, serif;
+      --f-body: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+      --ease: cubic-bezier(.2, .7, .2, 1);
+      --ease-out: cubic-bezier(.16, 1, .3, 1);
+
+      --maxw: 1440px;
+      --gut: clamp(18px, 3.5vw, 56px);
+      --sec: clamp(3.5rem, 7vw, 7rem);
+    }
+
+    /* ============ RESET ============ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      min-width: 0;
+    }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--f-body);
+      font-weight: 400;
+      font-size: clamp(0.98rem, 0.9rem + 0.2vw, 1.05rem);
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--paper);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    img {
+      height: auto;
+      object-fit: cover;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      background: none;
+      border: 0;
+      color: inherit;
+    }
+
+    ::selection { background: var(--blue); color: var(--paper); }
+
+    /* ============ GRAIN + PAPIER MILLIMÉTRÉ ============ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      opacity: 0.4;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.07 0 0 0 0 0.15 0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      mix-blend-mode: multiply;
+      animation: grainPulse 12s ease-in-out infinite;
+    }
+
+    @keyframes grainPulse {
+      0%, 100% { opacity: 0.32; }
+      50% { opacity: 0.46; }
+    }
+
+    /* Papier millimétré diffus — seulement sur sections spécifiques */
+    .grid-paper {
+      position: relative;
+    }
+    .grid-paper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(to right, rgba(29, 130, 200, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29, 130, 200, 0.07) 1px, transparent 1px),
+        linear-gradient(to right, rgba(29, 130, 200, 0.16) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(29, 130, 200, 0.16) 1px, transparent 1px);
+      background-size: 22px 22px, 22px 22px, 110px 110px, 110px 110px;
+      mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9), transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9), transparent 80%);
+      z-index: 0;
+    }
+    .grid-paper > * { position: relative; z-index: 1; }
+
+    /* ============ LAYOUT UTILS ============ */
+    .wrap {
+      width: 100%;
+      max-width: var(--maxw);
+      margin-inline: auto;
+      padding-inline: var(--gut);
+    }
+
+    .eyebrow {
+      font-family: var(--f-mono);
+      font-size: 0.76rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+
+    .eyebrow .dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      margin: 0 0.55em 0.14em;
+      vertical-align: middle;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .h-display {
+      font-family: var(--f-display);
+      font-weight: 400;
+      font-style: italic;
+      font-optical-sizing: auto;
+      letter-spacing: -0.02em;
+      line-height: 0.96;
+      color: var(--ink);
+    }
+
+    .h-display em {
+      font-style: italic;
+      color: var(--blue);
+    }
+
+    .chapter-mark {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.6rem;
+      font-family: var(--f-mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .chapter-mark strong {
+      color: var(--blue);
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.55rem;
+      border-radius: var(--r-pill);
+      font-family: var(--f-body);
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+      transition: transform 0.3s var(--ease), background 0.3s var(--ease), color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      border: 1px solid var(--ink);
+    }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--paper);
+      border-color: var(--blue);
+    }
+    .btn-primary:hover {
+      background: var(--blue-deep);
+      border-color: var(--blue-deep);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -12px rgba(29, 130, 200, 0.5);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+    }
+    .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--paper);
+      transform: translateY(-2px);
+    }
+
+    .btn svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+    /* ============ HEADER ============ */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: clamp(1rem, 2vw, 2rem);
+      padding-block: 0.9rem;
+      min-height: 68px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+    }
+    .logo__mark {
+      width: 56px;
+      height: 34px;
+      display: block;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+    .logo__mark svg { width: 100%; height: 100%; display: block; }
+    .logo__name {
+      color: var(--ink);
+      font-family: var(--f-body);
+      font-style: normal;
+      font-weight: 700;
+      font-size: 1.02rem;
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+      display: flex;
+      flex-direction: column;
+    }
+    .logo__name em {
+      color: var(--ink);
+      font-style: normal;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 0.95em;
+    }
+    .footer .logo__name, .footer .logo__name em { color: var(--paper); }
+    .footer .logo__mark { color: var(--blue); }
+
+    .nav {
+      display: flex;
+      gap: clamp(0.9rem, 1.6vw, 1.75rem);
+      align-items: center;
+    }
+    .nav a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--slate);
+      position: relative;
+      padding-block: 0.35rem;
+      white-space: nowrap;
+      transition: color 0.3s var(--ease);
+    }
+    .nav a:hover { color: var(--ink); }
+    .nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--blue);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s var(--ease);
+    }
+    .nav a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+    .header__cta {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+    .header__phone {
+      font-family: var(--f-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      white-space: nowrap;
+    }
+    .header__phone .live {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #20a464;
+      box-shadow: 0 0 0 0 rgba(32, 164, 100, 0.7);
+      animation: livePulse 2s ease-in-out infinite;
+    }
+    @keyframes livePulse {
+      0% { box-shadow: 0 0 0 0 rgba(32, 164, 100, 0.55); }
+      70% { box-shadow: 0 0 0 10px rgba(32, 164, 100, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(32, 164, 100, 0); }
+    }
+
+    .burger {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line-deep);
+      border-radius: var(--r-sm);
+      background: var(--paper);
+      position: relative;
+      flex-shrink: 0;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .burger:hover { background: var(--paper-2); border-color: var(--ink); }
+    .burger span {
+      position: absolute;
+      left: 11px; right: 11px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: transform 0.3s var(--ease), top 0.3s var(--ease), opacity 0.2s;
+    }
+    .burger span:nth-child(1) { top: 15px; }
+    .burger span:nth-child(2) { top: 21px; }
+    .burger span:nth-child(3) { top: 27px; }
+    .burger[aria-expanded="true"] span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+    .burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .burger[aria-expanded="true"] span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+    .mobile-nav {
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      max-height: calc(100dvh - 68px);
+      overflow-y: auto;
+      background: var(--paper);
+      z-index: 40;
+      padding: 1.75rem var(--gut) 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      transform: translateY(-110%);
+      transition: transform 0.35s var(--ease-out);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 20px 40px -24px rgba(12, 18, 32, 0.3);
+    }
+    .mobile-nav.open { transform: translateY(0); }
+    .mobile-nav a {
+      padding: 0.9rem 0;
+      font-size: 1.2rem;
+      font-family: var(--f-display);
+      font-style: italic;
+      border-bottom: 1px solid var(--line);
+    }
+    .mobile-nav .btn { margin-top: 1rem; justify-content: center; }
+
+    /* ============ HERO ============ */
+    .hero {
+      position: relative;
+      padding: clamp(2rem, 4vw, 4rem) 0 clamp(4rem, 7vw, 7rem);
+      overflow: hidden;
+    }
+
+    .hero__meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      border-top: 1px solid var(--line-deep);
+      padding-top: 1rem;
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+      flex-wrap: wrap;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: stretch;
+    }
+
+    .hero__title {
+      font-size: clamp(2.8rem, 7.2vw, 6.4rem);
+    }
+
+    .hero__h1 {
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero__sub {
+      max-width: 34rem;
+      font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.18rem);
+      line-height: 1.55;
+      color: var(--slate);
+      margin-bottom: 2rem;
+    }
+
+    .hero__sub strong { color: var(--ink); font-weight: 500; }
+
+    .hero__ctas { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+
+    .hero__specs {
+      margin-top: 2.5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1.25rem;
+    }
+    .spec {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .spec__label {
+      font-family: var(--f-mono);
+      font-size: 0.68rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--slate-2);
+    }
+    .spec__value {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.65rem);
+      line-height: 1.1;
+      color: var(--ink);
+    }
+    .spec__value .u {
+      font-family: var(--f-mono);
+      font-style: normal;
+      font-size: 0.55em;
+      vertical-align: super;
+      color: var(--blue);
+      margin-left: 0.1em;
+    }
+
+    .hero__visual {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .hero__visual .sticker {
+      top: -18px;
+      right: -18px;
+    }
+
+    .hero__photo {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      width: 100%;
+      margin: 0;
+      isolation: isolate;
+      background: var(--ink);
+      border: 1px solid rgba(12, 18, 32, 0.08);
+    }
+    .hero__photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 1.2s var(--ease);
+    }
+    .hero__photo:hover img { transform: scale(1.03); }
+    .hero__photo figcaption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 2.5rem 1.5rem 1.1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      color: var(--paper);
+      background: linear-gradient(to top, rgba(12, 18, 32, 0.88) 0%, rgba(12, 18, 32, 0.45) 55%, rgba(12, 18, 32, 0) 100%);
+      z-index: 1;
+    }
+    .hero__photo__label {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+    .hero__photo__num {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.7rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--paper);
+    }
+
+    .sticker {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 124px;
+      height: 124px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--paper);
+      background: var(--ink);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      z-index: 3;
+      animation: stickerSpin 22s linear infinite;
+    }
+    .sticker::after {
+      content: '';
+      position: absolute;
+      inset: 12px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.35);
+    }
+    .sticker svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .sticker__text {
+      fill: var(--paper);
+      font-family: var(--f-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+    .sticker__core {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--paper);
+      z-index: 1;
+      line-height: 0.9;
+      text-align: center;
+      position: relative;
+    }
+    .sticker__core small {
+      display: block;
+      font-family: var(--f-mono);
+      font-style: normal;
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      margin-top: 0.3rem;
+      opacity: 0.85;
+    }
+
+    @keyframes stickerSpin {
+      to { transform: rotate(-360deg); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .sticker { animation: none; }
+    }
+
+    .hero__fiche {
+      padding: 1.35rem 1.5rem;
+      border: 1px solid var(--line-deep);
+      border-radius: var(--r-md);
+      background: var(--paper-2);
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 1rem;
+      align-items: center;
+    }
+    .hero__fiche__num {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .hero__fiche__text {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.3;
+    }
+    .hero__fiche__cta {
+      font-family: var(--f-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+    .hero__fiche__cta:hover { text-decoration: underline; }
+
+    /* ============ TICKER ============ */
+    .ticker {
+      border-block: 1px solid var(--ink);
+      background: var(--ink);
+      color: var(--paper);
+      overflow: hidden;
+      padding-block: 1.4rem;
+    }
+    .ticker__track {
+      display: flex;
+      gap: 3rem;
+      white-space: nowrap;
+      width: max-content;
+      animation: marquee 42s linear infinite;
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      font-weight: 400;
+    }
+    .ticker__track span { display: inline-flex; align-items: center; gap: 3rem; }
+    .ticker__track b {
+      font-family: var(--f-mono);
+      font-style: normal;
+      font-size: 0.5em;
+      font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.12em;
+    }
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ticker__track { animation: none; }
+    }
+
+    /* ============ SECTION GENERIC ============ */
+    section {
+      padding-block: var(--sec);
+      position: relative;
+    }
+    .section__head {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: end;
+      margin-bottom: clamp(3rem, 5vw, 4.5rem);
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .section__head h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+    }
+    .section__intro {
+      font-size: clamp(1.02rem, 0.95rem + 0.3vw, 1.12rem);
+      color: var(--slate);
+      line-height: 1.6;
+      max-width: 36rem;
+    }
+
+    /* ============ METIER / ABOUT ============ */
+    .about {
+      background: var(--paper-2);
+    }
+    .about__grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .about__num {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(7rem, 16vw, 13rem);
+      line-height: 0.85;
+      color: var(--ink);
+      letter-spacing: -0.04em;
+    }
+    .about__num b {
+      color: var(--blue);
+      font-weight: 300;
+    }
+    .about__num small {
+      display: block;
+      font-family: var(--f-mono);
+      font-style: normal;
+      font-size: 0.09em;
+      color: var(--slate);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 0.5em;
+    }
+    .about__quote {
+      margin: 2rem 0 0 0;
+      padding: 1.5rem 1.75rem;
+      border-left: 2px solid var(--blue);
+      background: var(--paper-2);
+      border-radius: 0 var(--r-md) var(--r-md) 0;
+      font-family: var(--f-display);
+      font-size: clamp(1.15rem, 0.9rem + 0.6vw, 1.4rem);
+      line-height: 1.45;
+      color: var(--ink);
+      font-weight: 400;
+    }
+    .about__quote em {
+      color: var(--blue-deep);
+      font-style: italic;
+    }
+    .about__quote cite {
+      display: block;
+      margin-top: 1rem;
+      font-family: var(--f-mono);
+      font-style: normal;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    .about__body p {
+      font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.18rem);
+      line-height: 1.65;
+      color: var(--slate);
+    }
+    .about__body p + p { margin-top: 1.25rem; }
+    .about__body p strong { color: var(--ink); font-weight: 500; }
+
+    .about__photo-col {
+      display: grid;
+      grid-template-rows: 1.1fr 0.9fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .about__photo-col figure {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      isolation: isolate;
+      min-height: 200px;
+      background: var(--paper-3);
+    }
+    .about__photo-col figure img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 8s var(--ease);
+    }
+    .about__photo-col figure:hover img { transform: scale(1.04); }
+    .about__photo-col figcaption {
+      position: absolute;
+      bottom: 0.9rem;
+      left: 0.9rem;
+      right: 0.9rem;
+      font-family: var(--f-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--paper);
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      align-items: flex-end;
+    }
+    .about__photo-col figure::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(12, 18, 32, 0.55));
+      pointer-events: none;
+    }
+    .about__photo-col figcaption span:last-child { opacity: 0.8; }
+    .about__photo-col figcaption * { position: relative; z-index: 1; }
+
+    .about__side {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+    .about__metric {
+      padding: 1.25rem;
+      border: 1px solid var(--line);
+      border-radius: var(--r-md);
+      background: var(--paper);
+    }
+    .about__metric b {
+      display: block;
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.7rem, 1.5rem + 0.8vw, 2.3rem);
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .about__metric span {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    /* ============ GALLERY BAND ============ */
+    .gallery {
+      padding: 0;
+      background: var(--paper);
+    }
+    .gallery__track {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--ink);
+      max-width: 2400px;
+      margin: 0 auto;
+    }
+    .gallery__track figure {
+      position: relative;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+      background: var(--paper-3);
+      isolation: isolate;
+      margin: 0;
+    }
+    .gallery__track img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s var(--ease);
+    }
+    .gallery__track figure:hover img { transform: scale(1.06); }
+    .gallery__track figure::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(12, 18, 32, 0.65));
+      z-index: 1;
+      pointer-events: none;
+      transition: opacity 0.5s;
+    }
+    .gallery__track figure:hover::before { opacity: 0.5; }
+    .gallery__track figcaption {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 1.1rem 1.25rem;
+      color: var(--paper);
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 0.5rem;
+    }
+    .gallery__track figcaption strong {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.15rem;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .gallery__track figcaption small {
+      font-family: var(--f-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* ============ SAVOIR-FAIRE / SERVICES ============ */
+    .savoir {
+      background: var(--paper);
+    }
+
+    .savoir__list {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid var(--line);
+    }
+
+    .fiche {
+      display: grid;
+      grid-template-columns: 90px 1fr 1.4fr auto;
+      gap: clamp(1rem, 3vw, 3rem);
+      align-items: center;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+      transition: background 0.45s var(--ease), padding-left 0.45s var(--ease);
+    }
+    .fiche:hover {
+      background: var(--blue-soft);
+      padding-left: 1rem;
+    }
+    .fiche__num {
+      font-family: var(--f-mono);
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--blue);
+      letter-spacing: 0.1em;
+    }
+    .fiche__name {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.3vw, 2.1rem);
+      line-height: 1.1;
+    }
+    .fiche__desc {
+      color: var(--slate);
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+    .fiche__arrow {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid var(--line-deep);
+      display: grid;
+      place-items: center;
+      color: var(--ink);
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+      flex-shrink: 0;
+    }
+    .fiche__arrow svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      transition: transform 0.35s var(--ease);
+    }
+    .fiche:hover .fiche__arrow {
+      background: var(--blue);
+      color: var(--paper);
+      border-color: var(--blue);
+    }
+    .fiche:hover .fiche__arrow svg {
+      transform: rotate(-45deg);
+    }
+
+    /* ============ ZONE / DEPARTMENTS ============ */
+    .zone {
+      background: var(--ink);
+      color: var(--paper);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .zone::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 80px 80px;
+      animation: gridDrift 60s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes gridDrift {
+      to { background-position: 80px 80px; }
+    }
+
+    .zone .wrap { position: relative; z-index: 2; }
+
+    .zone .section__head {
+      border-bottom-color: rgba(255, 255, 255, 0.12);
+    }
+    .zone .section__head h2 em { color: #76a8de; }
+    .zone .section__intro { color: rgba(255, 255, 255, 0.7); }
+    .zone .eyebrow { color: #76a8de; }
+    .zone .eyebrow .dot { background: #76a8de; }
+    .zone .chapter-mark { color: rgba(255, 255, 255, 0.55); }
+    .zone .chapter-mark strong { color: #76a8de; }
+
+    .dept-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .dept {
+      display: grid;
+      grid-template-columns: 140px 1fr auto;
+      gap: clamp(1rem, 3vw, 3rem);
+      align-items: center;
+      padding: clamp(1.75rem, 3vw, 2.5rem) 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      transition: padding-left 0.4s var(--ease), background 0.4s var(--ease);
+    }
+    .dept:hover {
+      padding-left: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .dept__num {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(3.5rem, 7vw, 6.2rem);
+      line-height: 0.85;
+      letter-spacing: -0.03em;
+      color: var(--paper);
+    }
+    .dept:hover .dept__num { color: #76a8de; }
+    .dept__name {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.3vw, 2rem);
+      line-height: 1.15;
+    }
+    .dept__name small {
+      display: block;
+      font-family: var(--f-mono);
+      font-style: normal;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 0.4rem;
+    }
+    .dept__cities {
+      font-family: var(--f-mono);
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.7);
+      letter-spacing: 0.04em;
+      max-width: 420px;
+      line-height: 1.6;
+    }
+
+    /* ============ URGENCE ============ */
+    .urgence {
+      background: var(--paper-2);
+      overflow: hidden;
+    }
+    .urgence__grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: center;
+    }
+    .urgence__photo {
+      position: relative;
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      margin-top: 2rem;
+      isolation: isolate;
+    }
+    .urgence__photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .urgence__photo figcaption {
+      position: absolute;
+      inset: auto 0 0 0;
+      background: linear-gradient(180deg, transparent, rgba(12, 18, 32, 0.8));
+      padding: 1.25rem;
+      color: var(--paper);
+      font-family: var(--f-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .urgence__body h2 {
+      font-size: clamp(2.5rem, 5.5vw, 4.6rem);
+      margin-bottom: 1.75rem;
+    }
+    .urgence__body p {
+      font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.18rem);
+      line-height: 1.65;
+      color: var(--slate);
+      max-width: 32rem;
+      margin-bottom: 2rem;
+    }
+    .urgence__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+    .urgence__tags span {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--line-deep);
+      border-radius: var(--r-pill);
+      font-family: var(--f-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      background: var(--paper);
+    }
+
+    .urgence__card {
+      background: var(--ink);
+      color: var(--paper);
+      padding: clamp(2rem, 4vw, 3.5rem);
+      border-radius: var(--r-lg);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .urgence__card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top right, rgba(29, 130, 200, 0.4), transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .urgence__card > * { position: relative; z-index: 1; }
+
+    .urgence__label {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #76a8de;
+      margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .urgence__label::before {
+      content: '';
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #20a464;
+      animation: pulse 1.8s ease-in-out infinite;
+    }
+
+    .urgence__phone {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.25rem;
+      display: block;
+      color: var(--paper);
+    }
+    .urgence__phone:hover { color: #76a8de; }
+
+    .urgence__sub {
+      font-family: var(--f-mono);
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.65);
+      letter-spacing: 0.05em;
+      line-height: 1.6;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 1rem;
+    }
+
+    /* ============ CONTACT / DEVIS ============ */
+    .contact {
+      background: var(--paper);
+    }
+    .contact__grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+    }
+    .contact__body h2 {
+      font-size: clamp(2.5rem, 5.5vw, 4.8rem);
+      margin-bottom: 1.5rem;
+    }
+    .contact__body p {
+      font-size: clamp(1.02rem, 0.95rem + 0.3vw, 1.12rem);
+      color: var(--slate);
+      line-height: 1.65;
+      max-width: 34rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact__info {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .contact__item {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .contact__item:last-child { border-bottom: 1px solid var(--line); }
+    .contact__item dt {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .contact__item dd {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-size: 1.3rem;
+      line-height: 1.3;
+      color: var(--ink);
+    }
+    .contact__item dd small {
+      display: block;
+      font-family: var(--f-body);
+      font-style: normal;
+      font-size: 0.85rem;
+      color: var(--slate);
+      margin-top: 0.25rem;
+      letter-spacing: 0;
+    }
+
+    .contact__form {
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      padding: clamp(1.5rem, 3vw, 2.25rem);
+    }
+    .contact__form h3 {
+      font-family: var(--f-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+      color: var(--ink);
+    }
+    .contact__form .hint {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 1rem;
+    }
+    .field label {
+      font-family: var(--f-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      background: var(--paper);
+      border: 1px solid var(--line-deep);
+      border-radius: var(--r-sm);
+      padding: 0.85rem 1rem;
+      font-family: var(--f-body);
+      font-size: 0.98rem;
+      color: var(--ink);
+      width: 100%;
+      transition: border-color 0.25s;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+    }
+    .field textarea { resize: vertical; min-height: 110px; }
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .contact__form .btn { margin-top: 0.5rem; width: 100%; justify-content: center; }
+
+    /* ============ FOOTER ============ */
+    .footer {
+      background: var(--ink);
+      color: var(--paper);
+      padding-block: clamp(3.5rem, 6vw, 5.5rem) 2rem;
+    }
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+    .footer__brand p {
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 28rem;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .footer__col h4 {
+      font-family: var(--f-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #76a8de;
+      margin-bottom: 1rem;
+    }
+    .footer__col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+    .footer__col a {
+      font-size: 0.92rem;
+      color: rgba(255, 255, 255, 0.75);
+      transition: color 0.25s;
+    }
+    .footer__col a:hover { color: var(--paper); }
+    .footer__bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1.5rem;
+      font-family: var(--f-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.5);
+      text-transform: uppercase;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* ============ REVEAL (below-the-fold) ============ */
+    @media (prefers-reduced-motion: no-preference) {
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+      .reveal.in { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============ RESPONSIVE ============ */
+    /* Tablette large : on cache le texte "Disponible aujourd'hui" avant que ça ne se tasse */
+    @media (max-width: 1180px) {
+      .header__phone { display: none; }
+    }
+
+    /* Tablette : bascule en burger pour laisser respirer le logo + CTA */
+    @media (max-width: 960px) {
+      .nav { display: none; }
+      .burger { display: block; }
+      .header__cta .btn-primary { padding: 0.75rem 1.1rem; font-size: 0.88rem; }
+    }
+
+    @media (max-width: 1024px) {
+      .hero__grid { grid-template-columns: 1fr; }
+      .hero__visual { max-width: 520px; }
+      .about__grid { grid-template-columns: 1fr; }
+      .urgence__grid { grid-template-columns: 1fr; }
+      .contact__grid { grid-template-columns: 1fr; }
+      .section__head { grid-template-columns: 1fr; gap: 1.5rem; }
+      .footer__top { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .fiche { grid-template-columns: 60px 1fr auto; }
+      .fiche__desc { grid-column: 1 / -1; padding-left: calc(60px + 1rem); margin-top: 0.3rem; }
+      .dept { grid-template-columns: auto 1fr; }
+      .dept__cities { grid-column: 1 / -1; padding-top: 0.5rem; }
+      .hero__specs { grid-template-columns: 1fr 1fr; }
+      .hero__fiche { grid-template-columns: auto 1fr; }
+      .hero__fiche__cta { grid-column: 1 / -1; }
+      .about__num { font-size: clamp(6.5rem, 30vw, 12rem); }
+      .field-row { grid-template-columns: 1fr; }
+      .footer__top { grid-template-columns: 1fr; }
+      .gallery__track { grid-template-columns: repeat(2, 1fr); }
+      .about__photo-col { grid-template-rows: auto auto; }
+      .footer__bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+      .sticker { width: 100px; height: 100px; top: -12px; right: -12px; }
+      .sticker__core { font-size: 1.5rem; }
+    }
+
+    /* Mobile : on cache le CTA du header pour laisser de la place au burger */
+    @media (max-width: 560px) {
+      .header__cta .btn-primary { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero__title { font-size: clamp(2.8rem, 14vw, 4.5rem); }
+      .fiche { grid-template-columns: 48px 1fr; }
+      .fiche__arrow { grid-row: 1; grid-column: 2; justify-self: end; width: 40px; height: 40px; }
+      .fiche__desc { padding-left: calc(48px + 0.75rem); }
+      .hero__specs { grid-template-columns: 1fr; }
+    }
+
+    /* ============ A11Y ============ */
+    *:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================= HEADER ========================= -->
+  <header class="header">
+    <div class="wrap header__row">
+      <a href="#" class="logo" aria-label="Couverture De San — accueil">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 120 72" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 4 66 L 32 14 L 60 52 L 88 14 L 116 66 L 102 66 L 88 40 L 60 72 L 32 40 L 18 66 Z" />
+            <rect x="50" y="32" width="20" height="20" rx="1"/>
+            <rect x="53" y="35" width="6" height="6" fill="#fff"/>
+            <rect x="61" y="35" width="6" height="6" fill="#fff"/>
+            <rect x="53" y="43" width="6" height="6" fill="#fff"/>
+            <rect x="61" y="43" width="6" height="6" fill="#fff"/>
+            <rect x="4" y="66" width="112" height="3"/>
+          </svg>
+        </span>
+        <span class="logo__name"><span>Couverture</span><em>DE&nbsp;SAN</em></span>
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#metier">Le métier</a>
+        <a href="#savoir">Savoir-faire</a>
+        <a href="#zone">Zone</a>
+        <a href="#urgence">Urgence</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header__cta">
+        <a class="header__phone" href="tel:+33145364484" aria-label="Appeler Couverture De San">
+          <span class="live" aria-hidden="true"></span>
+          <span>01&nbsp;45 36&nbsp;44 84</span>
+        </a>
+        <a href="#contact" class="btn btn-primary">
+          Demander un devis
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <button class="burger" aria-label="Menu" aria-expanded="false" aria-controls="mobileNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+      <a href="#metier">Le métier</a>
+      <a href="#savoir">Savoir-faire</a>
+      <a href="#zone">Zone d'intervention</a>
+      <a href="#urgence">Urgence</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="btn btn-primary">Demander un devis</a>
+    </div>
+  </header>
+
+  <!-- ========================= HERO ========================= -->
+  <section class="hero grid-paper" aria-labelledby="heroH1">
+    <div class="wrap">
+      <div class="hero__meta">
+        <span class="chapter-mark"><strong>00</strong> · Couverture De San · Depuis 1975</span>
+        <span class="chapter-mark"><strong>→</strong> Savigny-sur-Orge · Île-de-France</span>
+      </div>
+
+      <div class="hero__grid">
+        <div>
+          <p class="eyebrow"><span class="dot"></span> Artisan couvreur · Père en fils depuis 1975</p>
+          <h1 class="hero__h1 h-display hero__title">
+            Tuiles, ardoise &amp; <em>zinc</em>,<br>
+            le métier <em>tenu</em><br>
+            depuis 50 ans.
+          </h1>
+          <p class="hero__sub">
+            Entreprise familiale à <strong>Savigny-sur-Orge</strong> (91). Couverture neuve et rénovation,
+            zinguerie, charpente, ravalement de façade et isolation thermique.
+            Interventions sur l'Essonne et les départements <strong>77·78·92·94</strong>.
+            Dépannage fuite et tuile cassée dans la journée.
+          </p>
+          <div class="hero__ctas">
+            <a href="#contact" class="btn btn-primary">
+              Devis gratuit
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#urgence" class="btn btn-ghost">
+              Dépannage urgence
+            </a>
+          </div>
+
+          <div class="hero__specs">
+            <div class="spec">
+              <span class="spec__label">Ancienneté</span>
+              <span class="spec__value" data-counter data-target="50" data-suffix=" ans">0 <span class="u">ans</span></span>
+            </div>
+            <div class="spec">
+              <span class="spec__label">Départements</span>
+              <span class="spec__value">5<span class="u">ZONES</span></span>
+            </div>
+            <div class="spec">
+              <span class="spec__label">Garantie</span>
+              <span class="spec__value">10<span class="u">ans</span></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <div class="sticker" aria-hidden="true">
+            <svg viewBox="0 0 130 130">
+              <defs>
+                <path id="stickerCurve" d="M 65,65 m -48,0 a 48,48 0 1,1 96,0 a 48,48 0 1,1 -96,0"/>
+              </defs>
+              <text class="sticker__text">
+                <textPath href="#stickerCurve" startOffset="0">· DEPUIS 1975 · ARTISAN COUVREUR · SAVIGNY-SUR-ORGE · DEPUIS 1975 · ARTISAN COUVREUR · SAVIGNY · </textPath>
+              </text>
+            </svg>
+            <div class="sticker__core">
+              50<small>ANS</small>
+            </div>
+          </div>
+
+          <figure class="hero__photo">
+            <img
+              src="img/05-toiture-finie.png"
+              alt="Toiture tuile mécanique refaite par Couverture De San à Savigny-sur-Orge"
+              loading="eager"
+              width="790"
+              height="501">
+            <figcaption>
+              <span class="hero__photo__label">Chantier livré · Savigny-sur-Orge</span>
+              <span class="hero__photo__num">N° 001</span>
+            </figcaption>
+          </figure>
+
+          <div class="hero__fiche">
+            <span class="hero__fiche__num">N° 002</span>
+            <span class="hero__fiche__text">Fuite constatée ? Intervention sous 24 h sur l'Essonne.</span>
+            <a href="tel:+33145364484" class="hero__fiche__cta">01 45 36 44 84 →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= TICKER ========================= -->
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__track">
+      <span>
+        <span>Tuiles</span><b>01</b>
+        <span>Ardoise</span><b>02</b>
+        <span>Zinc</span><b>03</b>
+        <span>Zinguerie</span><b>04</b>
+        <span>Charpente</span><b>05</b>
+        <span>Étanchéité</span><b>06</b>
+        <span>Faîtages</span><b>07</b>
+        <span>Noues</span><b>08</b>
+        <span>Chéneaux</span><b>09</b>
+        <span>Velux</span><b>10</b>
+        <span>Ravalement</span><b>11</b>
+        <span>Isolation</span><b>12</b>
+      </span>
+      <span aria-hidden="true">
+        <span>Tuiles</span><b>01</b>
+        <span>Ardoise</span><b>02</b>
+        <span>Zinc</span><b>03</b>
+        <span>Zinguerie</span><b>04</b>
+        <span>Charpente</span><b>05</b>
+        <span>Étanchéité</span><b>06</b>
+        <span>Faîtages</span><b>07</b>
+        <span>Noues</span><b>08</b>
+        <span>Chéneaux</span><b>09</b>
+        <span>Velux</span><b>10</b>
+        <span>Ravalement</span><b>11</b>
+        <span>Isolation</span><b>12</b>
+      </span>
+    </div>
+  </div>
+
+  <!-- ========================= A PROPOS — CHAPITRE 01 ========================= -->
+  <section id="metier" class="about">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <p class="chapter-mark"><strong>Chapitre 01</strong></p>
+          <h2 class="h-display" style="margin-top: .75rem;">
+            Le <em>métier</em>, transmis
+          </h2>
+        </div>
+        <p class="section__intro">
+          Couverture De San est une entreprise familiale fondée en 1975 à Savigny-sur-Orge.
+          Trois générations d'artisans, même exigence de détail sur chaque faîtage, chaque solin, chaque noue.
+        </p>
+      </div>
+
+      <div class="about__grid reveal">
+        <div>
+          <div class="about__num">
+            50<b>.</b><small>Années de métier</small>
+          </div>
+          <blockquote class="about__quote">
+            « On ne fait pas un toit deux fois.<br>
+            <em>Le premier coup doit être le bon.</em> »
+            <cite>— Carnet d'atelier · De San</cite>
+          </blockquote>
+        </div>
+        <div class="about__body">
+          <p>
+            <strong>Depuis un demi-siècle</strong>, Couverture De San pose, restaure et entretient
+            les toitures d'Île-de-France. L'atelier est né dans l'Essonne en 1975, et la famille
+            n'a jamais quitté le département. Aujourd'hui, une seconde antenne à Fresnes (94)
+            permet de couvrir le Val-de-Marne et les Hauts-de-Seine.
+          </p>
+          <p>
+            Le choix de la matière — tuile terre cuite, ardoise naturelle, zinc —
+            reste au cœur du métier. Nos équipes travaillent à l'ancienne :
+            relevés au pied du toit, pose à la main, soudure zinc, scellement des solins.
+            Pas de sous-traitance, <strong>pas de raccourci sur l'étanchéité</strong>.
+          </p>
+
+          <div class="about__side">
+            <div class="about__metric">
+              <b>1975</b>
+              <span>Année de fondation</span>
+            </div>
+            <div class="about__metric">
+              <b>3</b>
+              <span>Générations</span>
+            </div>
+            <div class="about__metric">
+              <b>2</b>
+              <span>Antennes · 91 &amp; 94</span>
+            </div>
+            <div class="about__metric">
+              <b>24 h</b>
+              <span>Dépannage urgence</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= SAVOIR-FAIRE — CHAPITRE 02 ========================= -->
+  <section id="savoir" class="savoir">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <p class="chapter-mark"><strong>Chapitre 02</strong></p>
+          <h2 class="h-display" style="margin-top: .75rem;">
+            Savoir-<em>faire</em>
+          </h2>
+        </div>
+        <p class="section__intro">
+          De la tuile mécanique à l'ardoise naturelle, de la charpente à l'isolation par l'extérieur.
+          Sept expertises maîtrisées en interne, sans sous-traitance.
+        </p>
+      </div>
+
+      <div class="savoir__list">
+
+        <div class="fiche reveal">
+          <span class="fiche__num">N° 001</span>
+          <div class="fiche__name h-display">Couverture <em>tuile</em></div>
+          <p class="fiche__desc">Pose neuve, rénovation complète, reprise ponctuelle. Tuile mécanique, plate, terre cuite ou béton. Respect des pentes, des recouvrements et des règles du DTU 40.21.</p>
+          <span class="fiche__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+
+        <div class="fiche reveal">
+          <span class="fiche__num">N° 002</span>
+          <div class="fiche__name h-display">Couverture <em>ardoise</em></div>
+          <p class="fiche__desc">Ardoise naturelle d'Espagne ou synthétique. Pose au crochet, au clou ou au tenon. Rénovation des toitures anciennes en respectant le trait d'origine.</p>
+          <span class="fiche__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+
+        <div class="fiche reveal">
+          <span class="fiche__num">N° 003</span>
+          <div class="fiche__name h-display">Zinc &amp; <em>zinguerie</em></div>
+          <p class="fiche__desc">Couverture zinc à joint debout, gouttières, chéneaux, noues, solins, bandes de rive et habillage de lucarnes. Soudure à l'étain, fixation invisible.</p>
+          <span class="fiche__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+
+        <div class="fiche reveal">
+          <span class="fiche__num">N° 004</span>
+          <div class="fiche__name h-display">Charpente <em>bois</em></div>
+          <p class="fiche__desc">Charpente traditionnelle, fermette industrielle, reprise de pannes, traitement anti-xylophage. Consolidation avant recouvrement et remplacement de pièces vermoulues.</p>
+          <span class="fiche__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+
+        <div class="fiche reveal">
+          <span class="fiche__num">N° 005</span>
+          <div class="fiche__name h-display">Ravalement de <em>façade</em></div>
+          <p class="fiche__desc">Nettoyage haute pression, traitement hydrofuge, enduit monocouche ou à la chaux, peinture siloxane. Reprise de fissures, rejointoiement et hydrogommage.</p>
+          <span class="fiche__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+
+        <div class="fiche reveal">
+          <span class="fiche__num">N° 006</span>
+          <div class="fiche__name h-display">Isolation <em>thermique</em></div>
+          <p class="fiche__desc">Isolation des combles perdus, des rampants et des murs par l'extérieur (ITE). Laine de verre, de roche, ouate de cellulose, polyuréthane. Conforme RE2020.</p>
+          <span class="fiche__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+
+        <div class="fiche reveal">
+          <span class="fiche__num">N° 007</span>
+          <div class="fiche__name h-display">Dépannage <em>urgence</em></div>
+          <p class="fiche__desc">Fuite, tuile cassée, ardoise envolée, infiltration après tempête. Bâchage sous 24 h et réparation dans la foulée. Interventions toute l'année sur le 91.</p>
+          <span class="fiche__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= GALLERY BAND ========================= -->
+  <section class="gallery" aria-label="Chantiers de Couverture De San">
+    <div class="gallery__track">
+      <figure class="reveal">
+        <img
+          src="img/01-chantier-depose.png"
+          alt="Dépose de tuiles et charpente apparente pendant un chantier Couverture De San"
+          loading="lazy">
+        <figcaption>
+          <strong>Dépose &amp; charpente</strong>
+          <small>N° 012</small>
+        </figcaption>
+      </figure>
+      <figure class="reveal">
+        <img
+          src="img/02-ecran-liteaux.png"
+          alt="Écran sous-toiture noir et liteaux bois posés, étape technique avant pose des tuiles"
+          loading="lazy">
+        <figcaption>
+          <strong>Écran sous-toiture &amp; liteaux</strong>
+          <small>N° 013</small>
+        </figcaption>
+      </figure>
+      <figure class="reveal">
+        <img
+          src="img/03-chantier-banderole.png"
+          alt="Maison pavillonnaire en cours de réfection avec banderole DE SAN"
+          loading="lazy">
+        <figcaption>
+          <strong>Chantier en cours · Essonne</strong>
+          <small>N° 014</small>
+        </figcaption>
+      </figure>
+      <figure class="reveal">
+        <img
+          src="img/04-chantier-ouvriers.png"
+          alt="Couvreurs De San au travail sur charpente et liteaux d'une maison"
+          loading="lazy">
+        <figcaption>
+          <strong>Pose sur liteaux · équipe</strong>
+          <small>N° 015</small>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ========================= ZONE — CHAPITRE 03 ========================= -->
+  <section id="zone" class="zone">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <p class="chapter-mark"><strong>Chapitre 03</strong></p>
+          <h2 class="h-display" style="margin-top: .75rem; color: #fff;">
+            Zone d'<em>intervention</em>
+          </h2>
+        </div>
+        <p class="section__intro">
+          Île-de-France · 5 départements. Savigny-sur-Orge pour le sud, Fresnes pour le Val-de-Marne et le 92.
+          Au-delà : nous consulter selon le chantier.
+        </p>
+      </div>
+
+      <div class="dept-list">
+
+        <div class="dept reveal">
+          <div class="dept__num">91</div>
+          <div class="dept__name h-display">
+            Essonne
+            <small>Siège · Savigny-sur-Orge</small>
+          </div>
+          <div class="dept__cities">Évry · Corbeil-Essonnes · Massy · Palaiseau · Longjumeau · Brétigny · Athis-Mons · Juvisy-sur-Orge · Viry-Châtillon · Draveil.</div>
+        </div>
+
+        <div class="dept reveal">
+          <div class="dept__num">94</div>
+          <div class="dept__name h-display">
+            Val-de-Marne
+            <small>Antenne · Fresnes</small>
+          </div>
+          <div class="dept__cities">Fresnes · L'Haÿ-les-Roses · Villejuif · Vitry-sur-Seine · Créteil · Cachan · Arcueil · Thiais · Choisy-le-Roi · Orly.</div>
+        </div>
+
+        <div class="dept reveal">
+          <div class="dept__num">92</div>
+          <div class="dept__name h-display">
+            Hauts-de-Seine
+            <small>Sud 92</small>
+          </div>
+          <div class="dept__cities">Antony · Sceaux · Bourg-la-Reine · Châtenay-Malabry · Clamart · Châtillon · Fontenay-aux-Roses · Le Plessis-Robinson · Montrouge.</div>
+        </div>
+
+        <div class="dept reveal">
+          <div class="dept__num">78</div>
+          <div class="dept__name h-display">
+            Yvelines
+            <small>Est 78</small>
+          </div>
+          <div class="dept__cities">Versailles · Vélizy-Villacoublay · Buc · Jouy-en-Josas · Guyancourt · Viroflay · Montigny-le-Bretonneux · Le Chesnay.</div>
+        </div>
+
+        <div class="dept reveal">
+          <div class="dept__num">77</div>
+          <div class="dept__name h-display">
+            Seine-et-Marne
+            <small>Ouest 77</small>
+          </div>
+          <div class="dept__cities">Melun · Brie-Comte-Robert · Combs-la-Ville · Lieusaint · Savigny-le-Temple · Pontault-Combault · Ozoir-la-Ferrière.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= URGENCE — CHAPITRE 04 ========================= -->
+  <section id="urgence" class="urgence">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <p class="chapter-mark"><strong>Chapitre 04</strong></p>
+          <h2 class="h-display" style="margin-top: .75rem;">
+            L'<em>urgence</em> couverture
+          </h2>
+        </div>
+        <p class="section__intro">
+          Une fuite n'attend pas la fin de semaine. Bâchage de protection sous 24 h, diagnostic précis,
+          réparation dans la foulée. Sur le 91 et les départements limitrophes.
+        </p>
+      </div>
+
+      <div class="urgence__grid reveal">
+        <div class="urgence__body">
+          <h2 class="h-display">
+            Toiture <em>percée</em> ?<br>
+            On arrive.
+          </h2>
+          <p>
+            Après une tempête, une chute de tuile, un ruissellement dans les combles :
+            nous passons en priorité, bâchons pour stopper l'infiltration, puis planifions la réparation.
+            Le bâchage temporaire est gratuit pour les sinistres couverts assurance.
+          </p>
+          <div class="urgence__tags">
+            <span>Fuite de toiture</span>
+            <span>Tuile cassée</span>
+            <span>Ardoise envolée</span>
+            <span>Infiltration</span>
+            <span>Bâchage 24 h</span>
+            <span>Expertise assurance</span>
+          </div>
+        </div>
+
+        <div class="urgence__card">
+          <span class="urgence__label">En ligne · Disponible</span>
+          <a href="tel:+33145364484" class="urgence__phone h-display">
+            01&nbsp;45 36&nbsp;44 84
+          </a>
+          <p style="color: rgba(255,255,255,0.8); font-size: 1rem; line-height: 1.55; margin-bottom: 1.25rem;">
+            Standard atelier — Savigny-sur-Orge. Appel traité dans la journée,
+            rappel sous 30 min en cas d'urgence.
+          </p>
+          <div class="urgence__sub">
+            Lundi – Vendredi · 8 h → 18 h<br>
+            Samedi matin · sur rendez-vous<br>
+            Urgence week-end · astreinte SMS
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= CONTACT — CHAPITRE 05 ========================= -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <div class="section__head">
+        <div>
+          <p class="chapter-mark"><strong>Chapitre 05</strong></p>
+          <h2 class="h-display" style="margin-top: .75rem;">
+            Un toit à <em>reprendre</em> ?
+          </h2>
+        </div>
+        <p class="section__intro">
+          Devis gratuit après visite sur site. Nous remettons l'étude sous 5 à 7 jours,
+          avec le détail des matériaux, la durée du chantier et le mode de paiement.
+        </p>
+      </div>
+
+      <div class="contact__grid">
+        <div class="contact__body reveal">
+          <p>
+            Pour une toiture neuve, une rénovation lourde ou un simple diagnostic,
+            nous nous déplaçons sans engagement. L'atelier est ouvert du lundi au vendredi
+            à Savigny-sur-Orge.
+          </p>
+
+          <dl class="contact__info">
+            <div class="contact__item">
+              <dt>Téléphone</dt>
+              <dd><a href="tel:+33145364484">01 45 36 44 84</a><small>Standard atelier · lundi → vendredi</small></dd>
+            </div>
+            <div class="contact__item">
+              <dt>Siège</dt>
+              <dd>55 rue des Noyers<small>91600 Savigny-sur-Orge · Essonne</small></dd>
+            </div>
+            <div class="contact__item">
+              <dt>Antenne</dt>
+              <dd>Fresnes<small>Val-de-Marne · 94</small></dd>
+            </div>
+            <div class="contact__item">
+              <dt>Horaires</dt>
+              <dd>Lundi – Vendredi<small>8 h → 18 h · samedi sur RDV</small></dd>
+            </div>
+            <div class="contact__item">
+              <dt>Zone</dt>
+              <dd>Île-de-France<small>77 · 78 · 91 · 92 · 94</small></dd>
+            </div>
+            <div class="contact__item">
+              <dt>E-mail</dt>
+              <dd>contact@desancouverture.fr<small>Réponse sous 24 h ouvrées</small></dd>
+            </div>
+          </dl>
+        </div>
+
+        <form class="contact__form reveal" onsubmit="event.preventDefault(); this.reset(); alert('Demande envoyée — nous revenons vers vous sous 24 h.');">
+          <span class="hint">N° 008 · Demande de devis</span>
+          <h3>Quelques informations &amp; nous vous rappelons.</h3>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fnom">Nom</label>
+              <input id="fnom" type="text" required autocomplete="family-name">
+            </div>
+            <div class="field">
+              <label for="fprenom">Prénom</label>
+              <input id="fprenom" type="text" required autocomplete="given-name">
+            </div>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="ftel">Téléphone</label>
+              <input id="ftel" type="tel" required autocomplete="tel">
+            </div>
+            <div class="field">
+              <label for="fcp">Code postal</label>
+              <input id="fcp" type="text" required autocomplete="postal-code" maxlength="5" inputmode="numeric">
+            </div>
+          </div>
+          <div class="field">
+            <label for="fnature">Nature du projet</label>
+            <select id="fnature" required>
+              <option value="">Choisir…</option>
+              <option>Couverture neuve</option>
+              <option>Rénovation complète</option>
+              <option>Zinguerie (gouttières, solins…)</option>
+              <option>Dépannage urgent / fuite</option>
+              <option>Ravalement de façade</option>
+              <option>Isolation thermique</option>
+              <option>Autre</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fmsg">Précisions</label>
+            <textarea id="fmsg" rows="4" placeholder="Type de toiture, surface approximative, état actuel…"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">
+            Envoyer la demande
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= FOOTER ========================= -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="#" class="logo">
+            <span class="logo__mark" aria-hidden="true">
+              <svg viewBox="0 0 120 72" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 4 66 L 32 14 L 60 52 L 88 14 L 116 66 L 102 66 L 88 40 L 60 72 L 32 40 L 18 66 Z" />
+                <rect x="50" y="32" width="20" height="20" rx="1"/>
+                <rect x="53" y="35" width="6" height="6" fill="#0c1220"/>
+                <rect x="61" y="35" width="6" height="6" fill="#0c1220"/>
+                <rect x="53" y="43" width="6" height="6" fill="#0c1220"/>
+                <rect x="61" y="43" width="6" height="6" fill="#0c1220"/>
+                <rect x="4" y="66" width="112" height="3"/>
+              </svg>
+            </span>
+            <span class="logo__name"><span>Couverture</span><em>DE&nbsp;SAN</em></span>
+          </a>
+          <p>
+            Artisan couvreur à Savigny-sur-Orge depuis 1975. Entreprise familiale,
+            intervention sur les départements 77 · 78 · 91 · 92 · 94.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>Métiers</h4>
+          <ul>
+            <li><a href="#savoir">Couverture tuile</a></li>
+            <li><a href="#savoir">Couverture ardoise</a></li>
+            <li><a href="#savoir">Zinc &amp; zinguerie</a></li>
+            <li><a href="#savoir">Charpente</a></li>
+            <li><a href="#savoir">Ravalement</a></li>
+            <li><a href="#savoir">Isolation</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Zones</h4>
+          <ul>
+            <li><a href="#zone">Essonne · 91</a></li>
+            <li><a href="#zone">Val-de-Marne · 94</a></li>
+            <li><a href="#zone">Hauts-de-Seine · 92</a></li>
+            <li><a href="#zone">Yvelines · 78</a></li>
+            <li><a href="#zone">Seine-et-Marne · 77</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#contact">55 rue des Noyers, 91600</a></li>
+            <li><a href="#contact">Antenne Fresnes · 94</a></li>
+            <li><a href="tel:+33145364484">01 45 36 44 84</a></li>
+            <li><a href="mailto:contact@desancouverture.fr">contact@desancouverture.fr</a></li>
+            <li><a href="#contact">Devis gratuit</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 · Couverture De San · Savigny-sur-Orge</span>
+        <span>Maquette Skypeo · Fiche N° 009</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ============ MOBILE NAV ============
+    (function () {
+      const burger = document.querySelector('.burger');
+      const mNav = document.getElementById('mobileNav');
+      if (!burger || !mNav) return;
+      function setOpen(open) {
+        burger.setAttribute('aria-expanded', open);
+        mNav.setAttribute('aria-hidden', !open);
+        mNav.classList.toggle('open', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      }
+      burger.addEventListener('click', () => setOpen(burger.getAttribute('aria-expanded') !== 'true'));
+      mNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+      document.addEventListener('click', e => {
+        if (mNav.classList.contains('open') && !mNav.contains(e.target) && !burger.contains(e.target)) setOpen(false);
+      });
+    })();
+
+    // ============ REVEAL ============
+    (function () {
+      if (!('IntersectionObserver' in window)) { document.querySelectorAll('.reveal').forEach(e => e.classList.add('in')); return; }
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    })();
+
+    // ============ COUNTER ============
+    (function () {
+      const els = document.querySelectorAll('[data-counter]');
+      if (!els.length) return;
+      const animate = el => {
+        const target = parseInt(el.dataset.target, 10);
+        const suffix = el.dataset.suffix || '';
+        const unitHTML = el.querySelector('.u')?.outerHTML || '';
+        const duration = 1400;
+        const start = performance.now();
+        function step(now) {
+          const t = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const v = Math.floor(target * eased);
+          el.innerHTML = v + (unitHTML ? ' ' + unitHTML : suffix);
+          if (t < 1) requestAnimationFrame(step);
+          else el.innerHTML = target + (unitHTML ? ' ' + unitHTML : suffix);
+        }
+        requestAnimationFrame(step);
+      };
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.5 });
+      els.forEach(el => io.observe(el));
+    })();
+
+    // ============ GSAP — HEADER SHRINK + DEPT HIGHLIGHT ============
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Header drops shadow when scrolled
+      ScrollTrigger.create({
+        start: 80,
+        end: 99999,
+        toggleClass: { className: 'is-scrolled', targets: '.header' }
+      });
+    }
+
+    // Smooth anchor (fallback)
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href');
+        if (id === '#' || id.length < 2) return;
+        const t = document.querySelector(id);
+        if (!t) return;
+        e.preventDefault();
+        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+
+</html>
