@@ -1,5 +1,14 @@
 # Skypeo-maquettes — Atelier de maquettes web premium
 
+## Chemin local du repo
+
+`C:\Users\timot\skypeo-maquettes\`
+
+C'est depuis ce dossier que Tim lance les commandes `git add / commit / push`.
+
+**⚠️ RÈGLE ABSOLUE — À LIRE EN PREMIER À CHAQUE SESSION**
+Toutes les maquettes doivent être créées **directement dans `C:\Users\timot\skypeo-maquettes\<slug>\`**, JAMAIS dans le dossier temporaire `outputs`. Cowork ne monte PAS ce dossier par défaut : dès le début de chaque session, Claude DOIT appeler `request_cowork_directory` avec le chemin `C:\Users\timot\skypeo-maquettes` AVANT de commencer quoi que ce soit. Ne jamais créer le projet dans `outputs` puis « copier » — créer directement dans le dossier du user. Si Claude oublie cette étape, Tim ne voit pas les fichiers et doit tout refaire.
+
 ## Description
 
 Atelier de refonte one-page pour PME/artisans. Vincent et Tim envoient une URL, Claude sort une maquette moderne dans un sous-dossier, push git → Vercel déploie auto sur `https://skypeo-maquettes.vercel.app/<slug>`.
@@ -81,8 +90,21 @@ Quand un nouveau sous-dossier est détecté ou créé dans ce répertoire, insta
 { "liveServer.settings.port": 5501 }
 ```
 
-### 3. Git
+### 3. Dossier `img/` (vide)
+Créer `<slug>/img/` systématiquement, même vide. Raison : les photos uploadées dans le chat ne sont PAS persistées en fichiers dans la sandbox Claude — elles sont visibles visuellement mais introuvables sur disque. Le seul moyen d'avoir les photos client en `.png`/`.jpg` exploitables, c'est que l'utilisateur les dépose manuellement dans `<slug>/img/` depuis son explorateur Windows. Le dossier doit donc exister dès le début pour qu'il sache où les glisser.
+
+### 4. Git
 Un seul repo git à la racine `Skypeo-maquettes/` (déjà init). Chaque projet = un sous-dossier committé dans le repo principal.
+
+### Workflow photos recommandé
+
+**Option A — Upload upfront (préféré).** Le user envoie l'URL du site + les photos client dans le premier message. Claude les intègre dès le build initial, pas de retours inutiles.
+
+**Option B — Upload après coup.** Si Claude a déjà livré une première version et qu'il manque des photos, il dit au user : « dépose les photos dans `<slug>/img/`, dis-moi quand c'est fait ». Le user glisse-dépose depuis Windows. Claude les nomme, les référence, et relance.
+
+**À éviter** : Claude ne doit jamais tenter de `curl`/`wget`/`WebFetch` le site client pour récupérer les photos — le proxy egress bloque tous les domaines client (vérifié : `desancouverture.fr`, Google, DuckDuckGo, web.archive.org tous `EGRESS_BLOCKED`). Perte de temps garantie.
+
+**À éviter aussi** : Unsplash sans vérification humaine. Les IDs Unsplash retournent souvent des photos qui n'ont rien à voir avec le sujet (déjà vu : "charpente bois traditionnelle" → samosas frites). Claude ne peut PAS vérifier le contenu Unsplash depuis la sandbox (`images.unsplash.com` bloqué en lecture). Donc : soit photos client, soit pas de photos et section repensée en typographique.
 
 ---
 
@@ -271,10 +293,25 @@ Le skill prend les 4 captures (320/375/768/1440) et répond par écrit aux 7 que
 
 ### Livraison
 
-1. `git add <slug>/` → `git commit` → `git push`
-2. Vercel déploie automatiquement sur `https://skypeo-maquettes.vercel.app/<slug>`
-3. Donner l'URL à Vincent / Tim
-4. Mettre à jour `memory/<slug>.md`, `memory/styles-used.md`, `memory/MEMORY.md`
+**IMPORTANT — Claude ne commit/push JAMAIS depuis la sandbox.** Deux raisons dures, vérifiées :
+1. **`.git/index.lock` bloqué.** Un process fantôme a laissé un lock à la racine, que la sandbox ne peut ni `rm`, ni `unlink` (permissions refusées même si le fichier appartient à l'utilisateur sandbox). Toute commande `git add` échoue avec `fatal: Unable to create '.git/index.lock': File exists`.
+2. **Pas de credentials pour push** — le `git push` n'est possible que depuis la machine de Vincent/Tim.
+
+**Conséquence : Claude donne TOUJOURS les commandes à lancer en local, à la fin de chaque maquette.** Ne pas tenter de git add/commit/push dans le sandbox, ça perd 3 minutes à chaque fois.
+
+Commandes à fournir au user (à copier dans son terminal, dossier `skypeo-maquettes/`) :
+
+```bash
+rm -f .git/index.lock
+git add <slug>/
+git commit -m "<slug>: <registre> — <phrase courte>"
+git push
+```
+
+Puis :
+1. Vercel déploie automatiquement sur `https://skypeo-maquettes.vercel.app/<slug>`
+2. Donner l'URL à Vincent / Tim
+3. Mettre à jour `memory/<slug>.md`, `memory/styles-used.md`, `memory/MEMORY.md`
 
 ---
 
@@ -336,34 +373,4 @@ Si le résultat ressemble à un site ChatGPT/Lovable/v0, c'est raté.
 
 **Couleurs et effets** : gradients violet/indigo/bleu (`#6366f1`, `#8b5cf6`), glassmorphism gratuit, neon glow, dark mode "tech startup" sur un artisan, mesh gradients flous
 
-**Layouts paresseux** : hero centré H1 + sous-titre + 2 boutons (marqueur n°1), bento grid sans raison, features en grille de 3 (icône + titre + 2 lignes), timeline verticale 1→4, stats centrées "+150 clients / 10 ans", tout centré/symétrique
-
-**Typo et icônes** : Inter/Geist/DM Sans en display, icônes Lucide/Heroicons en grille, emojis dans les titres, tailles timides 14-48px (oser 12px ET 180px sur la même page)
-
-**Contenu** : headlines vagues ("Transformez votre business"), CTA génériques ("Get started"), témoignages en 3 cards avec avatar rond + ★★★★★, "Trusted by" logos gris, FAQ accordion si le client n'en a pas besoin
-
-**Composants suspects** : badge "✨ New", sticky CTA flottant bas-droite, cookie banner stylé sur une maquette, "Scroll to explore" flèche qui bounce, pricing cards "Starter / Pro / Enterprise" si le client ne vend pas par abonnement
-
-**Test final** : "Ce site pourrait-il appartenir à n'importe quel autre business du même secteur ?" Si oui → manque l'ADN. Ajouter métier, matière, imperfection assumée.
-
----
-
-## Skills à utiliser
-
-Sur ce projet, utiliser systématiquement :
-
-- **`scrape-site`** — Phase 1 automatisée (brief complet à partir d'une URL)
-- **`gsap-patterns`** — patterns GSAP copy-paste par registre (ScrollTrigger, SplitText, Flip, DrawSVG, MorphSVG)
-- **`anti-cliche-check`** — gate de livraison en Phase 3 (lecture des 4 captures + réponse aux 7 questions)
-
-Skills optionnels disponibles :
-- `motion` — documentation Framer Motion (React seulement, non utilisé sur ce projet)
-- `design-taste-frontend` et `stitch-design-taste` dans `C:/Users/monke/.agents/skills/` (inspiration typo/style)
-
----
-
-## Après livraison
-
-- Mettre à jour `memory/<slug>.md` avec résumé projet (registre, palette, patterns utilisés, photos d'où)
-- Mettre à jour `memory/styles-used.md` avec nouveau style + registre
-- Mettre à jour `memory/MEMORY.md` avec lien
+**Layouts paresseux** : hero centré H1 + sous-titre + 2 boutons (marqueur n°1), bento grid sans raison, features en grille de 3 (icône + titre + 2 lignes), timeline verticale 1→4, stats centrées "

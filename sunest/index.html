@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sun Est — Installateur photovoltaïque Grand-Est · Pompey (54)</title>
+  <meta name="description" content="Sun Est — Relevé, dossier, pose, SAV. Installation photovoltaïque en autoconsommation ou revente, bornes de recharge, maintenance tout constructeur. 10 départements du Grand Est.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    /* =========================================================
+       RESET & VARIABLES
+    ========================================================= */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream:       #f1ebe0;
+      --cream-soft:  #e8e0d2;
+      --cream-deep:  #ddd4c1;
+      --ink:         #1a2332;
+      --ink-soft:    #2a3545;
+      --ink-dim:     #475268;
+      --ochre:       #d97706;
+      --ochre-warm:  #f2a038;
+      --ochre-deep:  #a85a04;
+      --grid:        rgba(26, 35, 50, 0.09);
+      --grid-strong: rgba(26, 35, 50, 0.18);
+
+      --r-sm: 6px;
+      --r-md: 10px;
+      --r-lg: 18px;
+      --r-xl: 28px;
+      --r-pill: 999px;
+
+      --font-display: "Instrument Serif", serif;
+      --font-mono:    "JetBrains Mono", ui-monospace, monospace;
+      --font-body:    "Inter", system-ui, sans-serif;
+
+      --max-w: 1280px;
+      --section-pad: clamp(64px, 10vw, 140px);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
+      line-height: 1.55;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Papier millimétré très discret en fond fixe */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.55;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 56px 56px, 56px 56px;
+    }
+
+    /* Grain papier */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.5;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320'%3E%3Cfilter id='t'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0.1 0 0 0 0.06 0 0.08 0 0 0.04 0 0 0.04 0 0.02 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23t)'/%3E%3C/svg%3E");
+    }
+
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+    img { height: auto; object-fit: cover; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding-inline: clamp(20px, 4vw, 48px);
+      position: relative;
+      z-index: 10;
+    }
+
+    .mono { font-family: var(--font-mono); letter-spacing: 0.02em; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--ink-dim);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 22px; height: 1px;
+      background: var(--ink-dim);
+    }
+
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 0.98;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+    em { font-style: italic; }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: background .35s, backdrop-filter .35s, border-color .35s;
+      border-bottom: 1px solid transparent;
+    }
+    .header.scrolled {
+      background: rgba(241, 235, 224, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom-color: var(--grid-strong);
+    }
+    .header .inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .brand {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 28px;
+      line-height: 1;
+    }
+    .brand .dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--ochre);
+      display: inline-block;
+      transform: translateY(-2px);
+      box-shadow: 0 0 0 4px rgba(217,119,6,0.15);
+    }
+    .brand-mark {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--ink-dim);
+      text-transform: uppercase;
+    }
+    .nav {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav a {
+      position: relative;
+      padding: 4px 0;
+      color: var(--ink);
+      opacity: 0.85;
+      transition: opacity .2s;
+    }
+    .nav a:hover { opacity: 1; }
+    .nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 100%;
+      bottom: 0;
+      height: 1px;
+      background: var(--ochre);
+      transition: right .3s;
+    }
+    .nav a:hover::after { right: 0; }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: var(--ink);
+      color: var(--cream);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      border-radius: var(--r-pill);
+      border: none;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
+    .cta:hover { background: var(--ochre); transform: translateY(-1px); }
+    .cta .arrow {
+      display: inline-flex;
+      width: 14px; height: 14px;
+      align-items: center;
+      justify-content: center;
+    }
+    .cta.ghost { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+    .cta.ghost:hover { background: var(--ink); color: var(--cream); }
+    .cta.ochre { background: var(--ochre); color: var(--cream); }
+    .cta.ochre:hover { background: var(--ochre-deep); }
+
+    .burger {
+      display: none;
+      width: 44px; height: 44px;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: 1px solid var(--ink);
+      border-radius: var(--r-pill);
+      cursor: pointer;
+    }
+    .burger span {
+      width: 18px; height: 1.5px;
+      background: var(--ink);
+      position: relative;
+      display: block;
+      transition: transform .3s, opacity .3s;
+    }
+    .burger span::before, .burger span::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform .3s;
+    }
+    .burger span::before { top: -6px; }
+    .burger span::after  { top: 6px; }
+    .burger[aria-expanded="true"] span { background: transparent; }
+    .burger[aria-expanded="true"] span::before { transform: translateY(6px) rotate(45deg); }
+    .burger[aria-expanded="true"] span::after  { transform: translateY(-6px) rotate(-45deg); }
+
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--cream);
+      z-index: 90;
+      padding: 120px 32px 40px;
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-display);
+      font-size: 40px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--grid-strong);
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+    .hero {
+      position: relative;
+      padding: 140px 0 80px;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: clamp(40px, 6vw, 80px);
+      align-items: end;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .hero-stamps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .stamp {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      padding: 6px 12px;
+      border: 1px solid var(--grid-strong);
+      border-radius: var(--r-pill);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      background: rgba(241, 235, 224, 0.6);
+    }
+    .stamp .live-dot {
+      width: 6px; height: 6px;
+      background: var(--ochre);
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+      transform: translateY(-1px);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.5); }
+      50% { opacity: 0.5; box-shadow: 0 0 0 6px rgba(217, 119, 6, 0); }
+    }
+
+    .hero h1 {
+      font-size: clamp(3.2rem, 9vw, 8.6rem);
+      letter-spacing: -0.025em;
+    }
+    .hero h1 em {
+      color: var(--ochre);
+    }
+    .hero h1 .small {
+      font-style: italic;
+      font-size: 0.55em;
+      letter-spacing: -0.01em;
+      display: block;
+      color: var(--ink-soft);
+      margin-top: 8px;
+    }
+
+    .hero-sub {
+      font-size: clamp(14px, 1.2vw, 17px);
+      color: var(--ink-soft);
+      max-width: 44ch;
+      line-height: 1.55;
+    }
+
+    .hero-sheet {
+      position: relative;
+      border: 1px solid var(--grid-strong);
+      background: rgba(241, 235, 224, 0.4);
+      border-radius: var(--r-md);
+      padding: 20px 22px;
+      max-width: 420px;
+    }
+    .hero-sheet .sheet-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 1px dashed var(--grid-strong);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+    .hero-sheet .lines {
+      display: grid;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      color: var(--ink-soft);
+    }
+    .hero-sheet .lines span.k { color: var(--ink-dim); }
+    .hero-sheet .lines span.v { color: var(--ink); }
+
+    /* SVG solar arc + schéma de toiture */
+    .hero-viz {
+      grid-column: 1 / -1;
+      position: relative;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px dashed var(--grid-strong);
+      min-height: 260px;
+    }
+    .sun-arc {
+      position: absolute;
+      inset: 0 0 0 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    .roof-svg {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      display: block;
+    }
+    .roof-svg .panel {
+      fill: rgba(26,35,50,0.03);
+      stroke: var(--ink);
+      stroke-width: 1.2;
+    }
+    .roof-svg .panel-dash {
+      fill: none;
+      stroke: var(--ink);
+      stroke-width: 0.6;
+      stroke-dasharray: 2 4;
+    }
+    .roof-svg .line { fill: none; stroke: var(--ink); stroke-width: 1.2; }
+    .roof-svg .line-thin { fill: none; stroke: var(--ink); stroke-width: 0.8; }
+    .roof-svg .label { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; fill: var(--ink-dim); text-transform: uppercase; }
+    .roof-svg .ochre { stroke: var(--ochre); }
+    .roof-svg .fill-ochre { fill: var(--ochre); }
+
+    .sun-body {
+      filter: drop-shadow(0 0 18px rgba(242, 160, 56, 0.5));
+    }
+
+    .angle-arc {
+      fill: none;
+      stroke: var(--ochre);
+      stroke-width: 1.2;
+      stroke-dasharray: 3 3;
+    }
+
+    /* Ticker vocabulaire */
+    .ticker {
+      position: relative;
+      border-top: 1px solid var(--grid-strong);
+      border-bottom: 1px solid var(--grid-strong);
+      background: var(--ink);
+      color: var(--cream);
+      overflow: hidden;
+      padding: 14px 0;
+      margin-top: 40px;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 48px;
+      white-space: nowrap;
+      animation: ticker 32s linear infinite;
+      will-change: transform;
+    }
+    .ticker-track span {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .ticker-track span .sep {
+      margin: 0 14px;
+      color: var(--ochre);
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* =========================================================
+       PROOF BAND
+    ========================================================= */
+    .proof {
+      padding: 80px 0 40px;
+      position: relative;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--grid-strong);
+      border-bottom: 1px solid var(--grid-strong);
+    }
+    .proof-cell {
+      padding: 32px 28px;
+      border-right: 1px dashed var(--grid-strong);
+      position: relative;
+    }
+    .proof-cell:last-child { border-right: none; }
+    .proof-cell .n {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6vw, 86px);
+      color: var(--ink);
+      line-height: 1;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .proof-cell .n .u {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--ochre);
+      letter-spacing: 0.1em;
+    }
+    .proof-cell .lbl {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-top: 14px;
+      display: block;
+    }
+
+    /* =========================================================
+       METHODE — 4 fiches numérotées
+    ========================================================= */
+    .methode {
+      padding: var(--section-pad) 0;
+      position: relative;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 60px;
+    }
+    .section-head h2 {
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      letter-spacing: -0.02em;
+    }
+    .section-head h2 em { color: var(--ochre); }
+    .section-head p {
+      color: var(--ink-soft);
+      font-size: 15px;
+      max-width: 48ch;
+    }
+
+    .fiches {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2px;
+      background: var(--grid-strong);
+      border: 1px solid var(--grid-strong);
+    }
+    .fiche {
+      background: var(--cream);
+      padding: 40px 36px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      position: relative;
+      min-height: 340px;
+    }
+    .fiche .fiche-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed var(--grid-strong);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+    .fiche .num {
+      font-family: var(--font-display);
+      font-size: clamp(80px, 9vw, 140px);
+      color: var(--ochre);
+      line-height: 0.8;
+      font-style: italic;
+    }
+    .fiche h3 {
+      font-size: clamp(1.8rem, 2.4vw, 2.6rem);
+      font-style: italic;
+    }
+    .fiche p {
+      color: var(--ink-soft);
+      font-size: 14.5px;
+      line-height: 1.6;
+      max-width: 42ch;
+    }
+    .fiche .fiche-foot {
+      margin-top: auto;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .fiche .fiche-foot .bullet {
+      width: 6px; height: 6px;
+      background: var(--ochre);
+      border-radius: 50%;
+    }
+
+    /* =========================================================
+       SERVICES
+    ========================================================= */
+    .services {
+      padding: var(--section-pad) 0;
+      background: var(--ink);
+      color: var(--cream);
+      position: relative;
+      border-top: 1px solid var(--ink-soft);
+    }
+    .services::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+    }
+    .services .container { position: relative; z-index: 5; }
+    .services h2 { color: var(--cream); }
+    .services .section-head p { color: rgba(241, 235, 224, 0.7); }
+
+    .srv-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .srv-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 1.6fr 180px;
+      gap: 40px;
+      padding: 38px 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      align-items: start;
+      transition: background .3s, padding-left .3s;
+      cursor: default;
+    }
+    .srv-row:hover {
+      background: rgba(217, 119, 6, 0.06);
+      padding-left: 20px;
+    }
+    .srv-row .n {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ochre);
+      letter-spacing: 0.18em;
+    }
+    .srv-row h3 {
+      font-size: clamp(1.6rem, 2.2vw, 2.4rem);
+      color: var(--cream);
+      font-style: italic;
+    }
+    .srv-row p {
+      font-size: 14.5px;
+      color: rgba(241, 235, 224, 0.72);
+      line-height: 1.6;
+      max-width: 54ch;
+    }
+    .srv-row .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+    .srv-row .tag {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--r-pill);
+      color: rgba(241, 235, 224, 0.85);
+    }
+
+    /* =========================================================
+       ZONE — Carte SVG Grand Est
+    ========================================================= */
+    .zone {
+      padding: var(--section-pad) 0;
+      position: relative;
+    }
+    .zone-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 60px;
+      align-items: center;
+    }
+    .zone-text h2 {
+      font-size: clamp(2.4rem, 5vw, 4.4rem);
+      margin-bottom: 24px;
+    }
+    .zone-text h2 em { color: var(--ochre); }
+    .zone-text p {
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+      max-width: 48ch;
+    }
+
+    .dept-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .dept-chip {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 6px 12px;
+      border: 1px solid var(--grid-strong);
+      background: rgba(255,255,255,0.3);
+      border-radius: var(--r-pill);
+      color: var(--ink-soft);
+    }
+    .dept-chip strong { color: var(--ochre); margin-right: 6px; font-weight: 500; }
+
+    .zone-map {
+      position: relative;
+      border: 1px solid var(--grid-strong);
+      border-radius: var(--r-md);
+      background: rgba(255,255,255,0.3);
+      padding: 28px;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+    .zone-map::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    .zone-map svg {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 2;
+    }
+    .zone-map .region-path {
+      fill: rgba(217, 119, 6, 0.05);
+      stroke: var(--ink);
+      stroke-width: 1.3;
+      stroke-linejoin: round;
+    }
+    .zone-map .city-dot { fill: var(--ochre); }
+    .zone-map .city-ring { fill: none; stroke: var(--ochre); stroke-width: 0.8; opacity: 0.6; }
+    .zone-map .city-label { font-family: var(--font-mono); font-size: 8.5px; fill: var(--ink); letter-spacing: 0.05em; }
+    .zone-map .pompey-dot { fill: var(--ink); }
+    .zone-map .pompey-ring-pulse {
+      fill: none;
+      stroke: var(--ochre);
+      stroke-width: 1;
+      transform-origin: center;
+      animation: ring 2.6s ease-out infinite;
+    }
+    @keyframes ring {
+      0% { r: 3; opacity: 1; }
+      100% { r: 28; opacity: 0; }
+    }
+    .zone-map .map-head {
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      right: 20px;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      z-index: 3;
+    }
+    .zone-map .compass {
+      position: absolute;
+      right: 24px;
+      bottom: 22px;
+      width: 42px;
+      height: 42px;
+      z-index: 3;
+    }
+
+    /* =========================================================
+       POUR QUI
+    ========================================================= */
+    .pourqui {
+      padding: 40px 0 var(--section-pad);
+    }
+    .pourqui-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 50px;
+    }
+    .pq-card {
+      background: var(--cream-soft);
+      border: 1px solid var(--grid-strong);
+      border-radius: var(--r-md);
+      padding: 26px 24px;
+      position: relative;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      transition: transform .3s, background .3s;
+    }
+    .pq-card:hover { transform: translateY(-3px); background: var(--cream); }
+    .pq-card .pq-n {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ochre);
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+    .pq-card h4 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 1.8vw, 1.9rem);
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .pq-card p {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-top: auto;
+    }
+
+    /* =========================================================
+       TEMOIGNAGES
+    ========================================================= */
+    .avis {
+      padding: var(--section-pad) 0;
+      background: var(--cream-soft);
+      border-top: 1px solid var(--grid-strong);
+      border-bottom: 1px solid var(--grid-strong);
+    }
+    .avis-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 50px;
+      gap: 40px;
+    }
+    .avis-head h2 { font-size: clamp(2.4rem, 5vw, 4.4rem); max-width: 14ch; }
+    .avis-head h2 em { color: var(--ochre); }
+    .avis-score {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--ink-dim);
+      letter-spacing: 0.1em;
+    }
+    .avis-score .star {
+      display: inline-block;
+      color: var(--ochre);
+      font-size: 22px;
+      letter-spacing: -2px;
+    }
+    .avis-score .num {
+      font-family: var(--font-display);
+      font-size: 34px;
+      color: var(--ink);
+      font-style: italic;
+      line-height: 1;
+    }
+
+    .avis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .avis-card {
+      background: var(--cream);
+      border: 1px solid var(--grid-strong);
+      border-radius: var(--r-md);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      position: relative;
+    }
+    .avis-card .q {
+      font-family: var(--font-display);
+      font-size: 70px;
+      line-height: 0.5;
+      color: var(--ochre);
+      font-style: italic;
+    }
+    .avis-card p {
+      font-family: var(--font-display);
+      font-size: 19px;
+      line-height: 1.4;
+      font-style: italic;
+      color: var(--ink);
+    }
+    .avis-card .meta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-dim);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-top: 18px;
+      border-top: 1px dashed var(--grid-strong);
+      margin-top: auto;
+    }
+    .avis-card .meta strong { color: var(--ink); font-weight: 500; }
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+    .contact {
+      padding: var(--section-pad) 0;
+      position: relative;
+    }
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .contact h2 {
+      font-size: clamp(3rem, 7vw, 6rem);
+      letter-spacing: -0.025em;
+    }
+    .contact h2 em { color: var(--ochre); }
+    .contact p.lead {
+      font-size: 16px;
+      color: var(--ink-soft);
+      margin-top: 20px;
+      max-width: 48ch;
+      line-height: 1.6;
+    }
+
+    .contact-info {
+      margin-top: 36px;
+      display: grid;
+      gap: 18px;
+    }
+    .contact-item {
+      padding: 18px 22px;
+      border: 1px solid var(--grid-strong);
+      border-radius: var(--r-md);
+      background: rgba(255,255,255,0.3);
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+    .contact-item .k {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-dim);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .contact-item .v {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-style: italic;
+    }
+    .contact-item .v.big {
+      font-size: clamp(24px, 2.4vw, 36px);
+    }
+
+    .contact-form {
+      border: 1px solid var(--ink);
+      border-radius: var(--r-md);
+      padding: 32px 28px;
+      background: var(--cream);
+      position: relative;
+    }
+    .form-head {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 16px;
+      margin-bottom: 22px;
+      border-bottom: 1px dashed var(--grid-strong);
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+    }
+    .field {
+      display: block;
+      margin-bottom: 16px;
+    }
+    .field label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-bottom: 6px;
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--grid-strong);
+      padding: 10px 0 10px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-bottom-color: var(--ochre);
+    }
+    .field textarea { min-height: 100px; resize: vertical; }
+    .contact-form button {
+      width: 100%;
+      margin-top: 16px;
+      padding: 14px 20px;
+      border: none;
+      background: var(--ink);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      border-radius: var(--r-pill);
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .contact-form button:hover { background: var(--ochre); }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    .footer {
+      background: var(--ink);
+      color: var(--cream);
+      padding: 80px 0 30px;
+      position: relative;
+      overflow: hidden;
+    }
+    .footer::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+    }
+    .footer .container { position: relative; z-index: 5; }
+    .footer-brand {
+      font-family: var(--font-display);
+      font-size: clamp(4rem, 14vw, 12rem);
+      line-height: 0.9;
+      letter-spacing: -0.025em;
+      margin-bottom: 50px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 40px;
+    }
+    .footer-brand em { color: var(--ochre); font-style: italic; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .footer-grid h5 {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(241, 235, 224, 0.55);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+    .footer-grid a, .footer-grid p {
+      font-size: 14.5px;
+      color: rgba(241, 235, 224, 0.9);
+      display: block;
+      padding: 4px 0;
+      line-height: 1.55;
+    }
+    .footer-grid a:hover { color: var(--ochre); }
+    .footer-foot {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.15);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: rgba(241, 235, 224, 0.5);
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 1024px) {
+      .hero-top { grid-template-columns: 1fr; }
+      .hero-sheet { max-width: 100%; }
+      .proof-grid { grid-template-columns: repeat(2, 1fr); }
+      .proof-cell:nth-child(2n) { border-right: none; }
+      .proof-cell:nth-child(1), .proof-cell:nth-child(2) { border-bottom: 1px dashed var(--grid-strong); }
+      .section-head { grid-template-columns: 1fr; }
+      .srv-row { grid-template-columns: 50px 1fr; gap: 20px; }
+      .srv-row p, .srv-row .tags { grid-column: 2; }
+      .srv-row .tags { justify-content: flex-start; }
+      .zone-wrap { grid-template-columns: 1fr; }
+      .zone-map { aspect-ratio: 4/3; }
+      .pourqui-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-wrap { grid-template-columns: 1fr; }
+      .avis-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 720px) {
+      .nav { display: none; }
+      .cta.desktop-only { display: none; }
+      .burger { display: flex; }
+      .fiches { grid-template-columns: 1fr; }
+      .hero { padding: 120px 0 60px; }
+      .hero h1 { font-size: clamp(2.6rem, 11vw, 4.4rem); }
+      .proof-cell { padding: 24px 20px; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-foot { flex-direction: column; gap: 10px; }
+      .avis-head { flex-direction: column; align-items: flex-start; }
+      .contact-item { grid-template-columns: 1fr; gap: 6px; }
+      .srv-row { padding: 28px 4px; }
+      .section-head { margin-bottom: 40px; }
+      .ticker-track { gap: 30px; }
+    }
+
+    @media (max-width: 400px) {
+      .pourqui-grid { grid-template-columns: 1fr; }
+      .proof-grid { grid-template-columns: 1fr; }
+      .proof-cell { border-right: none !important; border-bottom: 1px dashed var(--grid-strong); }
+      .proof-cell:last-child { border-bottom: none; }
+    }
+
+    /* Respect prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .ticker-track { animation: none; }
+      .pompey-ring-pulse { animation: none; }
+      .sun-body { animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="container inner">
+      <a href="#" class="brand" aria-label="Sun Est">
+        <span class="dot"></span>
+        <span>Sun<em style="font-style:italic;">·</em>Est</span>
+        <span class="brand-mark">EST. Pompey 54</span>
+      </a>
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#methode">Méthode</a>
+        <a href="#services">Services</a>
+        <a href="#zone">Zone</a>
+        <a href="#avis">Avis</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="cta desktop-only">
+        Demander un relevé
+        <span class="arrow">→</span>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#methode" data-close>Méthode</a>
+    <a href="#services" data-close>Services</a>
+    <a href="#zone" data-close>Zone</a>
+    <a href="#avis" data-close>Avis</a>
+    <a href="#contact" data-close>Contact</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-top">
+        <div class="hero-meta">
+          <div class="hero-stamps">
+            <span class="stamp"><span class="live-dot"></span>Agenda Q2 2026 — ouvert</span>
+            <span class="stamp">N° 810 665 182</span>
+            <span class="stamp">RGE QualiPV</span>
+          </div>
+          <h1>
+            Relevé <em>solaire.</em><br>
+            Plan de toit.<br>
+            Cap plein <em>Sud.</em>
+            <span class="small">Course de 1 380 kWh/kWc relevée depuis Pompey.</span>
+          </h1>
+          <p class="hero-sub">
+            Sun Est est l'installateur photovoltaïque de référence du Grand Est.
+            Particuliers, entreprises, exploitations agricoles, industries et collectivités —
+            maintenance et dépannage tous constructeurs, installation en autoconsommation ou en revente,
+            bornes de recharge pour véhicules électriques.
+          </p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap;">
+            <a href="#contact" class="cta ochre">
+              Demander un devis gratuit
+              <span class="arrow">→</span>
+            </a>
+            <a href="#methode" class="cta ghost">Voir la méthode</a>
+          </div>
+        </div>
+
+        <aside class="hero-sheet" aria-label="Fiche de relevé">
+          <div class="sheet-head">
+            <span>Fiche relevé · N° 001</span>
+            <span>Pl. I</span>
+          </div>
+          <div class="lines">
+            <div><span class="k">/ site</span> &nbsp; <span class="v">Pompey 54340 — Grand Est</span></div>
+            <div><span class="k">/ orient</span> &nbsp;<span class="v">Sud · 180°</span></div>
+            <div><span class="k">/ angle</span> &nbsp; <span class="v">35° pente optimale</span></div>
+            <div><span class="k">/ gisement</span> <span class="v">1 380 kWh·kWc⁻¹·an⁻¹</span></div>
+            <div><span class="k">/ équipe</span> &nbsp;<span class="v">charpentier · couvreur · électricien</span></div>
+            <div><span class="k">/ sav</span> &nbsp;&nbsp;&nbsp;<span class="v">intervention 72 h</span></div>
+            <div style="margin-top:12px; padding-top:12px; border-top:1px dashed var(--grid-strong); color: var(--ochre);">
+              <span class="k">/ statut</span> &nbsp;<span style="color:var(--ochre);">● prêt pour étude</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- VIZ : arc solaire + coupe toiture -->
+      <div class="hero-viz" aria-hidden="true">
+        <!-- Arc solaire -->
+        <svg class="sun-arc" viewBox="0 0 1200 260" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#d97706" stop-opacity="0"/>
+              <stop offset="0.15" stop-color="#d97706" stop-opacity="0.35"/>
+              <stop offset="0.5" stop-color="#f2a038" stop-opacity="0.9"/>
+              <stop offset="0.85" stop-color="#d97706" stop-opacity="0.35"/>
+              <stop offset="1" stop-color="#d97706" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <!-- Course arc -->
+          <path d="M 60 220 Q 600 -40 1140 220" fill="none" stroke="url(#arcGrad)" stroke-width="1.2" stroke-dasharray="3 4"/>
+          <!-- Tick marks -->
+          <g stroke="rgba(26,35,50,0.35)" stroke-width="0.8">
+            <line x1="60" y1="215" x2="60" y2="225"/>
+            <line x1="330" y1="96" x2="330" y2="104"/>
+            <line x1="600" y1="40" x2="600" y2="48"/>
+            <line x1="870" y1="96" x2="870" y2="104"/>
+            <line x1="1140" y1="215" x2="1140" y2="225"/>
+          </g>
+          <g font-family="JetBrains Mono" font-size="9" fill="rgba(26,35,50,0.5)" letter-spacing="1.5">
+            <text x="60" y="242" text-anchor="middle">06:00 · E</text>
+            <text x="330" y="90" text-anchor="middle">09:00</text>
+            <text x="600" y="32" text-anchor="middle">MIDI SOLAIRE · 180°</text>
+            <text x="870" y="90" text-anchor="middle">15:00</text>
+            <text x="1140" y="242" text-anchor="middle">21:00 · O</text>
+          </g>
+          <!-- Sun body (animated along arc) -->
+          <g class="sun-group">
+            <circle class="sun-body" cx="0" cy="0" r="11" fill="#d97706"/>
+            <circle cx="0" cy="0" r="18" fill="none" stroke="#d97706" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.5"/>
+          </g>
+        </svg>
+
+        <!-- Coupe toiture SVG -->
+        <svg class="roof-svg" viewBox="0 0 860 220" preserveAspectRatio="xMidYMid meet">
+          <!-- Baseline -->
+          <line class="line-thin" x1="0" y1="200" x2="860" y2="200"/>
+          <!-- Pente toiture -->
+          <g id="roof-lines">
+            <line class="line" x1="130" y1="200" x2="430" y2="60"/>
+            <line class="line" x1="430" y1="60" x2="730" y2="200"/>
+            <line class="line-thin" x1="130" y1="200" x2="730" y2="200"/>
+          </g>
+          <!-- Panneaux sur versant sud (gauche→sommet) -->
+          <g id="roof-panels">
+            <g transform="translate(170,175) rotate(-27)">
+              <rect class="panel" x="0" y="0" width="54" height="32"/>
+              <line class="panel-dash" x1="18" y1="0" x2="18" y2="32"/>
+              <line class="panel-dash" x1="36" y1="0" x2="36" y2="32"/>
+              <line class="panel-dash" x1="0" y1="16" x2="54" y2="16"/>
+            </g>
+            <g transform="translate(222,150) rotate(-27)">
+              <rect class="panel" x="0" y="0" width="54" height="32"/>
+              <line class="panel-dash" x1="18" y1="0" x2="18" y2="32"/>
+              <line class="panel-dash" x1="36" y1="0" x2="36" y2="32"/>
+              <line class="panel-dash" x1="0" y1="16" x2="54" y2="16"/>
+            </g>
+            <g transform="translate(275,125) rotate(-27)">
+              <rect class="panel" x="0" y="0" width="54" height="32"/>
+              <line class="panel-dash" x1="18" y1="0" x2="18" y2="32"/>
+              <line class="panel-dash" x1="36" y1="0" x2="36" y2="32"/>
+              <line class="panel-dash" x1="0" y1="16" x2="54" y2="16"/>
+            </g>
+            <g transform="translate(328,100) rotate(-27)">
+              <rect class="panel" x="0" y="0" width="54" height="32"/>
+              <line class="panel-dash" x1="18" y1="0" x2="18" y2="32"/>
+              <line class="panel-dash" x1="36" y1="0" x2="36" y2="32"/>
+              <line class="panel-dash" x1="0" y1="16" x2="54" y2="16"/>
+            </g>
+          </g>
+          <!-- Angle 35° -->
+          <path class="angle-arc" d="M 180 200 A 50 50 0 0 1 225 176"/>
+          <text class="label ochre" x="220" y="196" fill="#d97706">35°</text>
+
+          <!-- Cotation pente -->
+          <g stroke="rgba(26,35,50,0.4)" stroke-width="0.6">
+            <line x1="130" y1="210" x2="130" y2="216"/>
+            <line x1="430" y1="210" x2="430" y2="216"/>
+            <line x1="130" y1="213" x2="430" y2="213"/>
+          </g>
+          <text class="label" x="280" y="224" text-anchor="middle">6,40 m versant Sud</text>
+
+          <!-- Indicateur Sud -->
+          <g transform="translate(820, 180)">
+            <circle class="line" cx="0" cy="0" r="14"/>
+            <line class="line-thin" x1="0" y1="-14" x2="0" y2="14"/>
+            <line class="line-thin" x1="-14" y1="0" x2="14" y2="0"/>
+            <text class="label ochre" x="0" y="24" text-anchor="middle" fill="#d97706">S</text>
+            <text class="label" x="0" y="-18" text-anchor="middle">N</text>
+          </g>
+
+          <!-- Chantier stamp -->
+          <g transform="translate(580, 185) rotate(-3)">
+            <rect x="0" y="0" width="170" height="24" fill="none" stroke="#d97706" stroke-width="1" rx="3"/>
+            <text class="label ochre" x="85" y="15" text-anchor="middle" fill="#d97706">· installation validée ·</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Ticker vocabulaire -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Sud 35°<span class="sep">/</span>kWc<span class="sep">/</span>monocristallin<span class="sep">/</span>onduleur<span class="sep">/</span>micro-onduleur<span class="sep">/</span>autoconsommation<span class="sep">/</span>revente<span class="sep">/</span>raccordement Enedis<span class="sep">/</span>Consuel<span class="sep">/</span>RGE QualiPV<span class="sep">/</span>kWh<span class="sep">/</span>dimensionnement<span class="sep">/</span>intégration bac<span class="sep">/</span>surimposition<span class="sep">/</span>string<span class="sep">/</span>chaîne<span class="sep">/</span>traceur I-V<span class="sep">/</span>MPPT<span class="sep">/</span>borne 7,4 kW<span class="sep">/</span></span>
+        <span aria-hidden="true">Sud 35°<span class="sep">/</span>kWc<span class="sep">/</span>monocristallin<span class="sep">/</span>onduleur<span class="sep">/</span>micro-onduleur<span class="sep">/</span>autoconsommation<span class="sep">/</span>revente<span class="sep">/</span>raccordement Enedis<span class="sep">/</span>Consuel<span class="sep">/</span>RGE QualiPV<span class="sep">/</span>kWh<span class="sep">/</span>dimensionnement<span class="sep">/</span>intégration bac<span class="sep">/</span>surimposition<span class="sep">/</span>string<span class="sep">/</span>chaîne<span class="sep">/</span>traceur I-V<span class="sep">/</span>MPPT<span class="sep">/</span>borne 7,4 kW<span class="sep">/</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PROOF BAND ========== -->
+  <section class="proof">
+    <div class="container">
+      <div class="proof-grid">
+        <div class="proof-cell">
+          <div class="n"><span data-count="1000">1&nbsp;000</span><span class="u">+ inst.</span></div>
+          <span class="lbl">installations réalisées</span>
+        </div>
+        <div class="proof-cell">
+          <div class="n"><span data-count="4.8">4,8</span><span class="u">/5 ★</span></div>
+          <span class="lbl">avis Google &amp; Facebook</span>
+        </div>
+        <div class="proof-cell">
+          <div class="n"><span data-count="10">10</span><span class="u">dépts</span></div>
+          <span class="lbl">08·10·51·52·54·55·57·67·68·88</span>
+        </div>
+        <div class="proof-cell">
+          <div class="n"><span data-count="72">72</span><span class="u">h sav</span></div>
+          <span class="lbl">intervention garantie</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== METHODE ========== -->
+  <section class="methode" id="methode">
+    <div class="container">
+      <header class="section-head">
+        <div>
+          <span class="eyebrow">Chapitre 01 · Méthode</span>
+          <h2 style="margin-top:16px;">Quatre étapes,<br>une équipe <em>interne.</em></h2>
+        </div>
+        <p>
+          Zéro sous-traitance. De l'analyse du gisement solaire à l'intervention SAV en 72 heures,
+          tout est porté par les équipes Sun Est — charpentiers, couvreurs, électriciens.
+          Chaque fiche est une étape du compagnonnage solaire.
+        </p>
+      </header>
+
+      <div class="fiches">
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span>Fiche N° 001</span>
+            <span>Pl. I · Analyse</span>
+          </div>
+          <div class="num">01</div>
+          <h3>Analyse &amp; conception.</h3>
+          <p>
+            Analyse approfondie des besoins énergétiques et du potentiel solaire du site.
+            Établissement du profil de consommation pour dimensionner précisément la future installation photovoltaïque.
+          </p>
+          <div class="fiche-foot">
+            <span class="bullet"></span> Profil de consommation — gisement — orientation — angle
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span>Fiche N° 002</span>
+            <span>Pl. II · Dossier</span>
+          </div>
+          <div class="num">02</div>
+          <h3>Gestion <em>administrative.</em></h3>
+          <p>
+            Prise en charge complète des démarches : permis de construire, demande de raccordement auprès d'Enedis,
+            validation de l'installation. Vous signez, on dépose.
+          </p>
+          <div class="fiche-foot">
+            <span class="bullet"></span> Urbanisme — Enedis — Consuel — validations
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span>Fiche N° 003</span>
+            <span>Pl. III · Chantier</span>
+          </div>
+          <div class="num">03</div>
+          <h3>Pose par nos équipes.</h3>
+          <p>
+            Sécurisation du chantier, pose par techniciens spécialisés — charpentiers, couvreurs, électriciens.
+            Mise en service, explications détaillées, nettoyage complet du site, gestion des déchets. Tout en interne.
+          </p>
+          <div class="fiche-foot">
+            <span class="bullet"></span> Sécurité — pose — mise en service — nettoyage
+          </div>
+        </article>
+
+        <article class="fiche">
+          <div class="fiche-head">
+            <span>Fiche N° 004</span>
+            <span>Pl. IV · SAV</span>
+          </div>
+          <div class="num">04</div>
+          <h3>Service <em>après-vente.</em></h3>
+          <p>
+            Intervention dans les 72 h pour le suivi de performance, les questions techniques ou toute demande SAV.
+            Sun Est reste l'interlocuteur unique, années après la pose.
+          </p>
+          <div class="fiche-foot">
+            <span class="bullet"></span> Suivi performance — dépannage — interlocuteur unique
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="services" id="services">
+    <div class="container">
+      <header class="section-head">
+        <div>
+          <span class="eyebrow" style="color:rgba(241,235,224,0.6);"><span style="background:rgba(241,235,224,0.6); display:inline-block; width:22px; height:1px;"></span> Chapitre 02 · Services</span>
+          <h2 style="margin-top:16px; color:var(--cream);">
+            Solaire, borne, <em>entretien</em>.<br>
+            Rien d'autre.
+          </h2>
+        </div>
+        <p style="color: rgba(241,235,224,0.7);">
+          Un périmètre volontairement resserré autour de l'énergie solaire et de la mobilité électrique.
+          Tout constructeur accepté côté SAV.
+        </p>
+      </header>
+
+      <div class="srv-list">
+
+        <div class="srv-row">
+          <div class="n">S · 001</div>
+          <h3>Autoconsommation</h3>
+          <p>Produire et consommer votre propre électricité photovoltaïque. Dimensionnement calibré sur votre profil de consommation annuel, avec ou sans revente du surplus.</p>
+          <div class="tags">
+            <span class="tag">dimensionnement</span>
+            <span class="tag">revente surplus</span>
+          </div>
+        </div>
+
+        <div class="srv-row">
+          <div class="n">S · 002</div>
+          <h3>Revente totale</h3>
+          <p>Installation dédiée à la revente intégrale de l'électricité produite à un fournisseur — tarif d'achat garanti, contrat sur 20 ans.</p>
+          <div class="tags">
+            <span class="tag">tarif d'achat</span>
+            <span class="tag">contrat 20 ans</span>
+          </div>
+        </div>
+
+        <div class="srv-row">
+          <div class="n">S · 003</div>
+          <h3>Bornes de recharge VE</h3>
+          <p>Pose de bornes de recharge pour véhicules électriques, particuliers et professionnels. Intégration avec l'installation solaire quand elle existe.</p>
+          <div class="tags">
+            <span class="tag">wallbox 7,4 kW</span>
+            <span class="tag">triphasé 22 kW</span>
+          </div>
+        </div>
+
+        <div class="srv-row">
+          <div class="n">S · 004</div>
+          <h3>Maintenance &amp; dépannage</h3>
+          <p>Entretien, diagnostic et réparation des installations photovoltaïques — toutes marques. Nettoyage panneaux, contrôle onduleur, mesure de performance.</p>
+          <div class="tags">
+            <span class="tag">toutes marques</span>
+            <span class="tag">SAV 72 h</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ZONE ========== -->
+  <section class="zone" id="zone">
+    <div class="container">
+      <div class="zone-wrap">
+        <div class="zone-text">
+          <span class="eyebrow">Chapitre 03 · Zone couverte</span>
+          <h2 style="margin-top:18px;">Dix départements<br>du <em>Grand Est</em>.</h2>
+          <p>
+            Sun Est est l'installateur de référence pour les professionnels souhaitant intégrer
+            des solutions photovoltaïques dans le Grand Est, exclusivement.
+          </p>
+          <p>
+            Depuis Pompey (54), les équipes rayonnent vers Strasbourg, Nancy, Metz, Reims, Mulhouse,
+            Besançon, Troyes, Colmar, Belfort, Thionville, Montbéliard, Dijon, Chalon-sur-Saône,
+            Charleville-Mézières — et toutes leurs communes environnantes.
+          </p>
+
+          <div class="dept-chips">
+            <span class="dept-chip"><strong>08</strong>Ardennes</span>
+            <span class="dept-chip"><strong>10</strong>Aube</span>
+            <span class="dept-chip"><strong>51</strong>Marne</span>
+            <span class="dept-chip"><strong>52</strong>Hte-Marne</span>
+            <span class="dept-chip"><strong>54</strong>M-et-M</span>
+            <span class="dept-chip"><strong>55</strong>Meuse</span>
+            <span class="dept-chip"><strong>57</strong>Moselle</span>
+            <span class="dept-chip"><strong>67</strong>Bas-Rhin</span>
+            <span class="dept-chip"><strong>68</strong>Ht-Rhin</span>
+            <span class="dept-chip"><strong>88</strong>Vosges</span>
+          </div>
+        </div>
+
+        <div class="zone-map" aria-hidden="true">
+          <div class="map-head">
+            <span>Zone opérée · Grand Est</span>
+            <span>échelle 1/2 500 000</span>
+          </div>
+
+          <svg viewBox="0 0 400 400">
+            <!-- Contour stylisé Grand Est -->
+            <path class="region-path" d="
+              M 90 80
+              L 140 62
+              L 200 56
+              L 260 58
+              L 310 74
+              L 340 108
+              L 356 150
+              L 362 200
+              L 344 250
+              L 320 286
+              L 286 320
+              L 242 340
+              L 194 346
+              L 146 332
+              L 108 300
+              L 78 258
+              L 66 206
+              L 68 160
+              L 76 118 Z
+            "/>
+
+            <!-- Pompey (HQ) + pulse -->
+            <g transform="translate(210, 210)">
+              <circle class="pompey-ring-pulse" cx="0" cy="0" r="3"/>
+              <circle class="pompey-dot" cx="0" cy="0" r="5"/>
+              <circle class="city-ring" cx="0" cy="0" r="12"/>
+              <text class="city-label" x="10" y="-8" style="font-weight:600;">POMPEY · HQ</text>
+            </g>
+
+            <!-- Autres villes -->
+            <g>
+              <circle class="city-dot" cx="170" cy="210" r="3"/>
+              <text class="city-label" x="140" y="206">Nancy</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="205" cy="160" r="3"/>
+              <text class="city-label" x="213" y="156">Metz</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="310" cy="172" r="3"/>
+              <text class="city-label" x="318" y="170">Strasbourg</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="126" cy="108" r="3"/>
+              <text class="city-label" x="82" y="104">Reims</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="260" cy="300" r="3"/>
+              <text class="city-label" x="265" y="314">Belfort</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="304" cy="232" r="3"/>
+              <text class="city-label" x="310" y="230">Colmar</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="310" cy="266" r="3"/>
+              <text class="city-label" x="316" y="270">Mulhouse</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="155" cy="178" r="3"/>
+              <text class="city-label" x="126" y="175">Verdun</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="110" cy="240" r="3"/>
+              <text class="city-label" x="74" y="244">Troyes</text>
+            </g>
+            <g>
+              <circle class="city-dot" cx="96" cy="68" r="3"/>
+              <text class="city-label" x="56" y="66">Charleville</text>
+            </g>
+
+            <!-- Grid lignes guides (coordonnées fictives) -->
+            <g stroke="rgba(26,35,50,0.15)" stroke-dasharray="2 4" stroke-width="0.5">
+              <line x1="0" y1="210" x2="400" y2="210"/>
+              <line x1="210" y1="0" x2="210" y2="400"/>
+            </g>
+          </svg>
+
+          <!-- Boussole -->
+          <svg class="compass" viewBox="0 0 40 40">
+            <circle cx="20" cy="20" r="18" fill="rgba(241,235,224,0.8)" stroke="rgba(26,35,50,0.4)" stroke-width="0.8"/>
+            <polygon points="20,5 22,20 20,35 18,20" fill="#d97706"/>
+            <polygon points="20,5 22,20 18,20" fill="#1a2332"/>
+            <text x="20" y="4" font-family="JetBrains Mono" font-size="7" fill="#1a2332" text-anchor="middle">N</text>
+            <text x="20" y="40" font-family="JetBrains Mono" font-size="7" fill="#d97706" text-anchor="middle">S</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== POUR QUI ========== -->
+  <section class="pourqui">
+    <div class="container">
+      <header class="section-head">
+        <div>
+          <span class="eyebrow">Chapitre 04 · Public</span>
+          <h2 style="margin-top:16px;">Particuliers, pros,<br><em>collectivités.</em></h2>
+        </div>
+        <p>
+          Un service sur mesure pour chaque typologie de site : de la maison individuelle
+          à la toiture industrielle, en passant par les hangars agricoles et les bâtiments publics.
+        </p>
+      </header>
+
+      <div class="pourqui-grid">
+        <article class="pq-card">
+          <span class="pq-n">P · 01</span>
+          <h4>Particuliers</h4>
+          <p>Autoconsommation résidentielle, intégration bac ou surimposition, revente du surplus. Bornes VE associées.</p>
+        </article>
+        <article class="pq-card">
+          <span class="pq-n">P · 02</span>
+          <h4>Entreprises</h4>
+          <p>Toitures commerciales, bâtiments tertiaires, ombrières de parking. Contrats sur-mesure pour site ouvert au public.</p>
+        </article>
+        <article class="pq-card">
+          <span class="pq-n">P · 03</span>
+          <h4>Agriculture</h4>
+          <p>Hangars, silos, bâtiments d'élevage. Agrivoltaïsme en surimposition bac acier, autoconsommation et revente totale.</p>
+        </article>
+        <article class="pq-card">
+          <span class="pq-n">P · 04</span>
+          <h4>Collectivités</h4>
+          <p>Écoles, gymnases, mairies, équipements publics. Marchés publics suivis par un interlocuteur unique.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AVIS ========== -->
+  <section class="avis" id="avis">
+    <div class="container">
+      <header class="avis-head">
+        <h2><em>Un boulot sérieux</em>, du début à la fin.</h2>
+        <div class="avis-score">
+          <span class="num">4,82</span>
+          <span class="star">★★★★★</span>
+          <span>Google · Facebook<br>&gt; 60 avis</span>
+        </div>
+      </header>
+
+      <div class="avis-grid">
+        <article class="avis-card">
+          <span class="q">«</span>
+          <p>Travail très professionnel. Chantier propre. Installateurs sympathiques. 23 panneaux photovoltaïques posés sans accrocs.</p>
+          <div class="meta"><strong>Client particulier</strong> · installation 23 panneaux — 54</div>
+        </article>
+        <article class="avis-card">
+          <span class="q">«</span>
+          <p>Une entreprise sérieuse du début à la fin. Équipe à l'écoute, qui répond aux questions pendant le chantier.</p>
+          <div class="meta"><strong>Client particulier</strong> · autoconsommation — 57</div>
+        </article>
+        <article class="avis-card">
+          <span class="q">«</span>
+          <p>Travaux réalisés dans les délais. Explications claires à la mise en service. Le site a été laissé propre, comme promis.</p>
+          <div class="meta"><strong>Client professionnel</strong> · toiture tertiaire — 67</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-wrap">
+        <div>
+          <span class="eyebrow">Chapitre 05 · Contact</span>
+          <h2 style="margin-top:18px;">
+            Votre toit,<br>
+            notre <em>relevé.</em>
+          </h2>
+          <p class="lead">
+            Donnez-nous votre commune, votre type de bâtiment et votre consommation annuelle —
+            nous revenons avec un dimensionnement, un calendrier et un chiffrage.
+            Zéro spéculation, du kWc mesuré.
+          </p>
+
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="k">/ siège</span>
+              <span class="v">136 Bd de Finlande · 54340 Pompey</span>
+            </div>
+            <div class="contact-item">
+              <span class="k">/ téléphone</span>
+              <a href="tel:+33781340948" class="v big">07 81 34 09 48</a>
+            </div>
+            <div class="contact-item">
+              <span class="k">/ courriel</span>
+              <a href="mailto:contact@sunest.fr" class="v">contact@sunest.fr</a>
+            </div>
+            <div class="contact-item">
+              <span class="k">/ sav</span>
+              <span class="v">Intervention sous 72 h</span>
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Relevé envoyé · merci';">
+          <div class="form-head">
+            <span>Fiche relevé · à remplir</span>
+            <span>Pl. V</span>
+          </div>
+          <div class="field">
+            <label for="nom">Nom</label>
+            <input id="nom" type="text" placeholder="Dupont" required>
+          </div>
+          <div class="field">
+            <label for="tel">Téléphone</label>
+            <input id="tel" type="tel" placeholder="06 00 00 00 00" required>
+          </div>
+          <div class="field">
+            <label for="commune">Commune</label>
+            <input id="commune" type="text" placeholder="Metz, Strasbourg, Charleville…" required>
+          </div>
+          <div class="field">
+            <label for="type">Type de site</label>
+            <select id="type">
+              <option>Maison individuelle</option>
+              <option>Bâtiment tertiaire</option>
+              <option>Exploitation agricole</option>
+              <option>Industrie</option>
+              <option>Collectivité</option>
+              <option>Borne de recharge VE</option>
+              <option>Maintenance / SAV</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="msg">Précisions</label>
+            <textarea id="msg" placeholder="Surface, orientation, consommation annuelle si connue…"></textarea>
+          </div>
+          <button type="submit">Envoyer le relevé →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">Sun<em>·</em>Est</div>
+      <div class="footer-grid">
+        <div>
+          <h5>Installateur photovoltaïque Grand Est</h5>
+          <p>Installation en autoconsommation ou revente, bornes VE, maintenance tout constructeur. Équipes internes — zéro sous-traitance. Intervention dans 10 départements depuis Pompey.</p>
+        </div>
+        <div>
+          <h5>Sommaire</h5>
+          <a href="#methode">Méthode</a>
+          <a href="#services">Services</a>
+          <a href="#zone">Zone couverte</a>
+          <a href="#avis">Avis clients</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <h5>Contact</h5>
+          <a href="tel:+33781340948">07 81 34 09 48</a>
+          <a href="mailto:contact@sunest.fr">contact@sunest.fr</a>
+          <p>136 Bd de Finlande<br>54340 Pompey</p>
+        </div>
+        <div>
+          <h5>Mentions</h5>
+          <p>SAS Sun Est<br>SIREN 810 665 182<br>Certifié RGE · QualiPV</p>
+        </div>
+      </div>
+      <div class="footer-foot">
+        <span>© Sun Est 2026 · Grand Est uniquement</span>
+        <span>Plein Sud · 180° · 35°</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Header scroll effet */
+    const header = document.getElementById('header');
+    const onScroll = () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* Burger menu */
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    burger.addEventListener('click', () => {
+      const open = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', !open);
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = !open ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('[data-close]').forEach(a =>
+      a.addEventListener('click', () => {
+        burger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      })
+    );
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        burger.setAttribute('aria-expanded', 'false');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
+
+    /* Course du soleil — animation continue via requestAnimationFrame */
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const arcSun = document.querySelector('.sun-group');
+      if (arcSun) {
+        // Échantillonnage de l'arc (Bézier quadratique : M 60 220 Q 600 -40 1140 220)
+        const sunPoints = [];
+        const N = 300;
+        for (let i = 0; i <= N; i++) {
+          const t = i / N;
+          const x = (1 - t) * (1 - t) * 60 + 2 * (1 - t) * t * 600 + t * t * 1140;
+          const y = (1 - t) * (1 - t) * 220 + 2 * (1 - t) * t * (-40) + t * t * 220;
+          sunPoints.push({ x, y });
+        }
+        const duration = 32; // secondes par cycle complet
+        const start = performance.now();
+        function animSun(now) {
+          const elapsed = (now - start) / 1000;
+          const t = (elapsed % duration) / duration;
+          const i = Math.floor(t * sunPoints.length);
+          const p = sunPoints[Math.min(i, sunPoints.length - 1)];
+          arcSun.setAttribute('transform', `translate(${p.x}, ${p.y})`);
+          requestAnimationFrame(animSun);
+        }
+        requestAnimationFrame(animSun);
+      }
+
+      /* Reveal panneaux toiture au chargement */
+      if (window.gsap) {
+        const panels = document.querySelectorAll('#roof-panels > g');
+        gsap.from(panels, {
+          opacity: 0,
+          scale: 0.5,
+          transformOrigin: '50% 50%',
+          stagger: 0.18,
+          duration: 0.7,
+          ease: 'power2.out',
+          delay: 0.4,
+        });
+      }
+    }
+
+    /* Reveal progressif sections */
+    if (window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.registerPlugin(ScrollTrigger);
+      gsap.utils.toArray('.fiche, .pq-card, .avis-card, .srv-row').forEach(el => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 24,
+          duration: 0.6,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+          }
+        });
+      });
+
+      /* Counter animés proof */
+      gsap.utils.toArray('.proof-cell [data-count]').forEach(el => {
+        const target = parseFloat(el.getAttribute('data-count'));
+        const isFloat = !Number.isInteger(target);
+        const obj = { v: 0 };
+        gsap.to(obj, {
+          v: target,
+          duration: 1.6,
+          ease: 'power1.out',
+          scrollTrigger: { trigger: el, start: 'top 90%' },
+          onUpdate: () => {
+            if (isFloat) el.textContent = obj.v.toFixed(1).replace('.', ',');
+            else if (target >= 1000) el.textContent = Math.round(obj.v).toLocaleString('fr-FR').replace(',', '\u00a0');
+            else el.textContent = Math.round(obj.v);
+          }
+        });
+      });
+    }
+  </script>
+</body>
+</html>

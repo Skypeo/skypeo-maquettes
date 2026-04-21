@@ -1,0 +1,1824 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maison Ott — Peintre artisan à Nancy, Lunéville & Laxou depuis 2001</title>
+<meta name="description" content="Entreprise familiale depuis 2001. Peinture intérieure, ravalement de façade, pose de parquet, home staging. Intervention à 30 km autour de Nancy.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Inter+Tight:wght@400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --creme:        #f2ece0;
+  --creme-2:      #ebe3d3;
+  --creme-3:      #e2d7c1;
+  --encre:        #141414;
+  --encre-2:      #2a2520;
+  --paon:         #1f4b5c;
+  --paon-dark:    #153543;
+  --paon-light:   #2f6578;
+  --ocre:         #b08142;
+  --terre:        #8a3f2a;
+  --vert:         #627860;
+  --line:         rgba(20,20,20,.14);
+  --line-strong:  rgba(20,20,20,.32);
+
+  --r-sm: 6px;
+  --r-md: 14px;
+  --r-lg: 28px;
+  --r-pill: 999px;
+
+  --ff-display: 'Fraunces', 'Libre Bodoni', Georgia, serif;
+  --ff-body:    'Inter Tight', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ff-hand:    'Caveat', cursive;
+
+  --page-x: clamp(1.25rem, 4vw, 4rem);
+  --section-y: clamp(4rem, 10vw, 9rem);
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--ff-body);
+  color: var(--encre);
+  background: var(--creme);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; border: none; background: none; cursor: pointer; color: inherit; }
+h1,h2,h3,h4,h5 { margin: 0; font-weight: 400; letter-spacing: -0.01em; }
+p { margin: 0; }
+::selection { background: var(--encre); color: var(--creme); }
+
+/* ============================================================
+   TEXTURE PAPIER — filet sur tout le site
+   ============================================================ */
+body::before{
+  content:"";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: .38;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0.22 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+.isolate{ position: relative; isolation: isolate; z-index: 1; }
+
+/* ============================================================
+   LAYOUT GENERIC
+   ============================================================ */
+.wrap{
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-inline: var(--page-x);
+}
+section{ position: relative; }
+.rule{
+  height: 1px; background: var(--line);
+  margin-inline: var(--page-x);
+}
+
+/* ============================================================
+   COULURE VERTICALE FIXE (signature)
+   ============================================================ */
+.coulure{
+  position: fixed;
+  left: clamp(10px, 2.2vw, 30px);
+  top: 0; bottom: 0;
+  width: 2px;
+  pointer-events: none;
+  z-index: 5;
+}
+.coulure::before{
+  content:"";
+  position: absolute;
+  left: -1px; top: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg,
+    transparent 0,
+    var(--encre) 6%,
+    var(--encre) 94%,
+    transparent 100%);
+  opacity: .14;
+}
+.coulure svg{
+  position: absolute; left: 50%; top: 0;
+  width: 18px; height: 100%;
+  transform: translateX(-50%);
+  overflow: visible;
+}
+.coulure .drop{
+  fill: var(--encre);
+  animation: drop-fall 7.2s cubic-bezier(.4,.1,.6,1) infinite;
+}
+@keyframes drop-fall{
+  0%   { transform: translateY(0)     scale(0);   opacity: 0; }
+  5%   { transform: translateY(2vh)   scale(1);   opacity: 1; }
+  85%  { transform: translateY(96vh)  scale(.9);  opacity: 1; }
+  95%  { transform: translateY(99vh)  scale(.4);  opacity: .6; }
+  100% { transform: translateY(100vh) scale(0);   opacity: 0; }
+}
+@media (max-width: 720px){
+  .coulure{ display: none; }
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: color-mix(in srgb, var(--creme) 92%, transparent);
+  backdrop-filter: saturate(130%) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.hdr{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 3rem);
+  padding-block: .9rem;
+}
+.brand{
+  font-family: var(--ff-display);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.2vw, 1.65rem);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: inline-flex; align-items: baseline; gap: .55rem;
+}
+.brand i{
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 90;
+}
+.brand small{
+  font-family: var(--ff-body);
+  font-size: .66rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .62;
+  font-weight: 500;
+}
+.nav{
+  display: flex; justify-content: center; gap: clamp(1rem, 2.4vw, 2.2rem);
+  font-size: .86rem;
+  font-weight: 500;
+}
+.nav a{
+  position: relative;
+  padding-block: .3rem;
+  opacity: .78;
+  transition: opacity .2s;
+}
+.nav a::after{
+  content:""; position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 1px; background: var(--encre); transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.nav a:hover{ opacity: 1; }
+.nav a:hover::after{ transform: scaleX(1); }
+
+.hdr-right{ display: flex; align-items: center; gap: clamp(.8rem, 1.6vw, 1.2rem); }
+.tel-pill{
+  font-variant-numeric: tabular-nums;
+  font-size: .85rem; font-weight: 500;
+  display: inline-flex; align-items: center; gap: .45rem;
+  opacity: .78;
+}
+.tel-pill .dot{
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #3f9d52;
+  box-shadow: 0 0 0 0 rgba(63,157,82,.65);
+  animation: live-pulse 2.4s ease-out infinite;
+}
+@keyframes live-pulse{
+  0%{ box-shadow: 0 0 0 0 rgba(63,157,82,.55);}
+  70%{ box-shadow: 0 0 0 9px rgba(63,157,82,0);}
+  100%{ box-shadow: 0 0 0 0 rgba(63,157,82,0);}
+}
+.btn{
+  display: inline-flex; align-items: center; gap: .6rem;
+  background: var(--encre); color: var(--creme);
+  padding: .75rem 1.05rem;
+  border-radius: var(--r-pill);
+  font-size: .85rem; font-weight: 500;
+  letter-spacing: .02em;
+  transition: background .25s, transform .25s;
+}
+.btn:hover{ background: var(--paon); transform: translateY(-1px); }
+.btn svg{ width: 14px; height: 14px; }
+.btn--ghost{
+  background: transparent; color: var(--encre);
+  border: 1px solid var(--line-strong);
+}
+.btn--ghost:hover{ background: var(--encre); color: var(--creme); border-color: var(--encre); }
+
+.burger{ display: none; }
+@media (max-width: 920px){
+  .nav{ display: none; }
+  .burger{
+    display: inline-flex; width: 42px; height: 42px;
+    border: 1px solid var(--line-strong);
+    border-radius: 50%;
+    align-items: center; justify-content: center;
+  }
+  .burger svg{ width: 18px; height: 18px; }
+  .tel-pill{ display: none; }
+}
+
+/* Mobile drawer */
+.drawer{
+  position: fixed; inset: 0;
+  background: var(--creme);
+  z-index: 220;
+  transform: translateY(-100%);
+  transition: transform .5s cubic-bezier(.76,0,.24,1);
+  padding: calc(1rem + env(safe-area-inset-top)) var(--page-x) 2rem;
+  display: flex; flex-direction: column;
+}
+.drawer[aria-expanded="true"]{ transform: translateY(0); }
+.drawer-top{ display:flex; justify-content: space-between; align-items: center; padding-block: .9rem; border-bottom: 1px solid var(--line); margin-bottom: 2rem;}
+.drawer nav{ display: flex; flex-direction: column; }
+.drawer nav a{
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 8vw, 3rem);
+  padding-block: .9rem;
+  border-bottom: 1px solid var(--line);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.drawer-foot{
+  margin-top: auto;
+  display: flex; flex-direction: column; gap: .6rem;
+  padding-block: 1.2rem;
+  font-size: .9rem;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position: relative;
+  padding-top: clamp(2.4rem, 6vw, 4rem);
+  padding-bottom: clamp(2.4rem, 6vw, 5rem);
+  min-height: 100dvh;
+  display: grid;
+  align-items: end;
+}
+.hero-grid{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, .42fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: end;
+}
+.hero-kicker{
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-size: .72rem; letter-spacing: .24em; text-transform: uppercase;
+  opacity: .7; font-weight: 500;
+  margin-bottom: clamp(1.2rem, 2.4vw, 1.8rem);
+}
+.hero-kicker .dash{ width: 28px; height: 1px; background: var(--encre); opacity: .4; }
+.hero h1{
+  font-family: var(--ff-display);
+  font-size: clamp(2.6rem, 8.2vw, 7.8rem);
+  line-height: .95;
+  letter-spacing: -0.035em;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+}
+.hero h1 em{
+  font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+  color: var(--paon);
+}
+.hero h1 .break{ display: block; }
+.hero h1 .indent{ display: block; padding-left: clamp(2rem, 9vw, 10rem); }
+.hero-deck{
+  max-width: 44ch;
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  line-height: 1.55;
+  opacity: .82;
+  margin-bottom: clamp(1.8rem, 3vw, 2.4rem);
+}
+.hero-ctas{
+  display: flex; flex-wrap: wrap; gap: .8rem;
+  margin-bottom: clamp(2.4rem, 5vw, 4.2rem);
+}
+.hero-stats{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(.8rem, 2vw, 1.6rem);
+  padding-top: 1.3rem;
+  border-top: 1px solid var(--line);
+}
+.stat{
+  display: flex; flex-direction: column; gap: .28rem;
+}
+.stat b{
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  font-variation-settings: "opsz" 96, "SOFT" 40;
+}
+.stat b em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 96, "SOFT" 100;}
+.stat span{
+  font-size: .68rem; letter-spacing: .18em; text-transform: uppercase;
+  opacity: .66; font-weight: 500;
+}
+
+/* Nuancier ambient */
+.nuancier{
+  position: relative;
+  height: clamp(360px, 60vh, 620px);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--encre);
+  box-shadow: 0 30px 60px -30px rgba(20,20,20,.25);
+}
+.nuancier .bands{
+  position: absolute; inset: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.nuancier .bands div{
+  position: relative;
+  animation: band-breathe 22s ease-in-out infinite;
+}
+.nuancier .bands div:nth-child(1){ background: var(--creme-3); animation-delay: -0s;}
+.nuancier .bands div:nth-child(2){ background: var(--ocre);   animation-delay: -3.6s;}
+.nuancier .bands div:nth-child(3){ background: var(--terre);  animation-delay: -7.2s;}
+.nuancier .bands div:nth-child(4){ background: var(--vert);   animation-delay: -10.8s;}
+.nuancier .bands div:nth-child(5){ background: var(--paon);   animation-delay: -14.4s;}
+.nuancier .bands div:nth-child(6){ background: var(--encre);  animation-delay: -18s;}
+@keyframes band-breathe{
+  0%,100%{ opacity: 1; transform: scaleY(1);}
+  50%    { opacity: .78; transform: scaleY(1.015);}
+}
+.nuancier .labels{
+  position: absolute; inset: 0;
+  display: grid; grid-template-columns: repeat(6, 1fr);
+  pointer-events: none;
+}
+.nuancier .labels span{
+  align-self: end;
+  padding: 0 .4rem .55rem;
+  font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  opacity: .78;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  justify-self: start;
+  margin-inline: .15rem;
+  font-weight: 500;
+}
+.nuancier .labels span:nth-child(-n+3){ color: var(--encre);}
+.nuancier .labels span:nth-child(n+4){  color: var(--creme);}
+
+.etiquette{
+  position: absolute;
+  left: 50%; top: 22%;
+  transform: translate(-54%, 0) rotate(-7deg);
+  background: var(--creme);
+  color: var(--encre);
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px -18px rgba(0,0,0,.35), 0 2px 0 0 rgba(0,0,0,.05);
+  min-width: 200px;
+  max-width: 74%;
+  line-height: 1.3;
+}
+.etiquette::before{
+  content:"";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.etiquette .ref{
+  font-family: var(--ff-body);
+  font-size: .58rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: .62;
+}
+.etiquette .num{
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-block: .15rem .25rem;
+}
+.etiquette .num em{ font-style: italic; color: var(--paon); }
+.etiquette .note{
+  font-size: .72rem; opacity: .72;
+}
+.etiquette .tear{
+  position: absolute;
+  inset: auto 1rem -8px 1rem;
+  height: 12px;
+  background-image: radial-gradient(circle at 6px 0, transparent 4px, var(--creme) 4.5px);
+  background-size: 12px 12px;
+  background-repeat: repeat-x;
+  opacity: .7;
+}
+
+/* Hero secondary floating card (depth) */
+.hero-pot{
+  position: absolute;
+  bottom: clamp(6rem, 12vw, 11rem);
+  right: clamp(1rem, 5vw, 5rem);
+  width: clamp(110px, 10vw, 160px);
+  aspect-ratio: 1 / 1.1;
+  pointer-events: none;
+  opacity: .9;
+  animation: pot-float 9s ease-in-out infinite;
+}
+@keyframes pot-float{
+  0%,100%{ transform: translateY(0) rotate(-2deg);}
+  50%    { transform: translateY(-8px) rotate(1.5deg);}
+}
+
+@media (max-width: 880px){
+  .hero-grid{
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .nuancier{ height: 320px; order: -1; }
+  .hero h1 .indent{ padding-left: 0; }
+  .hero-stats{ grid-template-columns: repeat(2, 1fr); }
+  .hero-pot{ display: none; }
+}
+
+/* ============================================================
+   TICKER
+   ============================================================ */
+.ticker{
+  background: var(--encre);
+  color: var(--creme);
+  overflow: hidden;
+  border-block: 1px solid var(--encre);
+  padding-block: clamp(1rem, 2vw, 1.4rem);
+  position: relative;
+}
+.ticker-track{
+  display: flex; gap: 3rem;
+  animation: ticker-scroll 32s linear infinite;
+  width: max-content;
+  white-space: nowrap;
+}
+.ticker span{
+  display: inline-flex; align-items: center; gap: 3rem;
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 4.6vw, 3.4rem);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 144, "SOFT" 60;
+}
+.ticker em{
+  font-style: italic;
+  color: var(--ocre);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.ticker .dot{
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--creme); opacity: .7;
+}
+@keyframes ticker-scroll{
+  from { transform: translate3d(0,0,0);}
+  to   { transform: translate3d(-50%,0,0);}
+}
+
+/* ============================================================
+   SECTION GENERAL
+   ============================================================ */
+.sec{
+  padding-block: var(--section-y);
+  padding-inline: var(--page-x);
+}
+.sec-head{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: end;
+  margin-bottom: clamp(2.6rem, 5vw, 4.5rem);
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--line);
+}
+.sec-num{
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: .9;
+  font-variation-settings: "opsz" 144, "SOFT" 10;
+  color: var(--encre);
+  letter-spacing: -0.04em;
+}
+.sec-num em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.sec-title{
+  font-family: var(--ff-display);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  max-width: 28ch;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+}
+.sec-title em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.sec-kicker{
+  font-size: .72rem; letter-spacing: .24em; text-transform: uppercase;
+  opacity: .7; font-weight: 500;
+  margin-bottom: .7rem;
+}
+
+/* ============================================================
+   ATELIER
+   ============================================================ */
+.atelier{
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
+  gap: clamp(2.4rem, 5vw, 5rem);
+  align-items: start;
+}
+.atelier-img{
+  position: relative;
+  aspect-ratio: 4/5;
+  background: linear-gradient(160deg, var(--paon-light), var(--paon-dark));
+  border-radius: var(--r-md);
+  overflow: hidden;
+  isolation: isolate;
+}
+.atelier-img img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(6%) contrast(1.02);
+}
+.atelier-img .tag{
+  position: absolute;
+  left: 1rem; bottom: 1rem;
+  background: var(--creme); color: var(--encre);
+  padding: .45rem .75rem;
+  border-radius: 3px;
+  font-size: .65rem; letter-spacing: .18em; text-transform: uppercase;
+  font-weight: 500;
+  box-shadow: 0 6px 14px -6px rgba(0,0,0,.35);
+}
+.atelier-text{
+  padding-top: clamp(.5rem, 2vw, 2rem);
+}
+.atelier-text p{
+  font-size: clamp(1rem, 1.15vw, 1.15rem);
+  line-height: 1.65;
+  margin-bottom: 1.15em;
+}
+.atelier-text p.lead{
+  font-family: var(--ff-display);
+  font-size: clamp(1.3rem, 2vw, 1.7rem);
+  line-height: 1.32;
+  letter-spacing: -0.012em;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+  margin-bottom: 1.6rem;
+}
+.atelier-text p.lead em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.drop-cap::first-letter{
+  font-family: var(--ff-display);
+  font-size: 4.6em;
+  float: left;
+  line-height: .85;
+  padding: .1em .12em 0 0;
+  color: var(--paon);
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.signature{
+  margin-top: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+}
+.signature svg{
+  width: clamp(120px, 16vw, 200px);
+  height: auto;
+}
+.signature .sig-path{
+  fill: none;
+  stroke: var(--paon);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1200;
+  stroke-dashoffset: 1200;
+}
+.sig-name{
+  font-size: .72rem; letter-spacing: .2em; text-transform: uppercase;
+  opacity: .65; font-weight: 500;
+}
+.sig-name b{ display: block; font-size: 1rem; letter-spacing: .02em; text-transform: none; font-family: var(--ff-display); font-weight: 400; opacity: 1;}
+
+@media (max-width: 820px){
+  .atelier{ grid-template-columns: 1fr; }
+  .atelier-img{ aspect-ratio: 4/3; }
+}
+
+/* ============================================================
+   PRESTATIONS (éditorial, numéroté)
+   ============================================================ */
+.prestations{ display: flex; flex-direction: column; }
+.presta{
+  display: grid;
+  grid-template-columns: clamp(80px, 10vw, 130px) minmax(0, 1.2fr) minmax(0, .9fr);
+  gap: clamp(1.6rem, 3vw, 3.2rem);
+  padding-block: clamp(2.4rem, 5vw, 4rem);
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+.presta:last-child{ border-bottom: 1px solid var(--line); }
+.presta-num{
+  font-family: var(--ff-display);
+  font-size: clamp(3.4rem, 6vw, 5.2rem);
+  line-height: .85;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 20;
+  letter-spacing: -0.03em;
+}
+.presta-num em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.presta-body h3{
+  font-family: var(--ff-display);
+  font-size: clamp(1.6rem, 2.8vw, 2.3rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: .5rem;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+}
+.presta-body h3 em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.presta-body .kicker-inline{
+  font-size: .72rem; letter-spacing: .18em; text-transform: uppercase;
+  opacity: .6; font-weight: 500;
+  display: inline-block; margin-bottom: .8rem;
+}
+.presta-body p{
+  font-size: clamp(.98rem, 1.1vw, 1.1rem);
+  line-height: 1.6;
+  opacity: .85;
+  max-width: 52ch;
+  margin-bottom: 1rem;
+}
+.tags{ display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem;}
+.tag{
+  font-size: .7rem;
+  letter-spacing: .05em;
+  padding: .35rem .75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-pill);
+  font-weight: 500;
+  opacity: .85;
+}
+.presta-visual{
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: var(--creme-2);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  isolation: isolate;
+}
+.presta-visual img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(5%);
+}
+.presta-visual .pv-tag{
+  position: absolute; left: .8rem; top: .8rem;
+  background: var(--creme); color: var(--encre);
+  font-size: .58rem; letter-spacing: .22em; text-transform: uppercase;
+  font-weight: 600;
+  padding: .35rem .6rem;
+  border-radius: 3px;
+}
+.pv-swatch{
+  position: absolute; right: .8rem; bottom: .8rem;
+  display: flex; gap: 2px;
+  padding: 2px; background: var(--creme); border-radius: 3px;
+  box-shadow: 0 6px 14px -6px rgba(0,0,0,.3);
+}
+.pv-swatch i{
+  display: block;
+  width: 14px; height: 14px; border-radius: 2px;
+}
+
+@media (max-width: 900px){
+  .presta{ grid-template-columns: 1fr; gap: 1.2rem; }
+  .presta-num{ font-size: 3.6rem; }
+  .presta-visual{ aspect-ratio: 16/10; order: -1; }
+}
+
+/* ============================================================
+   PULL QUOTE CHANTIER (fond paon)
+   ============================================================ */
+.chantier{
+  background: var(--paon);
+  color: var(--creme);
+  padding-block: clamp(5rem, 10vw, 8rem);
+  position: relative;
+  overflow: hidden;
+}
+.chantier::after{
+  /* subtle noise over color */
+  content:"";
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='1' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .95  0 0 0 0 .94  0 0 0 0 .92  0 0 0 .16 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+  opacity: .6;
+}
+.chantier-inner{
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: end;
+}
+.chantier-ref{
+  font-family: var(--ff-display);
+  font-size: clamp(5rem, 14vw, 11rem);
+  line-height: .85;
+  letter-spacing: -0.04em;
+  font-variation-settings: "opsz" 144, "SOFT" 10;
+  opacity: .95;
+}
+.chantier-ref em{ font-style: italic; color: var(--ocre); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.chantier-ref small{
+  display: block;
+  font-family: var(--ff-body);
+  font-size: .7rem; letter-spacing: .24em; text-transform: uppercase;
+  opacity: .55; font-weight: 500;
+  margin-top: 1rem;
+}
+.chantier q{
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+  line-height: 1.25;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 60;
+  letter-spacing: -0.012em;
+  quotes: none;
+  display: block;
+  max-width: 28ch;
+  margin-bottom: 1.4rem;
+}
+.chantier q::before{ content: "«\00A0"; }
+.chantier q::after{ content: "\00A0»"; }
+.chantier q em{ font-style: italic; color: var(--ocre); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.chantier cite{
+  font-style: normal;
+  font-size: .78rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .65;
+}
+
+@media (max-width: 780px){
+  .chantier-inner{ grid-template-columns: 1fr; gap: 2rem;}
+}
+
+/* ============================================================
+   NUANCIER PÉDAGOGIQUE
+   ============================================================ */
+.finition-grid{
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.4rem);
+}
+.fin{
+  position: relative;
+  aspect-ratio: 3/4;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--creme-3);
+  padding: 1.1rem 1.2rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  border: 1px solid var(--line);
+  transition: transform .5s cubic-bezier(.2,.8,.2,1);
+}
+.fin:hover{ transform: translateY(-4px); }
+.fin .ref{
+  font-size: .62rem; letter-spacing: .22em; text-transform: uppercase;
+  opacity: .72; font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.fin h4{
+  font-family: var(--ff-display);
+  font-size: clamp(1.3rem, 1.8vw, 1.7rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+  margin-bottom: .3rem;
+}
+.fin h4 em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.fin p{
+  font-size: .82rem;
+  line-height: 1.45;
+  opacity: .78;
+}
+.fin.paint-mat       { background: #ebe3d3; }
+.fin.paint-velours   { background: #c8bda4; color: var(--encre);}
+.fin.paint-satine    { background: #a69375; color: var(--creme);}
+.fin.paint-laque     { background: var(--encre); color: var(--creme);}
+.fin.paint-laque .ref{ color: var(--creme); opacity: .75;}
+.fin.paint-laque h4 em{ color: var(--ocre);}
+.fin.paint-satine .ref{ color: var(--creme);}
+.fin.paint-satine h4 em{ color: var(--creme);}
+.fin .shine{
+  position: absolute; inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 40%, rgba(255,255,255,.4) 50%, transparent 60%);
+  transform: translateX(-80%);
+  transition: transform .9s cubic-bezier(.2,.8,.2,1);
+}
+.fin:hover .shine{ transform: translateX(80%); }
+.fin.paint-mat .shine{ opacity: 0; }
+.fin.paint-velours .shine{ opacity: .45; }
+.fin.paint-satine .shine{ opacity: .7; }
+.fin.paint-laque .shine{ opacity: 1; }
+
+@media (max-width: 820px){
+  .finition-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================
+   ZONE CARTE
+   ============================================================ */
+.zone{
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: stretch;
+}
+.zone-text h3{
+  font-family: var(--ff-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+  margin-bottom: 1rem;
+}
+.zone-text h3 em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.zone-text p{
+  font-size: clamp(1rem, 1.1vw, 1.1rem);
+  line-height: 1.6;
+  opacity: .82;
+  margin-bottom: 1.4rem;
+  max-width: 48ch;
+}
+.zone-list{
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: .1rem;
+  border-top: 1px solid var(--line);
+  margin-top: 1.6rem;
+}
+.zone-list li{
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+  padding: .85rem 0;
+  font-size: .95rem;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-variant-numeric: tabular-nums;
+  gap: .8rem;
+}
+.zone-list li b{
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  font-variation-settings: "opsz" 96, "SOFT" 40;
+  letter-spacing: -0.01em;
+}
+.zone-list li span{ opacity: .6; font-size: .78rem; letter-spacing: .08em;}
+
+.carte{
+  position: relative;
+  aspect-ratio: 5/4;
+  background: var(--creme-2);
+  border-radius: var(--r-md);
+  padding: 1rem;
+  isolation: isolate;
+  overflow: hidden;
+}
+.carte::before{
+  /* papier millimétré très discret */
+  content:"";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(20,20,20,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20,20,20,.06) 1px, transparent 1px);
+  background-size: 32px 32px, 32px 32px;
+  mask-image: radial-gradient(circle at 50% 50%, #000 55%, transparent 80%);
+  pointer-events: none;
+}
+.carte svg{ width: 100%; height: 100%; display: block; position: relative;}
+
+@media (max-width: 900px){
+  .zone{ grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   LIVRE D'OR
+   ============================================================ */
+.avis{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.4vw, 2rem);
+}
+.avis-card{
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: clamp(1.3rem, 2vw, 1.8rem);
+  background: var(--creme);
+  display: flex; flex-direction: column; gap: 1rem;
+  position: relative;
+  isolation: isolate;
+}
+.avis-card::before{
+  content:"“";
+  position: absolute;
+  top: -12px; left: 14px;
+  font-family: var(--ff-display);
+  font-size: 5rem;
+  line-height: 1;
+  color: var(--paon);
+  opacity: .2;
+  font-variation-settings: "opsz" 144, "SOFT" 100;
+}
+.avis-card .stars{ color: var(--ocre); letter-spacing: .2em; font-size: .9rem;}
+.avis-card blockquote{
+  font-family: var(--ff-display);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.45;
+  font-weight: 400;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.avis-card blockquote em{ font-style: italic; color: var(--paon); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.avis-card footer{
+  margin-top: auto;
+  font-size: .78rem;
+  letter-spacing: .1em;
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding-top: .8rem;
+  border-top: 1px solid var(--line);
+  opacity: .8;
+}
+.avis-card footer time{ font-variant-numeric: tabular-nums; opacity: .6;}
+
+@media (max-width: 820px){
+  .avis{ grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   CONTACT (deux adresses)
+   ============================================================ */
+.contact{
+  background: var(--encre);
+  color: var(--creme);
+  padding-block: clamp(5rem, 10vw, 8rem);
+  padding-inline: var(--page-x);
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  margin-top: clamp(3rem, 6vw, 6rem);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.contact .wrap{ padding-inline: 0;}
+.contact-head{
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: end;
+  gap: clamp(2rem, 4vw, 4rem);
+  margin-bottom: clamp(2.4rem, 5vw, 4rem);
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(242,236,224,.15);
+}
+.contact-head .sec-num{ color: var(--creme);}
+.contact-head .sec-num em{ color: var(--ocre); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.contact-head .sec-title{ color: var(--creme);}
+.contact-head .sec-title em{ color: var(--ocre); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.contact-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.6rem, 3vw, 3rem);
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+}
+.adr{
+  padding: clamp(1.4rem, 2vw, 1.8rem);
+  background: rgba(242,236,224,.04);
+  border: 1px solid rgba(242,236,224,.12);
+  border-radius: var(--r-md);
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.adr .label{
+  font-size: .7rem; letter-spacing: .24em; text-transform: uppercase;
+  opacity: .55; font-weight: 500;
+}
+.adr h4{
+  font-family: var(--ff-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+}
+.adr h4 em{ font-style: italic; color: var(--ocre); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.adr p{
+  font-size: 1rem; line-height: 1.55; opacity: .82;
+  font-variant-numeric: tabular-nums;
+}
+.adr a.tel{
+  font-family: var(--ff-display);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  letter-spacing: -0.01em;
+  font-variation-settings: "opsz" 144, "SOFT" 60;
+  font-variant-numeric: tabular-nums;
+  padding-top: .6rem; border-top: 1px solid rgba(242,236,224,.12);
+  display: block;
+}
+.adr a.tel em{ font-style: italic; color: var(--ocre); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.horaires{
+  font-size: .88rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  row-gap: .35rem;
+  column-gap: .8rem;
+  margin-top: .6rem;
+  opacity: .85;
+  font-variant-numeric: tabular-nums;
+}
+.horaires b{ font-weight: 500; }
+.horaires span.closed{ opacity: .55;}
+
+.contact-cta{
+  display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(242,236,224,.15);
+  justify-content: space-between;
+}
+.contact-cta .lead{
+  font-family: var(--ff-display);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  max-width: 22ch;
+  font-variation-settings: "opsz" 144, "SOFT" 40;
+  letter-spacing: -0.015em;
+}
+.contact-cta .lead em{ font-style: italic; color: var(--ocre); font-variation-settings: "opsz" 144, "SOFT" 100;}
+.btn--creme{
+  background: var(--creme); color: var(--encre);
+  padding: 1rem 1.4rem;
+  font-size: .92rem;
+}
+.btn--creme:hover{ background: var(--ocre); color: var(--encre);}
+@media (max-width: 780px){
+  .contact-grid{ grid-template-columns: 1fr;}
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-foot{
+  background: var(--encre);
+  color: var(--creme);
+  padding: 2.4rem var(--page-x);
+  font-size: .8rem;
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(242,236,224,.12);
+  opacity: .96;
+}
+.site-foot .f-brand{ font-family: var(--ff-display); font-size: 1rem;}
+.site-foot .f-brand em{ font-style: italic; color: var(--ocre);}
+.site-foot nav{ display:flex; gap: 1.4rem; opacity: .75;}
+
+/* ============================================================
+   REVEAL — "passe de rouleau"
+   ============================================================ */
+.reveal{
+  --r-duration: .8s;
+  position: relative;
+}
+.reveal::after{
+  content:"";
+  position: absolute; inset: 0;
+  background: var(--creme);
+  transform-origin: right center;
+  transform: scaleX(1);
+  pointer-events: none;
+  z-index: 10;
+  transition: transform var(--r-duration) cubic-bezier(.76,0,.24,1);
+}
+.reveal.is-ink::after{ background: var(--encre);}
+.reveal.is-paon::after{ background: var(--paon);}
+.reveal.in::after{ transform: scaleX(0); }
+
+/* soft fade alternative for text-only zones */
+.fade-up{ opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);}
+.fade-up.in{ opacity: 1; transform: translateY(0);}
+
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration: .001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001s !important;
+  }
+  .reveal::after{ transform: scaleX(0);}
+  .fade-up{ opacity: 1; transform: none;}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ COULURE ============================================================ -->
+<div class="coulure" aria-hidden="true">
+  <svg viewBox="0 0 18 100" preserveAspectRatio="none">
+    <g class="drop">
+      <!-- petite goutte stylisée -->
+      <path d="M9 -4 C 5 4 3 8 3 12 a 6 6 0 0 0 12 0 C 15 8 13 4 9 -4 Z"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="site-header isolate">
+  <div class="wrap hdr">
+    <a href="#top" class="brand" aria-label="Maison Ott — accueil">
+      <span>Maison <i>Ott</i></span>
+      <small>peintre · Nancy</small>
+    </a>
+    <nav class="nav" aria-label="navigation principale">
+      <a href="#atelier">L'atelier</a>
+      <a href="#prestations">Prestations</a>
+      <a href="#finitions">Finitions</a>
+      <a href="#zone">Zone</a>
+      <a href="#avis">Livre d'or</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="hdr-right">
+      <a class="tel-pill" href="tel:+33609934116" aria-label="appeler Fabien Ott">
+        <span class="dot" aria-hidden="true"></span>
+        06&nbsp;09&nbsp;93&nbsp;41&nbsp;16
+      </a>
+      <a class="btn" href="#contact">
+        Demander un devis
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <button class="burger" aria-label="menu" aria-expanded="false" aria-controls="drawer" id="burgerBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="drawer" id="drawer" aria-expanded="false" aria-hidden="true">
+  <div class="drawer-top">
+    <span class="brand"><span>Maison <i>Ott</i></span><small>peintre · Nancy</small></span>
+    <button class="burger" aria-label="fermer" id="closeBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6l-12 12"/></svg>
+    </button>
+  </div>
+  <nav aria-label="navigation mobile">
+    <a href="#atelier">L'atelier</a>
+    <a href="#prestations">Prestations</a>
+    <a href="#finitions">Finitions</a>
+    <a href="#zone">Zone</a>
+    <a href="#avis">Livre d'or</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="drawer-foot">
+    <a class="btn" href="tel:+33609934116">06 09 93 41 16</a>
+    <a class="btn btn--ghost" href="mailto:ott.peinture@gmail.com">ott.peinture@gmail.com</a>
+  </div>
+</div>
+
+<!-- ============================================================ HERO ============================================================ -->
+<main id="top">
+<section class="hero wrap isolate" aria-labelledby="heroTitle">
+  <div class="hero-grid">
+    <div>
+      <p class="hero-kicker"><span class="dash" aria-hidden="true"></span>Maison Ott · Établie en 2001 · Lunéville ↔ Laxou</p>
+      <h1 id="heroTitle">
+        <span class="break">Peintre artisan,</span>
+        <span class="break indent"><em>la juste</em> mesure</span>
+        <span class="break">du geste et du temps.</span>
+      </h1>
+      <p class="hero-deck">
+        Entreprise familiale depuis 2001, plus de trente-cinq ans d'expérience à peindre, enduire, ravaler et poser. Nous intervenons chez vous dans un rayon de 30 km autour de Nancy — Lunéville, Laxou, Pont-à-Mousson, Toul, Villers-lès-Nancy — avec des devis clairs et une parole qui tient.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn" href="#contact">
+          Demander un devis
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn--ghost" href="#prestations">
+          Voir nos prestations
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <b><em>25</em></b><span>années d'atelier</span>
+        </div>
+        <div class="stat">
+          <b><em>35</em>+</b><span>ans d'expérience</span>
+        </div>
+        <div class="stat">
+          <b><em>30</em> km</b><span>autour de Nancy</span>
+        </div>
+        <div class="stat">
+          <b><em>2</em></b><span>pieds : Lunéville · Laxou</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="nuancier" aria-hidden="true">
+      <div class="bands">
+        <div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      <div class="labels">
+        <span>Craie · F 01</span>
+        <span>Ocre Nancy · F 07</span>
+        <span>Terre brûlée · F 12</span>
+        <span>Vert lichen · F 18</span>
+        <span>Bleu paon · F 24</span>
+        <span>Noir encre · F 29</span>
+      </div>
+      <div class="etiquette">
+        <div class="ref">Chantier en cours — N° 247</div>
+        <div class="num">Maison <em>bourgeoise</em><br>Lunéville</div>
+        <div class="note">Ravalement façade · bleu paon F 24<br>Livraison semaine 18</div>
+        <div class="tear" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================================================ TICKER ============================================================ -->
+<section class="ticker isolate" aria-hidden="true">
+  <div class="ticker-track">
+    <span>enduit<span class="dot"></span><em>lissage</em><span class="dot"></span>sous-couche<span class="dot"></span>mat velouté<span class="dot"></span><em>satiné</em><span class="dot"></span>ponçage<span class="dot"></span>finition<span class="dot"></span>coulure maîtrisée<span class="dot"></span>ravalement<span class="dot"></span><em>démoussage</em><span class="dot"></span>testeur<span class="dot"></span>chêne massif<span class="dot"></span>flottant Quick-Step<span class="dot"></span><em>mezzanine</em><span class="dot"></span>home staging<span class="dot"></span></span>
+    <span>enduit<span class="dot"></span><em>lissage</em><span class="dot"></span>sous-couche<span class="dot"></span>mat velouté<span class="dot"></span><em>satiné</em><span class="dot"></span>ponçage<span class="dot"></span>finition<span class="dot"></span>coulure maîtrisée<span class="dot"></span>ravalement<span class="dot"></span><em>démoussage</em><span class="dot"></span>testeur<span class="dot"></span>chêne massif<span class="dot"></span>flottant Quick-Step<span class="dot"></span><em>mezzanine</em><span class="dot"></span>home staging<span class="dot"></span></span>
+  </div>
+</section>
+
+<!-- ============================================================ ATELIER / À PROPOS ============================================================ -->
+<section class="sec" id="atelier" aria-labelledby="atelierTitle">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">I<em>.</em></div>
+      <div>
+        <p class="sec-kicker">L'atelier — l'histoire d'une Maison</p>
+        <h2 id="atelierTitle" class="sec-title">Une <em>entreprise familiale</em> fondée à Lunéville en 2001, discrète, fidèle à son chantier.</h2>
+      </div>
+    </div>
+
+    <div class="atelier">
+      <div class="atelier-img">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Main de peintre qui applique une couche sur un mur clair">
+        <span class="tag">Chantier · Maison Ott</span>
+      </div>
+
+      <div class="atelier-text">
+        <p class="lead">Nous sommes peintres. <em>Fabien Ott</em> et son équipe. Nous travaillons chez les particuliers comme chez les professionnels, sur murs, plafonds, façades, escaliers et parquets — avec la même patience.</p>
+
+        <p class="drop-cap">Créée en 2001, notre entreprise s'est construite à la force d'un geste transmis : plus de trente-cinq années d'expérience cumulée, deux pieds d'atelier à Lunéville et à Laxou, un rayon de trente kilomètres où l'on revient toujours pour finir proprement ce qu'on a commencé. Nous intervenons à Nancy, Pont-à-Mousson, Toul, Villers-lès-Nancy, Vandœuvre — partout où un mur demande à être repris.</p>
+
+        <p>Nos prestations couvrent la peinture intérieure (pièces sèches et pièces humides), le ravalement de façade (diagnostic, nettoyage, démoussage, rebouchage, enduit, finition), la pose de parquet en bois massif ou flottant — chêne, vernis, pièces humides — en partenariat avec <b>Quick-Step</b>, la rénovation d'escaliers et de mezzanines, et le home staging pour remettre en valeur votre habitat avant une vente.</p>
+
+        <p>Nous privilégions les matériaux de qualité, les devis lisibles, les délais tenus. Un chantier bien mené tient à peu de choses : écouter, diagnostiquer, proposer, poser. Dans cet ordre-là. C'est notre seule méthode.</p>
+
+        <div class="signature" aria-label="signature Fabien Ott">
+          <svg viewBox="0 0 260 80" aria-hidden="true">
+            <path class="sig-path" d="M8 58 Q 18 40 30 44 T 56 52 Q 70 20 86 28 T 116 54 Q 122 36 138 30 T 164 50 Q 176 22 192 28 T 230 58 Q 238 52 250 48"/>
+          </svg>
+          <div class="sig-name">
+            Signé<br>
+            <b>Fabien Ott</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PRESTATIONS ============================================================ -->
+<section class="sec" id="prestations" aria-labelledby="prestaTitle">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">II<em>.</em></div>
+      <div>
+        <p class="sec-kicker">Prestations — ce que nous savons faire proprement</p>
+        <h2 id="prestaTitle" class="sec-title">Du mur d'un salon à la <em>façade lorraine</em>, du parquet de chêne à la mezzanine qui grince.</h2>
+      </div>
+    </div>
+
+    <div class="prestations">
+
+      <article class="presta fade-up">
+        <div class="presta-num">i<em>.</em></div>
+        <div class="presta-body">
+          <span class="kicker-inline">Intérieur</span>
+          <h3>Peinture &amp; <em>enduit décoratif</em></h3>
+          <p>Peinture intérieure sur pièces sèches — salon, cuisine, chambre — et pièces humides — salle de bain — avec des peintures de qualité, plusieurs couches pour un fond tendu. Enduits décoratifs, lissage, reprises sur plâtre, encadrements, plafonds. Couleurs choisies avec vous, testeurs posés chez vous.</p>
+          <div class="tags">
+            <span class="tag">Murs &amp; plafonds</span>
+            <span class="tag">Pièces humides</span>
+            <span class="tag">Enduit à la taloche</span>
+            <span class="tag">Lissage</span>
+          </div>
+        </div>
+        <div class="presta-visual">
+          <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Peintre finissant l'angle d'une pièce">
+          <span class="pv-tag">F 01 · Craie</span>
+          <div class="pv-swatch" aria-hidden="true"><i style="background:#f2ece0"></i><i style="background:#ebe3d3"></i><i style="background:#d1c7b2"></i></div>
+        </div>
+      </article>
+
+      <article class="presta fade-up">
+        <div class="presta-num">ii<em>.</em></div>
+        <div class="presta-body">
+          <span class="kicker-inline">Extérieur</span>
+          <h3>Ravalement de <em>façade</em></h3>
+          <p>Après diagnostic, nos artisans nettoient la façade, rebouchent les fissures, effectuent un démoussage, appliquent un enduit et les couches de peinture pour la finition. Traitement anti-mousse en amont, choix de teintes adapté au bâti lorrain, respect du voisinage.</p>
+          <div class="tags">
+            <span class="tag">Diagnostic</span>
+            <span class="tag">Démoussage</span>
+            <span class="tag">Rebouchage fissures</span>
+            <span class="tag">Crépi &amp; enduit</span>
+          </div>
+        </div>
+        <div class="presta-visual">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Façade claire d'une maison ancienne">
+          <span class="pv-tag">F 07 · Ocre Nancy</span>
+          <div class="pv-swatch" aria-hidden="true"><i style="background:#d4a566"></i><i style="background:#b08142"></i><i style="background:#8a5d2b"></i></div>
+        </div>
+      </article>
+
+      <article class="presta fade-up">
+        <div class="presta-num">iii<em>.</em></div>
+        <div class="presta-body">
+          <span class="kicker-inline">Sols</span>
+          <h3>Parquets <em>massif</em> &amp; flottant</h3>
+          <p>Deux poses selon votre préférence : parquet bois massif ou parquet flottant. Gamme large — chêne massif, parquet vernis, parquet pour pièces humides. Partenariat <b>Quick-Step</b> choisi pour la qualité et le rapport juste. Ponçage et traitement sur parquet ancien, reprise d'escalier dans la même foulée si vous le souhaitez.</p>
+          <div class="tags">
+            <span class="tag">Chêne massif</span>
+            <span class="tag">Flottant Quick-Step</span>
+            <span class="tag">Pièces humides</span>
+            <span class="tag">Ponçage</span>
+          </div>
+        </div>
+        <div class="presta-visual">
+          <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Parquet bois massif ancien">
+          <span class="pv-tag">F 12 · Terre brûlée</span>
+          <div class="pv-swatch" aria-hidden="true"><i style="background:#b08142"></i><i style="background:#8a3f2a"></i><i style="background:#5a2a1c"></i></div>
+        </div>
+      </article>
+
+      <article class="presta fade-up">
+        <div class="presta-num">iv<em>.</em></div>
+        <div class="presta-body">
+          <span class="kicker-inline">Rénovation</span>
+          <h3>Escaliers &amp; <em>mezzanines</em></h3>
+          <p>Rénovation d'escaliers bois : ponçage fin, traitement, vernis, cire ou peinture selon l'usage. Remise en valeur des mezzanines — garde-corps, planchers, habillages. Nous coordonnons les étapes pour ne pas immobiliser la pièce plus longtemps que nécessaire.</p>
+          <div class="tags">
+            <span class="tag">Ponçage</span>
+            <span class="tag">Vernis &amp; cire</span>
+            <span class="tag">Garde-corps</span>
+          </div>
+        </div>
+        <div class="presta-visual">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Escalier en bois d'une maison ancienne">
+          <span class="pv-tag">F 18 · Vert lichen</span>
+          <div class="pv-swatch" aria-hidden="true"><i style="background:#a4b69a"></i><i style="background:#627860"></i><i style="background:#3c4a3a"></i></div>
+        </div>
+      </article>
+
+      <article class="presta fade-up">
+        <div class="presta-num">v<em>.</em></div>
+        <div class="presta-body">
+          <span class="kicker-inline">Mise en valeur</span>
+          <h3>Home staging &amp; <em>relooking</em></h3>
+          <p>Avant une vente, une location, une photographie. Nous intervenons sur ce qui se voit en premier : un mur d'entrée, une cage d'escalier fatiguée, une façade ternie. Devis rapide, chantier court, retour sur investissement lisible.</p>
+          <div class="tags">
+            <span class="tag">Pré-vente</span>
+            <span class="tag">Cage d'escalier</span>
+            <span class="tag">Mur d'entrée</span>
+          </div>
+        </div>
+        <div class="presta-visual">
+          <img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&amp;fit=crop&amp;w=900&amp;q=80" alt="Salon clair refait, meubles bois">
+          <span class="pv-tag">F 24 · Bleu paon</span>
+          <div class="pv-swatch" aria-hidden="true"><i style="background:#2f6578"></i><i style="background:#1f4b5c"></i><i style="background:#153543"></i></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CHANTIER / PULL QUOTE ============================================================ -->
+<section class="chantier reveal is-ink" aria-label="avis client">
+  <div class="wrap chantier-inner">
+    <div class="chantier-ref">
+      Nº&nbsp;<em>247</em>
+      <small>Chantier livré — Maison bourgeoise, Lunéville</small>
+    </div>
+    <div>
+      <q>Travail soigné de Monsieur Ott, ses conseils, son professionnalisme, avec un résultat <em>parfait</em> réalisé dans les temps prévus.</q>
+      <cite>— Livre d'or, cliente particulier</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FINITIONS (nuancier pédagogique) ============================================================ -->
+<section class="sec" id="finitions" aria-labelledby="finTitle">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">III<em>.</em></div>
+      <div>
+        <p class="sec-kicker">Finitions — quatre façons d'accrocher la lumière</p>
+        <h2 id="finTitle" class="sec-title">Un mur n'est pas une couleur, c'est une <em>matière</em>. Choisir la bonne finition, c'est choisir le juste reflet.</h2>
+      </div>
+    </div>
+
+    <div class="finition-grid">
+      <div class="fin paint-mat">
+        <span class="ref">Finition · 01</span>
+        <div>
+          <h4>Mat <em>velouté</em></h4>
+          <p>Absorbe la lumière, masque les irrégularités. Pour les chambres, les plafonds, les murs fatigués qu'on veut adoucir.</p>
+        </div>
+        <span class="shine" aria-hidden="true"></span>
+      </div>
+      <div class="fin paint-velours">
+        <span class="ref">Finition · 02</span>
+        <div>
+          <h4>Velours <em>lavable</em></h4>
+          <p>Reflet tendre, entretien facile. Pour les couloirs, les cuisines claires, les escaliers qu'on passe à l'éponge.</p>
+        </div>
+        <span class="shine" aria-hidden="true"></span>
+      </div>
+      <div class="fin paint-satine">
+        <span class="ref">Finition · 03</span>
+        <div>
+          <h4>Satiné <em>tendu</em></h4>
+          <p>Rend lumineux, résiste aux reprises. Pour les pièces humides, les menuiseries fines, les plinthes.</p>
+        </div>
+        <span class="shine" aria-hidden="true"></span>
+      </div>
+      <div class="fin paint-laque">
+        <span class="ref">Finition · 04</span>
+        <div>
+          <h4>Laque <em>profonde</em></h4>
+          <p>Reflet dense, presque liquide. Pour une porte d'entrée, un garde-corps, un mur qu'on veut faire remarquer.</p>
+        </div>
+        <span class="shine" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ZONE D'INTERVENTION ============================================================ -->
+<section class="sec" id="zone" aria-labelledby="zoneTitle">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">IV<em>.</em></div>
+      <div>
+        <p class="sec-kicker">Zone d'intervention — 30 km autour de Nancy</p>
+        <h2 id="zoneTitle" class="sec-title">Deux pieds, un territoire — on vient chez vous, on revient jusqu'à ce que <em>ce soit fini</em>.</h2>
+      </div>
+    </div>
+
+    <div class="zone">
+      <div class="zone-text">
+        <h3>Entre <em>Lunéville</em>, Nancy et l'ouest du Grand Nancy — 30 kilomètres, pas un de plus, pas un de moins.</h3>
+        <p>Nos deux pieds d'atelier — 20 rue du Bas de Sembas à Lunéville, et notre antenne à Laxou — nous permettent de rayonner sans fatiguer le chantier. Nous privilégions la proximité : un coup de téléphone et nous passons voir.</p>
+
+        <ul class="zone-list">
+          <li><b>Nancy</b><span>12 km</span></li>
+          <li><b>Laxou</b><span>15 km</span></li>
+          <li><b>Villers-lès-Nancy</b><span>16 km</span></li>
+          <li><b>Vandœuvre</b><span>14 km</span></li>
+          <li><b>Lunéville</b><span>0 km</span></li>
+          <li><b>Pont-à-Mousson</b><span>32 km</span></li>
+          <li><b>Toul</b><span>30 km</span></li>
+          <li><b>Essey-lès-Nancy</b><span>15 km</span></li>
+        </ul>
+      </div>
+
+      <div class="carte" aria-label="carte simplifiée de la zone d'intervention">
+        <svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="dots" width="4" height="4" patternUnits="userSpaceOnUse">
+              <circle cx="1" cy="1" r=".5" fill="#1414141a"/>
+            </pattern>
+          </defs>
+
+          <!-- cercle 30km -->
+          <circle cx="250" cy="200" r="155"
+                  fill="none"
+                  stroke="#1f4b5c" stroke-width="1"
+                  stroke-dasharray="4 6"
+                  class="zone-circle"/>
+          <circle cx="250" cy="200" r="155"
+                  fill="url(#dots)" opacity=".5"/>
+
+          <!-- axes cardinaux -->
+          <line x1="250" y1="36" x2="250" y2="56" stroke="#14141466" stroke-width="1"/>
+          <line x1="250" y1="344" x2="250" y2="364" stroke="#14141466" stroke-width="1"/>
+          <line x1="86" y1="200" x2="106" y2="200" stroke="#14141466" stroke-width="1"/>
+          <line x1="394" y1="200" x2="414" y2="200" stroke="#14141466" stroke-width="1"/>
+          <text x="250" y="28" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="10" letter-spacing="3" fill="#14141499">N</text>
+          <text x="250" y="380" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="10" letter-spacing="3" fill="#14141499">S</text>
+          <text x="80" y="204" text-anchor="end" font-family="Inter Tight, sans-serif" font-size="10" letter-spacing="3" fill="#14141499">O</text>
+          <text x="420" y="204" font-family="Inter Tight, sans-serif" font-size="10" letter-spacing="3" fill="#14141499">E</text>
+
+          <!-- pins -->
+          <g class="pin pin-luneville">
+            <circle cx="320" cy="230" r="6" fill="#1f4b5c"/>
+            <circle cx="320" cy="230" r="14" fill="none" stroke="#1f4b5c" stroke-width="1" opacity=".5"/>
+            <text x="335" y="234" font-family="Fraunces, serif" font-size="13" fill="#141414">Lunéville</text>
+            <text x="335" y="248" font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="1.5" fill="#14141499">· atelier principal</text>
+          </g>
+          <g class="pin">
+            <circle cx="220" cy="178" r="5" fill="#1f4b5c"/>
+            <text x="206" y="168" font-family="Fraunces, serif" font-size="14" fill="#141414">Nancy</text>
+          </g>
+          <g class="pin">
+            <circle cx="200" cy="192" r="5" fill="#1f4b5c"/>
+            <text x="156" y="210" font-family="Fraunces, serif" font-size="12" fill="#141414">Laxou</text>
+            <text x="156" y="222" font-family="Inter Tight, sans-serif" font-size="9" letter-spacing="1.5" fill="#14141499">· antenne</text>
+          </g>
+          <g class="pin">
+            <circle cx="186" cy="205" r="4" fill="#1f4b5c"/>
+            <text x="122" y="234" font-family="Fraunces, serif" font-size="11" fill="#141414">Villers-lès-Nancy</text>
+          </g>
+          <g class="pin">
+            <circle cx="225" cy="230" r="4" fill="#1f4b5c"/>
+            <text x="210" y="254" font-family="Fraunces, serif" font-size="11" fill="#141414">Vandœuvre</text>
+          </g>
+          <g class="pin">
+            <circle cx="190" cy="130" r="4" fill="#1f4b5c"/>
+            <text x="156" y="124" font-family="Fraunces, serif" font-size="11" fill="#141414">Pont-à-Mousson</text>
+          </g>
+          <g class="pin">
+            <circle cx="118" cy="204" r="4" fill="#1f4b5c"/>
+            <text x="80" y="194" font-family="Fraunces, serif" font-size="11" fill="#141414">Toul</text>
+          </g>
+
+          <!-- lien lunéville ↔ nancy -->
+          <path d="M 220 178 Q 270 188 320 230" fill="none"
+                stroke="#1f4b5c" stroke-width="1.5" stroke-dasharray="2 3"
+                class="link-path"/>
+
+          <!-- label 30 km -->
+          <text x="400" y="308" font-family="Inter Tight, sans-serif" font-size="10" letter-spacing="2" fill="#1f4b5c">R. 30 km</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ LIVRE D'OR ============================================================ -->
+<section class="sec" id="avis" aria-labelledby="avisTitle">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-num">V<em>.</em></div>
+      <div>
+        <p class="sec-kicker">Livre d'or — paroles de clients particuliers &amp; professionnels</p>
+        <h2 id="avisTitle" class="sec-title">Ce que l'on retient d'un chantier bien mené : la <em>parole tenue</em>.</h2>
+      </div>
+    </div>
+
+    <div class="avis">
+      <figure class="avis-card fade-up">
+        <span class="stars" aria-label="5 sur 5">★ ★ ★ ★ ★</span>
+        <blockquote>Travail soigné de M. Ott, <em>ses conseils, son professionnalisme</em>, avec un résultat parfait réalisé dans les temps prévus.</blockquote>
+        <footer>
+          <span>Cliente particulier</span><time>2024</time>
+        </footer>
+      </figure>
+      <figure class="avis-card fade-up">
+        <span class="stars" aria-label="5 sur 5">★ ★ ★ ★ ★</span>
+        <blockquote>Professionnel sérieux, réactif, réalisant un travail <em>soigné et dans les temps</em>, avec un résultat impeccable — peintures et pose de parquet.</blockquote>
+        <footer>
+          <span>Chantier rénovation</span><time>2024</time>
+        </footer>
+      </figure>
+      <figure class="avis-card fade-up">
+        <span class="stars" aria-label="5 sur 5">★ ★ ★ ★ ★</span>
+        <blockquote>À l'écoute, <em>devis rapide, clair et précis</em>. Aucune mauvaise surprise, tout a été tenu à la lettre.</blockquote>
+        <footer>
+          <span>Particulier, Laxou</span><time>2023</time>
+        </footer>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CONTACT ============================================================ -->
+<section class="contact reveal" id="contact" aria-labelledby="ctaTitle">
+  <div class="wrap">
+    <div class="contact-head">
+      <div class="sec-num">VI<em>.</em></div>
+      <div>
+        <p class="sec-kicker" style="opacity:.55">Contact — 7j/7 pour parler de votre projet</p>
+        <h2 id="ctaTitle" class="sec-title">Un mur, une façade, un parquet. <em>Dites-nous</em> ce qu'il y a à faire — on passe voir.</h2>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="adr">
+        <span class="label">Atelier principal</span>
+        <h4>Lunéville · <em>Bureau</em></h4>
+        <p>
+          20 rue du Bas de Sembas<br>
+          54300 Lunéville
+        </p>
+        <a class="tel" href="tel:+33609934116">06&nbsp;<em>09</em>&nbsp;93&nbsp;41&nbsp;16</a>
+        <div class="horaires">
+          <b>Lundi · Mardi · Jeudi · Vendredi</b><span>9h — 19h</span>
+          <b>Mercredi</b><span>10h — 19h</span>
+          <b>Samedi</b><span>10h — 17h</span>
+          <b class="closed">Dimanche</b><span class="closed">fermé</span>
+        </div>
+      </div>
+      <div class="adr">
+        <span class="label">Antenne</span>
+        <h4>Laxou · <em>Secteur Nancy</em></h4>
+        <p>
+          79 boulevard Foch<br>
+          54520 Laxou
+        </p>
+        <a class="tel" href="mailto:ott.peinture@gmail.com">ott.peinture<em>@</em>gmail.com</a>
+        <div class="horaires">
+          <b>Devis 7j / 7</b><span>sur simple appel</span>
+          <b>Déplacement</b><span>inclus 30 km</span>
+          <b>Réponse</b><span>sous 24 h ouvrées</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-cta">
+      <p class="lead">On se dit tout <em>au téléphone</em> — le devis passe par mail dans la foulée.</p>
+      <div style="display:flex; gap:.7rem; flex-wrap: wrap;">
+        <a class="btn btn--creme" href="tel:+33609934116">
+          Appeler Fabien Ott
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </a>
+        <a class="btn" style="background:transparent; border:1px solid rgba(242,236,224,.3); color:var(--creme)" href="mailto:ott.peinture@gmail.com">Écrire un mail</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FOOTER ============================================================ -->
+<footer class="site-foot isolate">
+  <span class="f-brand">Maison <em>Ott</em> — peintre artisan depuis 2001</span>
+  <nav aria-label="footer">
+    <a href="#atelier">Atelier</a>
+    <a href="#prestations">Prestations</a>
+    <a href="#zone">Zone</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <span style="opacity:.55">© 2026 · Elegantissima-style one-pager · Maquette Skypeo</span>
+</footer>
+
+<script>
+/* ============================================================
+   COMPORTEMENT
+   ============================================================ */
+(function(){
+  const burgerOpen = document.getElementById('burgerBtn');
+  const burgerClose = document.getElementById('closeBtn');
+  const drawer = document.getElementById('drawer');
+  const open = () => {
+    drawer.setAttribute('aria-expanded','true');
+    drawer.setAttribute('aria-hidden','false');
+    if (burgerOpen) burgerOpen.setAttribute('aria-expanded','true');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    drawer.setAttribute('aria-expanded','false');
+    drawer.setAttribute('aria-hidden','true');
+    if (burgerOpen) burgerOpen.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  };
+  if (burgerOpen) burgerOpen.addEventListener('click', open);
+  if (burgerClose) burgerClose.addEventListener('click', close);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+})();
+
+/* Reveals "passe de rouleau" */
+(function(){
+  const prefReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefReduce){
+    document.querySelectorAll('.reveal, .fade-up').forEach(el => el.classList.add('in'));
+    return;
+  }
+
+  if (window.gsap && window.ScrollTrigger){
+    gsap.registerPlugin(ScrollTrigger);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 82%',
+        once: true,
+        onEnter: () => el.classList.add('in'),
+      });
+    });
+
+    document.querySelectorAll('.fade-up').forEach((el, i) => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 88%',
+        once: true,
+        onEnter: () => {
+          setTimeout(() => el.classList.add('in'), i * 60);
+        }
+      });
+    });
+
+    /* Signature qui se trace */
+    const sig = document.querySelector('.sig-path');
+    if (sig){
+      ScrollTrigger.create({
+        trigger: sig,
+        start: 'top 80%',
+        once: true,
+        onEnter: () => {
+          sig.animate(
+            [{ strokeDashoffset: 1200 }, { strokeDashoffset: 0 }],
+            { duration: 2400, easing: 'cubic-bezier(.6,.1,.2,1)', fill: 'forwards' }
+          );
+        }
+      });
+    }
+
+  } else {
+    /* Fallback observer si GSAP pas chargé */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: .18 });
+    document.querySelectorAll('.reveal, .fade-up').forEach(el => io.observe(el));
+  }
+})();
+
+/* Ticker responsive check — duplique si trop court */
+(function(){
+  const track = document.querySelector('.ticker-track');
+  if (!track) return;
+  const first = track.querySelector('span');
+  if (!first) return;
+  const minWidth = window.innerWidth * 2;
+  let i = 0;
+  while (track.scrollWidth < minWidth && i < 4){
+    track.appendChild(first.cloneNode(true));
+    i++;
+  }
+})();
+</script>
+</body>
+</html>
