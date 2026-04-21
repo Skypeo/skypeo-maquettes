@@ -265,7 +265,8 @@ body::before{
 .hero-visual{
   position:relative;
   aspect-ratio:328/450;  /* ratio natif de la photo pour éviter tout étirement */
-  max-width:440px;       /* taille max < source (328px × DPR) pour rester net */
+  width:100%;
+  max-width:510px;       /* agrandi — upscale raisonnable depuis 328px source */
   margin-left:auto;
   border-radius:var(--r-lg);
   overflow:hidden;
@@ -523,7 +524,7 @@ body::before{
 
 .real-grid{
   display:grid;
-  grid-template-columns:1.6fr 1fr;
+  grid-template-columns:1.15fr 1fr;
   gap:clamp(1.2rem,2vw,1.8rem);
   margin-top:clamp(2rem,4vw,3rem);
 }
@@ -533,8 +534,8 @@ body::before{
   overflow:hidden;
   background:var(--c-ink-2);
 }
-.real-item.big{grid-row:span 2;aspect-ratio:4/5}
-.real-item.small{aspect-ratio:16/10}
+.real-item.big{grid-row:span 2;aspect-ratio:1/1}
+.real-item.small{aspect-ratio:16/11}
 .real-item img{
   width:100%;height:100%;object-fit:cover;
   transition:transform 1.2s var(--ease);
