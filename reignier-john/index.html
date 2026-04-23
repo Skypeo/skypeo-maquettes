@@ -2236,6 +2236,48 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
 .r.r--x{transform:translateX(24px)}
 .r.r--x.is-in{transform:translateX(0)}
 
+/* =========================================================
+   GLOBAL FIX — empêche la coupe des italiques gradient
+   (-webkit-background-clip:text + italic penché clippe
+    les descenders/ascenders si line-height est trop serré)
+   ========================================================= */
+.hero h1 .cold,
+.hero h1 .hot,
+.split h3 em,
+.home h2 em,
+.home h2 em.hot,
+.zone h2 em,
+.aids__head h2 em,
+.gallery__head h2 em,
+.certs__head h2 em,
+.reviews__head h2 em,
+.faq__head h2 em,
+.process h2 em,
+.final h2 em,
+.bathroom h2 em{
+  display:inline-block !important;
+  padding-bottom:.32em !important;
+  padding-right:.12em !important;
+  padding-top:.08em !important;
+  line-height:1.18 !important;
+  overflow:visible !important;
+}
+
+section h2,
+section h3,
+.hero h1{
+  line-height:1.2 !important;
+  overflow:visible !important;
+}
+
+/* safety overflow sur tous les containers potentiels */
+.bathroom__content, .bathroom__photo{overflow:visible}
+.split__pane > div{overflow:visible}
+.aids__head, .gallery__head, .faq__head, .certs__head, .reviews__head, .process__head{overflow:visible}
+.aids__head h2, .gallery__head h2, .faq__head h2, .certs__head h2, .reviews__head h2, .process h2, .final h2, .zone h2, .home h2, .bathroom h2, .split h3{
+  padding-bottom:.15em !important;
+}
+
 </style>
 </head>
 <body>
@@ -2338,7 +2380,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
         </div>
 
         <div class="hero-card hero-card--photo" aria-hidden="true">
-          <img src="img/2025-05-27 (1).webp" alt="" loading="lazy">
+          <img src="img/sdb-douche-noire.webp" alt="" loading="lazy">
           <div class="hero-card__photo-tag">
             <span class="hero-card__photo-num">N°&nbsp;01</span>
             <span class="hero-card__photo-cap">Création de salle de bain — chantier Vosges, 2025</span>
@@ -2446,7 +2488,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
   <div class="bathroom__inner">
 
     <div class="bathroom__photo">
-      <img src="img/2025-05-27 (3).webp" alt="Meuble vasque noir et miroir rétroéclairé dans une salle de bain marbre" loading="lazy">
+      <img src="img/sdb-meuble-vasque.webp" alt="Meuble vasque noir et miroir rétroéclairé dans une salle de bain marbre" loading="lazy">
       <span class="bathroom__photo__tag">Chantier 2025 · Vosges</span>
     </div>
 
@@ -2820,7 +2862,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
   <div class="gallery__grid">
 
     <figure class="gallery__item">
-      <img src="img/2025-10-02.webp" alt="Plancher chauffant hydraulique en cours d'installation" loading="lazy">
+      <img src="img/plancher-chauffant.webp" alt="Plancher chauffant hydraulique en cours d'installation" loading="lazy">
       <span class="ref">N°&nbsp;01</span>
       <figcaption class="gallery__item__tag">
         <span class="cap">Plancher chauffant hydraulique — boucle complète posée sur isolant TMS</span>
@@ -2829,7 +2871,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
     </figure>
 
     <figure class="gallery__item">
-      <img src="img/2025-05-27 (8).webp" alt="Installation d'une pompe à chaleur sur façade bois lors d'un chantier" loading="lazy">
+      <img src="img/pac-chantier-bois.webp" alt="Installation d'une pompe à chaleur sur façade bois lors d'un chantier" loading="lazy">
       <span class="ref">N°&nbsp;02</span>
       <figcaption class="gallery__item__tag">
         <span class="cap">Pose PAC sur façade bois — chantier en cours, massif vosgien</span>
@@ -2838,7 +2880,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
     </figure>
 
     <figure class="gallery__item">
-      <img src="img/2025-05-27 (4).webp" alt="Charge frigorigène manifold bleu et rouge sur unité extérieure" loading="lazy">
+      <img src="img/pac-manifold-charge.webp" alt="Charge frigorigène manifold bleu et rouge sur unité extérieure" loading="lazy">
       <span class="ref">N°&nbsp;03</span>
       <figcaption class="gallery__item__tag">
         <span class="cap">Charge&nbsp;frigorigène — mise en service au manifold, R32</span>
@@ -2847,7 +2889,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
     </figure>
 
     <figure class="gallery__item">
-      <img src="img/2025-05-27 (6).webp" alt="Pompe à chaleur Mitsubishi Ecodan avec ballon tampon et tuyauterie cuivre" loading="lazy">
+      <img src="img/pac-ecodan-ballon.webp" alt="Pompe à chaleur Mitsubishi Ecodan avec ballon tampon et tuyauterie cuivre" loading="lazy">
       <span class="ref">N°&nbsp;04</span>
       <figcaption class="gallery__item__tag">
         <span class="cap">PAC&nbsp;air/eau Ecodan — ballon tampon et collecteur cuivre</span>
@@ -2856,7 +2898,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
     </figure>
 
     <figure class="gallery__item">
-      <img src="img/2026-04-23.webp" alt="Unité extérieure de pompe à chaleur ouverte pour maintenance" loading="lazy">
+      <img src="img/pac-maintenance.webp" alt="Unité extérieure de pompe à chaleur ouverte pour maintenance" loading="lazy">
       <span class="ref">N°&nbsp;05</span>
       <figcaption class="gallery__item__tag">
         <span class="cap">Maintenance PAC — capot démonté, contrôle ventilateur et compresseur</span>
@@ -2865,7 +2907,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
     </figure>
 
     <figure class="gallery__item">
-      <img src="img/2025-05-27 (2).webp" alt="Douche à l'italienne blanche dans salle de bain marbre clair" loading="lazy">
+      <img src="img/sdb-douche-italienne.webp" alt="Douche à l'italienne blanche dans salle de bain marbre clair" loading="lazy">
       <span class="ref">N°&nbsp;06</span>
       <figcaption class="gallery__item__tag">
         <span class="cap">Douche à l'italienne — receveur extra-plat, paroi fixe verre</span>
@@ -2874,7 +2916,7 @@ h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
     </figure>
 
     <figure class="gallery__item">
-      <img src="img/2025-05-27 (9).webp" alt="Split console Atlantic installé dans un séjour vert sauge" loading="lazy">
+      <img src="img/clim-split-console.webp" alt="Split console Atlantic installé dans un séjour vert sauge" loading="lazy">
       <span class="ref">N°&nbsp;07</span>
       <figcaption class="gallery__item__tag">
         <span class="cap">Split console — pose discrète en pièce à vivre</span>
