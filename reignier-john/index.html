@@ -1,0 +1,3142 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reignier John — Pompes à chaleur, climatisation & chauffage · Vosges</title>
+<meta name="description" content="Reignier John — Installation et maintenance de climatisations réversibles, pompes à chaleur et chauffage. Artisan certifié QualiPac et RGE à Mandray, Vosges.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12/dist/ScrollTrigger.min.js"></script>
+
+<style>
+/* ===================================================================
+   REIGNIER JOHN — direction produit / moderne
+   Pas de papier, pas de encre, pas de logo.
+   Blanc franc, grotesque bold, bleu électrique + rouge chauffage.
+   =================================================================== */
+
+:root{
+  --bg:#f6f6f3;
+  --bg-2:#ffffff;
+  --bg-card:#ffffff;
+  --ink:#0b0b0d;
+  --ink-2:#1a1a1d;
+  --ink-soft:#56565c;
+  --ink-dim:#8b8b93;
+  --line:#e6e6e1;
+  --line-2:#d5d5ce;
+
+  --cold:#0045ff;
+  --cold-2:#0057ff;
+  --cold-soft:#e6edff;
+  --cold-glow:rgba(0,69,255,.18);
+
+  --hot:#ff2d1a;
+  --hot-2:#d71a0a;
+  --hot-soft:#ffe5e1;
+  --hot-glow:rgba(255,45,26,.2);
+
+  --live:#14c262;
+
+  --r-xs:6px;
+  --r-sm:12px;
+  --r-md:20px;
+  --r-lg:32px;
+  --r-xl:44px;
+  --r-pill:999px;
+
+  --f-display:"Bricolage Grotesque", system-ui, sans-serif;
+  --f-body:"Inter", system-ui, sans-serif;
+  --f-mono:"JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  --page-max:1440px;
+  --gutter:clamp(1.2rem, 3.2vw, 2.4rem);
+  --section-pad:clamp(2.8rem, 5vw, 4.8rem);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--f-body);
+  font-size:16.5px;
+  line-height:1.55;
+  color:var(--ink);
+  background:var(--bg);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  min-height:100dvh;
+}
+img,svg{display:block;max-width:100%;height:auto}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;padding:0}
+a{color:inherit;text-decoration:none}
+
+::selection{background:var(--cold);color:#fff}
+
+h1,h2,h3,h4{
+  font-family:var(--f-display);
+  font-weight:700;
+  line-height:1.06;
+  margin:0;
+  letter-spacing:-.03em;
+  font-variation-settings:"wdth" 95, "opsz" 96;
+}
+h1{font-size:clamp(2rem, 5vw, 4.5rem)}
+h2{font-size:clamp(1.9rem, 4vw, 3.8rem)}
+h3{font-size:clamp(1.4rem, 2.4vw, 2rem)}
+
+/* gradient italic helper — évite le clip des descendants/ascendants
+   quand -webkit-background-clip:text combiné à line-height serrée coupe g/f/d/s */
+.grad-text{
+  display:inline-block;
+  padding-bottom:.15em;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+
+.mono{font-family:var(--f-mono);font-feature-settings:"ss02"}
+
+/* =========================================================
+   TICKER / TOP STRIPE
+   ========================================================= */
+.ticker{
+  background:var(--ink);
+  color:#fff;
+  font-family:var(--f-mono);
+  font-size:.74rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  overflow:hidden;
+  border-bottom:1px solid var(--ink-2);
+  position:relative;
+  z-index:10;
+}
+.ticker__track{
+  display:flex;
+  gap:2.4rem;
+  padding:.75rem 0;
+  white-space:nowrap;
+  width:max-content;
+  animation:tick 38s linear infinite;
+}
+.ticker__track span{display:inline-flex;align-items:center;gap:.6rem;opacity:.82}
+.ticker__track .dot-c{width:6px;height:6px;border-radius:50%;background:var(--cold);flex:0 0 auto}
+.ticker__track .dot-h{width:6px;height:6px;border-radius:50%;background:var(--hot);flex:0 0 auto}
+.ticker__track .dot-n{width:6px;height:6px;border-radius:50%;background:#fff;opacity:.3;flex:0 0 auto}
+@keyframes tick{
+  from{transform:translate3d(0,0,0)}
+  to{transform:translate3d(-50%,0,0)}
+}
+
+/* =========================================================
+   HEADER STICKY
+   ========================================================= */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:90;
+  background:rgba(246,246,243,.88);
+  backdrop-filter:saturate(140%) blur(14px);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.site-header__row{
+  max-width:var(--page-max);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:2rem;
+  padding:1.1rem var(--gutter);
+}
+.brand{
+  font-family:var(--f-display);
+  font-weight:700;
+  font-size:1.12rem;
+  letter-spacing:-.02em;
+  font-variation-settings:"wdth" 90, "opsz" 14;
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  line-height:1;
+}
+.brand::before{
+  content:"";
+  width:9px;height:9px;
+  border-radius:50%;
+  background:var(--cold);
+  box-shadow:inset -3px -3px 0 rgba(0,0,0,.15);
+  position:relative;
+  animation:brandpulse 5s ease-in-out infinite;
+}
+@keyframes brandpulse{
+  0%,100%{background:var(--cold)}
+  50%{background:var(--hot)}
+}
+
+.nav{display:flex;align-items:center;gap:.2rem;justify-content:center}
+.nav a{
+  font-family:var(--f-body);
+  font-size:.88rem;
+  color:var(--ink-2);
+  padding:.55rem 1rem;
+  border-radius:var(--r-pill);
+  transition:background .2s, color .2s;
+  font-weight:500;
+}
+.nav a:hover{background:var(--ink);color:#fff}
+
+.header-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  font-family:var(--f-body);
+  font-weight:600;
+  font-size:.9rem;
+  padding:.75rem 1.2rem .75rem .95rem;
+  border-radius:var(--r-pill);
+  background:var(--ink);
+  color:#fff;
+  transition:transform .2s, background .2s;
+  white-space:nowrap;
+}
+.header-cta:hover{transform:translateY(-1px);background:var(--cold)}
+.header-cta .live{
+  width:9px;height:9px;border-radius:50%;background:var(--live);
+  box-shadow:0 0 0 0 rgba(20,194,98,.6);
+  animation:livepulse 1.8s ease-out infinite;
+}
+@keyframes livepulse{
+  0%{box-shadow:0 0 0 0 rgba(20,194,98,.6)}
+  70%{box-shadow:0 0 0 11px rgba(20,194,98,0)}
+  100%{box-shadow:0 0 0 0 rgba(20,194,98,0)}
+}
+.burger{display:none;width:42px;height:42px;border-radius:var(--r-pill);place-items:center;background:#fff;border:1px solid var(--line)}
+.burger span{display:block;width:18px;height:1.8px;background:var(--ink);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:1.8px;background:var(--ink)}
+.burger span::before{top:-6px}
+.burger span::after{top:6px}
+@media (max-width:900px){
+  .nav{display:none}
+  .site-header__row{grid-template-columns:1fr auto auto}
+  .burger{display:grid}
+  .header-cta{padding:.6rem .95rem .6rem .8rem;font-size:.82rem}
+  .header-cta span.lbl{display:none}
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+.hero{
+  position:relative;
+  padding:clamp(1.8rem,4vw,3rem) var(--gutter) clamp(2rem,4vw,3.2rem);
+  overflow:clip;
+  isolation:isolate;
+}
+.hero__inner{
+  max-width:var(--page-max);
+  margin:0 auto;
+  position:relative;
+  z-index:2;
+}
+
+/* orbes gradient en fond (clim+chauff) */
+.hero__orb{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  pointer-events:none;
+}
+.hero__orb i{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(80px);
+  opacity:.65;
+  will-change:transform;
+}
+.hero__orb .i-cold{
+  top:-14%;
+  left:-8%;
+  width:46vw;
+  height:46vw;
+  max-width:700px;max-height:700px;
+  background:radial-gradient(circle at center, var(--cold) 0%, transparent 65%);
+  animation:orbCold 18s ease-in-out infinite alternate;
+}
+.hero__orb .i-hot{
+  top:14%;
+  right:-12%;
+  width:40vw;
+  height:40vw;
+  max-width:640px;max-height:640px;
+  background:radial-gradient(circle at center, var(--hot) 0%, transparent 65%);
+  animation:orbHot 22s ease-in-out infinite alternate;
+}
+@keyframes orbCold{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(6%,10%,0) scale(1.15)}
+}
+@keyframes orbHot{
+  from{transform:translate3d(0,0,0) scale(1)}
+  to{transform:translate3d(-8%,-6%,0) scale(1.1)}
+}
+
+.hero__kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  padding:.42rem .85rem .42rem .6rem;
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:var(--r-pill);
+  font-family:var(--f-body);
+  font-size:.82rem;
+  font-weight:500;
+  color:var(--ink-2);
+  margin-bottom:2rem;
+}
+.hero__kicker i{
+  width:8px;height:8px;border-radius:50%;background:var(--live);
+  box-shadow:0 0 0 0 rgba(20,194,98,.6);
+  animation:livepulse 1.8s ease-out infinite;
+}
+
+.hero__grid{
+  display:grid;
+  grid-template-columns:1.2fr .9fr;
+  gap:clamp(2rem,5vw,4.5rem);
+  align-items:end;
+}
+
+.hero h1{
+  font-variation-settings:"wdth" 86, "opsz" 96, "wght" 700;
+  font-size:clamp(1.7rem, 3.4vw, 3.6rem);
+  letter-spacing:-.025em;
+  line-height:1.14;
+  overflow-wrap:break-word;
+  hyphens:auto;
+}
+.hero h1 .cold{
+  background:linear-gradient(120deg, var(--cold) 0%, #3a79ff 50%, var(--cold) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-style:italic;
+  font-variation-settings:"wdth" 88, "opsz" 96, "wght" 650;
+  display:inline-block;
+  padding-bottom:.25em;padding-right:.1em;line-height:1.1;
+  line-height:1;
+}
+.hero h1 .hot{
+  background:linear-gradient(120deg, var(--hot) 0%, #ff5a3a 50%, var(--hot) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  font-style:italic;
+  font-variation-settings:"wdth" 88, "opsz" 96, "wght" 650;
+  display:inline-block;
+  padding-bottom:.25em;padding-right:.1em;line-height:1.1;
+  line-height:1;
+}
+.hero h1 .slash{color:var(--ink-dim);font-weight:300;padding:0 .1em}
+@media (max-width:600px){
+  .hero h1{font-size:clamp(1.5rem, 6vw, 2rem);letter-spacing:-.01em;line-height:1.18}
+}
+
+.hero__lede{
+  margin:2.4rem 0 0;
+  max-width:36em;
+  font-size:clamp(1rem,1.2vw,1.12rem);
+  line-height:1.55;
+  color:var(--ink-soft);
+}
+.hero__lede strong{color:var(--ink);font-weight:600}
+
+.hero__cta{
+  margin-top:2.4rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.8rem;
+  align-items:center;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:.7rem;
+  font-family:var(--f-body);
+  font-weight:600;
+  font-size:.95rem;
+  padding:1rem 1.6rem;
+  border-radius:var(--r-pill);
+  border:1.5px solid transparent;
+  transition:transform .2s, background .2s, color .2s, border-color .2s;
+  white-space:nowrap;
+}
+.btn svg{width:15px;height:15px}
+.btn--primary{background:var(--ink);color:#fff}
+.btn--primary:hover{transform:translateY(-2px);background:var(--cold)}
+.btn--ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+.btn--ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* hero aside = big number + info */
+.hero__aside{
+  display:flex;
+  flex-direction:column;
+  gap:1.2rem;
+  position:relative;
+}
+.hero-card{
+  background:var(--bg-card);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:1.6rem;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-card--phone{
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+  background:var(--ink);
+  color:#fff;
+  border-color:var(--ink);
+}
+.hero-card--phone::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  z-index:0;
+  background:radial-gradient(circle at 85% 15%, rgba(0,69,255,.5) 0%, transparent 55%),
+             radial-gradient(circle at 20% 90%, rgba(255,45,26,.45) 0%, transparent 60%);
+  filter:blur(30px);
+  opacity:.75;
+  animation:cardBreathe 12s ease-in-out infinite alternate;
+}
+@keyframes cardBreathe{
+  from{opacity:.55;transform:scale(1)}
+  to{opacity:.85;transform:scale(1.08)}
+}
+.hero-card--phone *{position:relative;z-index:1}
+.hero-card__label{
+  font-family:var(--f-body);
+  font-size:.75rem;
+  font-weight:500;
+  letter-spacing:.02em;
+  color:rgba(255,255,255,.6);
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  margin-bottom:.2rem;
+}
+.hero-card__label i{
+  width:7px;height:7px;border-radius:50%;background:var(--live);
+  animation:livepulse 1.8s ease-out infinite;
+}
+.hero-card__phone{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 80, "opsz" 96, "wght" 700;
+  font-size:clamp(2rem, 4vw, 2.8rem);
+  letter-spacing:-.03em;
+  color:#fff;
+  line-height:1;
+  padding:.2rem 0;
+  display:inline-block;
+}
+.hero-card__phone:hover{color:#fff}
+.hero-card__note{
+  font-family:var(--f-body);
+  font-size:.82rem;
+  color:rgba(255,255,255,.65);
+  margin-top:.8rem;
+}
+.hero-card__note strong{color:#fff;font-weight:600}
+
+/* hero-card photo */
+.hero-card--photo{
+  position:relative;
+  padding:0;
+  overflow:hidden;
+  border:0;
+  aspect-ratio:4/3;
+  isolation:isolate;
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.2);
+}
+.hero-card--photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+}
+.hero-card--photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent 50%, rgba(0,0,0,.55) 100%);
+  pointer-events:none;
+}
+.hero-card__photo-tag{
+  position:absolute;
+  left:1.2rem;
+  bottom:1.1rem;
+  right:1.2rem;
+  z-index:2;
+  color:#fff;
+  display:flex;
+  flex-direction:column;
+  gap:.15rem;
+}
+.hero-card__photo-num{
+  font-family:var(--f-mono);
+  font-size:.7rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:.85;
+  font-weight:500;
+}
+.hero-card__photo-cap{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 92, "opsz" 14, "wght" 600;
+  font-size:.98rem;
+  letter-spacing:-.01em;
+  line-height:1.25;
+}
+.hero-card__photo-badge{
+  position:absolute;
+  top:1rem;
+  left:1rem;
+  z-index:2;
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  padding:.35rem .75rem;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(6px);
+  border-radius:var(--r-pill);
+  font-family:var(--f-mono);
+  font-size:.65rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink);
+  font-weight:500;
+}
+.hero-card__photo-badge i{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--live);
+  animation:livepulse 1.8s ease-out infinite;
+}
+
+/* thermo dual — showing cold+hot spectrum */
+.hero-card--therm{
+  background:#fff;
+  overflow:hidden;
+  padding:1.4rem 1.6rem 1.6rem;
+}
+.therm-row{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:.8rem;
+  padding:.6rem 0;
+}
+.therm-row + .therm-row{border-top:1px solid var(--line)}
+.therm-row .lbl{font-family:var(--f-body);font-size:.78rem;font-weight:500;color:var(--ink-2);display:flex;align-items:center;gap:.5rem}
+.therm-row .lbl i{width:8px;height:8px;border-radius:50%}
+.therm-row .lbl .i-c{background:var(--cold)}
+.therm-row .lbl .i-h{background:var(--hot)}
+.therm-row .val{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 88, "opsz" 14, "wght" 700;
+  font-size:1.3rem;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+.therm-row .val small{font-family:var(--f-mono);font-size:.6em;color:var(--ink-soft);margin-left:.1em;letter-spacing:.05em;vertical-align:super;font-weight:500}
+.therm-row .bar{
+  width:140px;
+  height:6px;
+  background:var(--line);
+  border-radius:var(--r-pill);
+  position:relative;
+  overflow:hidden;
+}
+.therm-row .bar::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  width:var(--w,70%);
+  border-radius:inherit;
+  background:linear-gradient(to right, var(--cold), var(--hot));
+}
+.therm-row.cold .bar::after{background:var(--cold);width:var(--w,78%)}
+.therm-row.hot .bar::after{background:var(--hot);width:var(--w,84%)}
+
+.hero__meta{
+  margin-top:3rem;
+  padding-top:2rem;
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.2rem;
+}
+.hero__meta .k{
+  display:block;
+  font-family:var(--f-mono);
+  font-size:.66rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-dim);
+  margin-bottom:.4rem;
+}
+.hero__meta .v{
+  display:block;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 90, "opsz" 14, "wght" 600;
+  font-size:1.04rem;
+  letter-spacing:-.02em;
+  color:var(--ink);
+}
+.hero__meta .v em{color:var(--cold);font-style:normal;font-weight:700}
+.hero__meta .v .dot{color:var(--hot);margin:0 .25em;font-weight:700}
+
+@media (max-width:900px){
+  .hero__grid{grid-template-columns:1fr;gap:2.6rem}
+  .hero__meta{grid-template-columns:1fr 1fr}
+}
+@media (max-width:480px){
+  .hero__kicker{font-size:.72rem}
+  .therm-row .bar{width:80px}
+}
+
+/* =========================================================
+   SPLIT SERVICES (clim / chauff) — full-bleed colored blocks
+   ========================================================= */
+.split{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  position:relative;
+}
+.split__pane{
+  padding:clamp(2.2rem,4vw,3.8rem) clamp(1.6rem,3vw,3rem);
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  color:#fff;
+  min-height:clamp(380px,46vw,500px);
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:1.8rem;
+}
+.split__pane--cold{background:var(--cold)}
+.split__pane--hot{background:var(--hot)}
+.split__pane::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  opacity:.55;
+  background-image:radial-gradient(circle at 30% 80%, rgba(255,255,255,.3) 0%, transparent 40%),
+                   radial-gradient(circle at 85% 20%, rgba(255,255,255,.22) 0%, transparent 45%);
+  animation:paneBreathe 16s ease-in-out infinite alternate;
+}
+@keyframes paneBreathe{
+  from{opacity:.4}
+  to{opacity:.75}
+}
+.split__pane > *{position:relative;z-index:1}
+
+.split__num{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 85, "opsz" 96, "wght" 700;
+  font-size:clamp(5rem, 16vw, 18rem);
+  line-height:.85;
+  letter-spacing:-.05em;
+  color:rgba(255,255,255,.85);
+  font-style:italic;
+  margin:0;
+  position:absolute;
+  bottom:-.3em;
+  right:clamp(1rem,4vw,3rem);
+  opacity:.18;
+  z-index:0;
+  pointer-events:none;
+}
+.split__kicker{
+  font-family:var(--f-mono);
+  font-size:.75rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.8);
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  margin-bottom:1rem;
+}
+.split__kicker::before{
+  content:"";
+  width:34px;
+  height:1.5px;
+  background:rgba(255,255,255,.7);
+}
+.split h3{
+  font-size:clamp(1.9rem,4.2vw,3.6rem);
+  font-variation-settings:"wdth" 85, "opsz" 96, "wght" 700;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  color:#fff;
+  margin-bottom:1.2rem;
+  max-width:14em;
+  padding-bottom:.04em;
+}
+.split h3 em{
+  font-style:italic;
+  font-variation-settings:"wdth" 85, "opsz" 96, "wght" 500;
+  opacity:.95;
+  display:inline-block;
+  padding-bottom:.18em;
+  line-height:1;
+}
+.split__text{
+  font-size:1.02rem;
+  line-height:1.55;
+  color:rgba(255,255,255,.9);
+  max-width:32em;
+  margin-bottom:2rem;
+}
+
+.split__list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+}
+.split__list li{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:1rem;
+  align-items:center;
+  padding:1rem 0;
+  border-top:1px solid rgba(255,255,255,.2);
+  font-size:1rem;
+  color:#fff;
+}
+.split__list li:last-child{border-bottom:1px solid rgba(255,255,255,.2)}
+.split__list li .idx{
+  font-family:var(--f-mono);
+  font-size:.72rem;
+  letter-spacing:.1em;
+  color:rgba(255,255,255,.6);
+  font-weight:500;
+  min-width:2.2em;
+}
+.split__list li .arrow{
+  width:22px;height:22px;
+  border-radius:50%;
+  background:rgba(255,255,255,.16);
+  display:grid;
+  place-items:center;
+  transition:background .2s, transform .2s;
+}
+.split__list li .arrow svg{width:10px;height:10px}
+.split__list li:hover .arrow{background:#fff;transform:translate(2px,-1px)}
+.split__list li:hover .arrow svg{color:var(--ink)}
+
+.split__specs{
+  margin-top:2rem;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  padding-top:1.4rem;
+  border-top:1px solid rgba(255,255,255,.25);
+}
+.split__specs dl{margin:0;display:flex;flex-direction:column;gap:.3rem}
+.split__specs dt{
+  font-family:var(--f-mono);
+  font-size:.62rem;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+}
+.split__specs dd{
+  margin:0;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 85, "opsz" 96, "wght" 600;
+  font-size:clamp(1.6rem,2.4vw,2.2rem);
+  letter-spacing:-.03em;
+  line-height:1;
+  color:#fff;
+}
+.split__specs dd sup{font-family:var(--f-mono);font-size:.36em;vertical-align:super;color:rgba(255,255,255,.7);margin-left:.15em;letter-spacing:.1em;font-weight:500}
+
+@media (max-width:900px){
+  .split{grid-template-columns:1fr}
+  .split__pane{min-height:auto}
+}
+
+/* =========================================================
+   PLEDGES — nos engagements (4 mini cards)
+   ========================================================= */
+.pledges{
+  padding:clamp(2rem,3.5vw,3rem) var(--gutter);
+  max-width:var(--page-max);
+  margin:0 auto;
+}
+.pledges__grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1rem;
+}
+.pledge{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:1.6rem 1.6rem 1.4rem;
+  display:flex;
+  flex-direction:column;
+  gap:.9rem;
+  transition:transform .2s, border-color .2s;
+}
+.pledge:hover{transform:translateY(-2px);border-color:var(--ink)}
+.pledge__icon{
+  width:44px;height:44px;
+  border-radius:var(--r-md);
+  background:var(--cold-soft);
+  display:grid;place-items:center;
+  color:var(--cold);
+}
+.pledge:nth-child(2) .pledge__icon{background:var(--hot-soft);color:var(--hot)}
+.pledge:nth-child(3) .pledge__icon{background:#f0f0ff;color:#5a4df0}
+.pledge:nth-child(4) .pledge__icon{background:#eaf7ee;color:var(--live)}
+.pledge__icon svg{width:20px;height:20px}
+.pledge h4{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 90, "opsz" 14, "wght" 700;
+  font-size:1.1rem;
+  line-height:1.15;
+  letter-spacing:-.02em;
+  margin:0;
+}
+.pledge p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.88rem;
+  line-height:1.5;
+}
+.pledge__tag{
+  margin-top:auto;
+  font-family:var(--f-mono);
+  font-size:.62rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-dim);
+  padding-top:.8rem;
+  border-top:1px dashed var(--line);
+  font-weight:500;
+}
+@media (max-width:900px){.pledges__grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:480px){.pledges__grid{grid-template-columns:1fr}}
+
+/* =========================================================
+   AIDS — aides financières
+   ========================================================= */
+.aids{
+  padding:var(--section-pad) var(--gutter);
+  background:linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+  position:relative;
+  overflow:hidden;
+}
+.aids__inner{
+  max-width:var(--page-max);
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+.aids__head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2.5rem;
+  align-items:end;
+  margin-bottom:3rem;
+}
+.aids__head h2{
+  font-variation-settings:"wdth" 88, "opsz" 96, "wght" 700;
+  letter-spacing:-.03em;
+  line-height:1.08;
+  font-size:clamp(1.9rem,4vw,3.4rem);
+}
+.aids__head h2 em{
+  font-style:italic;
+  font-variation-settings:"wdth" 88, "opsz" 96, "wght" 500;
+  background:linear-gradient(120deg, var(--cold) 0%, var(--hot) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  display:inline-block;
+  padding-bottom:.15em;
+}
+.aids__head p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:1rem;
+  line-height:1.65;
+  max-width:30em;
+  justify-self:end;
+}
+.aids__head p strong{color:var(--ink);font-weight:600}
+
+.aids__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+}
+.aid{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:2rem 2rem 1.8rem;
+  overflow:hidden;
+  isolation:isolate;
+  transition:transform .25s, border-color .25s, box-shadow .25s;
+}
+.aid:hover{transform:translateY(-4px);border-color:var(--ink);box-shadow:0 24px 40px -20px rgba(0,0,0,.12)}
+.aid__label{
+  font-family:var(--f-mono);
+  font-size:.7rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  margin-bottom:1rem;
+  font-weight:500;
+}
+.aid__label::before{content:"";width:22px;height:1.5px;background:var(--cold)}
+.aid:nth-child(2) .aid__label::before{background:var(--hot)}
+.aid:nth-child(3) .aid__label::before{background:var(--live)}
+.aid__amount{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 80, "opsz" 96, "wght" 700;
+  font-size:clamp(2.2rem,3.8vw,3.2rem);
+  letter-spacing:-.03em;
+  line-height:1;
+  margin-bottom:.2rem;
+  color:var(--cold);
+  display:flex;
+  align-items:baseline;
+  gap:.3rem;
+}
+.aid__amount sup{
+  font-family:var(--f-mono);
+  font-size:.3em;
+  color:var(--ink-soft);
+  margin-left:.05em;
+  letter-spacing:.08em;
+  font-weight:500;
+  vertical-align:super;
+  text-transform:uppercase;
+}
+.aid:nth-child(2) .aid__amount{color:var(--hot)}
+.aid:nth-child(3) .aid__amount{color:var(--live)}
+.aid h4{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 90, "opsz" 14, "wght" 700;
+  font-size:1.3rem;
+  line-height:1.15;
+  letter-spacing:-.02em;
+  margin:1.4rem 0 .5rem;
+}
+.aid p{
+  margin:0 0 1.4rem;
+  color:var(--ink-soft);
+  font-size:.92rem;
+  line-height:1.55;
+}
+.aid__foot{
+  font-family:var(--f-mono);
+  font-size:.66rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-dim);
+  padding-top:1rem;
+  border-top:1px dashed var(--line);
+  font-weight:500;
+}
+
+.aids__source{
+  margin:2rem auto 0;
+  max-width:62em;
+  text-align:center;
+  font-size:.82rem;
+  line-height:1.65;
+  color:var(--ink-soft);
+  padding:1.4rem 1.6rem;
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+}
+.aids__source strong{color:var(--ink);font-weight:600}
+.aids__source a{color:var(--cold);text-decoration:underline;text-underline-offset:3px}
+.aids__source a:hover{color:var(--hot)}
+
+@media (max-width:900px){
+  .aids__head{grid-template-columns:1fr}
+  .aids__head p{justify-self:start}
+  .aids__grid{grid-template-columns:1fr;gap:1rem}
+  .aids__source{text-align:left;margin-top:1.5rem}
+}
+
+/* =========================================================
+   GALLERY — Réalisations récentes
+   ========================================================= */
+.gallery{
+  padding:var(--section-pad) var(--gutter);
+  max-width:var(--page-max);
+  margin:0 auto;
+}
+.gallery__head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:2rem;
+  align-items:end;
+  margin-bottom:2.5rem;
+}
+.gallery__head h2{
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 700;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  font-size:clamp(1.9rem,4vw,3.4rem);
+}
+.gallery__head h2 em{
+  font-style:italic;
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 500;
+  background:linear-gradient(120deg, var(--cold) 0%, var(--hot) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  display:inline-block;
+  padding-bottom:.15em;
+}
+.gallery__head p{
+  margin:0;
+  max-width:22em;
+  color:var(--ink-soft);
+  font-size:.98rem;
+  line-height:1.6;
+  justify-self:end;
+}
+
+.gallery__grid{
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  grid-auto-rows:220px;
+  gap:.9rem;
+}
+.gallery__item{
+  position:relative;
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--ink);
+  transition:transform .3s cubic-bezier(.3,.7,.3,1);
+}
+.gallery__item:hover{transform:translateY(-4px)}
+.gallery__item img{
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center;
+  transition:transform .5s cubic-bezier(.3,.7,.3,1), filter .3s;
+  filter:saturate(1.03) contrast(1.02);
+}
+.gallery__item:hover img{transform:scale(1.04)}
+.gallery__item::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, transparent 55%, rgba(0,0,0,.65) 100%);
+  pointer-events:none;
+  z-index:1;
+}
+.gallery__item__tag{
+  position:absolute;
+  bottom:1rem;
+  left:1rem;
+  right:1rem;
+  z-index:2;
+  color:#fff;
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:.6rem;
+}
+.gallery__item__tag .cap{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 90, "opsz" 14, "wght" 600;
+  font-size:.92rem;
+  letter-spacing:-.01em;
+  line-height:1.25;
+}
+.gallery__item__tag .cat{
+  font-family:var(--f-mono);
+  font-size:.58rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  padding:.3rem .55rem;
+  background:rgba(255,255,255,.22);
+  backdrop-filter:blur(4px);
+  border-radius:var(--r-pill);
+  white-space:nowrap;
+  flex:0 0 auto;
+  font-weight:500;
+}
+.gallery__item .ref{
+  position:absolute;
+  top:1rem;right:1rem;
+  z-index:2;
+  font-family:var(--f-mono);
+  font-size:.58rem;
+  letter-spacing:.18em;
+  color:rgba(255,255,255,.85);
+  text-transform:uppercase;
+  background:rgba(0,0,0,.35);
+  padding:.3rem .55rem;
+  border-radius:var(--r-pill);
+  font-weight:500;
+}
+
+/* layout asymétrique masonry-like */
+.gallery__item--tall{grid-row:span 2}
+.gallery__item--wide{grid-column:span 2}
+.gallery__item--big{grid-column:span 2;grid-row:span 2}
+.gallery__item:nth-child(1){grid-column:span 3;grid-row:span 2}
+.gallery__item:nth-child(2){grid-column:span 3}
+.gallery__item:nth-child(3){grid-column:span 2}
+.gallery__item:nth-child(4){grid-column:span 2;grid-row:span 2}
+.gallery__item:nth-child(5){grid-column:span 2}
+.gallery__item:nth-child(6){grid-column:span 2}
+.gallery__item:nth-child(7){grid-column:span 2}
+
+.gallery__foot{
+  margin-top:1.8rem;
+  padding:1rem 1.4rem;
+  background:var(--bg-2);
+  border:1px solid var(--line);
+  border-radius:var(--r-pill);
+  font-family:var(--f-mono);
+  font-size:.75rem;
+  letter-spacing:.1em;
+  color:var(--ink-soft);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:.6rem 1.5rem;
+  justify-content:center;
+}
+.gallery__foot strong{font-weight:600;color:var(--ink);letter-spacing:.04em}
+.gallery__foot span{display:inline-flex;align-items:center;gap:.5rem}
+.gallery__foot span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cold)}
+.gallery__foot span:nth-child(even)::before{background:var(--hot)}
+
+@media (max-width:1100px){
+  .gallery__grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:200px}
+  .gallery__item:nth-child(1){grid-column:span 2;grid-row:span 2}
+  .gallery__item:nth-child(2){grid-column:span 2;grid-row:span 1}
+  .gallery__item:nth-child(3){grid-column:span 2;grid-row:span 1}
+  .gallery__item:nth-child(4){grid-column:span 2;grid-row:span 2}
+  .gallery__item:nth-child(5){grid-column:span 2;grid-row:span 1}
+  .gallery__item:nth-child(6){grid-column:span 2;grid-row:span 1}
+  .gallery__item:nth-child(7){grid-column:span 4;grid-row:span 1}
+}
+@media (max-width:700px){
+  .gallery__head{grid-template-columns:1fr;align-items:start}
+  .gallery__head p{justify-self:start}
+  .gallery__grid{grid-template-columns:1fr;grid-auto-rows:220px;gap:.8rem}
+  .gallery__item,
+  .gallery__item:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .gallery__item:nth-child(1){grid-row:span 1}
+}
+
+/* =========================================================
+   FAQ
+   ========================================================= */
+.faq{
+  padding:var(--section-pad) var(--gutter);
+  max-width:var(--page-max);
+  margin:0 auto;
+}
+.faq__head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+  align-items:end;
+  margin-bottom:3rem;
+}
+.faq__head h2{
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 700;
+  letter-spacing:-.04em;
+  line-height:1.04;
+}
+.faq__head h2 em{font-style:italic;font-variation-settings:"wdth" 90, "opsz" 96, "wght" 500;color:var(--ink-soft);display:inline-block;padding-bottom:.15em}
+.faq__head p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:1rem;
+  line-height:1.6;
+  max-width:26em;
+  justify-self:end;
+}
+.faq__list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.8rem;
+}
+.faq__item{
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  background:#fff;
+  overflow:hidden;
+  transition:border-color .2s;
+}
+.faq__item[open]{border-color:var(--ink)}
+.faq__item summary{
+  list-style:none;
+  cursor:pointer;
+  padding:1.4rem 1.6rem;
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:1rem;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 92, "opsz" 14, "wght" 600;
+  font-size:1.05rem;
+  line-height:1.3;
+  letter-spacing:-.01em;
+  color:var(--ink);
+}
+.faq__item summary::-webkit-details-marker{display:none}
+.faq__item summary::after{
+  content:"";
+  width:32px;height:32px;border-radius:50%;
+  background:var(--bg);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230b0b0d' stroke-width='2.4'><path d='M12 5v14M5 12h14'/></svg>");
+  background-size:13px;
+  background-position:center;
+  background-repeat:no-repeat;
+  transition:transform .3s, background .3s;
+}
+.faq__item[open] summary::after{
+  transform:rotate(45deg);
+  background-color:var(--ink);
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.4'><path d='M12 5v14M5 12h14'/></svg>");
+}
+.faq__item__body{
+  padding:0 1.6rem 1.6rem;
+  color:var(--ink-soft);
+  font-size:.95rem;
+  line-height:1.65;
+  max-width:36em;
+}
+.faq__item__body strong{color:var(--ink);font-weight:600}
+
+@media (max-width:820px){
+  .faq__head{grid-template-columns:1fr}
+  .faq__head p{justify-self:start}
+  .faq__list{grid-template-columns:1fr}
+  .faq__item summary{font-size:.98rem;padding:1.2rem 1.3rem}
+  .faq__item__body{padding:0 1.3rem 1.3rem}
+}
+
+/* =========================================================
+   BATHROOM — Sanitaire & salle de bain (3e pilier)
+   ========================================================= */
+.bathroom{
+  padding:0;
+  margin:0;
+  position:relative;
+  background:#1a1a1d;
+  color:#fff;
+  overflow:hidden;
+  isolation:isolate;
+}
+.bathroom__inner{
+  max-width:var(--page-max);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  align-items:stretch;
+  min-height:clamp(380px,46vw,520px);
+}
+.bathroom__photo{
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.bathroom__photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:saturate(1.04);
+}
+.bathroom__photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg, transparent 60%, rgba(26,26,29,.5) 100%),
+             linear-gradient(180deg, transparent 70%, rgba(0,0,0,.3) 100%);
+  pointer-events:none;
+}
+.bathroom__photo__tag{
+  position:absolute;
+  bottom:1.4rem;
+  left:1.4rem;
+  z-index:2;
+  color:#fff;
+  font-family:var(--f-mono);
+  font-size:.7rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  opacity:.9;
+  padding:.45rem .75rem;
+  background:rgba(0,0,0,.5);
+  backdrop-filter:blur(4px);
+  border-radius:var(--r-pill);
+}
+.bathroom__content{
+  padding:clamp(2.4rem,4vw,3.8rem) clamp(1.6rem,3vw,3rem);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:1.2rem;
+  position:relative;
+  z-index:1;
+}
+.bathroom__content::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  z-index:-1;
+  background:radial-gradient(circle at 30% 50%, rgba(200,160,120,.14) 0%, transparent 55%),
+             radial-gradient(circle at 80% 80%, rgba(100,130,180,.08) 0%, transparent 55%);
+  filter:blur(30px);
+  pointer-events:none;
+  animation:cardBreathe 18s ease-in-out infinite alternate;
+}
+.bathroom__kicker{
+  font-family:var(--f-mono);
+  font-size:.74rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:#c8a078;
+  display:flex;
+  align-items:center;
+  gap:.7rem;
+  font-weight:500;
+}
+.bathroom__kicker::before{
+  content:"";
+  width:30px;height:1.5px;
+  background:#c8a078;
+}
+.bathroom h2{
+  font-variation-settings:"wdth" 88, "opsz" 96, "wght" 700;
+  font-size:clamp(1.9rem,3.8vw,3.2rem);
+  letter-spacing:-.03em;
+  line-height:1.1;
+  color:#fff;
+  max-width:14em;
+}
+.bathroom h2 em{
+  font-style:italic;
+  font-variation-settings:"wdth" 88, "opsz" 96, "wght" 500;
+  color:#d9b48c;
+  display:inline-block;
+  padding-bottom:.15em;
+}
+.bathroom__text{
+  color:rgba(255,255,255,.8);
+  font-size:1.02rem;
+  line-height:1.6;
+  max-width:34em;
+  margin:0;
+}
+.bathroom__text strong{color:#fff;font-weight:600}
+.bathroom__list{
+  list-style:none;
+  padding:0;
+  margin:1.2rem 0 0;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.7rem 1.5rem;
+}
+.bathroom__list li{
+  display:flex;
+  align-items:baseline;
+  gap:.7rem;
+  padding:.65rem 0;
+  border-top:1px solid rgba(255,255,255,.12);
+  font-size:.95rem;
+  color:rgba(255,255,255,.9);
+}
+.bathroom__list li::before{
+  content:"—";
+  color:#c8a078;
+  font-weight:600;
+  flex:0 0 auto;
+}
+.bathroom__cta{
+  margin-top:1.2rem;
+  display:flex;
+  flex-wrap:wrap;
+  gap:.8rem;
+}
+.btn--gold{
+  background:#c8a078;
+  color:#1a1a1d;
+  border-color:#c8a078;
+}
+.btn--gold:hover{
+  background:#fff;
+  color:#1a1a1d;
+  border-color:#fff;
+  transform:translateY(-2px);
+}
+.btn--gold-outline{
+  background:transparent;
+  color:#c8a078;
+  border-color:rgba(200,160,120,.5);
+}
+.btn--gold-outline:hover{background:#c8a078;color:#1a1a1d;border-color:#c8a078}
+
+@media (max-width:900px){
+  .bathroom__inner{grid-template-columns:1fr;min-height:auto}
+  .bathroom__photo{aspect-ratio:4/3}
+}
+@media (max-width:600px){
+  .bathroom__list{grid-template-columns:1fr}
+}
+
+/* =========================================================
+   PROCESS — 3 étapes
+   ========================================================= */
+.process{
+  padding:var(--section-pad) var(--gutter);
+  max-width:var(--page-max);
+  margin:0 auto;
+}
+.process__head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:2rem;
+  align-items:end;
+  margin-bottom:3.5rem;
+}
+.section-label{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  font-family:var(--f-mono);
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+  margin-bottom:1rem;
+  font-weight:500;
+}
+.section-label::before{
+  content:"";
+  width:34px;height:1.5px;background:var(--ink-2);
+}
+.section-label .cold-dot{width:7px;height:7px;border-radius:50%;background:var(--cold)}
+.section-label .hot-dot{width:7px;height:7px;border-radius:50%;background:var(--hot)}
+.process h2{
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 700;
+  letter-spacing:-.04em;
+  max-width:14em;
+  line-height:1.04;
+}
+.process h2 em{
+  font-style:italic;
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 500;
+  color:var(--ink-soft);
+  display:inline-block;
+  padding-bottom:.15em;
+}
+
+.process__deck{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+  margin-top:2rem;
+}
+.step{
+  position:relative;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:2rem 1.8rem 1.8rem;
+  transition:transform .25s, border-color .25s, box-shadow .25s;
+  overflow:hidden;
+  isolation:isolate;
+}
+.step::before{
+  content:"";
+  position:absolute;
+  top:-2px;left:-2px;right:-2px;
+  height:3px;
+  background:linear-gradient(90deg, var(--cold), var(--hot));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.step:hover{
+  transform:translateY(-3px);
+  border-color:var(--ink);
+  box-shadow:0 24px 40px -20px rgba(0,0,0,.12);
+}
+.step:hover::before{transform:scaleX(1)}
+.step__num{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 80, "opsz" 96, "wght" 700;
+  font-size:clamp(3.4rem,5vw,4.8rem);
+  line-height:1;
+  letter-spacing:-.05em;
+  color:var(--ink);
+  margin-bottom:1.4rem;
+  display:flex;
+  align-items:baseline;
+  gap:.6rem;
+}
+.step__num small{
+  font-family:var(--f-mono);
+  font-size:.28em;
+  color:var(--ink-dim);
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.step:nth-child(1) .step__num{color:var(--cold)}
+.step:nth-child(2) .step__num{
+  background:linear-gradient(120deg, var(--cold) 0%, var(--hot) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.step:nth-child(3) .step__num{color:var(--hot)}
+.step h4{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 90, "opsz" 24, "wght" 700;
+  font-size:1.4rem;
+  letter-spacing:-.02em;
+  margin-bottom:.7rem;
+  line-height:1.1;
+}
+.step p{
+  margin:0;
+  color:var(--ink-soft);
+  font-size:.95rem;
+  line-height:1.6;
+}
+.step__meta{
+  margin-top:1.4rem;
+  padding-top:1rem;
+  border-top:1px dashed var(--line);
+  font-family:var(--f-mono);
+  font-size:.7rem;
+  letter-spacing:.1em;
+  color:var(--ink-dim);
+  text-transform:uppercase;
+  display:flex;
+  gap:.8rem;
+}
+.step__meta span{padding:.25rem .55rem;background:var(--bg);border-radius:var(--r-pill)}
+@media (max-width:820px){.process__deck{grid-template-columns:1fr}.process__head{grid-template-columns:1fr}}
+
+/* =========================================================
+   VISUAL — Schéma maison moderne
+   ========================================================= */
+.home{
+  padding:var(--section-pad) var(--gutter);
+  max-width:var(--page-max);
+  margin:0 auto;
+}
+.home__inner{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:clamp(2rem,5vw,5rem);
+  align-items:center;
+}
+.home h2{
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 700;
+  letter-spacing:-.03em;
+  font-size:clamp(1.9rem, 4vw, 3.4rem);
+  line-height:1.1;
+}
+.home h2 em{
+  font-style:italic;
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 500;
+  color:var(--cold);
+  display:inline-block;
+  padding-bottom:.15em;
+}
+.home h2 em.hot{color:var(--hot)}
+.home__lede{
+  margin:1.6rem 0 2rem;
+  font-size:1.02rem;
+  color:var(--ink-soft);
+  line-height:1.6;
+  max-width:28em;
+}
+.home__features{
+  display:flex;
+  flex-direction:column;
+  gap:.8rem;
+  margin-top:2rem;
+}
+.home__features div{
+  display:flex;
+  align-items:flex-start;
+  gap:1rem;
+  padding:1rem 1.2rem;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--r-md);
+}
+.home__features .ico{
+  width:32px;height:32px;border-radius:var(--r-sm);
+  display:grid;place-items:center;flex:0 0 auto;
+  background:var(--cold-soft);
+}
+.home__features div:nth-child(2) .ico{background:var(--hot-soft)}
+.home__features div:nth-child(3) .ico{background:#eaf7ee}
+.home__features .ico svg{width:16px;height:16px}
+.home__features div:nth-child(1) .ico svg{color:var(--cold)}
+.home__features div:nth-child(2) .ico svg{color:var(--hot)}
+.home__features div:nth-child(3) .ico svg{color:var(--live)}
+.home__features strong{
+  display:block;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 90, "opsz" 14, "wght" 700;
+  font-size:1rem;
+  margin-bottom:.15rem;
+  color:var(--ink);
+}
+.home__features p{margin:0;color:var(--ink-soft);font-size:.88rem;line-height:1.5}
+
+.home__svg{
+  position:relative;
+  background:linear-gradient(135deg, var(--cold-soft) 0%, var(--hot-soft) 100%);
+  border-radius:var(--r-xl);
+  padding:clamp(1.5rem,3vw,3rem);
+  overflow:hidden;
+  isolation:isolate;
+  aspect-ratio:1/.85;
+}
+.home__svg::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:radial-gradient(circle at 25% 30%, var(--cold-glow) 0%, transparent 55%),
+             radial-gradient(circle at 75% 70%, var(--hot-glow) 0%, transparent 55%);
+  filter:blur(40px);
+  animation:homeBreathe 16s ease-in-out infinite alternate;
+  opacity:.85;
+  z-index:0;
+}
+@keyframes homeBreathe{
+  from{transform:scale(1) rotate(0)}
+  to{transform:scale(1.12) rotate(6deg)}
+}
+.home__svg svg{position:relative;z-index:1;width:100%;height:100%}
+
+.home__badge{
+  position:absolute;
+  z-index:3;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--r-pill);
+  padding:.55rem 1rem;
+  font-family:var(--f-mono);
+  font-size:.72rem;
+  letter-spacing:.08em;
+  font-weight:500;
+  color:var(--ink);
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.08);
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  white-space:nowrap;
+}
+.home__badge i{width:8px;height:8px;border-radius:50%}
+.home__badge.b1{top:14%;left:-2%}
+.home__badge.b1 i{background:var(--cold)}
+.home__badge.b2{bottom:20%;right:-2%}
+.home__badge.b2 i{background:var(--hot)}
+.home__badge.b3{bottom:4%;left:18%}
+.home__badge.b3 i{background:var(--live);animation:livepulse 1.8s ease-out infinite}
+
+@media (max-width:900px){
+  .home__inner{grid-template-columns:1fr}
+}
+
+/* =========================================================
+   CERTIFICATIONS
+   ========================================================= */
+.certs{
+  padding:var(--section-pad) var(--gutter);
+  max-width:var(--page-max);
+  margin:0 auto;
+}
+.certs__head{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;
+  align-items:end;
+  margin-bottom:2.5rem;
+}
+.certs__head h2{
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 700;
+  letter-spacing:-.04em;
+  line-height:1.04;
+}
+.certs__head h2 em{font-style:italic;font-variation-settings:"wdth" 90, "opsz" 96, "wght" 500;color:var(--ink-soft);display:inline-block;padding-bottom:.15em}
+.certs__head p{
+  margin:0;
+  justify-self:end;
+  max-width:26em;
+  color:var(--ink-soft);
+  font-size:1rem;
+  line-height:1.6;
+}
+.certs__grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.2rem;
+}
+.cert{
+  position:relative;
+  border-radius:var(--r-lg);
+  padding:2rem 2.2rem 2rem;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:1.6rem;
+  align-items:flex-start;
+  overflow:hidden;
+  isolation:isolate;
+}
+.cert--cold{background:var(--cold);color:#fff}
+.cert--hot{background:var(--hot);color:#fff}
+.cert::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  z-index:0;
+  background:radial-gradient(circle at 80% 20%, rgba(255,255,255,.3) 0%, transparent 55%),
+             radial-gradient(circle at 20% 90%, rgba(255,255,255,.18) 0%, transparent 50%);
+  filter:blur(24px);
+  opacity:.8;
+  animation:cardBreathe 14s ease-in-out infinite alternate;
+}
+.cert > *{position:relative;z-index:1}
+.cert__seal{
+  width:100px;
+  height:100px;
+  flex:0 0 auto;
+  position:relative;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  display:grid;
+  place-items:center;
+  border:1.5px solid rgba(255,255,255,.3);
+}
+.cert__seal strong{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 80, "opsz" 96, "wght" 700;
+  font-size:1.6rem;
+  color:#fff;
+  letter-spacing:-.02em;
+  line-height:1;
+}
+.cert__seal small{
+  font-family:var(--f-mono);
+  font-size:.58rem;
+  letter-spacing:.18em;
+  color:rgba(255,255,255,.8);
+  display:block;
+  margin-top:.35rem;
+  text-align:center;
+}
+.cert__kicker{
+  font-family:var(--f-mono);
+  font-size:.72rem;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.75);
+  display:block;
+  margin-bottom:.4rem;
+}
+.cert h4{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 90, "opsz" 24, "wght" 700;
+  font-size:1.7rem;
+  letter-spacing:-.02em;
+  margin:0 0 .5rem;
+  line-height:1.05;
+  color:#fff;
+}
+.cert p{
+  margin:0;
+  font-size:.95rem;
+  color:rgba(255,255,255,.9);
+  line-height:1.55;
+}
+.cert__ref{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  margin-top:1rem;
+  padding:.4rem .8rem;
+  border-radius:var(--r-pill);
+  background:rgba(255,255,255,.15);
+  font-family:var(--f-mono);
+  font-size:.65rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.95);
+}
+@media (max-width:820px){
+  .certs__head{grid-template-columns:1fr}
+  .certs__head p{justify-self:start}
+  .certs__grid{grid-template-columns:1fr}
+}
+
+/* =========================================================
+   AVIS
+   ========================================================= */
+.reviews{
+  padding:var(--section-pad) var(--gutter);
+  background:var(--ink);
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.reviews::before{
+  content:"";
+  position:absolute;
+  top:-20%;left:-10%;
+  width:60vw;height:60vw;max-width:800px;max-height:800px;
+  background:radial-gradient(circle at center, var(--cold) 0%, transparent 60%);
+  filter:blur(100px);
+  opacity:.3;
+  z-index:0;
+  animation:orbCold 24s ease-in-out infinite alternate;
+}
+.reviews::after{
+  content:"";
+  position:absolute;
+  bottom:-20%;right:-10%;
+  width:50vw;height:50vw;max-width:700px;max-height:700px;
+  background:radial-gradient(circle at center, var(--hot) 0%, transparent 60%);
+  filter:blur(100px);
+  opacity:.3;
+  z-index:0;
+  animation:orbHot 26s ease-in-out infinite alternate;
+}
+.reviews__inner{
+  max-width:var(--page-max);
+  margin:0 auto;
+  position:relative;
+  z-index:1;
+}
+.reviews__head{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:2rem;
+  align-items:end;
+  margin-bottom:3rem;
+}
+.reviews__head .section-label{color:rgba(255,255,255,.6)}
+.reviews__head .section-label::before{background:rgba(255,255,255,.4)}
+.reviews__head h2{
+  color:#fff;
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 700;
+  max-width:14em;
+  font-size:clamp(1.9rem,4vw,3.4rem);
+  line-height:1.1;
+}
+.reviews__head h2 em{font-style:italic;font-variation-settings:"wdth" 90, "opsz" 96, "wght" 500;color:rgba(255,255,255,.55);display:inline-block;padding-bottom:.15em}
+.rating{
+  text-align:right;
+  font-family:var(--f-body);
+  display:flex;
+  align-items:end;
+  gap:1.5rem;
+}
+.rating__score{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 85, "opsz" 96, "wght" 700;
+  font-size:clamp(3rem,5vw,4.6rem);
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:#fff;
+}
+.rating__score sup{font-family:var(--f-mono);font-size:.26em;vertical-align:super;color:rgba(255,255,255,.5);margin-left:.1em;letter-spacing:.1em;font-weight:500}
+.rating__info{font-size:.76rem;color:rgba(255,255,255,.7);font-family:var(--f-mono);letter-spacing:.04em}
+.rating__info .stars{display:flex;gap:.15rem;color:#fff;font-size:.95rem;margin-bottom:.4rem;justify-content:flex-end}
+
+.reviews__grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.2rem;
+}
+.review{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:var(--r-lg);
+  padding:1.8rem 1.8rem 1.6rem;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  isolation:isolate;
+  transition:transform .3s, border-color .3s, background .3s;
+}
+.review:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.07)}
+.review__stars{
+  color:var(--hot);
+  font-size:.95rem;
+  display:flex;
+  gap:.1rem;
+  margin-bottom:1.2rem;
+}
+.review__stars span{background:linear-gradient(120deg, var(--cold), var(--hot));-webkit-background-clip:text;background-clip:text;color:transparent}
+.review blockquote{
+  margin:0 0 1.8rem;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 95, "opsz" 18, "wght" 600;
+  font-size:1.15rem;
+  line-height:1.4;
+  letter-spacing:-.01em;
+  color:#fff;
+  flex:1;
+}
+.review__meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  padding-top:1.2rem;
+  border-top:1px solid rgba(255,255,255,.15);
+}
+.review__who{
+  font-family:var(--f-body);
+  font-weight:600;
+  font-size:.92rem;
+  color:#fff;
+  display:block;
+}
+.review__when{
+  font-family:var(--f-mono);
+  font-size:.68rem;
+  color:rgba(255,255,255,.55);
+  margin-top:.15rem;
+  display:block;
+  letter-spacing:.05em;
+}
+.review__tag{
+  font-family:var(--f-mono);
+  font-size:.62rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:.3rem .55rem;
+  border-radius:var(--r-pill);
+  background:rgba(255,255,255,.1);
+  color:rgba(255,255,255,.8);
+  display:inline-block;
+}
+
+@media (max-width:900px){
+  .reviews__grid{grid-template-columns:1fr}
+  .reviews__head{grid-template-columns:1fr;align-items:start}
+  .rating{justify-content:flex-start}
+}
+
+/* =========================================================
+   ZONE INTERVENTION
+   ========================================================= */
+.zone{
+  padding:var(--section-pad) var(--gutter);
+  max-width:var(--page-max);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:clamp(2rem,5vw,5rem);
+  align-items:center;
+}
+.zone h2{
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 700;
+  letter-spacing:-.03em;
+  line-height:1.1;
+  font-size:clamp(1.9rem,4vw,3.4rem);
+}
+.zone h2 em{
+  font-style:italic;
+  font-variation-settings:"wdth" 90, "opsz" 96, "wght" 500;
+  background:linear-gradient(120deg, var(--cold) 0%, var(--hot) 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  display:inline-block;
+  padding-bottom:.15em;
+}
+.zone__text p{
+  margin:1.6rem 0 2rem;
+  max-width:30em;
+  color:var(--ink-soft);
+  font-size:1rem;
+  line-height:1.65;
+}
+.zone__places{display:flex;flex-wrap:wrap;gap:.6rem}
+.zone__places span{
+  font-family:var(--f-body);
+  font-weight:500;
+  font-size:.88rem;
+  padding:.5rem 1rem;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--r-pill);
+  color:var(--ink-2);
+  transition:transform .2s, border-color .2s;
+}
+.zone__places span:hover{transform:translateY(-2px);border-color:var(--ink)}
+.zone__places span.is-anchor{background:var(--ink);color:#fff;border-color:var(--ink)}
+.zone__map{
+  position:relative;
+  aspect-ratio:1/1;
+  background:linear-gradient(135deg, var(--cold-soft) 0%, #fff 60%, var(--hot-soft) 100%);
+  border-radius:var(--r-xl);
+  overflow:hidden;
+  isolation:isolate;
+}
+.zone__map::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--cold-glow) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, var(--hot-glow) 0%, transparent 40%);
+  filter:blur(20px);
+  opacity:.7;
+  z-index:0;
+}
+.zone__map svg{position:relative;z-index:1;width:100%;height:100%;display:block}
+.zone__map__badge{
+  position:absolute;
+  top:1.3rem;
+  left:1.3rem;
+  z-index:2;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--r-pill);
+  padding:.45rem .85rem;
+  font-family:var(--f-mono);
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink);
+  box-shadow:0 10px 24px -8px rgba(0,0,0,.1);
+  display:flex;align-items:center;gap:.5rem;
+}
+.zone__map__badge i{width:7px;height:7px;border-radius:50%;background:var(--hot);animation:livepulse 1.8s ease-out infinite}
+
+@media (max-width:900px){
+  .zone{grid-template-columns:1fr}
+}
+
+/* =========================================================
+   CTA final
+   ========================================================= */
+.final{
+  position:relative;
+  padding:var(--section-pad) var(--gutter);
+  margin:0 var(--gutter) var(--gutter);
+  border-radius:var(--r-xl);
+  background:linear-gradient(135deg, var(--cold) 0%, #4a31c9 50%, var(--hot) 100%);
+  color:#fff;
+  overflow:hidden;
+  isolation:isolate;
+  text-align:center;
+}
+.final::before{
+  content:"";
+  position:absolute;
+  inset:-30%;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.3) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,.2) 0%, transparent 45%);
+  filter:blur(30px);
+  opacity:.85;
+  z-index:0;
+  animation:homeBreathe 18s ease-in-out infinite alternate;
+}
+.final__inner{position:relative;z-index:1;max-width:840px;margin:0 auto}
+.final__eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  font-family:var(--f-mono);
+  font-size:.72rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.8);
+  padding:.4rem .8rem;
+  border-radius:var(--r-pill);
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.2);
+  margin-bottom:2rem;
+}
+.final__eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--live);animation:livepulse 1.8s ease-out infinite}
+.final h2{
+  font-variation-settings:"wdth" 85, "opsz" 96, "wght" 700;
+  font-size:clamp(1.9rem, 4vw, 3.6rem);
+  letter-spacing:-.03em;
+  line-height:1.1;
+  color:#fff;
+  max-width:16em;
+  margin:0 auto;
+}
+.final h2 em{font-style:italic;font-variation-settings:"wdth" 85, "opsz" 96, "wght" 500;display:inline-block;padding-bottom:.15em}
+.final__phone{
+  display:inline-block;
+  margin:2rem 0 1.2rem;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 80, "opsz" 96, "wght" 700;
+  font-size:clamp(2rem, 6.5vw, 4.8rem);
+  letter-spacing:-.03em;
+  line-height:1;
+  color:#fff;
+  padding:.3rem 0;
+}
+.final__phone:hover{color:#fff}
+.final__sub{
+  color:rgba(255,255,255,.85);
+  max-width:34em;
+  margin:0 auto 2rem;
+  font-size:1.02rem;
+  line-height:1.6;
+}
+.final__actions{
+  display:flex;
+  gap:.8rem;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.btn--white{background:#fff;color:var(--ink)}
+.btn--white:hover{background:var(--ink);color:#fff;transform:translateY(-2px)}
+.btn--outline-white{border-color:rgba(255,255,255,.6);color:#fff}
+.btn--outline-white:hover{background:#fff;color:var(--ink);border-color:#fff}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.site-footer{
+  background:var(--ink);
+  color:#fff;
+  padding:clamp(3rem,5vw,4rem) var(--gutter) 2rem;
+  font-family:var(--f-body);
+}
+.site-footer__inner{
+  max-width:var(--page-max);
+  margin:0 auto;
+}
+.site-footer__top{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:2.4rem;
+  padding-bottom:2.4rem;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.site-footer__brand h5{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 85, "opsz" 96, "wght" 700;
+  font-size:2rem;
+  letter-spacing:-.03em;
+  margin:0 0 .8rem;
+  color:#fff;
+}
+.site-footer__brand p{
+  color:rgba(255,255,255,.7);
+  max-width:28em;
+  font-size:.9rem;
+  line-height:1.55;
+  margin:0;
+}
+.site-footer h6{
+  font-family:var(--f-mono);
+  font-size:.66rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  margin:0 0 1rem;
+  font-weight:600;
+}
+.site-footer p,.site-footer a{color:rgba(255,255,255,.85);font-size:.9rem;line-height:1.6;margin:0 0 .35rem}
+.site-footer a{transition:color .2s}
+.site-footer a:hover{color:var(--cold)}
+.site-footer__legal{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  padding-top:1.6rem;
+  flex-wrap:wrap;
+  font-family:var(--f-mono);
+  font-size:.68rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.4);
+}
+.site-footer__legal .links{display:flex;gap:1.4rem;flex-wrap:wrap}
+.site-footer__legal a{color:inherit}
+@media (max-width:800px){
+  .site-footer__top{grid-template-columns:1fr 1fr;gap:2rem 1.4rem}
+  .site-footer__brand{grid-column:1/-1}
+}
+
+/* =========================================================
+   STATES & REVEAL
+   ========================================================= */
+@media (prefers-reduced-motion: reduce){
+  .ticker__track,
+  .header-cta .live,
+  .hero-card__label i,
+  .final__eyebrow i,
+  .home__badge.b3 i,
+  .hero__kicker i,
+  .zone__map__badge i,
+  .brand::before,
+  .hero__orb i,
+  .hero-card--phone::before,
+  .split__pane::before,
+  .reviews::before,
+  .reviews::after,
+  .final::before,
+  .home__svg::before,
+  .cert::before{animation:none!important}
+}
+.r{opacity:0;transform:translateY(24px);transition:opacity .8s ease, transform .8s ease}
+.r.is-in{opacity:1;transform:translateY(0)}
+.r.r--x{transform:translateX(24px)}
+.r.r--x.is-in{transform:translateX(0)}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================ -->
+<!-- TICKER                                                       -->
+<!-- ============================================================ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    <span><i class="dot-c"></i> Pompe à chaleur aérothermique</span>
+    <span><i class="dot-c"></i> Climatisation réversible</span>
+    <span><i class="dot-h"></i> Chauffage &amp; chaudière</span>
+    <span><i class="dot-n"></i> Rénovation salle de bain</span>
+    <span><i class="dot-n"></i> Plomberie sanitaire</span>
+    <span><i class="dot-n"></i> Certifié QualiPac · RGE</span>
+    <span><i class="dot-n"></i> Vosges · 88 — Mandray</span>
+    <span><i class="dot-c"></i> Réactif · propre · pro</span>
+
+    <span><i class="dot-c"></i> Pompe à chaleur aérothermique</span>
+    <span><i class="dot-c"></i> Climatisation réversible</span>
+    <span><i class="dot-h"></i> Chauffage &amp; chaudière</span>
+    <span><i class="dot-n"></i> Rénovation salle de bain</span>
+    <span><i class="dot-n"></i> Plomberie sanitaire</span>
+    <span><i class="dot-n"></i> Certifié QualiPac · RGE</span>
+    <span><i class="dot-n"></i> Vosges · 88 — Mandray</span>
+    <span><i class="dot-c"></i> Réactif · propre · pro</span>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- HEADER                                                       -->
+<!-- ============================================================ -->
+<header class="site-header">
+  <div class="site-header__row">
+    <a href="#" class="brand" aria-label="Reignier John · accueil">Reignier&nbsp;John</a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="#services">CVC</a>
+      <a href="#sanitaire">Sanitaire</a>
+      <a href="#aides">Aides</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#avis">Avis</a>
+      <a href="#faq">FAQ</a>
+      <a href="#zone">Zone</a>
+    </nav>
+    <a href="tel:0601309673" class="header-cta">
+      <i class="live" aria-hidden="true"></i>
+      <span class="lbl">06 01 30 96 73</span>
+    </a>
+    <button class="burger" aria-label="Menu"><span></span></button>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- HERO                                                         -->
+<!-- ============================================================ -->
+<section class="hero" aria-labelledby="h1">
+
+  <div class="hero__orb" aria-hidden="true">
+    <i class="i-cold"></i>
+    <i class="i-hot"></i>
+  </div>
+
+  <div class="hero__inner">
+
+    <div class="hero__kicker">
+      <i aria-hidden="true"></i>
+      Artisan indépendant · Mandray · Vosges
+    </div>
+
+    <div class="hero__grid">
+
+      <div>
+        <h1 id="h1">
+          <span class="cold">Climatisation</span>
+          <span class="slash">/</span>
+          <span class="hot">chauffage</span>,<br>
+          maîtrisés d'un<br>
+          seul interlocuteur.
+        </h1>
+
+        <p class="hero__lede r">
+          <strong>Reignier&nbsp;John</strong> installe, met en service et entretient pompes à chaleur aérothermiques et géothermiques, climatisations réversibles et chaudières&nbsp;— et prend en charge la <strong>rénovation sanitaire complète</strong>&nbsp;: création de salle de bain, douche à l'italienne, plomberie. Pour <strong>particuliers, professionnels et collectivités</strong> dans les Vosges. Artisan indépendant certifié <strong>QualiPac</strong> et <strong>RGE</strong>, basé à Mandray.
+        </p>
+
+        <div class="hero__cta">
+          <a href="tel:0601309673" class="btn btn--primary">
+            Demander un devis
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#services" class="btn btn--ghost">Voir les services</a>
+        </div>
+      </div>
+
+      <!-- aside -->
+      <aside class="hero__aside">
+        <div class="hero-card hero-card--phone">
+          <span class="hero-card__label"><i aria-hidden="true"></i> Devis &amp; interventions · sur appel</span>
+          <a href="tel:0601309673" class="hero-card__phone">06&nbsp;01&nbsp;30&nbsp;96&nbsp;73</a>
+          <div class="hero-card__note"><strong>Artisan&nbsp;unique</strong> — un seul interlocuteur de l'étude à la maintenance, basé à Mandray.</div>
+        </div>
+
+        <div class="hero-card hero-card--photo" aria-hidden="true">
+          <img src="img/2025-05-27 (1).webp" alt="" loading="lazy">
+          <div class="hero-card__photo-tag">
+            <span class="hero-card__photo-num">N°&nbsp;01</span>
+            <span class="hero-card__photo-cap">Création de salle de bain — chantier Vosges, 2025</span>
+          </div>
+          <div class="hero-card__photo-badge">
+            <i aria-hidden="true"></i>
+            Chantier récent
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <div class="hero__meta">
+      <div class="r"><span class="k">Certifications</span><span class="v"><em>QualiPac</em><span class="dot">·</span><em>RGE</em></span></div>
+      <div class="r"><span class="k">Siège</span><span class="v">Mandray, 88650</span></div>
+      <div class="r"><span class="k">Prestations</span><span class="v">Clim · PAC · chauffage</span></div>
+      <div class="r"><span class="k">Note · PagesJaunes</span><span class="v">4,0<span style="font-size:.7em;color:var(--ink-soft)">/5</span> · 4 avis</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SPLIT SERVICES (full-bleed colored blocks)                   -->
+<!-- ============================================================ -->
+<section class="split" id="services" aria-label="Services">
+
+  <article class="split__pane split__pane--cold">
+    <span class="split__num" aria-hidden="true">01</span>
+    <div>
+      <div class="split__kicker">Circuit froid</div>
+      <h3>Climatisation <em>réversible</em>.</h3>
+      <p class="split__text">Vente et installation de climatisations réversibles mono et multi-split, pour particuliers comme pour locaux professionnels. Dimensionnement sur site, pose propre, mise en service au manifold et charge frigorigène réglementaire.</p>
+    </div>
+
+    <div>
+      <ul class="split__list">
+        <li>
+          <span class="idx">01.1</span>
+          <span>Vente et installation de climatisation</span>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </li>
+        <li>
+          <span class="idx">01.2</span>
+          <span>Mise en service · charge frigorigène</span>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </li>
+        <li>
+          <span class="idx">01.3</span>
+          <span>Entretien annuel · dépannage</span>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </li>
+      </ul>
+
+      <div class="split__specs">
+        <dl><dt>Fluide</dt><dd>R32<sup>gaz</sup></dd></dl>
+        <dl><dt>Splits</dt><dd>1 → 5<sup>U.I.</sup></dd></dl>
+        <dl><dt>Cycle</dt><dd>réversible</dd></dl>
+      </div>
+    </div>
+  </article>
+
+  <article class="split__pane split__pane--hot">
+    <span class="split__num" aria-hidden="true">02</span>
+    <div>
+      <div class="split__kicker">Circuit chaud</div>
+      <h3>Chauffage <em>&amp; pompe à chaleur</em>.</h3>
+      <p class="split__text">Installation de pompes à chaleur aérothermiques et géothermiques, exploitation et dépannage de chauffage. Solutions certifiées QualiPac qui baissent la facture énergétique et ouvrent droit aux aides de rénovation.</p>
+    </div>
+
+    <div>
+      <ul class="split__list">
+        <li>
+          <span class="idx">02.1</span>
+          <span>Pompe à chaleur aérothermique</span>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </li>
+        <li>
+          <span class="idx">02.2</span>
+          <span>Pompe à chaleur géothermique</span>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </li>
+        <li>
+          <span class="idx">02.3</span>
+          <span>Exploitation chauffage · dépannage</span>
+          <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </li>
+      </ul>
+
+      <div class="split__specs">
+        <dl><dt>Puissance</dt><dd>4 → 16<sup>kW</sup></dd></dl>
+        <dl><dt>Source</dt><dd>air / sol</dd></dl>
+        <dl><dt>COP</dt><dd>≥ 4<sup>typ.</sup></dd></dl>
+      </div>
+    </div>
+  </article>
+
+</section>
+
+<!-- ============================================================ -->
+<!-- BATHROOM — Sanitaire & salle de bain                         -->
+<!-- ============================================================ -->
+<section class="bathroom" id="sanitaire" aria-labelledby="bathroom-h2">
+  <div class="bathroom__inner">
+
+    <div class="bathroom__photo">
+      <img src="img/2025-05-27 (3).webp" alt="Meuble vasque noir et miroir rétroéclairé dans une salle de bain marbre" loading="lazy">
+      <span class="bathroom__photo__tag">Chantier 2025 · Vosges</span>
+    </div>
+
+    <div class="bathroom__content">
+      <div class="bathroom__kicker">Le 3<sup>e</sup>&nbsp;métier</div>
+      <h2 id="bathroom-h2">Et aussi, <em>rénovation sanitaire</em><br>de&nbsp;A à Z.</h2>
+      <p class="bathroom__text">
+        Au-delà de la climatisation et du chauffage, John Reignier prend en charge la <strong>création et la rénovation complète de salles de bain</strong> : dépose, plomberie, pose de douche italienne, sanitaires, meuble vasque, raccordement chauffe-eau. Un seul artisan suit le chantier du devis à la remise des clefs.
+      </p>
+      <ul class="bathroom__list">
+        <li>Création de salle de bain</li>
+        <li>Douche à l'italienne</li>
+        <li>Plomberie sanitaire complète</li>
+        <li>Dépannage chaudière &amp; chauffe-eau</li>
+        <li>Receveur, paroi vitrée, meuble vasque</li>
+        <li>Sèche-serviette &amp; robinetterie</li>
+      </ul>
+      <div class="bathroom__cta">
+        <a href="tel:0601309673" class="btn btn--gold">Demander un devis
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#realisations" class="btn btn--gold-outline">Voir mes chantiers</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PLEDGES — nos engagements                                    -->
+<!-- ============================================================ -->
+<section class="pledges" aria-label="Nos engagements">
+  <div class="pledges__grid">
+
+    <article class="pledge r">
+      <span class="pledge__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13l2 2 4-4"/></svg>
+      </span>
+      <h4>Devis &amp; déplacement gratuits</h4>
+      <p>Étude sur site, bilan thermique, proposition chiffrée sans engagement. Rendez-vous rapide.</p>
+      <span class="pledge__tag">Sous 72&nbsp;h</span>
+    </article>
+
+    <article class="pledge r">
+      <span class="pledge__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg>
+      </span>
+      <h4>Certifié QualiPac &amp; RGE</h4>
+      <p>Deux agréments officiels, obligatoires pour activer MaPrimeRénov' et les primes CEE.</p>
+      <span class="pledge__tag">Labels d'État</span>
+    </article>
+
+    <article class="pledge r">
+      <span class="pledge__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </span>
+      <h4>Un&nbsp;seul interlocuteur</h4>
+      <p>De l'étude au dépannage, Monsieur Reignier en direct. Zéro sous-traitance sur le chantier.</p>
+      <span class="pledge__tag">Artisan indépendant</span>
+    </article>
+
+    <article class="pledge r">
+      <span class="pledge__icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      </span>
+      <h4>Accompagnement aides</h4>
+      <p>Dossiers MaPrimeRénov' et CEE constitués sur place. Primes directement déduites du devis.</p>
+      <span class="pledge__tag">Reste à charge réduit</span>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- PROCESS                                                      -->
+<!-- ============================================================ -->
+<section class="process" id="process" aria-labelledby="process-h2">
+  <header class="process__head">
+    <div>
+      <div class="section-label"><span class="cold-dot"></span><span class="hot-dot"></span>&nbsp;Notre process</div>
+      <h2 id="process-h2">De l'étude<br>à la mise en service,<br><em>en trois temps.</em></h2>
+    </div>
+  </header>
+
+  <div class="process__deck">
+
+    <article class="step r">
+      <div class="step__num">01 <small>Relevé</small></div>
+      <h4>Étude &amp; dimensionnement</h4>
+      <p>Déplacement sur site, bilan thermique, dimensionnement des unités, choix du tracé tube et devis détaillé signé avant lancement.</p>
+      <div class="step__meta"><span>≈ 1h sur site</span><span>devis offert</span></div>
+    </article>
+
+    <article class="step r">
+      <div class="step__num">02 <small>Pose</small></div>
+      <h4>Installation &amp; mise en service</h4>
+      <p>Percement, tirage des tubes, pose PAC ou split, tirage au vide, charge R32 au manifold, tests d'étanchéité, mise en route complète.</p>
+      <div class="step__meta"><span>1 à 3 jours</span><span>chantier propre</span></div>
+    </article>
+
+    <article class="step r">
+      <div class="step__num">03 <small>SAV</small></div>
+      <h4>Entretien &amp; dépannage</h4>
+      <p>Contrôle annuel obligatoire au-delà de 2&nbsp;kg de fluide, nettoyage filtres, contrôle pressions et électronique, intervention rapide en cas de panne.</p>
+      <div class="step__meta"><span>rappel annuel</span><span>disponibilité</span></div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- HOME — installation moderne                                   -->
+<!-- ============================================================ -->
+<section class="home" id="home" aria-labelledby="home-h2">
+  <div class="home__inner">
+
+    <div>
+      <div class="section-label"><span class="cold-dot"></span>&nbsp;Deux circuits, une seule maison</div>
+      <h2 id="home-h2">Une unité, <em>deux modes</em>.<br>L'été au <em class="hot">chaud</em>,<br>l'hiver au <em>frais</em>.</h2>
+      <p class="home__lede">Une pompe à chaleur réversible chauffe en hiver, rafraîchit en été — à partir d'un seul équipement relié à vos splits intérieurs. Moins d'énergie consommée, une facture lissée, et un confort stable toute l'année.</p>
+
+      <div class="home__features">
+        <div>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.64 5.64l2.83 2.83M15.54 15.54l2.83 2.83M5.64 18.36l2.83-2.83M15.54 8.46l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <div>
+            <strong>Confort stable</strong>
+            <p>Même température toute l'année, pas d'à-coups, pas de radiateur chaud et glacial.</p>
+          </div>
+        </div>
+        <div>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12l-8 8-8-8 8-8 8 8zM12 4v16M4 12h16"/></svg></span>
+          <div>
+            <strong>Aides éligibles</strong>
+            <p>MaPrimeRénov' et CEE ouvertes — notre certification RGE est la porte d'entrée obligatoire.</p>
+          </div>
+        </div>
+        <div>
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7L9 18l-5-5"/></svg></span>
+          <div>
+            <strong>Suivi direct</strong>
+            <p>Un seul artisan de l'étude à la maintenance. Vous nous appelez, nous décrochons.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="home__svg">
+      <span class="home__badge b1"><i></i> Unité clim<br><small style="display:block;font-size:.85em;color:var(--ink-soft)">split plafond</small></span>
+      <span class="home__badge b2"><i></i> PAC extérieure<br><small style="display:block;font-size:.85em;color:var(--ink-soft)">aérothermique</small></span>
+      <span class="home__badge b3"><i></i> En service</span>
+
+      <svg viewBox="0 0 500 420" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- sol -->
+        <line x1="20" y1="340" x2="480" y2="340" stroke="var(--ink)" stroke-width="1.3" opacity=".5"/>
+        <!-- house -->
+        <path d="M 140 340 L 140 200 L 250 130 L 360 200 L 360 340 Z" fill="#fff" stroke="var(--ink)" stroke-width="2.4" stroke-linejoin="round"/>
+        <line x1="140" y1="200" x2="360" y2="200" stroke="var(--ink)" stroke-width="1.5" opacity=".7"/>
+        <line x1="140" y1="265" x2="360" y2="265" stroke="var(--ink)" stroke-width="1" stroke-dasharray="4 5" opacity=".5"/>
+        <line x1="250" y1="130" x2="250" y2="340" stroke="var(--ink)" stroke-width=".9" stroke-dasharray="2 4" opacity=".35"/>
+
+        <!-- PAC extérieure -->
+        <rect x="50" y="280" width="70" height="50" rx="8" fill="#fff" stroke="var(--ink)" stroke-width="2"/>
+        <circle cx="85" cy="305" r="14" fill="none" stroke="var(--hot)" stroke-width="2"/>
+        <circle cx="85" cy="305" r="8" fill="none" stroke="var(--hot)" stroke-width="1.2"/>
+        <line x1="85" y1="295" x2="85" y2="315" stroke="var(--hot)" stroke-width="1"/>
+        <line x1="75" y1="305" x2="95" y2="305" stroke="var(--hot)" stroke-width="1"/>
+
+        <!-- splits intérieurs -->
+        <rect x="170" y="215" width="46" height="11" rx="2" fill="var(--cold-soft)" stroke="var(--cold)" stroke-width="1.6"/>
+        <rect x="288" y="215" width="46" height="11" rx="2" fill="var(--cold-soft)" stroke="var(--cold)" stroke-width="1.6"/>
+        <rect x="170" y="285" width="46" height="11" rx="2" fill="var(--hot-soft)" stroke="var(--hot)" stroke-width="1.6"/>
+        <rect x="288" y="285" width="46" height="11" rx="2" fill="var(--hot-soft)" stroke="var(--hot)" stroke-width="1.6"/>
+
+        <!-- tube COLD (bleu) -->
+        <path class="trace cold-trace" d="M 120 295 L 130 295 L 130 220 L 170 220 M 130 220 L 250 220 L 250 175 L 310 175 L 310 220" fill="none" stroke="var(--cold)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- tube HOT (rouge) -->
+        <path class="trace hot-trace" d="M 120 310 L 138 310 L 138 290 L 170 290 M 138 290 L 250 290 L 250 240 L 310 240 L 310 290" fill="none" stroke="var(--hot)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- particles animées - points froids qui circulent -->
+        <circle r="3.5" fill="var(--cold)">
+          <animateMotion dur="4.2s" repeatCount="indefinite" path="M 120 295 L 130 295 L 130 220 L 170 220"/>
+        </circle>
+        <circle r="3.5" fill="var(--cold)">
+          <animateMotion dur="5s" repeatCount="indefinite" begin="1.6s" path="M 120 295 L 130 295 L 130 220 L 250 220 L 250 175 L 310 175 L 310 220"/>
+        </circle>
+        <!-- points chauds -->
+        <circle r="3.5" fill="var(--hot)">
+          <animateMotion dur="4.6s" repeatCount="indefinite" begin=".8s" path="M 120 310 L 138 310 L 138 290 L 170 290"/>
+        </circle>
+        <circle r="3.5" fill="var(--hot)">
+          <animateMotion dur="5.4s" repeatCount="indefinite" begin="2.2s" path="M 120 310 L 138 310 L 138 290 L 250 290 L 250 240 L 310 240 L 310 290"/>
+        </circle>
+
+        <!-- légendes pièces -->
+        <g font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="var(--ink-soft)" letter-spacing=".02em">
+          <text x="193" y="250">Séjour</text>
+          <text x="311" y="250">Bureau</text>
+          <text x="193" y="320">Cuisine</text>
+          <text x="311" y="320">Chambre</text>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- AIDES FINANCIÈRES                                             -->
+<!-- ============================================================ -->
+<section class="aids" id="aides" aria-labelledby="aids-h2">
+  <div class="aids__inner">
+    <header class="aids__head">
+      <div>
+        <div class="section-label"><span class="cold-dot"></span><span class="hot-dot"></span>&nbsp;Aides financières</div>
+        <h2 id="aids-h2">Des aides publiques <em>cumulables</em><br>pour votre pompe à chaleur.</h2>
+      </div>
+      <p>Notre certification <strong>RGE</strong> ouvre l'accès aux aides publiques à la rénovation énergétique. Constitution des dossiers sur place, primes déduites directement du devis — <strong>vous ne payez que le reste à charge</strong>.</p>
+    </header>
+
+    <div class="aids__grid">
+
+      <article class="aid r">
+        <div class="aid__label">MaPrimeRénov'</div>
+        <div class="aid__amount">5&nbsp;000<sup>€ max.</sup></div>
+        <h4>Aide de l'État</h4>
+        <p>Financée par l'Agence nationale de l'habitat. Montant variable selon vos revenus et l'équipement&nbsp;— plafond plus élevé pour la géothermie ou le Parcours Accompagné.</p>
+        <div class="aid__foot">PAC air/eau — selon revenus</div>
+      </article>
+
+      <article class="aid r">
+        <div class="aid__label">Prime CEE</div>
+        <div class="aid__amount">4&nbsp;000<sup>€ max.</sup></div>
+        <h4>Certificats d'économies d'énergie</h4>
+        <p>Versée par les fournisseurs d'énergie dans le cadre du « Coup de pouce chauffage », cumulable avec MaPrimeRénov'. Montant bonifié pour les foyers modestes.</p>
+        <div class="aid__foot">Cumulable · versée après travaux</div>
+      </article>
+
+      <article class="aid r">
+        <div class="aid__label">Éco-PTZ</div>
+        <div class="aid__amount">50&nbsp;000<sup>€ max.</sup></div>
+        <h4>Éco-prêt à taux zéro</h4>
+        <p>Pour financer le reste à charge sans intérêts — plafond en rénovation globale. Accordé par les banques partenaires sous conditions de performance.</p>
+        <div class="aid__foot">0&nbsp;% · sur 240 mois</div>
+      </article>
+
+    </div>
+
+    <p class="aids__source">
+      <strong>Source&nbsp;:</strong> montants plafonds indicatifs du service public France&nbsp;Rénov' (dispositifs&nbsp;2025, <a href="https://france-renov.gouv.fr" target="_blank" rel="noopener">france-renov.gouv.fr</a>). L'éligibilité précise et le montant final dépendent des revenus du foyer, de la zone géographique et de la performance de l'équipement retenu — nous vérifions votre dossier au moment du devis.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CERTIFICATIONS                                               -->
+<!-- ============================================================ -->
+<section class="certs" id="certifs" aria-labelledby="certifs-h2">
+  <header class="certs__head">
+    <div>
+      <div class="section-label"><span class="cold-dot"></span><span class="hot-dot"></span>&nbsp;Agréments officiels</div>
+      <h2 id="certifs-h2">Certifié.<br><em>Qualité prouvée.</em></h2>
+    </div>
+    <p>Deux labels officiels qui attestent de la qualité et de la performance des installations réalisées — indispensables pour accéder aux aides publiques de rénovation énergétique.</p>
+  </header>
+
+  <div class="certs__grid">
+
+    <article class="cert cert--cold r">
+      <div class="cert__seal">
+        <strong>Q</strong>
+        <small>PAC</small>
+      </div>
+      <div>
+        <span class="cert__kicker">Label qualité</span>
+        <h4>QualiPac</h4>
+        <p>Signe de qualité RGE des installateurs de pompes à chaleur géothermiques et aérothermiques. Atteste du respect d'une charte et d'une installation dans les règles de l'art.</p>
+        <span class="cert__ref">↗ Source Pages Jaunes</span>
+      </div>
+    </article>
+
+    <article class="cert cert--hot r">
+      <div class="cert__seal">
+        <strong>RGE</strong>
+        <small>GARANT · ENV.</small>
+      </div>
+      <div>
+        <span class="cert__kicker">Agrément d'État</span>
+        <h4>Reconnu Garant de l'Environnement</h4>
+        <p>Label officiel français exigé pour ouvrir droit aux aides publiques à la rénovation. Engage l'artisan sur l'exécution et la performance finale de l'équipement.</p>
+        <span class="cert__ref">↗ Source Pages Jaunes</span>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- AVIS                                                         -->
+<!-- ============================================================ -->
+<section class="reviews" id="avis" aria-labelledby="avis-h2">
+  <div class="reviews__inner">
+
+    <header class="reviews__head">
+      <div>
+        <div class="section-label"><span class="cold-dot"></span><span class="hot-dot"></span>&nbsp;Avis · PagesJaunes</div>
+        <h2 id="avis-h2">Ce qu'ils en<br><em>disent.</em></h2>
+      </div>
+      <div class="rating">
+        <div class="rating__score">4,0<sup>/5</sup></div>
+        <div class="rating__info">
+          <div class="stars">★★★★<span style="opacity:.35">★</span></div>
+          <div>4 avis<br>source Pages Jaunes</div>
+        </div>
+      </div>
+    </header>
+
+    <div class="reviews__grid">
+
+      <article class="review r">
+        <div class="review__stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <blockquote>Absolument ravis. Monsieur Reignier nous a réparé une pompe à chaleur là où tous les autres artisans s'étaient dégonflés. Le travail a été fait en temps et en heure, à un tarif tout à fait correct. Nous recommandons.</blockquote>
+        <div class="review__meta">
+          <div>
+            <span class="review__who">bacquet.ma</span>
+            <span class="review__when">28 juin 2025</span>
+          </div>
+          <span class="review__tag">Clim</span>
+        </div>
+      </article>
+
+      <article class="review r">
+        <div class="review__stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <blockquote>Disponible, à l'écoute et efficace, chantier propre et surtout chaudière réparée, je recommande.</blockquote>
+        <div class="review__meta">
+          <div>
+            <span class="review__who">Ainitak</span>
+            <span class="review__when">29 janvier 2024</span>
+          </div>
+          <span class="review__tag">Chauffage</span>
+        </div>
+      </article>
+
+      <article class="review r">
+        <div class="review__stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <blockquote>Super plombier chauffagiste. Réactif, pro, parfait. Je recommande fortement. Merci à lui.</blockquote>
+        <div class="review__meta">
+          <div>
+            <span class="review__who">Sab</span>
+            <span class="review__when">27 janvier 2024</span>
+          </div>
+          <span class="review__tag">Dépannage</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- GALLERY — Réalisations récentes                              -->
+<!-- ============================================================ -->
+<section class="gallery" id="realisations" aria-labelledby="gallery-h2">
+  <header class="gallery__head">
+    <div>
+      <div class="section-label"><span class="cold-dot"></span><span class="hot-dot"></span>&nbsp;Réalisations récentes</div>
+      <h2 id="gallery-h2">Quelques <em>chantiers</em><br>dans les Vosges.</h2>
+    </div>
+    <p>Installations réalisées en 2025&nbsp;— pompes à chaleur, climatisations réversibles, plancher chauffant hydraulique et rénovation sanitaire complète.</p>
+  </header>
+
+  <div class="gallery__grid">
+
+    <figure class="gallery__item">
+      <img src="img/2025-10-02.webp" alt="Plancher chauffant hydraulique en cours d'installation" loading="lazy">
+      <span class="ref">N°&nbsp;01</span>
+      <figcaption class="gallery__item__tag">
+        <span class="cap">Plancher chauffant hydraulique — boucle complète posée sur isolant TMS</span>
+        <span class="cat">Chauffage</span>
+      </figcaption>
+    </figure>
+
+    <figure class="gallery__item">
+      <img src="img/2025-05-27 (8).webp" alt="Installation d'une pompe à chaleur sur façade bois lors d'un chantier" loading="lazy">
+      <span class="ref">N°&nbsp;02</span>
+      <figcaption class="gallery__item__tag">
+        <span class="cap">Pose PAC sur façade bois — chantier en cours, massif vosgien</span>
+        <span class="cat">PAC</span>
+      </figcaption>
+    </figure>
+
+    <figure class="gallery__item">
+      <img src="img/2025-05-27 (4).webp" alt="Charge frigorigène manifold bleu et rouge sur unité extérieure" loading="lazy">
+      <span class="ref">N°&nbsp;03</span>
+      <figcaption class="gallery__item__tag">
+        <span class="cap">Charge&nbsp;frigorigène — mise en service au manifold, R32</span>
+        <span class="cat">Mise en&nbsp;service</span>
+      </figcaption>
+    </figure>
+
+    <figure class="gallery__item">
+      <img src="img/2025-05-27 (6).webp" alt="Pompe à chaleur Mitsubishi Ecodan avec ballon tampon et tuyauterie cuivre" loading="lazy">
+      <span class="ref">N°&nbsp;04</span>
+      <figcaption class="gallery__item__tag">
+        <span class="cap">PAC&nbsp;air/eau Ecodan — ballon tampon et collecteur cuivre</span>
+        <span class="cat">PAC</span>
+      </figcaption>
+    </figure>
+
+    <figure class="gallery__item">
+      <img src="img/2026-04-23.webp" alt="Unité extérieure de pompe à chaleur ouverte pour maintenance" loading="lazy">
+      <span class="ref">N°&nbsp;05</span>
+      <figcaption class="gallery__item__tag">
+        <span class="cap">Maintenance PAC — capot démonté, contrôle ventilateur et compresseur</span>
+        <span class="cat">Entretien</span>
+      </figcaption>
+    </figure>
+
+    <figure class="gallery__item">
+      <img src="img/2025-05-27 (2).webp" alt="Douche à l'italienne blanche dans salle de bain marbre clair" loading="lazy">
+      <span class="ref">N°&nbsp;06</span>
+      <figcaption class="gallery__item__tag">
+        <span class="cap">Douche à l'italienne — receveur extra-plat, paroi fixe verre</span>
+        <span class="cat">Sanitaire</span>
+      </figcaption>
+    </figure>
+
+    <figure class="gallery__item">
+      <img src="img/2025-05-27 (9).webp" alt="Split console Atlantic installé dans un séjour vert sauge" loading="lazy">
+      <span class="ref">N°&nbsp;07</span>
+      <figcaption class="gallery__item__tag">
+        <span class="cap">Split console — pose discrète en pièce à vivre</span>
+        <span class="cat">Clim</span>
+      </figcaption>
+    </figure>
+
+  </div>
+
+  <div class="gallery__foot">
+    <span><strong>Marques installées selon projet</strong></span>
+    <span>Mitsubishi Electric · Ecodan</span>
+    <span>Toshiba</span>
+    <span>Atlantic</span>
+    <span>Fujitsu</span>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FAQ                                                          -->
+<!-- ============================================================ -->
+<section class="faq" id="faq" aria-labelledby="faq-h2">
+  <header class="faq__head">
+    <div>
+      <div class="section-label"><span class="cold-dot"></span><span class="hot-dot"></span>&nbsp;Questions fréquentes</div>
+      <h2 id="faq-h2">Ce qu'on nous<br><em>demande souvent.</em></h2>
+    </div>
+    <p>Les questions récurrentes des clients avant de se décider — qu'il s'agisse d'un remplacement de chaudière, d'un premier projet de PAC ou d'une simple clim réversible en appoint.</p>
+  </header>
+
+  <div class="faq__list">
+
+    <details class="faq__item r" open>
+      <summary>Aérothermie ou géothermie : quelle différence ?</summary>
+      <div class="faq__item__body">
+        <strong>L'aérothermie</strong> puise les calories dans l'air extérieur (PAC air/eau ou air/air) — installation légère, prix d'entrée plus bas. <strong>La géothermie</strong> prélève les calories dans le sol via des sondes enterrées — plus performante en montagne quand les températures chutent, mais l'investissement initial est plus lourd. À Mandray et alentours, les deux solutions sont envisageables et l'étude thermique tranche.
+      </div>
+    </details>
+
+    <details class="faq__item r">
+      <summary>Combien coûte une pompe à chaleur ?</summary>
+      <div class="faq__item__body">
+        Pour une maison de 100 m², comptez entre <strong>10 000 et 16 000&nbsp;€ pose incluse</strong> pour une PAC air/eau, et <strong>18 000 à 30 000&nbsp;€</strong> pour une PAC géothermique avec captage sol. Les aides publiques peuvent couvrir plus de la moitié du montant — à condition d'un installateur RGE.
+      </div>
+    </details>
+
+    <details class="faq__item r">
+      <summary>Une clim réversible remplace-t-elle un chauffage ?</summary>
+      <div class="faq__item__body">
+        Sur un bâtiment bien isolé et à basse altitude, oui. Dans les Vosges, au-delà d'une certaine altitude ou sur une maison mal isolée, un système complémentaire (PAC air/eau, chaudière d'appoint) reste souvent conseillé. Une étude thermique préalable permet de trancher sans regret.
+      </div>
+    </details>
+
+    <details class="faq__item r">
+      <summary>À quelle fréquence entretenir une clim ou une PAC ?</summary>
+      <div class="faq__item__body">
+        <strong>Contrôle annuel obligatoire</strong> par un professionnel certifié dès que l'installation contient plus de 2&nbsp;kg de fluide frigorigène. Nettoyage des filtres, vérification des pressions, contrôle de l'électronique — allonge la durée de vie et préserve le COP d'origine.
+      </div>
+    </details>
+
+    <details class="faq__item r">
+      <summary>Une pompe à chaleur est-elle bruyante ?</summary>
+      <div class="faq__item__body">
+        Les unités actuelles tournent entre <strong>35 et 50&nbsp;dB(A) à 1 mètre</strong> — équivalent d'un lave-vaisselle moderne. L'emplacement (distance aux chambres, au voisinage, orientation des bouches) fait 80&nbsp;% du confort sonore. Nous étudions le positionnement en amont du devis.
+      </div>
+    </details>
+
+    <details class="faq__item r">
+      <summary>Quels délais pour une installation ?</summary>
+      <div class="faq__item__body">
+        Chantier courant : <strong>1 à 3 jours</strong> pour une PAC air/eau sur radiateurs existants, <strong>3 à 5 jours</strong> pour un plancher chauffant ou un remplacement de chaudière complet. À prévoir en amont : 2 à 4 semaines selon la disponibilité du matériel et la marque retenue.
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- ZONE                                                         -->
+<!-- ============================================================ -->
+<section class="zone" id="zone" aria-labelledby="zone-h2">
+  <div class="zone__text">
+    <div class="section-label"><span class="cold-dot"></span><span class="hot-dot"></span>&nbsp;Zone d'intervention</div>
+    <h2 id="zone-h2">Mandray<br>&amp; toutes les <em>Vosges</em>.</h2>
+    <p>Artisan basé à Mandray (88650), intervention prioritaire sur le <strong>secteur nord-est du département</strong> — Saint-Dié, vallée de la Meurthe, massif vosgien — et sur l'ensemble du 88 pour les projets d'installation ou de remplacement d'ampleur. Déplacements également possibles sur les départements limitrophes selon la nature du chantier.</p>
+    <div class="zone__places">
+      <span class="is-anchor">Mandray · 88650</span>
+      <span>Anould</span>
+      <span>Fraize</span>
+      <span>Ban-sur-Meurthe-Clefcy</span>
+      <span>Saint-Dié-des-Vosges</span>
+      <span>Granges-Aumontzey</span>
+      <span>Raon-l'Étape</span>
+      <span>Senones</span>
+      <span>Moyenmoutier</span>
+      <span>Bruyères</span>
+      <span>Gérardmer</span>
+      <span>La Bresse</span>
+      <span>Épinal</span>
+      <span>Remiremont</span>
+    </div>
+  </div>
+
+  <div class="zone__map" aria-hidden="true">
+    <div class="zone__map__badge"><i></i> Mandray</div>
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="mapBlur"><feGaussianBlur stdDeviation=".7"/></filter>
+      </defs>
+
+      <!-- contour Vosges arrondi et soft -->
+      <path d="M 100 70 C 145 55 195 58 235 75 C 275 92 300 125 315 160 C 330 200 340 240 330 275 C 320 308 298 330 268 343 C 232 358 195 352 165 342 C 130 328 100 302 80 268 C 62 232 58 190 64 155 C 70 115 82 85 100 70 Z" fill="#fff" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" opacity=".9"/>
+
+      <!-- trames topographiques -->
+      <path d="M 120 145 Q 180 155 225 180 T 300 220" fill="none" stroke="var(--cold)" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
+      <path d="M 140 250 Q 210 260 260 285 T 320 300" fill="none" stroke="var(--cold)" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
+      <path d="M 160 95 Q 195 120 230 130" fill="none" stroke="var(--cold)" stroke-width="1" stroke-dasharray="3 4" opacity=".5"/>
+
+      <!-- villes -->
+      <g font-family="Inter, sans-serif" font-size="10" font-weight="500" fill="var(--ink)" letter-spacing=".02em">
+        <circle cx="120" cy="230" r="3" fill="var(--ink)"/>
+        <text x="80" y="234">Épinal</text>
+
+        <circle cx="230" cy="150" r="3" fill="var(--ink)"/>
+        <text x="240" y="154">St-Dié</text>
+
+        <circle cx="255" cy="220" r="3" fill="var(--ink)"/>
+        <text x="263" y="224">Gérardmer</text>
+
+        <circle cx="180" cy="285" r="3" fill="var(--ink)"/>
+        <text x="123" y="302">Remiremont</text>
+
+        <circle cx="275" cy="265" r="3" fill="var(--ink)"/>
+        <text x="285" y="268">La Bresse</text>
+      </g>
+
+      <!-- Mandray / siège -->
+      <g>
+        <circle cx="218" cy="175" r="28" fill="var(--hot)" opacity=".12"/>
+        <circle cx="218" cy="175" r="18" fill="var(--hot)" opacity=".2"/>
+        <circle cx="218" cy="175" r="9" fill="var(--hot)"/>
+        <circle cx="218" cy="175" r="3" fill="#fff"/>
+        <line x1="218" y1="166" x2="218" y2="135" stroke="var(--hot)" stroke-width="1.5"/>
+        <text x="218" y="128" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="var(--hot)" letter-spacing=".02em">MANDRAY</text>
+        <text x="218" y="116" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--hot)" letter-spacing=".1em">SIÈGE · 88650</text>
+      </g>
+
+      <text x="395" y="395" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="8" fill="var(--ink-soft)" letter-spacing=".15em">DÉPT. VOSGES — 88</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- CTA FINAL                                                    -->
+<!-- ============================================================ -->
+<section class="final" id="contact" aria-labelledby="final-h2">
+  <div class="final__inner">
+    <div class="final__eyebrow"><i aria-hidden="true"></i> Devis &amp; interventions — sur appel</div>
+    <h2 id="final-h2">Parlons de votre <em>projet thermique</em>,<br>maintenant.</h2>
+    <p class="final__sub">Étude gratuite et devis détaillé. Un seul interlocuteur, de l'étude au dépannage. Basé à Mandray, dans les Vosges.</p>
+    <a href="tel:0601309673" class="final__phone" aria-label="Appeler le 06 01 30 96 73">06 01 30 96 73</a>
+    <div class="final__actions">
+      <a href="tel:0601309673" class="btn btn--white">Appeler l'artisan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
+      <a href="#services" class="btn btn--outline-white">Voir les services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER                                                       -->
+<!-- ============================================================ -->
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <h5>Reignier&nbsp;John</h5>
+        <p>Artisan indépendant. Pompes à chaleur, climatisation réversible, chauffage et rénovation sanitaire complète. Basé à Mandray, dans les Vosges. Certifié QualiPac et RGE.</p>
+      </div>
+      <div>
+        <h6>Métiers</h6>
+        <p><a href="#services">Climatisation réversible</a></p>
+        <p><a href="#services">Pompe à chaleur</a></p>
+        <p><a href="#services">Chauffage &amp; chaudière</a></p>
+        <p><a href="#sanitaire">Sanitaire &amp; salle de bain</a></p>
+        <p><a href="#process">Entretien · dépannage</a></p>
+      </div>
+      <div>
+        <h6>Contact</h6>
+        <p><a href="tel:0601309673">06 01 30 96 73</a></p>
+        <p>880 rte de la Haute Mandray</p>
+        <p>88650 Mandray · Vosges</p>
+      </div>
+      <div>
+        <h6>Société</h6>
+        <p>EURL · RCS Epinal</p>
+        <p>SIREN 933&nbsp;477&nbsp;507</p>
+        <p>SIRET 93347750700018</p>
+        <p>NAF 4322B</p>
+      </div>
+    </div>
+    <div class="site-footer__legal">
+      <span>© 2026 Reignier John · Maquette Skypeo</span>
+      <div class="links">
+        <a href="#">Mentions légales</a>
+        <a href="#">Confidentialité</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- JS                                                            -->
+<!-- ============================================================ -->
+<script>
+(function(){
+  // reveal
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('is-in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+  // traces
+  document.querySelectorAll('.trace').forEach(p => {
+    try{
+      const len = p.getTotalLength();
+      p.style.strokeDasharray = len;
+      p.style.strokeDashoffset = len;
+      p.style.transition = 'stroke-dashoffset 2.4s cubic-bezier(.3,.7,.3,1)';
+    }catch(e){}
+  });
+  const tio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.style.strokeDashoffset = '0';
+        tio.unobserve(e.target);
+      }
+    });
+  }, { threshold:.2 });
+  document.querySelectorAll('.trace').forEach(el => tio.observe(el));
+
+  // burger
+  const burger = document.querySelector('.burger');
+  const nav = document.querySelector('.nav');
+  if(burger && nav){
+    burger.addEventListener('click', () => {
+      const open = nav.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', open);
+      if(open){
+        nav.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--bg);padding:1.2rem var(--gutter);gap:.3rem;border-bottom:1px solid var(--line);align-items:stretch';
+      }else{
+        nav.style.cssText = '';
+      }
+    });
+  }
+})();
+</script>
+</body>
+</html>
