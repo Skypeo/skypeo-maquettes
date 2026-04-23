@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LT Services — Paysagiste à Metz & alentours</title>
+<meta name="description" content="LT Services, paysagiste à Charly Oradour (57). Entretien de jardin, aménagement paysager, pose de clôtures sur Metz et alentours. Devis gratuit, 50% de crédit d'impôt.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Plus+Jakarta+Sans:wght@300..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ─────────────────────────── RESET & TOKENS ─────────────────────────── */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;overflow-x:hidden}
+img,svg{display:block;max-width:100%;height:auto}
+button{font:inherit;border:0;background:0;cursor:pointer;color:inherit}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4,p{margin:0}
+
+:root{
+  /* palette jardin vibrant */
+  --cream:#faf6ec;
+  --cream-warm:#f3ecd9;
+  --forest:#0a2f1f;
+  --forest-deep:#061e14;
+  --emerald:#16a34a;
+  --emerald-bright:#22c55e;
+  --lime:#bef264;
+  --lime-glow:#d9f99d;
+  --earth:#d97757;
+  --earth-deep:#b35a3f;
+  --ink:#1a1a1a;
+  --ink-60:rgba(10,47,31,.6);
+  --ink-30:rgba(10,47,31,.3);
+  --ink-12:rgba(10,47,31,.12);
+
+  /* radii */
+  --r-sm:10px;
+  --r-md:20px;
+  --r-lg:32px;
+  --r-xl:48px;
+  --r-pill:999px;
+
+  /* type */
+  --ff-display:'Fraunces',ui-serif,Georgia,serif;
+  --ff-body:'Plus Jakarta Sans',system-ui,-apple-system,Segoe UI,sans-serif;
+  --ff-mono:'DM Mono',ui-monospace,Menlo,monospace;
+
+  /* space */
+  --container:min(1320px,100% - 2rem);
+  --pad-section:clamp(4rem,10vw,9rem);
+}
+
+body{
+  font-family:var(--ff-body);
+  color:var(--forest);
+  background:var(--cream);
+  font-size:17px;line-height:1.55;
+  font-feature-settings:"ss01","cv11";
+}
+
+/* Grain texture teintée vert */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.45;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .04  0 0 0 0 .18  0 0 0 0 .12  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  mix-blend-mode:multiply;
+}
+
+/* ─────────────────────────── FEUILLES QUI DÉRIVENT (fond global) ─────────────────────────── */
+.leaves-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;
+}
+.leaf{
+  position:absolute;opacity:.18;filter:blur(.3px);
+  will-change:transform;
+}
+@keyframes leaf-drift-1{
+  0%{transform:translate3d(-10vw,-15vh,0) rotate(0deg) scale(.85)}
+  50%{transform:translate3d(30vw,50vh,0) rotate(180deg) scale(1)}
+  100%{transform:translate3d(110vw,110vh,0) rotate(360deg) scale(.85)}
+}
+@keyframes leaf-drift-2{
+  0%{transform:translate3d(-5vw,-20vh,0) rotate(45deg) scale(.7)}
+  50%{transform:translate3d(50vw,40vh,0) rotate(225deg) scale(1.1)}
+  100%{transform:translate3d(105vw,115vh,0) rotate(405deg) scale(.7)}
+}
+@keyframes leaf-drift-3{
+  0%{transform:translate3d(110vw,-10vh,0) rotate(-30deg) scale(.6)}
+  50%{transform:translate3d(60vw,55vh,0) rotate(-210deg) scale(.9)}
+  100%{transform:translate3d(-10vw,120vh,0) rotate(-390deg) scale(.6)}
+}
+@keyframes leaf-sway{
+  0%,100%{transform:translate3d(0,0,0) rotate(var(--rot,0deg))}
+  50%{transform:translate3d(2vw,4vh,0) rotate(calc(var(--rot,0deg) + 30deg))}
+}
+@media (prefers-reduced-motion:no-preference){
+  .leaf.drift-1{animation:leaf-drift-1 38s linear infinite}
+  .leaf.drift-2{animation:leaf-drift-2 52s linear infinite}
+  .leaf.drift-3{animation:leaf-drift-3 45s linear infinite}
+  .leaf.sway{animation:leaf-sway 9s ease-in-out infinite}
+}
+
+/* ─────────────────────────── COMMON ─────────────────────────── */
+.container{width:var(--container);margin-inline:auto;position:relative;z-index:2}
+.pill{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.5rem 1rem;border-radius:var(--r-pill);
+  background:var(--cream-warm);border:1px solid var(--ink-12);
+  font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--forest);font-weight:600;
+}
+.pill .dot{width:8px;height:8px;border-radius:50%;background:var(--emerald-bright);box-shadow:0 0 0 3px rgba(34,197,94,.2)}
+@media (prefers-reduced-motion:no-preference){
+  .pill .dot{animation:pulse 1.8s ease-in-out infinite}
+}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.2)}50%{box-shadow:0 0 0 7px rgba(34,197,94,0)}}
+
+.btn-primary{
+  display:inline-flex;align-items:center;gap:.75rem;
+  padding:1.05rem 1.75rem;border-radius:var(--r-pill);
+  background:var(--forest);color:var(--cream);
+  font-weight:600;font-size:1rem;letter-spacing:.01em;
+  transition:transform .25s ease, background .25s ease;
+  border:1px solid var(--forest);
+}
+.btn-primary:hover{background:var(--emerald);border-color:var(--emerald);transform:translateY(-2px)}
+.btn-primary .arrow{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;background:var(--lime);color:var(--forest);border-radius:50%;transition:transform .25s}
+.btn-primary:hover .arrow{transform:rotate(-45deg)}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.95rem 1.4rem;border-radius:var(--r-pill);
+  border:1px solid var(--ink-30);background:transparent;color:var(--forest);
+  font-weight:500;transition:background .25s ease, border-color .25s;
+}
+.btn-ghost:hover{background:var(--cream-warm);border-color:var(--forest)}
+
+/* ─────────────────────────── HEADER ─────────────────────────── */
+.header{
+  position:sticky;top:0;z-index:60;
+  background:rgba(250,246,236,.85);
+  backdrop-filter:blur(14px) saturate(120%);
+  -webkit-backdrop-filter:blur(14px) saturate(120%);
+  border-bottom:1px solid var(--ink-12);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+  padding:1rem 0;
+}
+.brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:inherit}
+.brand-mark{
+  width:52px;height:52px;border-radius:14px;
+  background:var(--cream);
+  display:grid;place-items:center;color:var(--lime);
+  overflow:hidden;border:1px solid var(--ink-12);
+}
+.brand-mark svg{width:22px;height:22px}
+.brand-mark img{width:100%;height:100%;object-fit:contain;padding:4px}
+.brand-name{font-family:var(--ff-display);font-size:1.35rem;font-weight:600;letter-spacing:-.02em;line-height:1}
+.brand-sub{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-top:2px;font-weight:500}
+.brand-text{display:flex;flex-direction:column}
+
+.nav{display:flex;gap:2rem;align-items:center}
+.nav a{font-size:.95rem;color:var(--forest);font-weight:500;opacity:.78;transition:opacity .2s}
+.nav a:hover{opacity:1}
+.nav-cta{display:flex;align-items:center;gap:1rem}
+.header-phone{
+  font-family:var(--ff-mono);font-size:.95rem;color:var(--forest);
+  display:inline-flex;align-items:center;gap:.5rem;
+}
+.header-phone svg{width:16px;height:16px}
+
+.burger{display:none;width:44px;height:44px;place-items:center;border-radius:12px;background:var(--cream-warm)}
+.burger svg{width:22px;height:22px}
+
+@media (max-width: 960px){
+  .nav>a:not(.nav-cta),.header-phone{display:none}
+  .burger{display:grid}
+  .nav-cta .btn-primary{padding:.75rem 1.1rem;font-size:.9rem}
+}
+@media (max-width: 560px){
+  .brand-sub{display:none}
+  .brand-name{font-size:1.15rem}
+}
+
+/* ─────────────────────────── HERO ─────────────────────────── */
+.hero{
+  position:relative;overflow:hidden;
+  padding:clamp(3rem,6vw,6rem) 0 clamp(5rem,9vw,8rem);
+  background:
+    radial-gradient(1000px 600px at 85% -10%, rgba(190,242,100,.35), transparent 60%),
+    radial-gradient(800px 500px at 10% 110%, rgba(22,163,74,.22), transparent 65%),
+    linear-gradient(180deg,var(--cream) 0%, var(--cream-warm) 100%);
+}
+.hero-grid{
+  display:grid;gap:clamp(2rem,4vw,3.5rem);
+  grid-template-columns:1.35fr 1fr;
+  align-items:end;
+}
+.hero-copy{position:relative;z-index:3}
+.hero-tag{margin-bottom:1.25rem}
+.hero h1{
+  font-family:var(--ff-display);
+  font-size:clamp(2.75rem,7.5vw,6.75rem);
+  line-height:.95;letter-spacing:-.035em;
+  font-weight:500;
+  color:var(--forest);
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--emerald);font-variation-settings:"opsz" 144,"SOFT" 100}
+.hero h1 .underline{
+  display:inline-block;position:relative;
+  background:linear-gradient(110deg,var(--lime) 0%,var(--lime-glow) 100%);
+  padding:0 .15em;border-radius:.15em;
+  color:var(--forest);
+}
+.hero-lede{
+  margin-top:1.6rem;max-width:48ch;
+  font-size:clamp(1.05rem,1.35vw,1.2rem);
+  color:var(--ink-60);line-height:1.55;
+}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:.85rem;margin-top:2rem}
+
+.hero-meta{
+  display:flex;gap:2rem;margin-top:2.5rem;flex-wrap:wrap;
+  padding-top:1.5rem;border-top:1px solid var(--ink-12);
+}
+.meta-item{display:flex;flex-direction:column;gap:.15rem}
+.meta-k{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);font-weight:600}
+.meta-v{font-family:var(--ff-display);font-size:1.15rem;font-weight:500;color:var(--forest)}
+
+/* Hero right — carte vivante */
+.hero-card{
+  position:relative;
+  border-radius:var(--r-xl);
+  padding:2rem 1.85rem 1.85rem;
+  background:url('img/tondeuse-van.jpg') center/cover no-repeat;
+  color:var(--cream);
+  overflow:hidden;
+  min-height:clamp(420px,48vw,580px);
+  display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:0 30px 60px -20px rgba(6,30,20,.35);
+}
+/* Dégradé bas → haut pour lisibilité du téléphone sans noyer la photo */
+.hero-card::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(180deg, rgba(6,30,20,.55) 0%, rgba(6,30,20,.25) 35%, rgba(6,30,20,.55) 65%, rgba(6,30,20,.92) 100%);
+  pointer-events:none;
+}
+.hero-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(500px 300px at 100% 100%, rgba(22,163,74,.22), transparent 65%);
+  pointer-events:none;
+}
+.hero-card-top{
+  display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;
+  position:relative;z-index:3;
+  padding:.7rem 1rem;border-radius:var(--r-pill);
+  background:rgba(10,47,31,.55);backdrop-filter:blur(8px);
+  border:1px solid rgba(190,242,100,.18);
+}
+.hero-card-label{
+  font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--lime-glow);font-weight:600;line-height:1.1;
+}
+.hero-card-since{
+  font-family:var(--ff-mono);font-size:.78rem;color:var(--cream);opacity:.75;flex-shrink:0;
+}
+.hero-card-phone-block{
+  position:relative;z-index:3;margin-top:auto;
+  background:rgba(6,30,20,.38);backdrop-filter:blur(6px);
+  border:1px solid rgba(190,242,100,.22);
+  border-radius:var(--r-lg);padding:1.15rem 1.35rem 1.25rem;
+}
+.hero-card-phone{
+  display:block;
+  font-family:var(--ff-display);
+  font-size:clamp(1.6rem,3.4vw,2.65rem);
+  font-weight:500;font-variation-settings:"opsz" 144,"SOFT" 80;
+  letter-spacing:-.015em;line-height:1;
+  color:var(--lime);
+  font-style:italic;
+  white-space:nowrap;
+}
+.hero-card-phone-k{
+  display:block;font-family:var(--ff-body);font-style:normal;font-size:.7rem;
+  color:var(--cream);opacity:.85;letter-spacing:.16em;
+  text-transform:uppercase;margin-bottom:.55rem;font-weight:600;
+}
+.hero-card-bottom{
+  position:relative;z-index:3;margin-top:1rem;
+  display:flex;flex-wrap:wrap;gap:.45rem;
+}
+.chip{
+  padding:.4rem .8rem;border-radius:var(--r-pill);
+  background:rgba(6,30,20,.55);border:1px solid rgba(190,242,100,.28);
+  backdrop-filter:blur(6px);
+  font-size:.78rem;color:var(--lime-glow);font-weight:500;
+}
+
+/* Grand blob émeraude qui respire, derrière la carte */
+.hero-blob{
+  position:absolute;z-index:1;
+  width:clamp(420px,45vw,720px);height:clamp(420px,45vw,720px);
+  right:-8%;top:-10%;
+  background:radial-gradient(circle,var(--emerald-bright),transparent 70%);
+  filter:blur(50px);opacity:.35;
+  pointer-events:none;
+}
+@media (prefers-reduced-motion:no-preference){
+  .hero-blob{animation:breathe 9s ease-in-out infinite}
+}
+@keyframes breathe{0%,100%{transform:scale(1) translate(0,0);opacity:.3}50%{transform:scale(1.15) translate(-2%,3%);opacity:.45}}
+
+/* Marker lime glow */
+.lime-dot{
+  position:absolute;bottom:-22px;left:-22px;z-index:2;
+  width:60px;height:60px;border-radius:50%;
+  background:var(--lime);
+  box-shadow:0 0 50px rgba(190,242,100,.6);
+  display:grid;place-items:center;
+  color:var(--forest);font-family:var(--ff-display);
+  font-size:1.2rem;font-weight:700;
+}
+
+@media (max-width: 900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-card{min-height:340px}
+}
+
+/* ─────────────────────────── TICKER ─────────────────────────── */
+.ticker{
+  position:relative;z-index:2;
+  background:var(--forest);color:var(--lime);
+  padding:1.4rem 0;overflow:hidden;
+  border-top:1px solid var(--forest-deep);
+  border-bottom:1px solid var(--forest-deep);
+  transform:rotate(-1.2deg);margin:clamp(2rem,4vw,3.5rem) -2vw;
+}
+.ticker-track{
+  display:flex;gap:3rem;white-space:nowrap;
+  font-family:var(--ff-display);
+  font-style:italic;
+  font-size:clamp(1.6rem,3.5vw,2.75rem);
+  font-weight:400;
+  font-variation-settings:"opsz" 144,"SOFT" 100;
+}
+@media (prefers-reduced-motion:no-preference){
+  .ticker-track{animation:ticker 34s linear infinite}
+}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.ticker-track span{flex-shrink:0;display:inline-flex;align-items:center;gap:3rem}
+.ticker-track span::after{content:'';width:12px;height:12px;border-radius:50%;background:var(--emerald-bright);display:inline-block;flex-shrink:0}
+
+/* ─────────────────────────── SECTION GENERAL ─────────────────────────── */
+section{padding:var(--pad-section) 0;position:relative;z-index:2}
+
+.section-head{max-width:72ch;margin-bottom:clamp(2.5rem,5vw,4rem)}
+.section-kicker{
+  font-family:var(--ff-mono);font-size:.85rem;color:var(--emerald);
+  letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem;display:inline-flex;align-items:center;gap:.7rem;font-weight:500;
+}
+.section-kicker::before{content:'';width:28px;height:1px;background:var(--emerald)}
+.section-title{
+  font-family:var(--ff-display);
+  font-size:clamp(2rem,5vw,4rem);
+  font-weight:500;letter-spacing:-.03em;line-height:1;
+  color:var(--forest);
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.section-title em{font-style:italic;color:var(--emerald);font-variation-settings:"opsz" 144,"SOFT" 100}
+.section-lede{margin-top:1.25rem;color:var(--ink-60);font-size:clamp(1rem,1.2vw,1.125rem);max-width:55ch;line-height:1.6}
+
+/* ─────────────────────────── TROIS PILIERS ─────────────────────────── */
+.pillars{
+  display:grid;gap:1.25rem;
+  grid-template-columns:repeat(12,1fr);
+}
+.pillar{
+  grid-column:span 4;
+  position:relative;
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:transform .4s cubic-bezier(.4,0,.2,1);
+  border:1px solid var(--ink-12);
+  background:var(--cream);
+}
+.pillar:hover{transform:translateY(-6px)}
+.pillar-photo{
+  position:relative;aspect-ratio:4/3;overflow:hidden;
+  background:var(--forest);
+}
+.pillar-photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .8s cubic-bezier(.25,1,.3,1);
+}
+.pillar:hover .pillar-photo img{transform:scale(1.04)}
+.pillar-photo-badge{
+  position:absolute;top:1rem;left:1rem;
+  padding:.4rem .85rem;border-radius:var(--r-pill);
+  font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.12em;
+  font-weight:500;color:var(--forest);background:var(--lime);
+  text-transform:uppercase;
+}
+.pillar-body{
+  padding:clamp(1.5rem,2vw,2.25rem);
+  display:flex;flex-direction:column;flex:1;gap:1rem;
+}
+.pillar-1{grid-column:span 5}
+.pillar-2{grid-column:span 4}
+.pillar-3{grid-column:span 3}
+.pillar-1 .pillar-body{background:linear-gradient(180deg,var(--forest) 0%,var(--forest-deep) 100%);color:var(--cream)}
+.pillar-2 .pillar-body{background:linear-gradient(180deg,var(--lime-glow) 0%,var(--lime) 100%);color:var(--forest)}
+.pillar-3 .pillar-body{background:linear-gradient(180deg,var(--cream-warm) 0%,var(--cream) 100%);color:var(--forest)}
+.pillar-title{
+  font-family:var(--ff-display);
+  font-size:clamp(1.55rem,2.4vw,2.3rem);
+  line-height:.98;letter-spacing:-.02em;font-weight:500;
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.pillar-title em{font-style:italic;font-weight:400;font-variation-settings:"opsz" 144,"SOFT" 100}
+.pillar-1 .pillar-title em{color:var(--lime)}
+.pillar-2 .pillar-title em{color:var(--forest)}
+.pillar-3 .pillar-title em{color:var(--emerald)}
+.pillar-desc{font-size:.95rem;line-height:1.5;opacity:.85}
+.pillar-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:auto}
+.pillar-tag{
+  padding:.35rem .75rem;border-radius:var(--r-pill);
+  font-size:.75rem;font-weight:500;
+  background:rgba(0,0,0,.08);
+}
+.pillar-1 .pillar-tag{background:rgba(190,242,100,.15);color:var(--lime-glow)}
+.pillar-2 .pillar-tag{background:rgba(10,47,31,.12);color:var(--forest)}
+
+@media (max-width: 960px){
+  .pillar{grid-column:span 12 !important}
+  .pillar-photo{aspect-ratio:16/9}
+}
+
+/* ─────────────────────────── GALERIE RÉALISATIONS ─────────────────────────── */
+.gallery{
+  display:grid;grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:260px;
+  gap:1rem;
+}
+.gal-item{
+  position:relative;overflow:hidden;
+  border-radius:var(--r-lg);
+  background:var(--forest);
+}
+.gal-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1s cubic-bezier(.25,1,.3,1);
+}
+.gal-item:hover img{transform:scale(1.05)}
+.gal-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(6,30,20,.7) 100%);
+  pointer-events:none;
+}
+.gal-caption{
+  position:absolute;bottom:1.1rem;left:1.25rem;right:1.25rem;
+  color:var(--cream);font-family:var(--ff-display);
+  font-size:1.05rem;font-weight:500;letter-spacing:-.01em;
+  z-index:2;line-height:1.2;
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.gal-caption em{font-style:italic;color:var(--lime-glow);font-variation-settings:"opsz" 144,"SOFT" 100}
+.gal-caption-mono{
+  font-family:var(--ff-mono);font-size:.7rem;letter-spacing:.14em;
+  text-transform:uppercase;opacity:.8;margin-bottom:.3rem;color:var(--lime-glow);
+  font-weight:500;
+}
+
+/* Asymmetric: gal-1 features large (span 7, 2 rows), gal-4 portrait (span 5, 2 rows) */
+.gal-1{grid-column:span 7;grid-row:span 2}
+.gal-2{grid-column:span 5}
+.gal-3{grid-column:span 5}
+.gal-4{grid-column:span 4;grid-row:span 2}
+.gal-5{grid-column:span 8}
+
+/* CTA tile (Facebook) */
+.gal-cta{
+  background:linear-gradient(135deg,var(--emerald) 0%,var(--forest) 100%);
+  color:var(--cream);
+  padding:2rem 2.25rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+  overflow:hidden;position:relative;
+}
+.gal-cta::after{display:none}
+.gal-cta-title{
+  font-family:var(--ff-display);font-size:clamp(1.6rem,2.4vw,2.25rem);
+  line-height:1;letter-spacing:-.02em;font-weight:500;
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.gal-cta-title em{font-style:italic;color:var(--lime);font-variation-settings:"opsz" 144,"SOFT" 100}
+.gal-cta-mono{font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lime-glow);font-weight:500;margin-bottom:1rem}
+.gal-cta-link{
+  display:inline-flex;align-items:center;gap:.6rem;align-self:flex-start;
+  padding:.75rem 1.25rem;border-radius:var(--r-pill);
+  background:var(--lime);color:var(--forest);font-weight:600;font-size:.9rem;
+  transition:transform .25s ease;
+}
+.gal-cta-link:hover{transform:translateX(4px)}
+.gal-cta-link svg{width:16px;height:16px}
+.gal-cta-deco{
+  position:absolute;right:-30px;top:-30px;
+  width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(190,242,100,.25),transparent 70%);
+  pointer-events:none;
+}
+
+@media (max-width: 960px){
+  .gallery{grid-template-columns:repeat(6,1fr);grid-auto-rows:220px}
+  .gal-1{grid-column:span 6;grid-row:span 2}
+  .gal-2,.gal-3{grid-column:span 3;grid-row:span 1}
+  .gal-4{grid-column:span 6;grid-row:span 2}
+  .gal-5{grid-column:span 6;grid-row:span 1}
+}
+@media (max-width: 500px){
+  .gallery{grid-template-columns:1fr;grid-auto-rows:auto}
+  .gal-1,.gal-2,.gal-3,.gal-4,.gal-5{grid-column:span 1;grid-row:span 1}
+  .gal-item{aspect-ratio:4/3}
+  .gal-cta{aspect-ratio:auto;min-height:220px}
+}
+
+/* ─────────────────────────── PRESTATIONS LIST ─────────────────────────── */
+.prestations{
+  background:var(--forest);color:var(--cream);
+  padding:var(--pad-section) 0;
+  border-radius:var(--r-xl);
+  margin-inline:1rem;
+  position:relative;overflow:hidden;
+}
+.prestations::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(500px 300px at 90% 0%, rgba(190,242,100,.18), transparent 60%),
+    radial-gradient(400px 300px at 10% 100%, rgba(34,197,94,.2), transparent 60%);
+  pointer-events:none;
+}
+.prestations .section-title{color:var(--cream)}
+.prestations .section-title em{color:var(--lime)}
+.prestations .section-kicker{color:var(--lime)}
+.prestations .section-kicker::before{background:var(--lime)}
+.prestations .section-lede{color:rgba(250,246,236,.7)}
+
+.prestations-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;
+  border-top:1px solid rgba(250,246,236,.12);
+  position:relative;z-index:2;
+}
+.prestation{
+  padding:1.5rem 1.25rem;
+  border-bottom:1px solid rgba(250,246,236,.12);
+  border-right:1px solid rgba(250,246,236,.12);
+  display:flex;align-items:baseline;gap:1rem;
+  transition:background .3s;
+  cursor:default;
+}
+.prestation:hover{background:rgba(190,242,100,.06)}
+.prestation:nth-child(3n){border-right:0}
+.prestation-no{
+  font-family:var(--ff-mono);font-size:.8rem;color:var(--lime);
+  min-width:2.6rem;font-weight:500;
+}
+.prestation-name{
+  font-family:var(--ff-display);font-size:clamp(1rem,1.3vw,1.15rem);
+  line-height:1.25;font-weight:400;
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+
+@media (max-width: 900px){
+  .prestations-grid{grid-template-columns:repeat(2,1fr)}
+  .prestation:nth-child(3n){border-right:1px solid rgba(250,246,236,.12)}
+  .prestation:nth-child(2n){border-right:0}
+}
+@media (max-width: 500px){
+  .prestations-grid{grid-template-columns:1fr}
+  .prestation{border-right:0 !important}
+}
+
+/* ─────────────────────────── ENGAGEMENTS ─────────────────────────── */
+.engagements{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;
+}
+.engagement{
+  position:relative;padding:2.25rem 1.75rem;border-radius:var(--r-lg);
+  background:var(--cream);border:1px solid var(--ink-12);
+  display:flex;flex-direction:column;gap:1rem;
+  transition:transform .3s,box-shadow .3s;
+}
+.engagement:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(10,47,31,.2)}
+.engagement-icon{
+  width:56px;height:56px;border-radius:18px;
+  background:var(--lime);color:var(--forest);
+  display:grid;place-items:center;
+}
+.engagement-icon svg{width:28px;height:28px}
+.engagement-2 .engagement-icon{background:var(--emerald);color:var(--cream)}
+.engagement-3 .engagement-icon{background:var(--earth);color:var(--cream)}
+.engagement-title{
+  font-family:var(--ff-display);font-size:1.5rem;line-height:1.1;
+  font-weight:500;letter-spacing:-.02em;
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.engagement-title em{font-style:italic;color:var(--emerald);font-variation-settings:"opsz" 144,"SOFT" 100}
+.engagement-desc{color:var(--ink-60);font-size:.95rem;line-height:1.55}
+.engagement-pct{
+  font-family:var(--ff-display);font-size:3.5rem;line-height:1;
+  color:var(--earth);font-weight:600;
+  font-variation-settings:"opsz" 144,"SOFT" 30;
+  margin-bottom:-.5rem;
+}
+
+@media (max-width: 900px){
+  .engagements{grid-template-columns:1fr}
+}
+
+/* ─────────────────────────── HORAIRES + ZONE ─────────────────────────── */
+.horaires-grid{
+  display:grid;grid-template-columns:1.2fr 1fr;gap:1.5rem;
+}
+.horaires-card,.zone-card{
+  border-radius:var(--r-lg);padding:clamp(1.75rem,2.5vw,2.5rem);
+  position:relative;overflow:hidden;
+}
+.horaires-card{background:var(--cream-warm);border:1px solid var(--ink-12)}
+.zone-card{
+  background:linear-gradient(160deg,var(--emerald) 0%,var(--forest) 100%);
+  color:var(--cream);
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:340px;
+}
+.horaires-title{
+  font-family:var(--ff-display);font-size:clamp(1.5rem,2.5vw,2rem);
+  font-weight:500;margin-bottom:1.5rem;letter-spacing:-.02em;
+}
+.horaires-list{display:flex;flex-direction:column}
+.horaires-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:.9rem 0;border-bottom:1px dashed var(--ink-12);
+  font-family:var(--ff-display);font-size:1.1rem;
+}
+.horaires-row:last-child{border:0}
+.horaires-row.today{color:var(--emerald);font-weight:600}
+.horaires-row .day{font-weight:500}
+.horaires-row .hour{font-family:var(--ff-mono);font-size:.95rem;letter-spacing:.02em}
+.horaires-row.closed .hour{opacity:.4;font-style:italic}
+
+.zone-big{
+  font-family:var(--ff-display);
+  font-size:clamp(2.5rem,5vw,4rem);line-height:.95;
+  letter-spacing:-.03em;font-weight:500;
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+}
+.zone-big em{font-style:italic;font-variation-settings:"opsz" 144,"SOFT" 100;color:var(--lime)}
+.zone-cities{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.5rem}
+.zone-chip{
+  padding:.4rem .85rem;border-radius:var(--r-pill);
+  background:rgba(190,242,100,.15);border:1px solid rgba(190,242,100,.25);
+  font-size:.82rem;color:var(--lime-glow);font-weight:500;
+}
+.zone-map{
+  position:absolute;right:-60px;bottom:-60px;width:280px;height:280px;opacity:.28;
+  pointer-events:none;
+}
+
+@media (max-width: 900px){
+  .horaires-grid{grid-template-columns:1fr}
+}
+
+/* ─────────────────────────── CONTACT ─────────────────────────── */
+.contact{
+  text-align:center;
+  background:var(--cream-warm);
+  border-radius:var(--r-xl);
+  margin-inline:1rem;
+  padding:clamp(4rem,8vw,7rem) 1.5rem;
+  position:relative;overflow:hidden;
+}
+.contact::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(600px 400px at 50% 0%, rgba(34,197,94,.18), transparent 65%);
+  pointer-events:none;
+}
+.contact-big{
+  font-family:var(--ff-display);
+  font-size:clamp(3rem,9vw,8rem);line-height:.95;
+  letter-spacing:-.035em;font-weight:500;
+  font-variation-settings:"opsz" 144,"SOFT" 50;
+  color:var(--forest);
+  position:relative;z-index:2;
+}
+.contact-big em{font-style:italic;color:var(--emerald);font-variation-settings:"opsz" 144,"SOFT" 100}
+.contact-phone-wrap{margin-top:3rem;position:relative;z-index:2}
+.contact-phone-k{
+  font-family:var(--ff-mono);font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-60);margin-bottom:.5rem;font-weight:500;
+}
+.contact-phone{
+  font-family:var(--ff-display);
+  font-size:clamp(2.4rem,7.5vw,6rem);line-height:1;font-weight:600;
+  letter-spacing:-.025em;color:var(--forest);
+  font-variation-settings:"opsz" 144,"SOFT" 30;
+  display:inline-flex;align-items:center;gap:1rem;
+  transition:color .25s;
+}
+.contact-phone:hover{color:var(--emerald)}
+.contact-phone-mark{
+  width:clamp(48px,8vw,80px);height:clamp(48px,8vw,80px);
+  border-radius:50%;background:var(--lime);
+  display:grid;place-items:center;
+}
+.contact-phone-mark svg{width:50%;height:50%}
+
+.contact-sub{
+  margin-top:2rem;font-size:1rem;color:var(--ink-60);
+  position:relative;z-index:2;
+}
+.contact-sub strong{color:var(--forest);font-weight:600}
+
+/* ─────────────────────────── FOOTER ─────────────────────────── */
+.footer{
+  background:var(--forest-deep);color:var(--cream);
+  padding:clamp(3rem,6vw,5rem) 0 2rem;
+  position:relative;z-index:2;overflow:hidden;
+}
+.footer::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(500px 300px at 80% -20%, rgba(22,163,74,.2), transparent 60%);
+  pointer-events:none;
+}
+.footer-inner{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:3rem;
+  padding-bottom:3rem;border-bottom:1px solid rgba(250,246,236,.12);
+  position:relative;z-index:2;
+}
+.footer-brand .brand-mark{background:var(--cream);border:1px solid rgba(190,242,100,.25)}
+.footer-desc{margin-top:1.25rem;max-width:40ch;color:rgba(250,246,236,.65);font-size:.95rem;line-height:1.55}
+.footer h5{
+  font-family:var(--ff-mono);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--lime);font-weight:500;margin-bottom:1.2rem;
+}
+.footer-list{display:flex;flex-direction:column;gap:.55rem}
+.footer-list a{color:rgba(250,246,236,.75);font-size:.95rem;transition:color .2s}
+.footer-list a:hover{color:var(--lime)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:1.5rem;font-size:.85rem;color:rgba(250,246,236,.5);
+  font-family:var(--ff-mono);flex-wrap:wrap;gap:1rem;
+  position:relative;z-index:2;
+}
+.footer-fb{
+  display:inline-flex;align-items:center;gap:.55rem;
+  padding:.55rem 1rem;border-radius:var(--r-pill);
+  background:rgba(190,242,100,.12);border:1px solid rgba(190,242,100,.22);
+  color:var(--lime-glow);font-family:var(--ff-body);font-size:.85rem;font-weight:500;
+}
+.footer-fb svg{width:16px;height:16px}
+
+@media (max-width: 800px){
+  .footer-inner{grid-template-columns:1fr;gap:2rem}
+}
+
+/* ─────────────────────────── REVEAL utilities ─────────────────────────── */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease, transform .7s cubic-bezier(.22,1,.36,1)}
+  .reveal.in{opacity:1;transform:none}
+}
+
+/* ─────────────────────────── mobile fine-tuning ─────────────────────────── */
+@media (max-width: 480px){
+  :root{--container:min(1320px,100% - 1.5rem)}
+  section{padding:4.5rem 0}
+  .hero{padding:2.25rem 0 4rem}
+  .hero-card{padding:1.5rem 1.25rem}
+  .hero-meta{gap:1.25rem}
+  .prestations,.contact{margin-inline:.75rem}
+  .pillar{padding:1.5rem 1.25rem;min-height:auto}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─────────────────────────── FEUILLES EN FOND ─────────────────────────── -->
+<div class="leaves-bg" aria-hidden="true">
+  <!-- 12 feuilles SVG avec positions, délais, vitesses randomisées -->
+  <svg class="leaf drift-1" style="top:10%;left:5%;animation-delay:-4s" width="42" height="42" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-2" style="top:30%;left:20%;animation-delay:-20s" width="34" height="34" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/><path d="M12 30L50 18" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-3" style="top:5%;left:75%;animation-delay:-14s" width="52" height="52" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-1" style="top:55%;left:85%;animation-delay:-28s" width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#16a34a"/></svg>
+  <svg class="leaf drift-2" style="top:75%;left:10%;animation-delay:-8s" width="46" height="46" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#22c55e"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-3" style="top:40%;left:50%;animation-delay:-32s" width="36" height="36" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#bef264"/></svg>
+  <svg class="leaf drift-1" style="top:85%;left:40%;animation-delay:-18s" width="40" height="40" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-2" style="top:20%;left:60%;animation-delay:-40s" width="28" height="28" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/></svg>
+  <svg class="leaf drift-3" style="top:65%;left:30%;animation-delay:-6s" width="38" height="38" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/></svg>
+  <svg class="leaf sway" style="top:15%;left:40%;--rot:25deg" width="24" height="24" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/></svg>
+  <svg class="leaf sway" style="top:50%;left:92%;--rot:-15deg;animation-delay:-3s" width="32" height="32" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/></svg>
+  <svg class="leaf sway" style="top:90%;left:70%;--rot:45deg;animation-delay:-5s" width="28" height="28" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#bef264"/></svg>
+</div>
+
+<!-- ─────────────────────────── HEADER ─────────────────────────── -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#" class="brand">
+      <div class="brand-mark">
+        <img src="img/logo.png" alt="LT Services">
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">LT Services</span>
+        <span class="brand-sub">Paysagiste · Metz</span>
+      </div>
+    </a>
+    <nav class="nav">
+      <a href="#savoir-faire">Savoir-faire</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#prestations">Prestations</a>
+      <a href="#contact">Contact</a>
+      <div class="nav-cta">
+        <a href="tel:0601429365" class="header-phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+          06 01 42 93 65
+        </a>
+        <a href="#contact" class="btn-primary">
+          Devis gratuit
+          <span class="arrow">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
+    </nav>
+    <button class="burger" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ─────────────────────────── HERO ─────────────────────────── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="hero-tag pill">
+          <span class="dot"></span>
+          Disponible pour vos extérieurs · lun–ven 7h–19h
+        </div>
+        <h1>
+          Redonnez&nbsp;vie <em>&amp;&nbsp;couleur</em><br>
+          à&nbsp;vos <span class="underline">extérieurs.</span>
+        </h1>
+        <p class="hero-lede">
+          Entretien de jardin, aménagement paysager, pose de clôtures — à Charly Oradour et partout sur Metz &amp; alentours. Travail soigné et fiable, devis gratuit et rapide.
+        </p>
+        <div class="hero-ctas">
+          <a href="tel:0601429365" class="btn-primary">
+            Appeler LT Services
+            <span class="arrow">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+          <a href="#prestations" class="btn-ghost">Voir les prestations</a>
+        </div>
+        <div class="hero-meta">
+          <div class="meta-item"><span class="meta-k">Secteur</span><span class="meta-v">Metz &amp; alentours</span></div>
+          <div class="meta-item"><span class="meta-k">Crédit d'impôt</span><span class="meta-v">50 %</span></div>
+          <div class="meta-item"><span class="meta-k">Fondée en</span><span class="meta-v">2023</span></div>
+        </div>
+      </div>
+
+      <div style="position:relative">
+        <div class="hero-blob" aria-hidden="true"></div>
+        <div class="hero-card">
+          <div class="hero-card-top">
+            <span class="hero-card-label">Devis gratuit · réponse rapide</span>
+            <span class="hero-card-since">Est. 2023</span>
+          </div>
+          <div class="hero-card-phone-block">
+            <span class="hero-card-phone-k">Pour échanger directement</span>
+            <a href="tel:0601429365" class="hero-card-phone">06&nbsp;01&nbsp;42&nbsp;93&nbsp;65</a>
+            <div class="hero-card-bottom">
+              <span class="chip">Tonte</span>
+              <span class="chip">Taille</span>
+              <span class="chip">Clôtures</span>
+              <span class="chip">Massifs</span>
+              <span class="chip">Terrasse</span>
+            </div>
+          </div>
+          <div class="lime-dot" aria-hidden="true">✓</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── TICKER ─────────────────────────── -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Tonte</span><span>Taille de haie</span><span>Massifs</span><span>Dallage</span><span>Clôtures</span><span>Terrasse</span><span>Engazonnement</span><span>Enrochement</span><span>Allées</span><span>Débroussaillage</span>
+    <span>Tonte</span><span>Taille de haie</span><span>Massifs</span><span>Dallage</span><span>Clôtures</span><span>Terrasse</span><span>Engazonnement</span><span>Enrochement</span><span>Allées</span><span>Débroussaillage</span>
+  </div>
+</div>
+
+<!-- ─────────────────────────── TROIS PILIERS ─────────────────────────── -->
+<section id="savoir-faire">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Savoir-faire</div>
+      <h2 class="section-title">Trois métiers,<br>une <em>même main.</em></h2>
+      <p class="section-lede">LT Services intervient sur trois fronts complémentaires pour redonner vie à vos extérieurs — du plus brut au plus soigné, de la tonte hebdomadaire à la clôture posée au millimètre.</p>
+    </div>
+
+    <div class="pillars">
+      <article class="pillar pillar-1">
+        <div class="pillar-photo">
+          <img src="img/tondeuse-prairie.jpg" alt="Tondeuse autoportée LT Services sur une grande prairie tondue" loading="lazy">
+          <span class="pillar-photo-badge">01 · Entretien</span>
+        </div>
+        <div class="pillar-body">
+          <h3 class="pillar-title">Jardin <em>tenu,</em><br>saison après saison.</h3>
+          <p class="pillar-desc">Tonte, taille, désherbage, débroussaillage. Le geste régulier qui garde votre jardin propre, vivant et prêt à être traversé.</p>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Tonte de gazon</span>
+            <span class="pillar-tag">Taille de haie</span>
+            <span class="pillar-tag">Débroussaillage</span>
+            <span class="pillar-tag">Désherbage</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar pillar-2">
+        <div class="pillar-photo">
+          <img src="img/riviere-bleue.jpg" alt="Aménagement paysager avec rivière décorative en pierres bleues" loading="lazy">
+          <span class="pillar-photo-badge">02 · Aménagement</span>
+        </div>
+        <div class="pillar-body">
+          <h3 class="pillar-title">Dessiner<br>un <em>extérieur</em> à vivre.</h3>
+          <p class="pillar-desc">Création de massifs, plantations, allées, décoration extérieure. Un espace qui raconte quelque chose et qu'on a envie d'habiter.</p>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Massif</span>
+            <span class="pillar-tag">Allées</span>
+            <span class="pillar-tag">Dallage</span>
+            <span class="pillar-tag">Terrasse</span>
+            <span class="pillar-tag">Enrochement</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar pillar-3">
+        <div class="pillar-photo">
+          <img src="img/cloture-grise.png" alt="Clôture grise anthracite posée en rue par LT Services" loading="lazy">
+          <span class="pillar-photo-badge">03 · Clôtures</span>
+        </div>
+        <div class="pillar-body">
+          <h3 class="pillar-title">Délimiter,<br>protéger, <em>soigner.</em></h3>
+          <p class="pillar-desc">Panneaux rigides, grillage, bois, claustras, alu, portail et portillon — posés proprement, calés au millimètre.</p>
+          <div class="pillar-tags">
+            <span class="pillar-tag">Panneaux rigides</span>
+            <span class="pillar-tag">Bois</span>
+            <span class="pillar-tag">Alu</span>
+            <span class="pillar-tag">Portails</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── GALERIE RÉALISATIONS ─────────────────────────── -->
+<section id="realisations">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Réalisations</div>
+      <h2 class="section-title">Du <em>geste</em> au<br>grand <em>projet.</em></h2>
+      <p class="section-lede">Quelques chantiers récents dans la région de Metz — haies taillées, terrasses posées, massifs dessinés, clôtures alignées. Chaque photo, un extérieur rendu propre et net.</p>
+    </div>
+    <div class="gallery">
+      <figure class="gal-item gal-1">
+        <img src="img/taille-haie.jpg" alt="Taille de haie de thuyas sur plusieurs mètres avec perche thermique" loading="lazy">
+        <figcaption class="gal-caption">
+          <div class="gal-caption-mono">Taille</div>
+          Haies <em>alignées</em> au millimètre
+        </figcaption>
+      </figure>
+      <figure class="gal-item gal-2">
+        <img src="img/terrasse-carrelee.jpg" alt="Grande terrasse carrelée avec vue sur les champs" loading="lazy">
+        <figcaption class="gal-caption">
+          <div class="gal-caption-mono">Terrasse</div>
+          Ouverte sur <em>l'horizon</em>
+        </figcaption>
+      </figure>
+      <figure class="gal-item gal-3">
+        <img src="img/pelouse-aerienne.webp" alt="Grande pelouse en bas de jardin, vue de la maison" loading="lazy">
+        <figcaption class="gal-caption">
+          <div class="gal-caption-mono">Jardin complet</div>
+          Pelouses <em>tondues</em>, talus maîtrisé
+        </figcaption>
+      </figure>
+      <figure class="gal-item gal-4">
+        <img src="img/tondeuse-van.jpg" alt="Tondeuse autoportée Etesia Attila 88 et véhicule LT Services" loading="lazy">
+        <figcaption class="gal-caption">
+          <div class="gal-caption-mono">Matériel pro</div>
+          Tondeuse <em>autoportée</em> Attila&nbsp;88
+        </figcaption>
+      </figure>
+      <a href="https://www.facebook.com/profile.php?id=100090052612683" target="_blank" rel="noopener" class="gal-item gal-5 gal-cta">
+        <div class="gal-cta-deco" aria-hidden="true"></div>
+        <div>
+          <div class="gal-cta-mono">Plus de réalisations</div>
+          <h3 class="gal-cta-title">Suivez les<br><em>chantiers</em> en direct.</h3>
+        </div>
+        <span class="gal-cta-link">
+          Facebook — LT Services
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── PRESTATIONS LIST ─────────────────────────── -->
+<section id="prestations" style="padding-block:0">
+  <div class="prestations">
+    <div class="container">
+      <div class="section-head">
+        <div class="section-kicker">Prestations</div>
+        <h2 class="section-title">20 façons de<br>vous <em>rendre service.</em></h2>
+        <p class="section-lede">De la coupe ponctuelle au projet global, la liste complète des interventions assurées par LT Services sur Metz et alentours.</p>
+      </div>
+      <div class="prestations-grid">
+        <div class="prestation"><span class="prestation-no">01</span><span class="prestation-name">Entretien d'espaces verts</span></div>
+        <div class="prestation"><span class="prestation-no">02</span><span class="prestation-name">Tonte de gazon</span></div>
+        <div class="prestation"><span class="prestation-no">03</span><span class="prestation-name">Aménagement paysager</span></div>
+        <div class="prestation"><span class="prestation-no">04</span><span class="prestation-name">Engazonnement industriel</span></div>
+        <div class="prestation"><span class="prestation-no">05</span><span class="prestation-name">Débroussaillage</span></div>
+        <div class="prestation"><span class="prestation-no">06</span><span class="prestation-name">Aménagement d'allée</span></div>
+        <div class="prestation"><span class="prestation-no">07</span><span class="prestation-name">Création de jardin</span></div>
+        <div class="prestation"><span class="prestation-no">08</span><span class="prestation-name">Engazonnement</span></div>
+        <div class="prestation"><span class="prestation-no">09</span><span class="prestation-name">Jardinier paysagiste</span></div>
+        <div class="prestation"><span class="prestation-no">10</span><span class="prestation-name">Dallage de jardin</span></div>
+        <div class="prestation"><span class="prestation-no">11</span><span class="prestation-name">Création d'espaces verts</span></div>
+        <div class="prestation"><span class="prestation-no">12</span><span class="prestation-name">Taille de haie</span></div>
+        <div class="prestation"><span class="prestation-no">13</span><span class="prestation-name">Maçonnerie paysagère</span></div>
+        <div class="prestation"><span class="prestation-no">14</span><span class="prestation-name">Aménagement de terrasse</span></div>
+        <div class="prestation"><span class="prestation-no">15</span><span class="prestation-name">Palissade</span></div>
+        <div class="prestation"><span class="prestation-no">16</span><span class="prestation-name">Enrochement paysager</span></div>
+        <div class="prestation"><span class="prestation-no">17</span><span class="prestation-name">Aménagement d'allée de jardin</span></div>
+        <div class="prestation"><span class="prestation-no">18</span><span class="prestation-name">Aménagement de massif</span></div>
+        <div class="prestation"><span class="prestation-no">19</span><span class="prestation-name">Aménagement de terrain</span></div>
+        <div class="prestation"><span class="prestation-no">20</span><span class="prestation-name">Terrasse extérieure</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── ENGAGEMENTS ─────────────────────────── -->
+<section id="engagements">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-kicker">Engagements</div>
+      <h2 class="section-title">Trois promesses,<br><em>aucune fumée.</em></h2>
+      <p class="section-lede">Ce que vous retrouvez à chaque chantier — de la première visite jusqu'à la dernière pierre posée.</p>
+    </div>
+    <div class="engagements">
+      <article class="engagement engagement-1">
+        <div class="engagement-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3 class="engagement-title">Travail <em>soigné</em><br>et fiable.</h3>
+        <p class="engagement-desc">Finitions propres, délais tenus, terrain rendu net. On passe là où il faut, on fait ce qui est dit.</p>
+      </article>
+      <article class="engagement engagement-2">
+        <div class="engagement-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <h3 class="engagement-title">Devis <em>gratuit</em><br>et rapide.</h3>
+        <p class="engagement-desc">Un appel, un tour du propriétaire, un chiffrage clair. Sans obligation, sans baratin, sans suppléments planqués.</p>
+      </article>
+      <article class="engagement engagement-3">
+        <div class="engagement-pct">50 %</div>
+        <h3 class="engagement-title">Crédit d'impôt<br>sur <em>l'entretien.</em></h3>
+        <p class="engagement-desc">Services à la personne agréés — vous récupérez 50 % du montant de vos prestations d'entretien de jardin sur votre déclaration d'impôt.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── HORAIRES + ZONE ─────────────────────────── -->
+<section id="zone" style="padding-top:0">
+  <div class="container">
+    <div class="horaires-grid">
+      <div class="horaires-card">
+        <h3 class="horaires-title">Quand m'appeler ?</h3>
+        <div class="horaires-list">
+          <div class="horaires-row today"><span class="day">Lundi</span><span class="hour">07h00 — 19h00</span></div>
+          <div class="horaires-row"><span class="day">Mardi</span><span class="hour">07h00 — 19h00</span></div>
+          <div class="horaires-row"><span class="day">Mercredi</span><span class="hour">07h00 — 19h00</span></div>
+          <div class="horaires-row"><span class="day">Jeudi</span><span class="hour">07h00 — 19h00</span></div>
+          <div class="horaires-row"><span class="day">Vendredi</span><span class="hour">07h00 — 19h00</span></div>
+          <div class="horaires-row closed"><span class="day">Samedi</span><span class="hour">fermé</span></div>
+          <div class="horaires-row closed"><span class="day">Dimanche</span><span class="hour">fermé</span></div>
+        </div>
+      </div>
+      <div class="zone-card">
+        <div>
+          <div class="section-kicker" style="color:var(--lime);margin-bottom:1rem">Zone d'intervention</div>
+          <h3 class="zone-big">Metz<br>&amp; <em>alentours.</em></h3>
+          <div class="zone-cities">
+            <span class="zone-chip">Charly Oradour</span>
+            <span class="zone-chip">Metz</span>
+            <span class="zone-chip">Vigy</span>
+            <span class="zone-chip">Courcelles-Chaussy</span>
+            <span class="zone-chip">Maizières-lès-Metz</span>
+            <span class="zone-chip">Mécleuves</span>
+          </div>
+        </div>
+        <!-- Small Moselle outline — simple organic blob -->
+        <svg class="zone-map" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 20 C140 25 165 55 170 95 C175 140 145 175 100 180 C55 175 25 140 30 95 C35 55 60 25 100 20 Z" fill="#bef264" opacity=".2"/>
+          <circle cx="100" cy="100" r="7" fill="#bef264"/>
+          <circle cx="100" cy="100" r="15" stroke="#bef264" stroke-width="2" fill="none"/>
+          <circle cx="100" cy="100" r="28" stroke="#bef264" stroke-width="1" fill="none" opacity=".5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── CONTACT ─────────────────────────── -->
+<section id="contact" style="padding-block:0">
+  <div class="contact">
+    <div class="container">
+      <h2 class="contact-big">Redonnons<br><em>vie</em> à vos extérieurs.</h2>
+      <div class="contact-phone-wrap">
+        <div class="contact-phone-k">Un appel suffit</div>
+        <a href="tel:0601429365" class="contact-phone">
+          <span class="contact-phone-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0a2f1f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          06 01 42 93 65
+        </a>
+        <p class="contact-sub">Devis gratuit et rapide · basé à <strong>Charly Oradour</strong> · intervention Metz &amp; alentours</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── FOOTER ─────────────────────────── -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="brand">
+          <div class="brand-mark">
+            <img src="img/logo.png" alt="LT Services">
+          </div>
+          <div class="brand-text">
+            <span class="brand-name" style="color:var(--cream)">LT Services</span>
+            <span class="brand-sub" style="color:rgba(250,246,236,.55)">Paysagiste depuis 2023</span>
+          </div>
+        </a>
+        <p class="footer-desc">Entreprise de paysage basée à Charly Oradour. Entretien, aménagement et clôtures sur Metz et alentours — travail soigné, devis gratuit, 50 % de crédit d'impôt sur l'entretien.</p>
+        <a href="https://www.facebook.com/profile.php?id=100090052612683" target="_blank" rel="noopener" class="footer-fb" style="margin-top:1.5rem">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88v-6.99h-2.5V12h2.5V9.79c0-2.48 1.48-3.85 3.74-3.85 1.08 0 2.21.19 2.21.19v2.43h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.43 2.89h-2.29v6.99A10 10 0 0 0 22 12z"/></svg>
+          Facebook — LT Services
+        </a>
+      </div>
+      <div>
+        <h5>Coordonnées</h5>
+        <div class="footer-list">
+          <a href="tel:0601429365">06 01 42 93 65</a>
+          <span style="color:rgba(250,246,236,.65);font-size:.95rem;line-height:1.5">11 Bis rte Rupigny<br>57640 Charly Oradour</span>
+          <span style="color:rgba(250,246,236,.65);font-size:.95rem">Lun–Ven · 07h – 19h</span>
+        </div>
+      </div>
+      <div>
+        <h5>Prestations</h5>
+        <div class="footer-list">
+          <a href="#savoir-faire">Entretien de jardin</a>
+          <a href="#savoir-faire">Aménagement paysager</a>
+          <a href="#savoir-faire">Pose de clôtures</a>
+          <a href="#prestations">Toutes les prestations</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LT Services · SIRET 948 298 286 00014</span>
+      <span>Charly Oradour — Moselle (57)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal on scroll (léger, below-the-fold uniquement)
+(() => {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }});
+  }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.pillar, .engagement, .prestation, .horaires-card, .zone-card, .gal-item').forEach(el => {
+    el.classList.add('reveal');
+    io.observe(el);
+  });
+})();
+
+// Burger no-op (placeholder)
+document.querySelector('.burger')?.addEventListener('click', () => {
+  alert('Menu mobile à brancher — placeholder');
+});
+</script>
+</body>
+</html>
