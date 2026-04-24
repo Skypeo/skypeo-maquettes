@@ -73,9 +73,11 @@ body::before{
   position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;
 }
 .leaf{
-  position:absolute;opacity:.18;filter:blur(.3px);
+  position:absolute;opacity:.32;filter:blur(.2px);
   will-change:transform;
 }
+.leaf-xl{opacity:.22;filter:blur(.6px)}
+.leaf-sm{opacity:.38}
 @keyframes leaf-drift-1{
   0%{transform:translate3d(-10vw,-15vh,0) rotate(0deg) scale(.85)}
   50%{transform:translate3d(30vw,50vh,0) rotate(180deg) scale(1)}
@@ -151,20 +153,25 @@ body::before{
 }
 .brand{display:flex;align-items:center;gap:.65rem;text-decoration:none;color:inherit}
 .brand-mark{
-  width:52px;height:52px;border-radius:14px;
-  background:var(--cream);
-  display:grid;place-items:center;color:var(--lime);
-  overflow:hidden;border:1px solid var(--ink-12);
+  width:72px;height:72px;border-radius:18px;
+  background:#fff;
+  display:grid;place-items:center;
+  overflow:hidden;
+  box-shadow:0 2px 10px -2px rgba(10,47,31,.1);
 }
 .brand-mark svg{width:22px;height:22px}
-.brand-mark img{width:100%;height:100%;object-fit:contain;padding:4px}
+.brand-mark img{width:100%;height:100%;object-fit:contain}
+.header-inner{padding:1.1rem 0}
+@media (max-width: 560px){
+  .brand-mark{width:60px;height:60px;border-radius:14px}
+}
 .brand-name{font-family:var(--ff-display);font-size:1.35rem;font-weight:600;letter-spacing:-.02em;line-height:1}
 .brand-sub{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);margin-top:2px;font-weight:500}
 .brand-text{display:flex;flex-direction:column}
 
 .nav{display:flex;gap:2rem;align-items:center}
-.nav a{font-size:.95rem;color:var(--forest);font-weight:500;opacity:.78;transition:opacity .2s}
-.nav a:hover{opacity:1}
+.nav > a{font-size:.95rem;color:var(--forest);font-weight:500;opacity:.78;transition:opacity .2s}
+.nav > a:hover{opacity:1}
 .nav-cta{display:flex;align-items:center;gap:1rem}
 .header-phone{
   font-family:var(--ff-mono);font-size:.95rem;color:var(--forest);
@@ -500,13 +507,18 @@ section{padding:var(--pad-section) 0;position:relative;z-index:2}
 .gal-cta-title em{font-style:italic;color:var(--lime);font-variation-settings:"opsz" 144,"SOFT" 100}
 .gal-cta-mono{font-family:var(--ff-mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--lime-glow);font-weight:500;margin-bottom:1rem}
 .gal-cta-link{
-  display:inline-flex;align-items:center;gap:.6rem;align-self:flex-start;
-  padding:.75rem 1.25rem;border-radius:var(--r-pill);
-  background:var(--lime);color:var(--forest);font-weight:600;font-size:.9rem;
+  display:inline-flex;align-items:center;gap:.65rem;align-self:flex-start;
+  padding:.75rem 1.1rem .75rem .85rem;border-radius:var(--r-pill);
+  background:var(--lime);color:var(--forest);font-weight:600;font-size:.92rem;
   transition:transform .25s ease;
 }
 .gal-cta-link:hover{transform:translateX(4px)}
-.gal-cta-link svg{width:16px;height:16px}
+.gal-cta-link .fb-ic{
+  width:24px;height:24px;border-radius:50%;
+  background:#1877f2;color:#fff;display:grid;place-items:center;flex-shrink:0;
+}
+.gal-cta-link .fb-ic svg{width:14px;height:14px}
+.gal-cta-link .arrow-ic{width:14px;height:14px;opacity:.6}
 .gal-cta-deco{
   position:absolute;right:-30px;top:-30px;
   width:200px;height:200px;border-radius:50%;
@@ -758,12 +770,18 @@ section{padding:var(--pad-section) 0;position:relative;z-index:2}
   position:relative;z-index:2;
 }
 .footer-fb{
-  display:inline-flex;align-items:center;gap:.55rem;
-  padding:.55rem 1rem;border-radius:var(--r-pill);
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.55rem 1rem .55rem .55rem;border-radius:var(--r-pill);
   background:rgba(190,242,100,.12);border:1px solid rgba(190,242,100,.22);
-  color:var(--lime-glow);font-family:var(--ff-body);font-size:.85rem;font-weight:500;
+  color:var(--lime-glow);font-family:var(--ff-body);font-size:.9rem;font-weight:500;
+  transition:background .25s;
 }
-.footer-fb svg{width:16px;height:16px}
+.footer-fb:hover{background:rgba(190,242,100,.2)}
+.footer-fb .fb-ic{
+  width:28px;height:28px;border-radius:50%;
+  background:#1877f2;color:#fff;display:grid;place-items:center;flex-shrink:0;
+}
+.footer-fb .fb-ic svg{width:16px;height:16px}
 
 @media (max-width: 800px){
   .footer-inner{grid-template-columns:1fr;gap:2rem}
@@ -792,19 +810,35 @@ section{padding:var(--pad-section) 0;position:relative;z-index:2}
 
 <!-- ─────────────────────────── FEUILLES EN FOND ─────────────────────────── -->
 <div class="leaves-bg" aria-hidden="true">
-  <!-- 12 feuilles SVG avec positions, délais, vitesses randomisées -->
-  <svg class="leaf drift-1" style="top:10%;left:5%;animation-delay:-4s" width="42" height="42" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
-  <svg class="leaf drift-2" style="top:30%;left:20%;animation-delay:-20s" width="34" height="34" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/><path d="M12 30L50 18" stroke="#0a2f1f" stroke-width="1.5"/></svg>
-  <svg class="leaf drift-3" style="top:5%;left:75%;animation-delay:-14s" width="52" height="52" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
-  <svg class="leaf drift-1" style="top:55%;left:85%;animation-delay:-28s" width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#16a34a"/></svg>
-  <svg class="leaf drift-2" style="top:75%;left:10%;animation-delay:-8s" width="46" height="46" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#22c55e"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
-  <svg class="leaf drift-3" style="top:40%;left:50%;animation-delay:-32s" width="36" height="36" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#bef264"/></svg>
-  <svg class="leaf drift-1" style="top:85%;left:40%;animation-delay:-18s" width="40" height="40" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
-  <svg class="leaf drift-2" style="top:20%;left:60%;animation-delay:-40s" width="28" height="28" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/></svg>
-  <svg class="leaf drift-3" style="top:65%;left:30%;animation-delay:-6s" width="38" height="38" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/></svg>
-  <svg class="leaf sway" style="top:15%;left:40%;--rot:25deg" width="24" height="24" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/></svg>
-  <svg class="leaf sway" style="top:50%;left:92%;--rot:-15deg;animation-delay:-3s" width="32" height="32" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/></svg>
-  <svg class="leaf sway" style="top:90%;left:70%;--rot:45deg;animation-delay:-5s" width="28" height="28" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#bef264"/></svg>
+  <!-- ~28 feuilles SVG avec positions, délais et tailles variés, drift + sway -->
+  <svg class="leaf drift-1 leaf-xl" style="top:8%;left:4%;animation-delay:-4s" width="68" height="68" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-2" style="top:30%;left:18%;animation-delay:-20s" width="36" height="36" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/><path d="M12 30L50 18" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-3 leaf-xl" style="top:4%;left:72%;animation-delay:-14s" width="64" height="64" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-1" style="top:55%;left:85%;animation-delay:-28s" width="32" height="32" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#16a34a"/></svg>
+  <svg class="leaf drift-2" style="top:75%;left:8%;animation-delay:-8s" width="48" height="48" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#22c55e"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-3" style="top:42%;left:48%;animation-delay:-32s" width="38" height="38" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#bef264"/></svg>
+  <svg class="leaf drift-1" style="top:86%;left:38%;animation-delay:-18s" width="42" height="42" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-2 leaf-sm" style="top:20%;left:62%;animation-delay:-40s" width="22" height="22" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/></svg>
+  <svg class="leaf drift-3" style="top:64%;left:28%;animation-delay:-6s" width="38" height="38" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/></svg>
+  <svg class="leaf drift-1 leaf-xl" style="top:48%;left:66%;animation-delay:-36s" width="58" height="58" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#22c55e"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-2" style="top:12%;left:35%;animation-delay:-12s" width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#bef264"/></svg>
+  <svg class="leaf drift-3" style="top:26%;left:88%;animation-delay:-22s" width="40" height="40" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-1" style="top:38%;left:8%;animation-delay:-26s" width="34" height="34" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/></svg>
+  <svg class="leaf drift-2 leaf-sm" style="top:58%;left:52%;animation-delay:-16s" width="24" height="24" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/></svg>
+  <svg class="leaf drift-3" style="top:70%;left:68%;animation-delay:-2s" width="44" height="44" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#16a34a"/><path d="M12 30L50 18" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-1" style="top:80%;left:22%;animation-delay:-30s" width="36" height="36" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/></svg>
+  <svg class="leaf drift-2 leaf-xl" style="top:92%;left:58%;animation-delay:-44s" width="62" height="62" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#16a34a"/><path d="M12 30L50 18" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-3" style="top:2%;left:52%;animation-delay:-24s" width="32" height="32" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#22c55e"/></svg>
+  <svg class="leaf sway leaf-sm" style="top:15%;left:42%;--rot:25deg" width="26" height="26" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/></svg>
+  <svg class="leaf sway" style="top:50%;left:92%;--rot:-15deg;animation-delay:-3s" width="36" height="36" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/></svg>
+  <svg class="leaf sway" style="top:90%;left:72%;--rot:45deg;animation-delay:-5s" width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#bef264"/></svg>
+  <svg class="leaf sway" style="top:25%;left:10%;--rot:-30deg;animation-delay:-7s" width="28" height="28" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#22c55e"/></svg>
+  <svg class="leaf sway" style="top:65%;left:45%;--rot:60deg;animation-delay:-9s" width="26" height="26" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#bef264"/></svg>
+  <svg class="leaf sway leaf-sm" style="top:78%;left:78%;--rot:-50deg;animation-delay:-11s" width="22" height="22" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#16a34a"/></svg>
+  <svg class="leaf sway" style="top:38%;left:78%;--rot:15deg;animation-delay:-4s" width="32" height="32" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/></svg>
+  <svg class="leaf drift-1 leaf-sm" style="top:22%;left:76%;animation-delay:-38s" width="22" height="22" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#22c55e"/></svg>
+  <svg class="leaf drift-2" style="top:44%;left:32%;animation-delay:-10s" width="30" height="30" viewBox="0 0 64 64" fill="none"><path d="M32 4C20 18 8 28 10 44c1 10 9 16 22 16s21-6 22-16c2-16-10-26-22-40z" fill="#bef264"/><path d="M32 8v52" stroke="#0a2f1f" stroke-width="1.5"/></svg>
+  <svg class="leaf drift-3 leaf-sm" style="top:6%;left:18%;animation-delay:-50s" width="20" height="20" viewBox="0 0 64 64" fill="none"><path d="M8 32C14 14 34 6 54 12c-2 20-14 38-32 44-8-4-12-14-14-24z" fill="#16a34a"/></svg>
 </div>
 
 <!-- ─────────────────────────── HEADER ─────────────────────────── -->
@@ -812,7 +846,7 @@ section{padding:var(--pad-section) 0;position:relative;z-index:2}
   <div class="container header-inner">
     <a href="#" class="brand">
       <div class="brand-mark">
-        <img src="img/logo.png" alt="LT Services">
+        <img src="img/logo.jpg" alt="LT Services">
       </div>
       <div class="brand-text">
         <span class="brand-name">LT Services</span>
@@ -1017,8 +1051,11 @@ section{padding:var(--pad-section) 0;position:relative;z-index:2}
           <h3 class="gal-cta-title">Suivez les<br><em>chantiers</em> en direct.</h3>
         </div>
         <span class="gal-cta-link">
+          <span class="fb-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88v-6.99h-2.5V12h2.5V9.79c0-2.48 1.48-3.85 3.74-3.85 1.08 0 2.21.19 2.21.19v2.43h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.43 2.89h-2.29v6.99A10 10 0 0 0 22 12z"/></svg>
+          </span>
           Facebook — LT Services
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg>
+          <svg class="arrow-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M8 7h9v9"/></svg>
         </span>
       </a>
     </div>
@@ -1159,7 +1196,7 @@ section{padding:var(--pad-section) 0;position:relative;z-index:2}
       <div class="footer-brand">
         <a href="#" class="brand">
           <div class="brand-mark">
-            <img src="img/logo.png" alt="LT Services">
+            <img src="img/logo.jpg" alt="LT Services">
           </div>
           <div class="brand-text">
             <span class="brand-name" style="color:var(--cream)">LT Services</span>
@@ -1168,7 +1205,9 @@ section{padding:var(--pad-section) 0;position:relative;z-index:2}
         </a>
         <p class="footer-desc">Entreprise de paysage basée à Charly Oradour. Entretien, aménagement et clôtures sur Metz et alentours — travail soigné, devis gratuit, 50 % de crédit d'impôt sur l'entretien.</p>
         <a href="https://www.facebook.com/profile.php?id=100090052612683" target="_blank" rel="noopener" class="footer-fb" style="margin-top:1.5rem">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88v-6.99h-2.5V12h2.5V9.79c0-2.48 1.48-3.85 3.74-3.85 1.08 0 2.21.19 2.21.19v2.43h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.43 2.89h-2.29v6.99A10 10 0 0 0 22 12z"/></svg>
+          <span class="fb-ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.88v-6.99h-2.5V12h2.5V9.79c0-2.48 1.48-3.85 3.74-3.85 1.08 0 2.21.19 2.21.19v2.43h-1.24c-1.22 0-1.6.76-1.6 1.54V12h2.72l-.43 2.89h-2.29v6.99A10 10 0 0 0 22 12z"/></svg>
+          </span>
           Facebook — LT Services
         </a>
       </div>
