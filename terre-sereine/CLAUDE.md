@@ -6,7 +6,7 @@ Maquette one-page pour un institut de beauté **en création** à Woippy (57140,
 ## Services
 - Headspa (rituel capillaire japonais)
 - Hydra Face (soin visage **Dermalogica**)
-- Madéro Therapy (soin corps **Bioslimming**)
+- Maderothérapie (soin corps **Bioslimming**)
 - Drainage lymphatique
 - Sauna dôme infrarouge
 - Massage pierres chaudes
