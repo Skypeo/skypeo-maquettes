@@ -1442,43 +1442,42 @@
     .rdv-right {
       position: relative;
       aspect-ratio: 3/4;
-      border-radius: var(--r-lg);
-      overflow: hidden;
-      box-shadow: 0 50px 90px -50px rgba(110, 74, 47, .6);
     }
 
     .rdv-right img {
       width: 100%;
-      height: 100%
+      height: 100%;
+      border-radius: var(--r-lg);
+      object-fit: cover;
+      box-shadow: 0 50px 90px -50px rgba(110, 74, 47, .6)
     }
 
     .rdv-badge {
       position: absolute;
-      top: 28px;
-      right: 28px;
-      z-index: 3;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: rgba(240, 227, 205, .94);
-      backdrop-filter: blur(8px);
-      display: grid;
-      place-items: center;
-      text-align: center;
-      font-family: 'Italiana', serif;
-      font-size: 13px;
-      color: var(--brown);
-      line-height: 1.3;
-      animation: spinBadge 22s linear infinite;
+      bottom: -14px;
+      right: -14px;
+      z-index: 4;
+      width: 124px;
+      height: 124px;
+      filter: drop-shadow(0 14px 24px rgba(43, 31, 22, .35));
     }
 
-    .rdv-badge span {
-      display: block;
-      font-size: 10px;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-      margin-top: 6px
+    .rdv-badge svg {
+      width: 100%;
+      height: 100%;
+      display: block
+    }
+
+    .rdv-badge-rotor {
+      transform-origin: 100px 100px;
+      transform-box: fill-box;
+      animation: spinBadge 32s linear infinite
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rdv-badge-rotor {
+        animation: none
+      }
     }
 
     @keyframes spinBadge {
@@ -1873,8 +1872,8 @@
     </nav>
     <div class="nav-cta-wrap">
       <div class="nav-hours">
-        <strong>Mar — Sam</strong>
-        <span>9h — 19h</span>
+        <strong>Lun — Sam</strong>
+        <span>9h — 18h</span>
       </div>
       <a href="#rdv" class="nav-cta"><span class="dot"></span>Prendre rendez-vous</a>
     </div>
@@ -1935,7 +1934,7 @@
         <img src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?w=1600&q=80"
           alt="Intérieur d'institut de beauté — Terre Sereine">
       </div>
-      <span class="hero-vertical">Onsen éditorial · Sandra & Céline</span>
+      <span class="hero-vertical">Onsen éditorial · Claudia & Chloé</span>
       <div class="hero-badge">
         <span class="sub">— Rituel du mois</span>
         <strong>Hydra Face Dermalogica</strong>
@@ -1974,7 +1973,7 @@
             sensorielles : madérothérapie, pierres chaudes, drainage lymphatique, sauna dôme.
           </p>
         </div>
-        <div class="maison-sign">Sandra & Céline · Fondatrices</div>
+        <div class="maison-sign">Claudia & Chloé · Fondatrices</div>
       </div>
       <div class="maison-photos">
         <div class="maison-photo-1">
@@ -2008,66 +2007,62 @@
     <div class="rituels-grid">
 
       <article class="rituel">
-        <div class="rituel-num">I · Rituel capillaire</div>
+        <div class="rituel-num">Rituel capillaire</div>
         <div class="rituel-photo"><img src="https://images.unsplash.com/photo-1519824145371-296894a0daa9?w=600&q=80"
             alt=""></div>
         <h3>Head <span class="i">Spa</span></h3>
-        <div class="rituel-duration">60 minutes</div>
         <p>Lavage en profondeur, massage crânien, vapeur d'eau thermale. Un soin japonais qui relâche les tensions et
           réveille la brillance des cheveux.</p>
         <span class="rituel-arrow" aria-hidden="true">→</span>
       </article>
 
       <article class="rituel">
-        <div class="rituel-num">II · Soin visage</div>
+        <div class="rituel-num">Soin visage</div>
         <div class="rituel-photo"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80"
             alt=""></div>
         <h3>Hydra <span class="i">Face</span></h3>
-        <div class="rituel-duration">75 minutes · Dermalogica</div>
+        <div class="rituel-duration">Dermalogica</div>
         <p>Nettoyage, exfoliation, extraction douce, sérum sur-mesure. Le protocole Dermalogica adapté à votre peau pour
           un éclat immédiat et durable.</p>
         <span class="rituel-arrow" aria-hidden="true">→</span>
       </article>
 
       <article class="rituel">
-        <div class="rituel-num">III · Soin corps</div>
+        <div class="rituel-num">Soin corps</div>
         <div class="rituel-photo"><img src="https://images.unsplash.com/photo-1526045478516-99145907023c?w=600&q=80"
             alt=""></div>
         <h3>Madéro <span class="i">Therapy</span></h3>
-        <div class="rituel-duration">60 minutes · Bioslimming</div>
+        <div class="rituel-duration">Bioslimming</div>
         <p>Sculpture corporelle par outils de bois. Technique colombienne associée aux actifs Bioslimming pour
           remodeler, raffermir et drainer.</p>
         <span class="rituel-arrow" aria-hidden="true">→</span>
       </article>
 
       <article class="rituel">
-        <div class="rituel-num">IV · Soin minceur</div>
+        <div class="rituel-num">Soin minceur</div>
         <div class="rituel-photo"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&q=80"
             alt=""></div>
         <h3>Drainage <span class="i">lymphatique</span></h3>
-        <div class="rituel-duration">60 minutes</div>
         <p>Pressions lentes et rythmées pour relancer la circulation. Jambes légères, silhouette affinée, toxines
           éliminées — une sensation de renaissance.</p>
         <span class="rituel-arrow" aria-hidden="true">→</span>
       </article>
 
       <article class="rituel">
-        <div class="rituel-num">V · Chaleur sèche</div>
+        <div class="rituel-num">Chaleur sèche</div>
         <div class="rituel-photo"><img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&q=80"
             alt=""></div>
         <h3>Sauna <span class="i">Dôme</span></h3>
-        <div class="rituel-duration">30 minutes</div>
         <p>Le dôme infrarouge enveloppe le corps sans chauffer la tête. Détoxification cellulaire profonde, relâchement
           musculaire, sommeil réparateur.</p>
         <span class="rituel-arrow" aria-hidden="true">→</span>
       </article>
 
       <article class="rituel">
-        <div class="rituel-num">VI · Massage signature</div>
+        <div class="rituel-num">Massage signature</div>
         <div class="rituel-photo"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80"
             alt=""></div>
         <h3>Pierres <span class="i">chaudes</span></h3>
-        <div class="rituel-duration">75 minutes</div>
         <p>Basaltes volcaniques chauffés, glissés le long des méridiens du corps. Un massage enveloppant qui dissout les
           tensions les plus profondes.</p>
         <span class="rituel-arrow" aria-hidden="true">→</span>
@@ -2161,7 +2156,7 @@
             <p>Woippy · 57140<br>Moselle, France</p>
           </div>
           <div class="rdv-coord"><span>Horaires</span>
-            <p>Mardi — Samedi · 9h à 19h<br>Dimanche & Lundi · fermé</p>
+            <p>Lundi — Samedi · 9h à 18h<br>Sur rendez-vous</p>
           </div>
           <div class="rdv-coord"><span>Contact</span>
             <p><a href="tel:+33000000000">03 87 00 00 00</a><br><a
@@ -2169,12 +2164,34 @@
           </div>
         </div>
         <div class="rdv-cta-group">
-          <a href="#" class="btn-dark">Réserver en ligne <span>→</span></a>
+          <a href="https://www.planity.com/terre-sereine-57140-woippy" target="_blank" rel="noopener" class="btn-dark">Réserver sur Planity <span>→</span></a>
           <a href="tel:+33000000000" class="btn-ghost">Nous appeler</a>
         </div>
       </div>
       <div class="rdv-right">
-        <div class="rdv-badge">Terre<br>Sereine<span>Woippy · 2026</span></div>
+        <div class="rdv-badge" aria-hidden="true">
+          <svg viewBox="0 0 200 200">
+            <defs>
+              <path id="rdv-badge-ring" d="M 14,100 A 86,86 0 1,0 186,100 A 86,86 0 1,0 14,100" fill="none" />
+              <radialGradient id="rdv-badge-fill" cx="50%" cy="40%" r="60%">
+                <stop offset="0%" stop-color="#3d2d20" />
+                <stop offset="100%" stop-color="#241910" />
+              </radialGradient>
+            </defs>
+            <circle cx="100" cy="100" r="96" fill="url(#rdv-badge-fill)" />
+            <circle cx="100" cy="100" r="93.5" fill="none" stroke="#B8874E" stroke-width=".5" opacity=".75" />
+            <g>
+              <text font-family="Italiana, serif" font-size="13.5" fill="#F0E3CD" letter-spacing="3">
+                <textPath href="#rdv-badge-ring" startOffset="0">TERRE SEREINE · MAISON DE BIEN-ÊTRE · WOIPPY · </textPath>
+              </text>
+              <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="38s" repeatCount="indefinite" />
+            </g>
+            <g opacity=".7">
+              <line x1="92" y1="100" x2="108" y2="100" stroke="#B8874E" stroke-width=".5" />
+              <circle cx="100" cy="100" r="1.4" fill="#D9A668" />
+            </g>
+          </svg>
+        </div>
         <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=1200&q=80"
           alt="Institut Terre Sereine">
       </div>
